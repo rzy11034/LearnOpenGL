@@ -1,0 +1,25 @@
+﻿program LearnOpenGL;
+
+{$mode objfpc}{$H+}
+
+uses
+  {$IFDEF UNIX}
+  cthreads,
+  {$ENDIF}
+  Classes,
+  SysUtils,
+  GLAD_GL,
+  GLFW,
+  LearnOpenGL.Main,
+  Case01_01_Hello_Window,
+  Case01_02_Hello_Triangle, LearnOpenGL.Utils;
+
+begin
+  try
+    Run;
+    //ReadLn;
+  except
+    on E: Exception do
+      WriteLn(E.ClassName, ': ', E.Message);
+  end;
+end.
