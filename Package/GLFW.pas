@@ -231,11 +231,15 @@ type
 
 
 const
-  {$IFDEF MSWINDOWS}
+  {$if defined(Windows)}
   GLFW_DLL = 'glfw3.dll';
-  {$ELSE}
-  GLFW_DLL = 'GLFW3.so';
-  {$ENDIF}
+  {$elseif defined(darwin)}
+  GLFW_DLL = 'libglfw.3.dylib';
+  {$elseif defined(linux)}
+  GLFW_DLL = 'libglfw.so.3';
+  {$else}
+  GLFW_DLL = 'libglfw.so.3';
+  {$endif}
 
   //========================================================================
   // GLFW version

@@ -8,8 +8,8 @@ interface
 uses
   Classes,
   SysUtils,
-  gl,
   {%H-}GLAD_GL,
+  {%H-}LearnOpenGL.Utils,
   {%H-}dynlibs,
   {%H-}ctypes,
   {%H-}Math;
@@ -19,13 +19,14 @@ procedure Run();
 implementation
 
 uses
-  Case01_02_Hello_Triangle;
+  {%H-}Case01_02_Hello_Triangle;
 
 const
-  LE = LineEnding;
+  {%H-}LE = LineEnding;
 
 procedure Test;
 begin
+  Exit;
 end;
 
 procedure Run();

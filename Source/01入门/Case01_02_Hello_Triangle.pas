@@ -1,8 +1,7 @@
 ﻿unit Case01_02_Hello_Triangle;
 
-{$mode ObjFPC}{$H+}
+{$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
-
 interface
 
 uses
@@ -16,14 +15,13 @@ procedure Main;
 
 implementation
 
-
 const
   SCR_WIDTH = 800;
   SCR_HEIGHT = 600;
   LE = LineEnding;
 
 const
-  vertexShaderSource: PGLchar = '#version 330 core ' + LE
+  vertexShaderSource: PGLchar = '#version 330 core' + LE
     + 'layout (location = 0) in vec3 aPos; '
     + 'void main() '
     + '{ '
@@ -55,10 +53,11 @@ end;
 procedure Main;
 var
   window: PGLFWwindow;
-  success, arrSize: GLint;
-  vertexShader, fragmentShader, shaderProgram, VAO, VBO: GLuint;
+  success, EBO: GLint;
   vertices: TArr_GLfloat;
   infoLog: TArr_GLchar;
+  vertexShader, fragmentShader, shaderProgram, VBO, VAO: GLuint;
+  indices: TArr_GLint;
 begin
   glfwInit;
 
@@ -103,10 +102,8 @@ begin
   glGetShaderiv(vertexShader, GL_COMPILE_STATUS, @success);
   // 获取错误消息，然后打印它。
   if not success.ToBoolean then
-  begin
-    glGetShaderInfoLog(vertexShader, 512, nil, @infoLog[0]);
-    WriteLn('ERROR::SHADER::VERTEX::COMPILATION_FAILED' + LE, PAnsiChar(infoLog));
-  end;
+    glGetShaderInfoLog(vertexShader, 512, nil, @infoLog[0])//WriteLn('ERROR::SHADER::VERTEX::COMPILATION_FAILED' + LE, PAnsiChar(infoLog));
+  ;
 
   // 编译片段着色器的过程与顶点着色器类似，
   // 只不过使用GL_FRAGMENT_SHADER常量作为着色器类型：
@@ -147,21 +144,44 @@ begin
   glDeleteShader(vertexShader);
   glDeleteShader(fragmentShader);
 
-  //设置顶点数据(和缓冲区)并配置顶点属性
+  ////设置顶点数据(和缓冲区)并配置顶点属性
+  //vertices := TArr_GLfloat(nil);
+  //vertices := [
+  //  -0.5, -0.5, 0.0,
+  //  0.5, -0.5, 0.0,
+  //  0.0, 0.5, 0.0];
+  //// 生成一个VBO对象, 新创建的缓冲绑定到GL_ARRAY_BUFFER目标上
+  //VBO := GLuint(0);
+  //glGenBuffers(1, @VBO);
+  //glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  //// 把之前定义的顶点数据复制到缓冲的内存中
+  //glBufferData(GL_ARRAY_BUFFER, DynArrayMemSize(vertices), @vertices[0], GL_STATIC_DRAW);
+
   vertices := TArr_GLfloat(nil);
   vertices := [
-    -0.5, -0.5, 0.0,
-    0.5, -0.5, 0.0,
-    0.0, 0.5, 0.0];
-
+    0.5, 0.5, 0.0,   // 右上角
+    0.5, -0.5, 0.0,  // 右下角
+    -0.5, -0.5, 0.0, // 左下角
+    -0.5, 0.5, 0.0];   // 左上角
+  // 绘制出矩形所需的索引
+  indices := TArr_GLint(nil);
+  indices := [
+    // 注意索引从0开始!
+    // 此例的索引(0,1,2,3)就是顶点数组vertices的下标，
+    // 这样可以由下标代表顶点组合成矩形
+    0, 1, 3, // 第一个三角形
+    1, 2, 3];  // 第二个三角形
   // 生成一个VBO对象, 新创建的缓冲绑定到GL_ARRAY_BUFFER目标上
   VBO := GLuint(0);
   glGenBuffers(1, @VBO);
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
-  // 把之前定义的顶点数据复制到缓冲的内存中
-  arrSize := GLint(0);
-  arrSize := SizeOf(vertices[0]) * Length(vertices);
-  glBufferData(GL_ARRAY_BUFFER, arrSize, @vertices[0], GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, DynArrayMemSize(vertices), @vertices[0], GL_STATIC_DRAW);
+  // 生成一个EBO对象， 并绑定
+  EBO := GLint(0);
+  glGenBuffers(1, @EBO);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, DynArrayMemSize(indices), @indices[0], GL_STATIC_DRAW);
+
 
   // 创建一个VAO
   VAO := GLuint(0);
@@ -182,10 +202,12 @@ begin
     glClearColor(0.2, 0.3, 0.3, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    // 画出第一个三角形
-
+    //// 画出第一个三角形
+    //glDrawArrays(GL_TRIANGLES, 0, 3);
+    glUseProgram(shaderProgram);
     glBindVertexArray(VAO);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, Pointer(0));
+    glBindVertexArray(0);
 
     // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
     glfwSwapBuffers(window);
@@ -194,6 +216,7 @@ begin
 
   glDeleteVertexArrays(1, @VAO);
   glDeleteBuffers(1, @VBO);
+  glDeleteBuffers(1, @EBO)
   glDeleteProgram(shaderProgram);
 
   // 释放 / 删除之前的分配的所有资源
