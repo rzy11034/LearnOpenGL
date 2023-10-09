@@ -137,26 +137,32 @@ begin
     WriteLn('ERROR::SHADER::SHADERPROGRAM::COMPILATION_FAILED' + LE, PAnsiChar(infoLog));
   end;
 
-  // 激活这个程序对象
-  glUseProgram(shaderProgram);
-
   //记得删除着色器对象
   glDeleteShader(vertexShader);
   glDeleteShader(fragmentShader);
 
-  ////设置顶点数据(和缓冲区)并配置顶点属性
-  //vertices := TArr_GLfloat(nil);
-  //vertices := [
-  //  -0.5, -0.5, 0.0,
-  //  0.5, -0.5, 0.0,
-  //  0.0, 0.5, 0.0];
-  //// 生成一个VBO对象, 新创建的缓冲绑定到GL_ARRAY_BUFFER目标上
-  //VBO := GLuint(0);
-  //glGenBuffers(1, @VBO);
-  //glBindBuffer(GL_ARRAY_BUFFER, VBO);
-  //// 把之前定义的顶点数据复制到缓冲的内存中
-  //glBufferData(GL_ARRAY_BUFFER, DynArrayMemSize(vertices), @vertices[0], GL_STATIC_DRAW);
+  // 创建一个VAO
+  VAO := GLuint(0);
+  glGenVertexArrays(1, @VAO);
+  glBindVertexArray(VAO);
 
+  ////////////////////////////////////////////////////////////////////////////
+  { 顶点数组模
+  //设置顶点数据(和缓冲区)并配置顶点属性
+  vertices := TArr_GLfloat(nil);
+  vertices := [
+    -0.5, -0.5, 0.0,
+    0.5, -0.5, 0.0,
+    0.0, 0.5, 0.0];
+  // 生成一个VBO对象, 新创建的缓冲绑定到GL_ARRAY_BUFFER目标上
+  VBO := GLuint(0);
+  glGenBuffers(1, @VBO);
+  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  // 把之前定义的顶点数据复制到缓冲的内存中
+  glBufferData(GL_ARRAY_BUFFER, DynArrayMemSize(vertices), @vertices[0], GL_STATIC_DRAW); //}
+
+  /////////////////////////////////////////////////////////////////////////////
+  //{
   vertices := TArr_GLfloat(nil);
   vertices := [
     0.5, 0.5, 0.0,   // 右上角
@@ -180,17 +186,18 @@ begin
   EBO := GLint(0);
   glGenBuffers(1, @EBO);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, DynArrayMemSize(indices), @indices[0], GL_STATIC_DRAW);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, DynArrayMemSize(indices), @indices[0], GL_STATIC_DRAW); //}
 
-
-  // 创建一个VAO
-  VAO := GLuint(0);
-  glGenVertexArrays(1, @VAO);
-  glBindVertexArray(VAO);
 
   // 解析顶点数据
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(0));
   glEnableVertexAttribArray(0);
+
+  glBindBuffer(GL_ARRAY_BUFFER, 0);
+  glBindVertexArray(0);
+
+  // 取消此调用的注释以绘制线框多边形。
+  glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
   // 渲染循环
   while glfwWindowShouldClose(window) = 0 do
@@ -202,21 +209,23 @@ begin
     glClearColor(0.2, 0.3, 0.3, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    //// 画出第一个三角形
-    //glDrawArrays(GL_TRIANGLES, 0, 3);
+
+    //// 激活这个程序对象
     glUseProgram(shaderProgram);
+    // 画出第一个三角形
     glBindVertexArray(VAO);
+    //glDrawArrays(GL_TRIANGLES, 0, 3);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, Pointer(0));
-    glBindVertexArray(0);
 
     // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
     glfwSwapBuffers(window);
     glfwPollEvents;
   end;
 
+
   glDeleteVertexArrays(1, @VAO);
   glDeleteBuffers(1, @VBO);
-  glDeleteBuffers(1, @EBO)
+  glDeleteBuffers(1, @EBO);
   glDeleteProgram(shaderProgram);
 
   // 释放 / 删除之前的分配的所有资源

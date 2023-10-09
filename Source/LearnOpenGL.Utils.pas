@@ -15,7 +15,7 @@ type
   TArr_GLuint = array of GLuint;
   TArr_GLchar = array of GLchar;
 
-function DynArrayMemSize(const dynArray: TArr_GLfloat): GLint;
+function DynArrayMemSize(const dynArray: TArr_GLfloat): GLint; inline;
 function DynArrayMemSize(const dynArray: TArr_GLint): GLint;
 function DynArrayMemSize(const dynArray: TArr_GLuint): GLint;
 function DynArrayMemSize(const dynArray: TArr_GLchar): GLint;

@@ -11,8 +11,8 @@
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="8"/>
-        <CursorPos X="45" Y="13"/>
-        <UsageCount Value="125"/>
+        <CursorPos X="20" Y="13"/>
+        <UsageCount Value="131"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -20,9 +20,9 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="10"/>
-        <CursorPos X="6" Y="28"/>
-        <UsageCount Value="125"/>
+        <TopLine Value="15"/>
+        <CursorPos X="23" Y="37"/>
+        <UsageCount Value="131"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -32,7 +32,7 @@
         <WindowIndex Value="0"/>
         <CursorPos X="9" Y="6"/>
         <SyntaxHighlighter Value="Text"/>
-        <UsageCount Value="125"/>
+        <UsageCount Value="131"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -43,7 +43,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="56"/>
         <CursorPos X="23" Y="83"/>
-        <UsageCount Value="89"/>
+        <UsageCount Value="95"/>
       </Unit>
       <Unit>
         <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
@@ -51,9 +51,9 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="201"/>
-        <CursorPos X="26" Y="219"/>
-        <UsageCount Value="86"/>
+        <TopLine Value="48"/>
+        <CursorPos X="43" Y="54"/>
+        <UsageCount Value="92"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -63,7 +63,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="3638"/>
         <CursorPos Y="3644"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="66"/>
       </Unit>
       <Unit>
         <Filename Value="Package\GLFW.pas"/>
@@ -72,16 +72,16 @@
         <WindowIndex Value="0"/>
         <TopLine Value="289"/>
         <CursorPos X="22" Y="238"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="66"/>
       </Unit>
       <Unit>
         <Filename Value="Source\LearnOpenGL.Utils.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="23"/>
-        <CursorPos X="15" Y="23"/>
-        <UsageCount Value="33"/>
+        <TopLine Value="11"/>
+        <CursorPos X="71" Y="18"/>
+        <UsageCount Value="39"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -403,47 +403,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Utils.pas"/>
-        <Caret Line="22" Column="30" TopLine="5"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="39" TopLine="22"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="40" TopLine="34"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Utils.pas"/>
-        <Caret Line="18" Column="29"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Utils.pas"/>
-        <Caret Line="25" Column="29"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Utils.pas"/>
-        <Caret Line="27" Column="20"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Utils.pas"/>
-        <Caret Line="18" Column="29"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
-        <Caret Line="144" Column="49" TopLine="144"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="40" Column="29" TopLine="34"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="37" TopLine="22"/>
-      </Position>
+    <JumpHistory HistoryIndex="28">
       <Position>
         <Filename Value="Source\LearnOpenGL.Utils.pas"/>
         <Caret Line="38" TopLine="21"/>
@@ -523,6 +483,42 @@
       <Position>
         <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
         <Caret Line="203" TopLine="191"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
+        <Caret Line="220" Column="18" TopLine="201"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="39" TopLine="10"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="40" TopLine="31"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Utils.pas"/>
+        <Caret Line="18" Column="71" TopLine="11"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
+        <Caret Line="183" TopLine="174"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
+        <Caret Line="202" TopLine="193"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
+        <Caret Line="204" TopLine="193"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
+        <Caret Line="205" TopLine="193"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
+        <Caret Line="210" TopLine="194"/>
       </Position>
     </JumpHistory>
     <RunParams>

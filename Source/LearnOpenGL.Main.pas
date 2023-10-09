@@ -25,7 +25,20 @@ const
   {%H-}LE = LineEnding;
 
 procedure Test;
+var
+  indices: TArr_GLint;
+  i: GLint;
 begin
+  indices := TArr_GLint(nil);
+  indices := [
+    // 注意索引从0开始!
+    // 此例的索引(0,1,2,3)就是顶点数组vertices的下标，
+    // 这样可以由下标代表顶点组合成矩形
+    0, 1, 3, // 第一个三角形
+    1, 2, 3];  // 第二个三角形
+
+  i := DynArrayMemSize(indices);
+
   Exit;
 end;
 
