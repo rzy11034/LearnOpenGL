@@ -12,7 +12,7 @@ uses
   GLFW,
   LearnOpenGL.Main,
   Case01_01_Hello_Window,
-  Case01_02_Hello_Triangle, LearnOpenGL.Utils;
+  Case01_02_Hello_Triangle, LearnOpenGL.Utils, Case01_02_Exercise_01, Case01_02_Exercise_02;
 
 begin
   try

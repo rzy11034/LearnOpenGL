@@ -19,7 +19,7 @@ procedure Run();
 implementation
 
 uses
-  {%H-}Case01_02_Hello_Triangle;
+  {%H-}Case01_02_Exercise_01;
 
 const
   {%H-}LE = LineEnding;
@@ -37,7 +37,9 @@ begin
     0, 1, 3, // 第一个三角形
     1, 2, 3];  // 第二个三角形
 
-  i := DynArrayMemSize(indices);
+  i := specialize DynArrayMemSize<TArr_GLint>(indices);
+
+  i += 1;
 
   Exit;
 end;

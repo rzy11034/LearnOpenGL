@@ -59,6 +59,7 @@ type
 
 
 type
+  PGLFWvidmode = ^GLFWvidmode;
   GLFWvidmode = record
     Width: integer;
     Height: integer;
@@ -67,8 +68,6 @@ type
     blueBits: integer;
     refreshRate: integer;
   end;
-
-  pGLFWvidmode = ^GLFWvidmode;
 
 type
   PGLFWgammaramp = ^GLFWgammaramp;
@@ -82,15 +81,14 @@ type
 
 type
   CharArray = array of char;
-  pCharArray = CharArray;
+  PCharArray = CharArray;
 
 type
-  pGLFWcursor = ^GLFWcursor;
+  PGLFWcursor = ^GLFWcursor;
   GLFWcursor = integer;
 
 type
-  pGLFWimage = ^GLFWimage;
-
+  PGLFWimage = ^GLFWimage;
   GLFWimage = record
     Width: integer;
     Height: integer;
@@ -98,43 +96,42 @@ type
   end;
 
 type
-  pGLFWgamepadstate = ^GLFWgamepadstate;
-
+  PGLFWgamepadstate = ^GLFWgamepadstate;
   GLFWgamepadstate = record
     Buttons: array [0..15] of char;
     axex: array [0..6] of single;
   end;
 
 type
-  pGLFWKeyFun = ^GLFWKeyFun;
+  PGLFWKeyFun = ^GLFWKeyFun;
   GLFWKeyFun = procedure(p: PGLFWwindow; i2, i3, i4, i5: longint); cdecl;
 
-  pGLFWerrorfun = ^GLFWerrorfun;
+  PGLFWerrorfun = ^GLFWerrorfun;
   GLFWerrorfun = procedure(Error: GLFW_INT; Description: PChar); cdecl;
 
   pGLFWmonitorfun = ^GLFWmonitorfun;
   GLFWmonitorfun = procedure(Monitor: GLFWmonitor); cdecl;
 
-  pGLFWjoystickfun = ^GLFWjoystickfun;
+  PGLFWjoystickfun = ^GLFWjoystickfun;
   GLFWjoystickfun = procedure(jig, event: GLFW_INT); cdecl;
 
 
-  pGLFWwindowposfun = ^GLFWwindowposfun;
+  PGLFWwindowposfun = ^GLFWwindowposfun;
   GLFWwindowposfun = procedure(window: PGLFWwindow; PosX, PosY: integer); cdecl;
 
-  pGLFWwindowsizefun = ^GLFWwindowsizefun;
+  PGLFWwindowsizefun = ^GLFWwindowsizefun;
   GLFWwindowsizefun = procedure(window: PGLFWwindow; Width, Height: integer); cdecl;
 
-  pGLFWwindowclosefun = ^GLFWwindowclosefun;
+  PGLFWwindowclosefun = ^GLFWwindowclosefun;
   GLFWwindowclosefun = procedure(window: PGLFWwindow); cdecl;
 
-  pGLFWwindowrefreshfun = ^GLFWwindowrefreshfun;
+  PGLFWwindowrefreshfun = ^GLFWwindowrefreshfun;
   GLFWwindowrefreshfun = procedure(window: PGLFWwindow); cdecl;
 
-  pGLFWwindowfocusfun = ^GLFWwindowfocusfun;
+  PGLFWwindowfocusfun = ^GLFWwindowfocusfun;
   GLFWwindowfocusfun = procedure(window: PGLFWwindow); cdecl;
 
-  pGLFWwindowiconifyfun = ^GLFWwindowiconifyfun;
+  PGLFWwindowiconifyfun = ^GLFWwindowiconifyfun;
   GLFWwindowiconifyfun = procedure(window: PGLFWwindow); cdecl;
 
  {   The function pointer type for window maximize callbacks.

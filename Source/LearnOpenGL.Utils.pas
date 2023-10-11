@@ -9,35 +9,20 @@ uses
   SysUtils,
   GLAD_GL;
 
+const
+  LE = LineEnding;
+
 type
   TArr_GLfloat = array of GLfloat;
   TArr_GLint = array of GLint;
   TArr_GLuint = array of GLuint;
   TArr_GLchar = array of GLchar;
 
-function DynArrayMemSize(const dynArray: TArr_GLfloat): GLint; inline;
-function DynArrayMemSize(const dynArray: TArr_GLint): GLint;
-function DynArrayMemSize(const dynArray: TArr_GLuint): GLint;
-function DynArrayMemSize(const dynArray: TArr_GLchar): GLint;
+generic function DynArrayMemSize<T>(const dynArray: T): GLint;
 
 implementation
 
-function DynArrayMemSize(const dynArray: TArr_GLfloat): GLint;
-begin
-  Result := SizeOf(dynArray[0]) * Length(dynArray);
-end;
-
-function DynArrayMemSize(const dynArray: TArr_GLint): GLint;
-begin
-  Result := SizeOf(dynArray[0]) * Length(dynArray);
-end;
-
-function DynArrayMemSize(const dynArray: TArr_GLuint): GLint;
-begin
-  Result := SizeOf(dynArray[0]) * Length(dynArray);
-end;
-
-function DynArrayMemSize(const dynArray: TArr_GLchar): GLint;
+generic function DynArrayMemSize<T>(const dynArray: T): GLint;
 begin
   Result := SizeOf(dynArray[0]) * Length(dynArray);
 end;

@@ -12,7 +12,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="8"/>
         <CursorPos X="20" Y="13"/>
-        <UsageCount Value="131"/>
+        <UsageCount Value="150"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -21,8 +21,8 @@
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="15"/>
-        <CursorPos X="23" Y="37"/>
-        <UsageCount Value="131"/>
+        <CursorPos X="29" Y="22"/>
+        <UsageCount Value="150"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -30,9 +30,9 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <CursorPos X="9" Y="6"/>
+        <CursorPos X="7" Y="9"/>
         <SyntaxHighlighter Value="Text"/>
-        <UsageCount Value="131"/>
+        <UsageCount Value="150"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -43,46 +43,41 @@
         <WindowIndex Value="0"/>
         <TopLine Value="56"/>
         <CursorPos X="23" Y="83"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="114"/>
       </Unit>
       <Unit>
         <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="48"/>
-        <CursorPos X="43" Y="54"/>
-        <UsageCount Value="92"/>
-        <Loaded Value="True"/>
+        <TopLine Value="53"/>
+        <CursorPos X="3" Y="62"/>
+        <UsageCount Value="111"/>
       </Unit>
       <Unit>
         <Filename Value="Package\GLAD_GL.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="3638"/>
-        <CursorPos Y="3644"/>
-        <UsageCount Value="66"/>
+        <TopLine Value="11"/>
+        <UsageCount Value="85"/>
       </Unit>
       <Unit>
         <Filename Value="Package\GLFW.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="289"/>
-        <CursorPos X="22" Y="238"/>
-        <UsageCount Value="66"/>
+        <TopLine Value="31"/>
+        <CursorPos X="33" Y="52"/>
+        <UsageCount Value="85"/>
       </Unit>
       <Unit>
         <Filename Value="Source\LearnOpenGL.Utils.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="11"/>
-        <CursorPos X="71" Y="18"/>
-        <UsageCount Value="39"/>
-        <Loaded Value="True"/>
+        <CursorPos X="50" Y="6"/>
+        <UsageCount Value="58"/>
       </Unit>
       <Unit>
         <Filename Value="Library\GLAD_GL.pas"/>
@@ -90,7 +85,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1672"/>
         <CursorPos X="59" Y="1681"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="22"/>
       </Unit>
       <Unit>
         <Filename Value="Library\GLFW.pas"/>
@@ -98,7 +93,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="22"/>
       </Unit>
       <Unit>
         <Filename Value="Source\GLFW.pas"/>
@@ -106,7 +101,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="3645"/>
         <CursorPos X="65" Y="3662"/>
-        <UsageCount Value="73"/>
+        <UsageCount Value="71"/>
       </Unit>
       <Unit>
         <Filename Value="Source\GLAD_GL.pas"/>
@@ -114,7 +109,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="49"/>
         <CursorPos X="9" Y="70"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="54"/>
       </Unit>
       <Unit>
         <Filename Value="Source\01 getting_started\Case_01_01_02_Hello_Window_Clear.pas"/>
@@ -129,14 +124,14 @@
           <TopLine Value="10"/>
           <CursorPos Y="23"/>
         </ExtraEditor1>
-        <UsageCount Value="50"/>
+        <UsageCount Value="48"/>
       </Unit>
       <Unit>
         <Filename Value="Source\01 getting_started\Case01_01_Hello_Window.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="25" Y="11"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="48"/>
       </Unit>
       <Unit>
         <Filename Value="Source\01 getting_started\Case_01_02_01_Hello_Triangle.pas"/>
@@ -144,16 +139,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="37"/>
         <CursorPos X="3" Y="60"/>
-        <UsageCount Value="49"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_SDL\source\libsdl2_mixer.pas"/>
-        <UnitName Value="libSDL2_mixer"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="342"/>
-        <CursorPos X="11" Y="350"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="47"/>
       </Unit>
       <Unit>
         <Filename Value="e:\Users\Administrator\Downloads\glad_gl(1).pas"/>
@@ -161,7 +147,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="4172"/>
         <CursorPos X="3" Y="3027"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="1"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\packages\opengl\src\gl.pp"/>
@@ -169,14 +155,14 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="28"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\dynlibs.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="13"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\dynlibh.inc"/>
@@ -184,15 +170,15 @@
         <WindowIndex Value="0"/>
         <TopLine Value="23"/>
         <CursorPos X="10" Y="52"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\win64\system.pp"/>
         <UnitName Value="System"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="513"/>
-        <CursorPos X="8" Y="513"/>
+        <TopLine Value="17"/>
+        <CursorPos X="10" Y="38"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
@@ -201,7 +187,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="532"/>
         <CursorPos X="8" Y="549"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_SDL\source\libsdl2.pas"/>
@@ -210,7 +196,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1233"/>
         <CursorPos X="49" Y="1250"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="3"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\packages\sdl\src\sdl.pas"/>
@@ -218,7 +204,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="3578"/>
         <CursorPos X="10" Y="3595"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_SDL\source\libsdl1.pas"/>
@@ -226,7 +212,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1205"/>
         <CursorPos X="70" Y="1222"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="3"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\systemh.inc"/>
@@ -234,7 +220,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="423"/>
         <CursorPos X="3" Y="440"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_GLFW\source\ctglfw.pas"/>
@@ -243,7 +229,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="584"/>
         <CursorPos X="3" Y="600"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\packages\opengl\src\glext.pp"/>
@@ -251,7 +237,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="30" Y="10"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGL\source\ctgl.pas"/>
@@ -260,14 +246,14 @@
         <WindowIndex Value="0"/>
         <TopLine Value="22122"/>
         <CursorPos X="23" Y="22153"/>
-        <UsageCount Value="15"/>
+        <UsageCount Value="13"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\win\syswinh.inc"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="21" Y="17"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\syshelph.inc"/>
@@ -275,7 +261,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1227"/>
         <CursorPos X="17" Y="1244"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\win\sysutils.pp"/>
@@ -284,7 +270,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="111"/>
         <CursorPos X="3" Y="113"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\syshelpb.inc"/>
@@ -292,13 +278,13 @@
         <WindowIndex Value="0"/>
         <TopLine Value="21"/>
         <CursorPos X="40" Y="31"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="Source\Case01_02_Hello_Triangle.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="14"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\packages\rtl-console\src\win\video.pp"/>
@@ -306,7 +292,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="542"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\BaseEnginesPlus\source\Graphica\gapanel.pas"/>
@@ -314,7 +300,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="121"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\packages\postgres\src\dllistdyn.pp"/>
@@ -322,21 +308,21 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="22"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\ctypes.pp"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="314"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\sysunih.inc"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="3" Y="16"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="C:\usr\local\codetyphon\typhon\components\packages_pl\pl_GLFW\source\ctglfw.pas"/>
@@ -345,13 +331,13 @@
         <WindowIndex Value="0"/>
         <TopLine Value="37"/>
         <CursorPos X="29" Y="55"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\unicodedata.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\BaseUtils\lazunicode.pas"/>
@@ -359,14 +345,14 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="31"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\packages\rtl-unicode\src\inc\unicodeducet.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="43"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\sysutilh.inc"/>
@@ -374,7 +360,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="107"/>
         <CursorPos X="19" Y="124"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\syshelpo.inc"/>
@@ -382,7 +368,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="111"/>
         <CursorPos X="3" Y="113"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\Utils\DeepStar.Utils.pas"/>
@@ -391,134 +377,66 @@
         <WindowIndex Value="0"/>
         <TopLine Value="307"/>
         <CursorPos X="51" Y="318"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\dynarrh.inc"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="19"/>
-        <CursorPos X="23" Y="37"/>
+        <TopLine Value="17"/>
+        <CursorPos X="10" Y="38"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="Source\01入门\Case01_02_Exercise_01.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="135"/>
+        <CursorPos X="51" Y="139"/>
+        <UsageCount Value="32"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\01入门\Case01_02_Exercise_02.pas"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="127"/>
+        <CursorPos X="47" Y="141"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="28">
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Utils.pas"/>
-        <Caret Line="38" TopLine="21"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
-        <Caret Line="158" Column="5" TopLine="141"/>
-      </Position>
+    <JumpHistory HistoryIndex="6">
       <Position>
         <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="30" Column="14" TopLine="20"/>
+        <Caret Line="22" Column="29" TopLine="15"/>
       </Position>
       <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="38" Column="33" TopLine="32"/>
+        <Filename Value="README.md"/>
+        <Caret Line="3" Column="81"/>
       </Position>
       <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="34" Column="65" TopLine="32"/>
+        <Filename Value="README.md"/>
+        <Caret Line="8" Column="126"/>
       </Position>
       <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="37" Column="21" TopLine="32"/>
+        <Filename Value="Source\01入门\Case01_02_Exercise_02.pas"/>
+        <Caret Line="140" Column="7" TopLine="122"/>
       </Position>
       <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="34" Column="49" TopLine="25"/>
+        <Filename Value="Source\01入门\Case01_02_Exercise_02.pas"/>
+        <Caret Line="138" Column="12"/>
       </Position>
       <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="39" TopLine="33"/>
+        <Filename Value="Source\01入门\Case01_02_Exercise_02.pas"/>
+        <Caret Line="145" Column="31" TopLine="119"/>
       </Position>
       <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="36" TopLine="20"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="39" Column="3" TopLine="12"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="29" Column="30" TopLine="16"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="39" TopLine="33"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="29" Column="18" TopLine="20"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
-        <Caret Line="163" Column="52" TopLine="150"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Utils.pas"/>
-        <Caret Line="23" Column="30" TopLine="6"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Utils.pas"/>
-        <Caret Line="25" Column="16" TopLine="9"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
-        <Caret Line="196" TopLine="189"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
-        <Caret Line="199" TopLine="189"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
-        <Caret Line="202" TopLine="190"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
-        <Caret Line="203" TopLine="191"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
-        <Caret Line="220" Column="18" TopLine="201"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="39" TopLine="10"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="40" TopLine="31"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Utils.pas"/>
-        <Caret Line="18" Column="71" TopLine="11"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
-        <Caret Line="183" TopLine="174"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
-        <Caret Line="202" TopLine="193"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
-        <Caret Line="204" TopLine="193"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
-        <Caret Line="205" TopLine="193"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
-        <Caret Line="210" TopLine="194"/>
+        <Filename Value="Source\01入门\Case01_02_Exercise_02.pas"/>
+        <Caret Line="144" Column="15" TopLine="123"/>
       </Position>
     </JumpHistory>
     <RunParams>
