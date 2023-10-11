@@ -17,6 +17,7 @@ type
   TArr_GLint = array of GLint;
   TArr_GLuint = array of GLuint;
   TArr_GLchar = array of GLchar;
+  TArr_GLdouble = Array of GLdouble;
 
 generic function DynArrayMemSize<T>(const dynArray: T): GLint;
 

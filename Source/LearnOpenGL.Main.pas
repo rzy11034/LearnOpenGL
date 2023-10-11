@@ -9,6 +9,7 @@ uses
   Classes,
   SysUtils,
   {%H-}GLAD_GL,
+  {%H-}GLFW,
   {%H-}LearnOpenGL.Utils,
   {%H-}dynlibs,
   {%H-}ctypes,
@@ -19,28 +20,36 @@ procedure Run();
 implementation
 
 uses
-  {%H-}Case01_02_Exercise_01;
-
-const
-  {%H-}LE = LineEnding;
+  {%H-}Case01_02_Exercise_03;
 
 procedure Test;
 var
-  indices: TArr_GLint;
-  i: GLint;
+  nrAttributes: GLint;
+  window: PGLFWwindow;
 begin
-  indices := TArr_GLint(nil);
-  indices := [
-    // 注意索引从0开始!
-    // 此例的索引(0,1,2,3)就是顶点数组vertices的下标，
-    // 这样可以由下标代表顶点组合成矩形
-    0, 1, 3, // 第一个三角形
-    1, 2, 3];  // 第二个三角形
+  glfwInit;
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+  glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-  i := specialize DynArrayMemSize<TArr_GLint>(indices);
+  window := glfwCreateWindow(100, 100, PGLchar('LearnOpenGL'), nil, nil);
+  if window = nil then
+  begin
+    WriteLn(' Failed to create GLFW window');
+    glfwTerminate;
+  end;
 
-  i += 1;
+  glfwMakeContextCurrent(window);
 
+  if gladLoadGL(TLoadProc(@glfwGetProcAddress)) = false then
+  begin
+    WriteLn('Failed to initialize GLAD');
+    Exit;
+  end;
+
+  nrAttributes := GLint(0);
+  glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, @nrAttributes);
+  WriteLn('Maximum nr of vertex attributes supported: ', nrAttributes);
   Exit;
 end;
 

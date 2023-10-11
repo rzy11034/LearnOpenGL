@@ -1,4 +1,4 @@
-unit Case01_02_Exercise_02;
+﻿unit Case01_02_Exercise_03;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -28,11 +28,18 @@ const
     + '   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0); '
     + '} ';
 
-  fragmentShaderSource: PGLchar = '#version 330 core' + LE
+  fragmentShaderSource1: PGLchar = '#version 330 core' + LE
     + 'out vec4 FragColor;'
     + 'void main()'
     + '{'
     + '   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);'
+    + '}';
+
+  fragmentShaderSource2: PGLchar = '#version 330 core' + LE
+    + 'out vec4 FragColor;'
+    + 'void main()'
+    + '{'
+    + '   FragColor = vec4(1.0f, 1.0f, 0.0f, 1.0f);'
     + '}';
 
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl;
@@ -49,11 +56,11 @@ end;
 procedure Main;
 var
   window: PGLFWwindow;
-  vertexShader, fragmentShader, shaderProgram: GLuint;
+  vertexShader, fragmentShader1, fragmentShader2, shaderProgram1, shaderProgram2: GLuint;
   success: GLint;
   infoLog: TArr_GLchar;
-  VAOs, VBOs: TArr_GLuint;
   vertices: TArr_GLfloat;
+  VAOs, VBOs: TArr_GLuint;
 begin
   glfwInit;
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -92,37 +99,80 @@ begin
     WriteLn('ERROR::SHADER::VERTEX::COMPILATION_FAILED' + LE, PGLchar(infoLog));
   end;
 
-  fragmentShader := GLuint(0);
-  fragmentShader := glCreateShader(GL_FRAGMENT_SHADER);
-  glShaderSource(fragmentShader, 1, @fragmentShaderSource, nil);
-  glCompileShader(fragmentShader);
+  ////////////////////////////////////////////////////////////////////////////
+
+  fragmentShader1 := GLuint(0);
+  fragmentShader2 := GLuint(0);
+
+  fragmentShader1 := glCreateShader(GL_FRAGMENT_SHADER);
+  fragmentShader2 := glCreateShader(GL_FRAGMENT_SHADER);
+
+  glShaderSource(fragmentShader1, 1, @fragmentShaderSource1, nil);
+  glShaderSource(fragmentShader2, 1, @fragmentShaderSource2, nil);
+
+  glCompileShader(fragmentShader1);
   infoLog := nil;
   SetLength(infoLog, 512);
   success := false.ToInteger;
-  glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, @success);
+  glGetShaderiv(fragmentShader1, GL_COMPILE_STATUS, @success);
   if not success.ToBoolean then
   begin
-    glGetShaderInfoLog(fragmentShader, 512, nil, @infoLog[0]);
-    WriteLn('ERROR::SHADER::FRAGMENT::COMPILATION_FAILED' + LE, PGLchar(infoLog));
+    glGetShaderInfoLog(fragmentShader1, 512, nil, @infoLog[0]);
+    WriteLn('ERROR::SHADER::FRAGMENT1::COMPILATION_FAILED' + LE, PGLchar(infoLog));
   end;
 
-  shaderProgram := GLuint(0);
-  shaderProgram := glCreateProgram();
-  glAttachShader(shaderProgram, vertexShader);
-  glAttachShader(shaderProgram, fragmentShader);
-  glLinkProgram(shaderProgram);
+  glCompileShader(fragmentShader2);
   infoLog := nil;
   SetLength(infoLog, 512);
   success := false.ToInteger;
-  glGetProgramiv(shaderProgram, GL_LINK_STATUS, @success);
+  glGetShaderiv(fragmentShader2, GL_COMPILE_STATUS, @success);
   if not success.ToBoolean then
   begin
-    glGetProgramInfoLog(shaderProgram, 512, nil, @infoLog[0]);
-    WriteLn('ERROR::SHADER::SHADERPROGRAM::COMPILATION_FAILED' + LE, PGLchar(infoLog));
+    glGetShaderInfoLog(fragmentShader2, 512, nil, @infoLog[0]);
+    WriteLn('ERROR::SHADER::FRAGMENT2::COMPILATION_FAILED' + LE, PGLchar(infoLog));
   end;
+
+  //////////////////////////////////////////////////////////////////////////
+
+  shaderProgram1 := GLuint(0);
+  shaderProgram2 := GLuint(0);
+
+  shaderProgram1 := glCreateProgram();
+  shaderProgram2 := glCreateProgram();
+
+  glAttachShader(shaderProgram1, vertexShader);
+  glAttachShader(shaderProgram1, fragmentShader1);
+  glLinkProgram(shaderProgram1);
+
+  glAttachShader(shaderProgram2, vertexShader);
+  glAttachShader(shaderProgram2, fragmentShader2);
+  glLinkProgram(shaderProgram2);
+
+  infoLog := nil;
+  SetLength(infoLog, 512);
+  success := false.ToInteger;
+  glGetProgramiv(shaderProgram1, GL_LINK_STATUS, @success);
+  if not success.ToBoolean then
+  begin
+    glGetProgramInfoLog(shaderProgram1, 512, nil, @infoLog[0]);
+    WriteLn('ERROR::SHADER::SHADERPROGRAM1::COMPILATION_FAILED' + LE, PGLchar(infoLog));
+  end;
+
+  infoLog := nil;
+  SetLength(infoLog, 512);
+  success := false.ToInteger;
+  glGetProgramiv(shaderProgram2, GL_LINK_STATUS, @success);
+  if not success.ToBoolean then
+  begin
+    glGetProgramInfoLog(shaderProgram2, 512, nil, @infoLog[0]);
+    WriteLn('ERROR::SHADER::SHADERPROGRAM2::COMPILATION_FAILED' + LE, PGLchar(infoLog));
+  end;
+
+  /////////////////////////////////////////////////////////////////////////////
 
   glDeleteShader(vertexShader);
-  glDeleteShader(fragmentShader);
+  glDeleteShader(fragmentShader1);
+  glDeleteShader(fragmentShader2);
 
   vertices := TArr_GLfloat(nil);
   vertices := [
@@ -136,8 +186,8 @@ begin
     0.45, 0.5, 0.0];
 
   VAOs := TArr_GLuint(nil);
-  SetLength(VAOs, 2);
   VBOs := TArr_GLuint(nil);
+  SetLength(VAOs, 2);
   SetLength(VBOs, 2);
 
   glGenVertexArrays(2, @VAOs[0]);
@@ -157,8 +207,6 @@ begin
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(9 * SizeOf(GLfloat)));
   glEnableVertexAttribArray(0);
 
-  //glBindBuffer(GL_ARRAY_BUFFER, 0);
-  //glBindVertexArray(0);
   //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
   while glfwWindowShouldClose(window) = 0 do
@@ -168,9 +216,10 @@ begin
     glClearColor(0.2, 0.3, 0.3, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    glUseProgram(shaderProgram);
+    glUseProgram(shaderProgram1);
     glBindVertexArray(VAOs[0]);
     glDrawArrays(GL_TRIANGLES, 0, 3);
+    glUseProgram(shaderProgram2);
     glBindVertexArray(VAOs[1]);
     glDrawArrays(GL_TRIANGLES, 0, 3);
 
@@ -180,7 +229,8 @@ begin
 
   glDeleteVertexArrays(2, @VAOs[0]);
   glDeleteBuffers(2, @VBOs[0]);
-  glDeleteProgram(shaderProgram);
+  glDeleteProgram(shaderProgram1);
+  glDeleteProgram(shaderProgram2);
 
   glfwTerminate;
 end;
