@@ -149,7 +149,7 @@ begin
   glBindVertexArray(VAO);
 
   ////////////////////////////////////////////////////////////////////////////
-  { 顶点数组模
+  //{ 顶点数组模
   //设置顶点数据(和缓冲区)并配置顶点属性
   vertices := TArr_GLfloat(nil);
   vertices := [
@@ -161,10 +161,11 @@ begin
   glGenBuffers(1, @VBO);
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
   // 把之前定义的顶点数据复制到缓冲的内存中
-  glBufferData(GL_ARRAY_BUFFER, DynArrayMemSize(vertices), @vertices[0], GL_STATIC_DRAW); //}
+  glBufferData(GL_ARRAY_BUFFER, specialize DynArrayMemSize<TArr_GLfloat>(vertices),
+    @vertices[0], GL_STATIC_DRAW); //}
 
   /////////////////////////////////////////////////////////////////////////////
-  //{
+  {
   vertices := TArr_GLfloat(nil);
   vertices := [
     0.5, 0.5, 0.0,   // 右上角
@@ -197,11 +198,8 @@ begin
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(0));
   glEnableVertexAttribArray(0);
 
-  glBindBuffer(GL_ARRAY_BUFFER, 0);
-  glBindVertexArray(0);
-
   // 取消此调用的注释以绘制线框多边形。
-  glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+  //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
   // 渲染循环
   while glfwWindowShouldClose(window) = 0 do
@@ -218,8 +216,8 @@ begin
     glUseProgram(shaderProgram);
     // 画出第一个三角形
     glBindVertexArray(VAO);
-    //glDrawArrays(GL_TRIANGLES, 0, 3);
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, Pointer(0));
+    glDrawArrays(GL_TRIANGLES, 0, 3);
+    //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, Pointer(0));
 
     // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
     glfwSwapBuffers(window);

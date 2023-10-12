@@ -98,6 +98,10 @@
         <Filename Value="Source\01入门\Case01_02_Exercise_03.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="Source\01入门\Case01_03_Shaders_Uniform.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

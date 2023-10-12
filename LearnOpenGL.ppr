@@ -10,9 +10,14 @@ uses
   SysUtils,
   GLAD_GL,
   GLFW,
+  LearnOpenGL.Utils,
   LearnOpenGL.Main,
   Case01_01_Hello_Window,
-  Case01_02_Hello_Triangle, LearnOpenGL.Utils, Case01_02_Exercise_01, Case01_02_Exercise_02, Case01_02_Exercise_03;
+  Case01_02_Hello_Triangle,
+  Case01_02_Exercise_01,
+  Case01_02_Exercise_02,
+  Case01_02_Exercise_03,
+  Case01_03_Shaders_Uniform;
 
 begin
   try

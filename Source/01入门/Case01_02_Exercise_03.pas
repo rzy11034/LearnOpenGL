@@ -193,17 +193,16 @@ begin
   glGenVertexArrays(2, @VAOs[0]);
   glGenBuffers(2, @VBOs[0]);
 
-  glBindVertexArray(VAOs[0]);
   glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
+  glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
   glBufferData(GL_ARRAY_BUFFER, specialize DynArrayMemSize<TArr_GLfloat>(vertices),
     @vertices[0], GL_STATIC_DRAW);
+
+  glBindVertexArray(VAOs[0]);
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(0));
   glEnableVertexAttribArray(0);
 
   glBindVertexArray(VAOs[1]);
-  glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
-  glBufferData(GL_ARRAY_BUFFER, specialize DynArrayMemSize<TArr_GLfloat>(vertices),
-    @vertices[0], GL_STATIC_DRAW);
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(9 * SizeOf(GLfloat)));
   glEnableVertexAttribArray(0);
 
@@ -219,6 +218,7 @@ begin
     glUseProgram(shaderProgram1);
     glBindVertexArray(VAOs[0]);
     glDrawArrays(GL_TRIANGLES, 0, 3);
+
     glUseProgram(shaderProgram2);
     glBindVertexArray(VAOs[1]);
     glDrawArrays(GL_TRIANGLES, 0, 3);
