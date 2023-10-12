@@ -20,7 +20,7 @@ procedure Run();
 implementation
 
 uses
-  {%H-}Case01_02_Hello_Triangle;
+  {%H-}Case01_03_Shaders_Uniform;
 
 procedure Test;
 begin

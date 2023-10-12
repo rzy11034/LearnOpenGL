@@ -148,8 +148,8 @@ begin
   glGenVertexArrays(1, @VAO);
   glBindVertexArray(VAO);
 
-  ////////////////////////////////////////////////////////////////////////////
-  //{ 顶点数组模
+  {***********************************************************************
+  // 顶点数组模
   //设置顶点数据(和缓冲区)并配置顶点属性
   vertices := TArr_GLfloat(nil);
   vertices := [
@@ -164,8 +164,7 @@ begin
   glBufferData(GL_ARRAY_BUFFER, specialize DynArrayMemSize<TArr_GLfloat>(vertices),
     @vertices[0], GL_STATIC_DRAW); //}
 
-  /////////////////////////////////////////////////////////////////////////////
-  {
+  //{***********************************************************************
   vertices := TArr_GLfloat(nil);
   vertices := [
     0.5, 0.5, 0.0,   // 右上角
@@ -191,12 +190,10 @@ begin
   glGenBuffers(1, @EBO);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, specialize DynArrayMemSize<TArr_GLint>(indices),
-    @indices[0], GL_STATIC_DRAW); //}
-
-
+    @indices[0], GL_STATIC_DRAW);
   // 解析顶点数据
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(0));
-  glEnableVertexAttribArray(0);
+  glEnableVertexAttribArray(0); //}
 
   // 取消此调用的注释以绘制线框多边形。
   //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
