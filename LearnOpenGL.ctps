@@ -11,19 +11,18 @@
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="5"/>
-        <CursorPos X="28" Y="16"/>
-        <UsageCount Value="184"/>
+        <CursorPos X="32" Y="10"/>
+        <UsageCount Value="190"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Source\LearnOpenGL.Main.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="8"/>
         <CursorPos X="33" Y="23"/>
-        <UsageCount Value="184"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="190"/>
       </Unit>
       <Unit>
         <Filename Value="README.md"/>
@@ -32,7 +31,7 @@
         <WindowIndex Value="0"/>
         <CursorPos X="22" Y="12"/>
         <SyntaxHighlighter Value="Text"/>
-        <UsageCount Value="184"/>
+        <UsageCount Value="190"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -43,81 +42,79 @@
         <WindowIndex Value="0"/>
         <TopLine Value="56"/>
         <CursorPos X="23" Y="83"/>
-        <UsageCount Value="148"/>
+        <UsageCount Value="154"/>
       </Unit>
       <Unit>
         <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="106"/>
-        <CursorPos X="7" Y="140"/>
-        <UsageCount Value="145"/>
-        <Loaded Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Package\GLAD_GL.pas"/>
-        <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <CursorPos X="3" Y="1713"/>
-        <UsageCount Value="119"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Package\GLFW.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="31"/>
-        <CursorPos X="33" Y="52"/>
-        <UsageCount Value="119"/>
+        <TopLine Value="124"/>
+        <CursorPos X="80" Y="187"/>
+        <UsageCount Value="151"/>
       </Unit>
       <Unit>
         <Filename Value="Source\LearnOpenGL.Utils.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <CursorPos X="37" Y="20"/>
-        <UsageCount Value="92"/>
+        <CursorPos X="53" Y="24"/>
+        <UsageCount Value="98"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Source\01入门\Case01_02_Exercise_01.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="135"/>
-        <CursorPos X="51" Y="139"/>
-        <UsageCount Value="66"/>
+        <TopLine Value="4"/>
+        <CursorPos X="29" Y="10"/>
+        <UsageCount Value="72"/>
       </Unit>
       <Unit>
         <Filename Value="Source\01入门\Case01_02_Exercise_02.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="134"/>
-        <CursorPos X="31" Y="171"/>
-        <UsageCount Value="56"/>
+        <TopLine Value="131"/>
+        <CursorPos X="63" Y="148"/>
+        <UsageCount Value="62"/>
       </Unit>
       <Unit>
         <Filename Value="Source\01入门\Case01_02_Exercise_03.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="200"/>
-        <CursorPos X="17" Y="235"/>
-        <UsageCount Value="39"/>
-        <Loaded Value="True"/>
+        <TopLine Value="181"/>
+        <CursorPos X="52" Y="187"/>
+        <UsageCount Value="45"/>
       </Unit>
       <Unit>
         <Filename Value="Source\01入门\Case01_03_Shaders_Uniform.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="120"/>
-        <CursorPos X="26" Y="148"/>
-        <UsageCount Value="28"/>
-        <Loaded Value="True"/>
+        <TopLine Value="234"/>
+        <CursorPos X="33" Y="251"/>
+        <FoldState Value=" TJM3J12112 Pi1n45?"/>
+        <UsageCount Value="34"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Package\GLAD_GL.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1696"/>
+        <CursorPos X="3" Y="1712"/>
+        <UsageCount Value="124"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Package\GLFW.pas"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="4042"/>
+        <CursorPos X="63" Y="4046"/>
+        <UsageCount Value="124"/>
       </Unit>
       <Unit>
         <Filename Value="Library\GLAD_GL.pas"/>
@@ -259,9 +256,9 @@
         <UnitName Value="ctGLFW"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="584"/>
-        <CursorPos X="3" Y="600"/>
-        <UsageCount Value="1"/>
+        <TopLine Value="591"/>
+        <CursorPos X="15" Y="596"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\packages\opengl\src\glext.pp"/>
@@ -407,9 +404,9 @@
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="307"/>
-        <CursorPos X="51" Y="318"/>
-        <UsageCount Value="5"/>
+        <TopLine Value="409"/>
+        <CursorPos X="3" Y="416"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\dynarrh.inc"/>
@@ -453,112 +450,26 @@
         <WindowIndex Value="0"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\OpenGL\GLAD_GL.pas"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="25" Y="11"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="24">
-      <Position>
-        <Filename Value="LearnOpenGL.ppr"/>
-        <Caret Line="17" TopLine="8"/>
-      </Position>
-      <Position>
-        <Filename Value="LearnOpenGL.ppr"/>
-        <Caret Line="18" TopLine="8"/>
-      </Position>
-      <Position>
-        <Filename Value="LearnOpenGL.ppr"/>
-        <Caret Line="19" TopLine="8"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="31" TopLine="8"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="31" TopLine="24"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="32" TopLine="24"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="33" TopLine="24"/>
-      </Position>
-      <Position>
-        <Filename Value="README.md"/>
-        <Caret Line="9" Column="26"/>
-      </Position>
-      <Position>
-        <Filename Value="README.md"/>
-        <Caret Line="11" Column="55"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="28" TopLine="21"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="33" Column="5" TopLine="21"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="35" Column="38" TopLine="11"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="50" TopLine="44"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="51" TopLine="44"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_03_Shaders_Uniform.pas"/>
-        <Caret Line="89" Column="5" TopLine="69"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_03_Shaders_Uniform.pas"/>
-        <Caret Line="117" Column="42" TopLine="2"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_03_Shaders_Uniform.pas"/>
-        <Caret Line="58" TopLine="52"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_03_Shaders_Uniform.pas"/>
-        <Caret Line="59" Column="17" TopLine="39"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="23" Column="33" TopLine="8"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_03_Shaders_Uniform.pas"/>
-        <Caret Line="146" Column="8" TopLine="127"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_03_Shaders_Uniform.pas"/>
-        <Caret Line="157" Column="39" TopLine="150"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_03_Shaders_Uniform.pas"/>
-        <Caret Line="64" TopLine="54"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_03_Shaders_Uniform.pas"/>
-        <Caret Line="65" TopLine="54"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_03_Shaders_Uniform.pas"/>
-        <Caret Line="40" Column="19"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\01入门\Case01_03_Shaders_Uniform.pas"/>
-        <Caret Line="32" Column="76" TopLine="7"/>
-      </Position>
-    </JumpHistory>
+    <JumpHistory HistoryIndex="-1"/>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>
     </RunParams>
   </ProjectSession>
+  <Debugging>
+    <Watches>
+      <Item ClassAutoCast="True">
+        <Expression Value="fragmentShaderSource"/>
+      </Item>
+    </Watches>
+  </Debugging>
 </CONFIG>

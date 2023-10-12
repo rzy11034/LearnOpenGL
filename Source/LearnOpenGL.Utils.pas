@@ -7,6 +7,7 @@ interface
 uses
   Classes,
   SysUtils,
+  DeepStar.Utils,
   GLAD_GL;
 
 const
@@ -17,15 +18,11 @@ type
   TArr_GLint = array of GLint;
   TArr_GLuint = array of GLuint;
   TArr_GLchar = array of GLchar;
-  TArr_GLdouble = Array of GLdouble;
+  TArr_GLdouble = array of GLdouble;
 
-generic function DynArrayMemSize<T>(const dynArray: T): GLint;
+  TArrayUtils_GLfloat = specialize TArrayUtils<GLfloat>;
+  TArrayUtils_GLint = specialize TArrayUtils<GLint>;
 
 implementation
-
-generic function DynArrayMemSize<T>(const dynArray: T): GLint;
-begin
-  Result := SizeOf(dynArray[0]) * Length(dynArray);
-end;
 
 end.

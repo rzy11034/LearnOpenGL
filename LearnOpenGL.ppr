@@ -8,8 +8,6 @@ uses
   {$ENDIF}
   Classes,
   SysUtils,
-  GLAD_GL,
-  GLFW,
   LearnOpenGL.Utils,
   LearnOpenGL.Main,
   Case01_01_Hello_Window,

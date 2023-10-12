@@ -145,7 +145,7 @@ begin
 
   glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
   glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
-  glBufferData(GL_ARRAY_BUFFER, specialize DynArrayMemSize<TArr_GLfloat>(vertices),
+  glBufferData(GL_ARRAY_BUFFER, TArrayUtils_GLfloat.MemorySize(vertices),
     @vertices[0], GL_STATIC_DRAW);
 
   glBindVertexArray(VAOs[0]);
