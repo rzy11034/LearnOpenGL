@@ -10,6 +10,7 @@ uses
   SysUtils,
   LearnOpenGL.Utils,
   LearnOpenGL.Main,
+  LearnOpenGL.Shader,
   Case01_01_Hello_Window,
   Case01_02_Hello_Triangle,
   Case01_02_Exercise_01,

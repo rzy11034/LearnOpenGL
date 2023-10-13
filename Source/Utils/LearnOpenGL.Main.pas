@@ -8,6 +8,8 @@ interface
 uses
   Classes,
   SysUtils,
+  {%H-}DeepStar.UString,
+  {%H-}DeepStar.Utils,
   {%H-}GLAD_GL,
   {%H-}GLFW,
   {%H-}LearnOpenGL.Utils,
@@ -24,7 +26,6 @@ uses
 
 procedure Test;
 begin
-
   Exit;
 end;
 
