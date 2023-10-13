@@ -22,17 +22,26 @@ procedure Run();
 implementation
 
 uses
-  {%H-}Case01_03_Shaders_Uniform;
+  {%H-}Case01_03_Shaders_Uniform,
+  LearnOpenGL.Shader;
 
 procedure Test;
+var
+  sd: TShader;
 begin
+  sd := TShader.Create();
+  try
+    sd.LoadShaderFile('Source\Utils\vertexShader.inc', '');
+  finally
+    sd.Free;
+  end;
   Exit;
 end;
 
 procedure Run();
 begin
   Test;
-  Main;
+  //Main;
 end;
 
 end.

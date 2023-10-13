@@ -19,9 +19,10 @@ uses
   Case01_03_Shaders_Uniform;
 
 begin
+  //Run;
   try
     Run;
-    //ReadLn;
+    ReadLn;
   except
     on E: Exception do
       WriteLn(E.ClassName, ': ', E.Message);
