@@ -7,8 +7,13 @@ interface
 uses
   Classes,
   SysUtils,
+  ctypes,
   DeepStar.Utils,
-  GLAD_GL;
+  GLAD_GL,
+  FpImage,
+  FPReadJPEG,
+  FPReadBMP,
+  FPReadPNG;
 
 const
   LE = LineEnding;
@@ -23,6 +28,13 @@ type
 
   TArrayUtils_GLfloat = specialize TArrayUtils<GLfloat>;
   TArrayUtils_GLint = specialize TArrayUtils<GLint>;
+
+type
+  TOpenGLTexture = class(TObject)
+  public
+    Width, Height: GLint;
+    Data: PGLubyte;
+  end;
 
 implementation
 

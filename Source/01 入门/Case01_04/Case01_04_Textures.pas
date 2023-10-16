@@ -17,6 +17,7 @@ uses
   DeepStar.Utils,
   GLAD_GL,
   GLFW,
+  FpImage,
   LearnOpenGL.Utils,
   LearnOpenGL.Shader;
 
