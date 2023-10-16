@@ -21,21 +21,20 @@ implementation
 uses
   {%H-}Case01_04_Textures;
 
-procedure AA(var data);
-begin
-  exit;
-end;
-
 procedure Test;
+var
+  tx :TOpenGLTexture;
+  i: Integer;
 begin
-
+  tx:= TOpenGLTexture.Create('Resources\textures\wall.jpg');
+  tx.Free;
   Exit;
 end;
 
 procedure Run();
 begin
   Test;
-  Main;
+  //Main;
 end;
 
 end.

@@ -1,13 +1,13 @@
 ﻿unit LearnOpenGL.Utils;
 
 {$mode ObjFPC}{$H+}
-
+{$ModeSwitch unicodestrings}{$J-}
+{$WARN 4105 off : Implicit string type conversion with potential data loss from "$1" to "$2"}
 interface
 
 uses
   Classes,
   SysUtils,
-  ctypes,
   DeepStar.Utils,
   GLAD_GL,
   FpImage,
@@ -31,11 +31,71 @@ type
 
 type
   TOpenGLTexture = class(TObject)
+  private
+    procedure __loadTextureFormFile(fileName: string);
+
   public
     Width, Height: GLint;
     Data: PGLubyte;
+
+    constructor Create(fileName: string);
+    destructor Destroy; override;
   end;
 
 implementation
+
+{ TOpenGLTexture }
+
+constructor TOpenGLTexture.Create(fileName: string);
+begin
+  inherited Create;
+
+  __LoadTextureFormFile(fileName);
+end;
+
+destructor TOpenGLTexture.Destroy;
+begin
+  if Data <> nil then
+    FreeMemAndNil(Self.Data);
+
+  inherited Destroy;
+end;
+
+procedure TOpenGLTexture.__loadTextureFormFile(fileName: string);
+var
+  img: TFPMemoryImage;
+  readerClass: TFPCustomImageReaderClass;
+  Handler: TFPCustomImageReader;
+  y, x: integer;
+  p: PGLubyte;
+  c: TFPColor;
+begin
+  img := TFPMemoryImage.Create(0, 0);
+  readerClass := img.FindReaderFromFileName(fileName);
+  Handler := readerClass.Create;
+  try
+    img.LoadFromFile(fileName, Handler);
+    Self.Width := img.Width;
+    Self.Height := img.Height;
+
+    Self.Data := GetMem(img.Width * img.Height * 3);
+    p := Self.Data;
+
+    for y := 0 to Height - 1 do
+      for x := 0 to Width - 1 do
+      begin
+        c := img.Colors[x, y];
+        p^ := c.Red shr 8;
+        Inc(p);
+        p^ := c.Green shr 8;
+        Inc(p);
+        p^ := c.Blue shr 8;
+        Inc(p);
+      end;
+  finally
+    Handler.Free;
+    img.Free;
+  end;
+end;
 
 end.
