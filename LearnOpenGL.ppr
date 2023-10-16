@@ -16,13 +16,15 @@ uses
   Case01_02_Exercise_01,
   Case01_02_Exercise_02,
   Case01_02_Exercise_03,
-  Case01_03_Shaders_Uniform;
+  Case01_03_Shaders_Uniform,
+  Case01_03_Exercise_01,
+  Case01_03_Exercise_02,
+  Case01_03_Exercise_03,
+  Case01_04_Textures;
 
 begin
-  //Run;
   try
     Run;
-    ReadLn;
   except
     on E: Exception do
       WriteLn(E.ClassName, ': ', E.Message);

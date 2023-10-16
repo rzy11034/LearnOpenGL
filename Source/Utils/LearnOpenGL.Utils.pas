@@ -1,4 +1,4 @@
-unit LearnOpenGL.Utils;
+﻿unit LearnOpenGL.Utils;
 
 {$mode ObjFPC}{$H+}
 
@@ -14,6 +14,7 @@ const
   LE = LineEnding;
 
 type
+  TArr_GLboolean = array of GLboolean;
   TArr_GLfloat = array of GLfloat;
   TArr_GLint = array of GLint;
   TArr_GLuint = array of GLuint;

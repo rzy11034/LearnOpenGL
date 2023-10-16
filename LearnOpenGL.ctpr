@@ -25,7 +25,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="Source;Source\01入门;Source\Utils"/>
+            <OtherUnitFiles Value="Source;Source\Utils;Source\01 入门\Case01_01;Source\01 入门\Case01_02;Source\01 入门\Case01_03;Source\01 入门\Case01_04"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -73,31 +73,7 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\01入门\Case01_01_Hello_Window.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\01入门\Case01_02_Hello_Triangle.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
         <Filename Value="Source\Utils\LearnOpenGL.Utils.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\01入门\Case01_02_Exercise_01.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\01入门\Case01_02_Exercise_02.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\01入门\Case01_02_Exercise_03.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\01入门\Case01_03_Shaders_Uniform.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
@@ -109,13 +85,73 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\Utils\vertexShader.inc"/>
+        <Filename Value="Source\01 入门\Case01_01\Case01_01_Hello_Window.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\01 入门\Case01_02\Case01_02_Exercise_01.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\01 入门\Case01_02\Case01_02_Exercise_02.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\01 入门\Case01_02\Case01_02_Exercise_03.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\01 入门\Case01_02\Case01_02_Hello_Triangle.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\01 入门\Case01_03\Case01_03_Shaders_Uniform.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\01 入门\Case01_03\Exercise_01.fragment.glsl"/>
         <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\Utils\fragmentShader.inc"/>
+        <Filename Value="Source\01 入门\Case01_03\Exercise_01.vertex.glsl"/>
         <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\01 入门\Case01_03\Case01_03_Exercise_01.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\01 入门\Case01_03\Case01_03_Exercise_02.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\01 入门\Case01_03\Exercise_02.vertex.glsl"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\01 入门\Case01_03\Exercise_02.fragment.glsl"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\01 入门\Case01_03\Exercise_03.fragment.glsl"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\01 入门\Case01_03\Exercise_03.vertex.glsl"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\01 入门\Case01_03\Case01_03_Exercise_03.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\01 入门\Case01_04\Case01_04_Textures.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
     </Units>
@@ -128,7 +164,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="Source;Source\01入门;Source\Utils"/>
+      <OtherUnitFiles Value="Source;Source\Utils;Source\01 入门\Case01_01;Source\01 入门\Case01_02;Source\01 入门\Case01_03;Source\01 入门\Case01_04"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>
@@ -155,11 +191,6 @@
         <TrashVariables Value="True"/>
         <UseExternalDbgSyms Value="True"/>
       </Debugging>
-      <Options>
-        <Win32>
-          <GraphicApplication Value="True"/>
-        </Win32>
-      </Options>
     </Linking>
     <Other>
       <ConfigFile>

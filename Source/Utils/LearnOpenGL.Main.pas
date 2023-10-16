@@ -7,41 +7,30 @@ interface
 
 uses
   Classes,
-  SysUtils,
+  SysUtils, FpImage,
   {%H-}DeepStar.UString,
   {%H-}DeepStar.Utils,
   {%H-}GLAD_GL,
   {%H-}GLFW,
-  {%H-}LearnOpenGL.Utils,
-  {%H-}dynlibs,
-  {%H-}ctypes,
-  {%H-}Math;
+  {%H-}LearnOpenGL.Utils;
 
 procedure Run();
 
 implementation
 
 uses
-  {%H-}Case01_03_Shaders_Uniform,
-  LearnOpenGL.Shader;
+  {%H-}Case01_04_Textures;
 
 procedure Test;
-var
-  sd: TShader;
 begin
-  sd := TShader.Create();
-  try
-    sd.LoadShaderFile('Source\Utils\vertexShader.inc', '');
-  finally
-    sd.Free;
-  end;
+
   Exit;
 end;
 
 procedure Run();
 begin
   Test;
-  //Main;
+  Main;
 end;
 
 end.
