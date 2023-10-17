@@ -1,4 +1,4 @@
-﻿unit Case01_01_Hello_Window;
+﻿unit Case01_01_01_Hello_Window;
 
 {$mode ObjFPC}{$H+}
 
@@ -73,10 +73,6 @@ begin
   begin
     // 输入
     ProcessInput(window);
-
-    // render
-    glClearColor(0.2, 0.3, 0.3, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
 
     // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
     glfwSwapBuffers(window);

@@ -1,4 +1,4 @@
-﻿unit Case01_04_Textures;
+﻿unit Case01_04_02_Textures_Combined;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -7,9 +7,7 @@ interface
 
 uses
   Classes,
-  SysUtils,
-  GLAD_GL;
-
+  SysUtils, GLAD_GL;
 
 procedure Main;
 
@@ -18,7 +16,6 @@ implementation
 uses
   DeepStar.Utils,
   GLFW,
-  FpImage,
   LearnOpenGL.Shader,
   LearnOpenGL.Utils;
 
@@ -80,16 +77,17 @@ end;
 
 procedure Main;
 const
-  vs: string = '../../Source/01 入门/Case01_04/Case01_04_.vertex.glsl';
-  fs: string = '../../Source/01 入门/Case01_04/Case01_04_.fragment.glsl';
-  tx: string = '../../Resources/textures/container.jpg';
+  vs = '..\..\Source\1.Getting_Started\4.2.Textures_Combined\4.2.texture.vs';
+  fs = '..\..\Source\1.Getting_Started\4.2.Textures_Combined\4.2.texture.fs';
+  tx1 = '..\..\Resources\textures\container.jpg';
+  tx2 = '..\..\Resources\textures\awesomeface.png';
 var
   window: PGLFWwindow;
   vertices: TArr_GLfloat;
   shader: TShaderProgram;
   ot: TOpenGLTexture;
   indices: TArr_GLint;
-  VAO, VBO, EBO, texture: GLuint;
+  VAO, VBO, EBO, texture1, texture2: GLuint;
 begin
   window := InitWindows;
 
@@ -104,6 +102,7 @@ begin
       +0.5, -0.5, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0,   // 右下
       -0.5, -0.5, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,   // 左下
       -0.5, +0.5, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0];  // 左上
+
     indices := TArr_GLint(nil);
     indices := [
       0, 1, 3, // first triangle
@@ -125,7 +124,7 @@ begin
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, TArrayUtils_GLint.MemorySize(indices),
-      @indices, GL_STATIC_DRAW);
+      @indices[0], GL_STATIC_DRAW);
 
     // position attribute ---位置属性
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat), Pointer(0));
@@ -140,15 +139,15 @@ begin
     glEnableVertexAttribArray(2);
 
     // 新建并加载一个纹理
-    texture := GLuint(0);
-    glGenTextures(1, @texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
+    texture1 := GLuint(0);
+    glGenTextures(1, @texture1);
+    glBindTexture(GL_TEXTURE_2D, texture1);
     // 为当前绑定的纹理对象设置环绕、过滤方式
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TOpenGLTexture.Create(CrossFixFileName(tx));
+    ot := TOpenGLTexture.Create(CrossFixFileName(tx1));
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, ot.Width, ot.Height, 0,
         GL_RGB, GL_UNSIGNED_BYTE, ot.Data);
@@ -157,6 +156,27 @@ begin
     finally
       ot.Free;
     end;
+
+    texture2 := GLuint(0);
+    glGenTextures(1, @texture2);
+    glBindTexture(GL_TEXTURE_2D, texture2);
+    // 为当前绑定的纹理对象设置环绕、过滤方式
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    ot := TOpenGLTexture.Create(CrossFixFileName(tx2));
+    try
+      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
+        GL_RGBA, GL_UNSIGNED_BYTE, ot.Data);
+
+      glGenerateMipmap(GL_TEXTURE_2D);
+    finally
+      ot.Free;
+    end;
+
+    shader.SetUniformInt('texture1', [0]);
+    shader.SetUniformInt('texture2', [1]);
 
     // 取消此调用的注释以绘制线框多边形。
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -171,13 +191,16 @@ begin
       glClearColor(0.2, 0.3, 0.3, 1.0);
       glClear(GL_COLOR_BUFFER_BIT);
 
-      glBindTexture(GL_TEXTURE_2D, texture);
+      glActiveTexture(texture1);
+      glBindTexture(GL_TEXTURE_2D, texture1);
+      glActiveTexture(texture2);
+      glBindTexture(GL_TEXTURE_2D, texture2);
 
       // 激活这个程序对象
       shader.UseProgram;
       // 画出第一个三角形
       glBindVertexArray(VAO);
-      glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nil);
+      glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, Pointer(0));
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
       glfwSwapBuffers(window);
@@ -186,6 +209,7 @@ begin
 
     glDeleteVertexArrays(1, @VAO);
     glDeleteBuffers(1, @VBO);
+    glDeleteBuffers(1, @EBO);
   finally
     shader.Free;
   end;

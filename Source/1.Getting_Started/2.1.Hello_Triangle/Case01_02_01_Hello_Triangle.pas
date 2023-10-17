@@ -1,4 +1,4 @@
-﻿unit Case01_02_Hello_Triangle;
+﻿unit Case01_02_01_Hello_Triangle;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -57,7 +57,6 @@ var
   vertices: TArr_GLfloat;
   infoLog: TArr_GLchar;
   vertexShader, fragmentShader, shaderProgram, VBO, VAO: GLuint;
-  indices: TArr_GLint;
 begin
   glfwInit;
 
@@ -148,7 +147,6 @@ begin
   glGenVertexArrays(1, @VAO);
   glBindVertexArray(VAO);
 
-  (*═══════════════════════════════════════════════════════════════════════
   // 顶点数组模
   //设置顶点数据(和缓冲区)并配置顶点属性
   vertices := TArr_GLfloat(nil);
@@ -166,38 +164,6 @@ begin
   // 解析顶点数据
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(0));
   glEnableVertexAttribArray(0);
-  //═══════════════════════════════════════════════════════════════════════*)
-
-  //{***********************************************************************
-  vertices := TArr_GLfloat(nil);
-  vertices := [
-    0.5, 0.5, 0.0,   // 右上角
-    0.5, -0.5, 0.0,  // 右下角
-    -0.5, -0.5, 0.0, // 左下角
-    -0.5, 0.5, 0.0];   // 左上角
-  // 绘制出矩形所需的索引
-  indices := TArr_GLint(nil);
-  indices := [
-    // 注意索引从0开始!
-    // 此例的索引(0,1,2,3)就是顶点数组vertices的下标，
-    // 这样可以由下标代表顶点组合成矩形
-    0, 1, 3, // 第一个三角形
-    1, 2, 3];  // 第二个三角形
-  // 生成一个VBO对象, 新创建的缓冲绑定到GL_ARRAY_BUFFER目标上
-  VBO := GLuint(0);
-  glGenBuffers(1, @VBO);
-  glBindBuffer(GL_ARRAY_BUFFER, VBO);
-  glBufferData(GL_ARRAY_BUFFER, TArrayUtils_GLfloat.MemorySize(vertices),
-    @vertices[0], GL_STATIC_DRAW);
-  // 生成一个EBO对象， 并绑定
-  EBO := GLint(0);
-  glGenBuffers(1, @EBO);
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, TArrayUtils_GLint.MemorySize(indices),
-    @indices[0], GL_STATIC_DRAW);
-  // 解析顶点数据
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(0));
-  glEnableVertexAttribArray(0); //}
 
   // 取消此调用的注释以绘制线框多边形。
   //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -212,13 +178,11 @@ begin
     glClearColor(0.2, 0.3, 0.3, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
 
-
     //// 激活这个程序对象
     glUseProgram(shaderProgram);
     // 画出第一个三角形
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0, 3);
-    //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, Pointer(0));
 
     // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
     glfwSwapBuffers(window);

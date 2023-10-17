@@ -4,3 +4,5 @@
 *.xml linguist-language=pascal
 *.inc linguist-language=pascal
 *.ctpkg linguist-language=pascal
+*.vs linguist-language=glsl
+*.fs linguist-language=glsl

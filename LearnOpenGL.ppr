@@ -8,19 +8,24 @@ uses
   {$ENDIF}
   Classes,
   SysUtils,
-  LearnOpenGL.Utils,
   LearnOpenGL.Main,
   LearnOpenGL.Shader,
-  Case01_01_Hello_Window,
-  Case01_02_Hello_Triangle,
-  Case01_02_Exercise_01,
-  Case01_02_Exercise_02,
-  Case01_02_Exercise_03,
-  Case01_03_Shaders_Uniform,
-  Case01_03_Exercise_01,
-  Case01_03_Exercise_02,
-  Case01_03_Exercise_03,
-  Case01_04_Textures;
+  LearnOpenGL.Utils,
+  Case01_01_01_Hello_Window,
+  Case01_01_02_Hello_Window_Clear,
+  Case01_02_01_Hello_Triangle,
+  Case01_02_02_Hello_Triangle_Indexed,
+  Case01_02_03_Hello_Triangle_Exercise1,
+  Case01_02_04_Hello_Triangle_Exercise2,
+  Case01_02_05_Hello_Triangle_Exercise3,
+  Case01_03_01_Shaders_Uniform,
+  Case01_03_02_Shaders_Interpolation,
+  Case01_03_03_Shaders_Class,
+  Case01_03_04_Shaders_Exercise1,
+  Case01_03_05_Shaders_Exercise2,
+  Case01_03_06_Shaders_Exercise3,
+  Case01_04_01_Textures,
+  Case01_04_02_Textures_Combined;
 
 begin
   try

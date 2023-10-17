@@ -25,7 +25,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="Source;Source\Utils;Source\01 入门\Case01_01;Source\01 入门\Case01_02;Source\01 入门\Case01_03;Source\01 入门\Case01_04"/>
+            <OtherUnitFiles Value="Source;Source\Utils;Source\1.Getting_Started\1.1.Hello_Window;Source\1.Getting_Started\1.2.Hello_Window_Clear;Source\1.Getting_Started\2.1.Hello_Triangle;Source\1.Getting_Started\2.2.Hello_Triangle_Indexed;Source\1.Getting_Started\2.3.Hello_Triangle_Exercise1;Source\1.Getting_Started\2.4.Hello_Triangle_Exercise2;Source\1.Getting_Started\2.5.Hello_Triangle_Exercise3;Source\1.Getting_Started\3.1.Shaders_Uniform;Source\1.Getting_Started\3.2.Shaders_Interpolation;Source\1.Getting_Started\3.3.Shaders_Class;Source\1.Getting_Started\3.4.Shaders_Exercise1;Source\1.Getting_Started\3.5.Shaders_Exercise2;Source\1.Getting_Started\3.6.Shaders_Exercise3;Source\1.Getting_Started\4.1.Textures;Source\1.Getting_Started\4.2.Textures_Combined"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -80,73 +80,63 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\01 入门\Case01_01\Case01_01_Hello_Window.pas"/>
+        <Filename Value="Source\1.Getting_Started\1.1.Hello_Window\Case01_01_01_Hello_Window.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\01 入门\Case01_02\Case01_02_Exercise_01.pas"/>
+        <Filename Value="Source\1.Getting_Started\1.2.Hello_Window_Clear\Case01_01_02_Hello_Window_Clear.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\01 入门\Case01_02\Case01_02_Exercise_02.pas"/>
+        <Filename Value="Source\1.Getting_Started\2.1.Hello_Triangle\Case01_02_01_Hello_Triangle.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\01 入门\Case01_02\Case01_02_Exercise_03.pas"/>
+        <Filename Value="Source\1.Getting_Started\2.2.Hello_Triangle_Indexed\Case01_02_02_Hello_Triangle_Indexed.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\01 入门\Case01_02\Case01_02_Hello_Triangle.pas"/>
+        <Filename Value="Source\1.Getting_Started\2.3.Hello_Triangle_Exercise1\Case01_02_03_Hello_Triangle_Exercise1.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\01 入门\Case01_03\Case01_03_Shaders_Uniform.pas"/>
+        <Filename Value="Source\1.Getting_Started\2.4.Hello_Triangle_Exercise2\Case01_02_04_Hello_Triangle_Exercise2.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\01 入门\Case01_03\Exercise_01.fragment.glsl"/>
-        <FRMtype Value="0"/>
+        <Filename Value="Source\1.Getting_Started\2.5.Hello_Triangle_Exercise3\Case01_02_05_Hello_Triangle_Exercise3.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\01 入门\Case01_03\Exercise_01.vertex.glsl"/>
-        <FRMtype Value="0"/>
+        <Filename Value="Source\1.Getting_Started\3.1.Shaders_Uniform\Case01_03_01_Shaders_Uniform.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\01 入门\Case01_03\Case01_03_Exercise_01.pas"/>
+        <Filename Value="Source\1.Getting_Started\3.2.Shaders_Interpolation\Case01_03_02_Shaders_Interpolation.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\01 入门\Case01_03\Case01_03_Exercise_02.pas"/>
+        <Filename Value="Source\1.Getting_Started\3.3.Shaders_Class\Case01_03_03_Shaders_Class.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\01 入门\Case01_03\Exercise_02.vertex.glsl"/>
-        <FRMtype Value="0"/>
+        <Filename Value="Source\1.Getting_Started\3.4.Shaders_Exercise1\Case01_03_04_Shaders_Exercise1.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\01 入门\Case01_03\Exercise_02.fragment.glsl"/>
-        <FRMtype Value="0"/>
+        <Filename Value="Source\1.Getting_Started\3.5.Shaders_Exercise2\Case01_03_05_Shaders_Exercise2.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\01 入门\Case01_03\Exercise_03.fragment.glsl"/>
-        <FRMtype Value="0"/>
+        <Filename Value="Source\1.Getting_Started\3.6.Shaders_Exercise3\Case01_03_06_Shaders_Exercise3.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\01 入门\Case01_03\Exercise_03.vertex.glsl"/>
-        <FRMtype Value="0"/>
+        <Filename Value="Source\1.Getting_Started\4.1.Textures\Case01_04_01_Textures.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\01 入门\Case01_03\Case01_03_Exercise_03.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\01 入门\Case01_04\Case01_04_Textures.pas"/>
+        <Filename Value="Source\1.Getting_Started\4.2.Textures_Combined\Case01_04_02_Textures_Combined.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
     </Units>
@@ -159,7 +149,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="Source;Source\Utils;Source\01 入门\Case01_01;Source\01 入门\Case01_02;Source\01 入门\Case01_03;Source\01 入门\Case01_04"/>
+      <OtherUnitFiles Value="Source\Utils;Source\1.Getting_Started\1.1.Hello_Window;Source\1.Getting_Started\1.2.Hello_Window_Clear;Source\1.Getting_Started\2.1.Hello_Triangle;Source\1.Getting_Started\2.2.Hello_Triangle_Indexed;Source\1.Getting_Started\2.3.Hello_Triangle_Exercise1;Source\1.Getting_Started\2.4.Hello_Triangle_Exercise2;Source\1.Getting_Started\2.5.Hello_Triangle_Exercise3;Source\1.Getting_Started\3.1.Shaders_Uniform;Source\1.Getting_Started\3.2.Shaders_Interpolation;Source\1.Getting_Started\3.3.Shaders_Class;Source\1.Getting_Started\3.4.Shaders_Exercise1;Source\1.Getting_Started\3.5.Shaders_Exercise2;Source\1.Getting_Started\3.6.Shaders_Exercise3;Source\1.Getting_Started\4.1.Textures;Source\1.Getting_Started\4.2.Textures_Combined"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

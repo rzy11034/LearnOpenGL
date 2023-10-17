@@ -12,33 +12,23 @@ uses
   {%H-}DeepStar.Utils,
   {%H-}GLAD_GL,
   {%H-}GLFW,
-  {%H-}LearnOpenGL.Utils;
+  {%H-}LearnOpenGL.Utils,
+  {%H-}LearnOpenGL.Shader;
 
 procedure Run();
 
 implementation
 
 uses
-  {%H-}Case01_04_Textures;
+  Case01_04_02_Textures_Combined;
 
 procedure Test;
-var
-  tx: TOpenGLTexture;
-  s: string;
 begin
-  tx := TOpenGLTexture.Create(CrossFixFileName('../../Resources/textures/wall.jpg'));
-  tx.Free;
-
-  s := GetCurrentDir;
-  WriteLn(s);
-
-  ReadLn;
-  Exit;
 end;
 
 procedure Run();
 begin
-  //Test;
+  Test;
   Main;
 end;
 

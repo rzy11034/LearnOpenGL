@@ -1,4 +1,4 @@
-﻿unit Case01_03_Exercise_02;
+﻿unit Case01_03_04_Shaders_Exercise1;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -7,8 +7,7 @@ interface
 
 uses
   Classes,
-  SysUtils,
-  GLAD_GL;
+  SysUtils;
 
 procedure Main;
 
@@ -16,6 +15,7 @@ implementation
 
 uses
   DeepStar.Utils,
+  GLAD_GL,
   GLFW,
   LearnOpenGL.Utils,
   LearnOpenGL.Shader;
@@ -77,6 +77,9 @@ begin
 end;
 
 procedure Main;
+const
+  vs = '..\..\Source\1.Getting_Started\3.4.Shaders_Exercise1\3.4.shader.vs';
+  fs = '..\..\Source\1.Getting_Started\3.4.Shaders_Exercise1\3.4.shader.fs';
 var
   window: PGLFWwindow;
   VAO, VBO: GLuint;
@@ -87,9 +90,7 @@ begin
 
   shader := TShaderProgram.Create;
   try
-    shader.LoadShaderFile(
-      CrossFixFileName('Source\01 入门\Case01_03\Exercise_02.vertex.glsl'),
-      CrossFixFileName('Source\01 入门\Case01_03\Exercise_02.fragment.glsl'));
+    shader.LoadShaderFile(CrossFixFileName(vs), CrossFixFileName(fs));
 
     // 创建一个VAO
     VAO := GLuint(0);
@@ -131,7 +132,6 @@ begin
 
       //// 激活这个程序对象
       shader.UseProgram;
-      shader.SetUniformFloat('xOffset', [0.5]);
       // 画出第一个三角形
       glBindVertexArray(VAO);
       glDrawArrays(GL_TRIANGLES, 0, 3);

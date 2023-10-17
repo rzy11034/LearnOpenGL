@@ -1,4 +1,4 @@
-﻿unit Case01_03_Exercise_01;
+﻿unit Case01_03_06_Shaders_Exercise3;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -77,6 +77,9 @@ begin
 end;
 
 procedure Main;
+const
+  vs = '..\..\Source\1.Getting_Started\3.6.Shaders_Exercise3\3.6.shader.vs';
+  fs = '..\..\Source\1.Getting_Started\3.6.Shaders_Exercise3\3.6.shader.fs';
 var
   window: PGLFWwindow;
   VAO, VBO: GLuint;
@@ -87,9 +90,7 @@ begin
 
   shader := TShaderProgram.Create;
   try
-    shader.LoadShaderFile(
-      CrossFixFileName('Source\01 入门\Case01_03\Exercise_01.vertex.glsl'),
-      CrossFixFileName('Source\01 入门\Case01_03\Exercise_01.fragment.glsl'));
+    shader.LoadShaderFile(CrossFixFileName(vs), CrossFixFileName(fs));
 
     // 创建一个VAO
     VAO := GLuint(0);
