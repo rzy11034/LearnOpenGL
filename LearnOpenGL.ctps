@@ -18,9 +18,10 @@
       <Unit>
         <Filename Value="README.md"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <CursorPos X="18" Y="19"/>
+        <CursorPos X="32" Y="8"/>
         <SyntaxHighlighter Value="Text"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -29,11 +30,10 @@
       <Unit>
         <Filename Value="Source\Utils\LearnOpenGL.Utils.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="111"/>
-        <CursorPos Y="83"/>
+        <CursorPos X="23" Y="122"/>
         <UsageCount Value="207"/>
         <Loaded Value="True"/>
       </Unit>
@@ -79,6 +79,114 @@
         <WindowIndex Value="0"/>
         <CursorPos X="41" Y="9"/>
         <UsageCount Value="25"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\2.2.Hello_Triangle_Indexed\Case01_02_02_Hello_Triangle_Indexed.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="27" Y="9"/>
+        <UsageCount Value="25"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\2.3.Hello_Triangle_Exercise1\Case01_02_03_Hello_Triangle_Exercise1.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="61"/>
+        <CursorPos X="25" Y="83"/>
+        <UsageCount Value="25"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\2.4.Hello_Triangle_Exercise2\Case01_02_04_Hello_Triangle_Exercise2.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="160"/>
+        <CursorPos X="40" Y="43"/>
+        <UsageCount Value="25"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\2.5.Hello_Triangle_Exercise3\Case01_02_05_Hello_Triangle_Exercise3.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="22"/>
+        <CursorPos X="16" Y="8"/>
+        <UsageCount Value="24"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\3.1.Shaders_Uniform\Case01_03_01_Shaders_Uniform.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="25"/>
+        <CursorPos X="42" Y="32"/>
+        <UsageCount Value="24"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\3.2.Shaders_Interpolation\Case01_03_02_Shaders_Interpolation.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="32" Y="13"/>
+        <UsageCount Value="24"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\3.3.Shaders_Class\Case01_03_03_Shaders_Class.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="70"/>
+        <CursorPos X="71" Y="93"/>
+        <UsageCount Value="23"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\3.4.Shaders_Exercise1\Case01_03_04_Shaders_Exercise1.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="86"/>
+        <CursorPos X="41" Y="86"/>
+        <UsageCount Value="23"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\3.5.Shaders_Exercise2\Case01_03_05_Shaders_Exercise2.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="115"/>
+        <CursorPos X="69" Y="85"/>
+        <UsageCount Value="23"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\3.6.Shaders_Exercise3\Case01_03_06_Shaders_Exercise3.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="70"/>
+        <CursorPos X="64" Y="79"/>
+        <UsageCount Value="23"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\4.1.Textures\Case01_04_01_Textures.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="164"/>
+        <CursorPos X="48" Y="166"/>
+        <UsageCount Value="23"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\4.2.Textures_Combined\Case01_04_02_Textures_Combined.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="4"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="163"/>
+        <CursorPos X="6" Y="174"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Source\01 入门\Case01_01\Case01_01_Hello_Window.pas"/>
@@ -366,7 +474,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="13"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\dynlibh.inc"/>
@@ -374,7 +482,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="23"/>
         <CursorPos X="10" Y="52"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\win64\system.pp"/>
@@ -469,7 +577,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="22"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\ctypes.pp"/>
@@ -812,114 +920,6 @@
         <CursorPos X="-1" Y="-1"/>
         <UsageCount Value="19"/>
       </Unit>
-      <Unit>
-        <Filename Value="Source\1.Getting_Started\2.2.Hello_Triangle_Indexed\Case01_02_02_Hello_Triangle_Indexed.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <CursorPos X="27" Y="9"/>
-        <UsageCount Value="25"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\1.Getting_Started\2.3.Hello_Triangle_Exercise1\Case01_02_03_Hello_Triangle_Exercise1.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="61"/>
-        <CursorPos X="25" Y="83"/>
-        <UsageCount Value="25"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\1.Getting_Started\2.4.Hello_Triangle_Exercise2\Case01_02_04_Hello_Triangle_Exercise2.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="160"/>
-        <CursorPos X="40" Y="43"/>
-        <UsageCount Value="25"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\1.Getting_Started\2.5.Hello_Triangle_Exercise3\Case01_02_05_Hello_Triangle_Exercise3.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="22"/>
-        <CursorPos X="16" Y="8"/>
-        <UsageCount Value="24"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\1.Getting_Started\3.1.Shaders_Uniform\Case01_03_01_Shaders_Uniform.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="25"/>
-        <CursorPos X="42" Y="32"/>
-        <UsageCount Value="24"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\1.Getting_Started\3.2.Shaders_Interpolation\Case01_03_02_Shaders_Interpolation.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <CursorPos X="32" Y="13"/>
-        <UsageCount Value="24"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\1.Getting_Started\3.3.Shaders_Class\Case01_03_03_Shaders_Class.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="70"/>
-        <CursorPos X="71" Y="93"/>
-        <UsageCount Value="23"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\1.Getting_Started\3.4.Shaders_Exercise1\Case01_03_04_Shaders_Exercise1.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="86"/>
-        <CursorPos X="41" Y="86"/>
-        <UsageCount Value="23"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\1.Getting_Started\3.5.Shaders_Exercise2\Case01_03_05_Shaders_Exercise2.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="115"/>
-        <CursorPos X="69" Y="85"/>
-        <UsageCount Value="23"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\1.Getting_Started\3.6.Shaders_Exercise3\Case01_03_06_Shaders_Exercise3.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="70"/>
-        <CursorPos X="64" Y="79"/>
-        <UsageCount Value="23"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\1.Getting_Started\4.1.Textures\Case01_04_01_Textures.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="164"/>
-        <CursorPos X="48" Y="166"/>
-        <UsageCount Value="23"/>
-        <Loaded Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\1.Getting_Started\4.2.Textures_Combined\Case01_04_02_Textures_Combined.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="163"/>
-        <CursorPos X="6" Y="174"/>
-        <UsageCount Value="22"/>
-        <Loaded Value="True"/>
-      </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
@@ -1068,7 +1068,6 @@
         <Item5 Value="$(Pas2JSBrowser) &quot;$(Pas2JSProjectURL)&quot;"/>
         <Item6 Value="/usr/bin/gnome-terminal -t &apos;Typhon Run Output&apos; -e &apos;$(TargetCmdLine)&apos;"/>
       </List>
-      <List Name="CommandLineParameters" Count="1"/>
     </HistoryLists>
   </ProjectSession>
 </CONFIG>
