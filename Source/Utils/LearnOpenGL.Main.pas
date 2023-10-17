@@ -2,7 +2,7 @@
 
 {$mode ObjFPC}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
-
+{$WARN 4104 off : Implicit string type conversion from "$1" to "$2"}
 interface
 
 uses
@@ -23,18 +23,23 @@ uses
 
 procedure Test;
 var
-  tx :TOpenGLTexture;
-  i: Integer;
+  tx: TOpenGLTexture;
+  s: string;
 begin
-  tx:= TOpenGLTexture.Create('Resources\textures\wall.jpg');
+  tx := TOpenGLTexture.Create(CrossFixFileName('../../Resources/textures/wall.jpg'));
   tx.Free;
+
+  s := GetCurrentDir;
+  WriteLn(s);
+
+  ReadLn;
   Exit;
 end;
 
 procedure Run();
 begin
-  Test;
-  //Main;
+  //Test;
+  Main;
 end;
 
 end.

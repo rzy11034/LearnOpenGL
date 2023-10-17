@@ -74,7 +74,13 @@ begin
   readerClass := img.FindReaderFromFileName(fileName);
   Handler := readerClass.Create;
   try
-    img.LoadFromFile(fileName, Handler);
+    try
+      img.LoadFromFile(fileName, Handler);
+    except
+      on e: EFileNotFoundException do
+        raise e;
+    end;
+
     Self.Width := img.Width;
     Self.Height := img.Height;
 

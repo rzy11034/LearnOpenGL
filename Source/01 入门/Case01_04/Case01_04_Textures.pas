@@ -7,7 +7,9 @@ interface
 
 uses
   Classes,
-  SysUtils;
+  SysUtils,
+  GLAD_GL;
+
 
 procedure Main;
 
@@ -15,11 +17,10 @@ implementation
 
 uses
   DeepStar.Utils,
-  GLAD_GL,
   GLFW,
   FpImage,
-  LearnOpenGL.Utils,
-  LearnOpenGL.Shader;
+  LearnOpenGL.Shader,
+  LearnOpenGL.Utils;
 
 const
   SCR_WIDTH = 800;
@@ -78,44 +79,84 @@ begin
 end;
 
 procedure Main;
+const
+  vs: string = '../../Source/01 入门/Case01_04/Case01_04_.vertex.glsl';
+  fs: string = '../../Source/01 入门/Case01_04/Case01_04_.fragment.glsl';
+  tx: string = '../../Resources/textures/container.jpg';
 var
   window: PGLFWwindow;
-  VAO, VBO: GLuint;
   vertices: TArr_GLfloat;
   shader: TShaderProgram;
+  ot: TOpenGLTexture;
+  indices: TArr_GLint;
+  VAO, VBO, EBO, texture: GLuint;
 begin
   window := InitWindows;
 
   shader := TShaderProgram.Create;
   try
-    shader.LoadShaderFile(
-      CrossFixFileName('Source\01 入门\Case01_03\Exercise_03.vertex.glsl'),
-      CrossFixFileName('Source\01 入门\Case01_03\Exercise_03.fragment.glsl'));
+    shader.LoadShaderFile(CrossFixFileName(vs), CrossFixFileName(fs));
 
-    // 创建一个VAO
-    VAO := GLuint(0);
-    glGenVertexArrays(1, @VAO);
-    glBindVertexArray(VAO);
-
-    // 顶点数组模, 设置顶点数据(和缓冲区)并配置顶点属性
     vertices := TArr_GLfloat(nil);
     vertices := [
-      // 位置          // 颜色
-      +0.5, -0.5, 0.0, 1.0, 0.0, 0.0,   // 右下
-      -0.5, -0.5, 0.0, 0.0, 1.0, 0.0,   // 左下
-      +0.0, +0.5, 0.0, 0.0, 0.0, 1.0];  // 顶部
-    // 生成一个VBO对象, 新创建的缓冲绑定到GL_ARRAY_BUFFER目标上
+      // ---位置---    ----颜色----  -纹理坐标-
+      +0.5, +0.5, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0,   // 右上
+      +0.5, -0.5, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0,   // 右下
+      -0.5, -0.5, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,   // 左下
+      -0.5, +0.5, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0];  // 左上
+    indices := TArr_GLint(nil);
+    indices := [
+      0, 1, 3, // first triangle
+      1, 2, 3];  // second triangle
+
+    VAO := GLuint(0);
     VBO := GLuint(0);
+    EBO := GLuint(0);
+
+    glGenVertexArrays(1, @VAO);
     glGenBuffers(1, @VBO);
+    glGenBuffers(1, @EBO);
+
+    glBindVertexArray(VAO);
+
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    // 把之前定义的顶点数据复制到缓冲的内存中
     glBufferData(GL_ARRAY_BUFFER, TArrayUtils_GLfloat.MemorySize(vertices),
       @vertices[0], GL_STATIC_DRAW);
-    // 解析顶点数据
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * SizeOf(GLfloat), Pointer(0));
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, TArrayUtils_GLint.MemorySize(indices),
+      @indices, GL_STATIC_DRAW);
+
+    // position attribute ---位置属性
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat), Pointer(0));
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * SizeOf(GLfloat), Pointer(3 * SizeOf(GLfloat)));
+    // color attribute  ---颜色属性
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat),
+      Pointer(3 * SizeOf(GLfloat)));
     glEnableVertexAttribArray(1);
+    // texture coord attribute ---纹理坐标属性
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat),
+      Pointer(6 * SizeOf(GLfloat)));
+    glEnableVertexAttribArray(2);
+
+    // 新建并加载一个纹理
+    texture := GLuint(0);
+    glGenTextures(1, @texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    // 为当前绑定的纹理对象设置环绕、过滤方式
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    ot := TOpenGLTexture.Create(CrossFixFileName(tx));
+    try
+      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, ot.Width, ot.Height, 0,
+        GL_RGB, GL_UNSIGNED_BYTE, ot.Data);
+
+      glGenerateMipmap(GL_TEXTURE_2D);
+    finally
+      ot.Free;
+    end;
 
     // 取消此调用的注释以绘制线框多边形。
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -130,11 +171,13 @@ begin
       glClearColor(0.2, 0.3, 0.3, 1.0);
       glClear(GL_COLOR_BUFFER_BIT);
 
-      //// 激活这个程序对象
+      glBindTexture(GL_TEXTURE_2D, texture);
+
+      // 激活这个程序对象
       shader.UseProgram;
       // 画出第一个三角形
       glBindVertexArray(VAO);
-      glDrawArrays(GL_TRIANGLES, 0, 3);
+      glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nil);
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
       glfwSwapBuffers(window);
