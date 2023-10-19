@@ -7,7 +7,7 @@ interface
 
 uses
   Classes,
-  SysUtils, GLAD_GL;
+  SysUtils;
 
 procedure Main;
 
@@ -15,6 +15,7 @@ implementation
 
 uses
   DeepStar.Utils,
+  GLAD_GL,
   GLFW,
   LearnOpenGL.Shader,
   LearnOpenGL.Utils;
@@ -87,7 +88,7 @@ var
   shader: TShaderProgram;
   ot: TOpenGLTexture;
   indices: TArr_GLint;
-  VAO, VBO, EBO, texture1, texture2: GLuint;
+  VAO, VBO, EBO, texture0, texture1: GLuint;
 begin
   window := InitWindows;
 
@@ -139,6 +140,23 @@ begin
     glEnableVertexAttribArray(2);
 
     // 新建并加载一个纹理
+    texture0 := GLuint(0);
+    glGenTextures(1, @texture0);
+    glBindTexture(GL_TEXTURE_2D, texture0);
+    // 为当前绑定的纹理对象设置环绕、过滤方式
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    ot := TOpenGLTexture.Create(CrossFixFileName(tx1));
+    try
+      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
+        GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
+      glGenerateMipmap(GL_TEXTURE_2D);
+    finally
+      ot.Free;
+    end;
+
     texture1 := GLuint(0);
     glGenTextures(1, @texture1);
     glBindTexture(GL_TEXTURE_2D, texture1);
@@ -147,34 +165,16 @@ begin
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TOpenGLTexture.Create(CrossFixFileName(tx1));
-    try
-      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, ot.Width, ot.Height, 0,
-        GL_RGB, GL_UNSIGNED_BYTE, ot.Data);
-
-      glGenerateMipmap(GL_TEXTURE_2D);
-    finally
-      ot.Free;
-    end;
-
-    texture2 := GLuint(0);
-    glGenTextures(1, @texture2);
-    glBindTexture(GL_TEXTURE_2D, texture2);
-    // 为当前绑定的纹理对象设置环绕、过滤方式
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     ot := TOpenGLTexture.Create(CrossFixFileName(tx2));
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
-        GL_RGBA, GL_UNSIGNED_BYTE, ot.Data);
-
+        GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
       glGenerateMipmap(GL_TEXTURE_2D);
     finally
       ot.Free;
     end;
 
+    shader.UseProgram;
     shader.SetUniformInt('texture1', [0]);
     shader.SetUniformInt('texture2', [1]);
 
@@ -191,10 +191,10 @@ begin
       glClearColor(0.2, 0.3, 0.3, 1.0);
       glClear(GL_COLOR_BUFFER_BIT);
 
-      glActiveTexture(texture1);
+      glActiveTexture(GL_TEXTURE0);
+      glBindTexture(GL_TEXTURE_2D, texture0);
+      glActiveTexture(GL_TEXTURE1);
       glBindTexture(GL_TEXTURE_2D, texture1);
-      glActiveTexture(texture2);
-      glBindTexture(GL_TEXTURE_2D, texture2);
 
       // 激活这个程序对象
       shader.UseProgram;

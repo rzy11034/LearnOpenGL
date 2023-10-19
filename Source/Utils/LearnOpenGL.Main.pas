@@ -13,23 +13,30 @@ uses
   {%H-}GLAD_GL,
   {%H-}GLFW,
   {%H-}LearnOpenGL.Utils,
-  {%H-}LearnOpenGL.Shader;
+  {%H-}LearnOpenGL.Shader, FpImage;
 
 procedure Run();
 
 implementation
 
 uses
-  Case01_04_02_Textures_Combined;
+  Case01_04_01_Textures;
 
 procedure Test;
+var
+  img: TFPMemoryImage;
+  reader: TFPCustomImageReaderClass;
 begin
+  img:=TFPMemoryImage.Create(0,0);
+  reader:= img.FindReaderFromFileName('D:\Users\DELL\Documents\Projects\01_Pictures\sample2.jpg');
+
+  reader.Create
 end;
 
 procedure Run();
 begin
   Test;
-  Main;
+  //Main;
 end;
 
 end.

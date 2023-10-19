@@ -150,7 +150,7 @@ begin
     ot := TOpenGLTexture.Create(CrossFixFileName(tx));
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, ot.Width, ot.Height, 0,
-        GL_RGB, GL_UNSIGNED_BYTE, ot.Data);
+        GL_RGB, GL_UNSIGNED_BYTE, ot.Pixels);
 
       glGenerateMipmap(GL_TEXTURE_2D);
     finally

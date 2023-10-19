@@ -8,6 +8,7 @@ uses
   {$ENDIF}
   Classes,
   SysUtils,
+  Interfaces,
   LearnOpenGL.Main,
   LearnOpenGL.Shader,
   LearnOpenGL.Utils,
