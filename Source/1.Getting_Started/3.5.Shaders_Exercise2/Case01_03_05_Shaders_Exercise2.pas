@@ -65,7 +65,7 @@ begin
   if gladLoadGL(TLoadProc(@glfwGetProcAddress)) = false then
   begin
     WriteLn('Failed to initialize GLAD');
-    Exit;
+    Exit(nil);
   end;
 
   // 设置窗口的维度(Dimension)
@@ -78,8 +78,8 @@ end;
 
 procedure Main;
 const
-  vs = '..\..\Source\1.Getting_Started\3.5.Shaders_Exercise2\3.5.shader.vs';
-  fs = '..\..\Source\1.Getting_Started\3.5.Shaders_Exercise2\3.5.shader.fs';
+  vs = '..\Source\1.Getting_Started\3.5.Shaders_Exercise2\3.5.shader.vs';
+  fs = '..\Source\1.Getting_Started\3.5.Shaders_Exercise2\3.5.shader.fs';
 var
   window: PGLFWwindow;
   VAO, VBO: GLuint;

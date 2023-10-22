@@ -8,7 +8,7 @@ uses
   {$ENDIF}
   Classes,
   SysUtils,
-  Interfaces,
+  //Interfaces,
   LearnOpenGL.Main,
   LearnOpenGL.Shader,
   LearnOpenGL.Utils,
@@ -26,7 +26,7 @@ uses
   Case01_03_05_Shaders_Exercise2,
   Case01_03_06_Shaders_Exercise3,
   Case01_04_01_Textures,
-  Case01_04_02_Textures_Combined;
+  Case01_04_02_Textures_Combined, Case01_04_03_Textures_Exercise1;
 
 begin
   try

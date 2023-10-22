@@ -2,7 +2,7 @@
 
 {$mode ObjFPC}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
-{$WARN 4104 off : Implicit string type conversion from "$1" to "$2"}
+
 interface
 
 uses
@@ -13,30 +13,25 @@ uses
   {%H-}GLAD_GL,
   {%H-}GLFW,
   {%H-}LearnOpenGL.Utils,
-  {%H-}LearnOpenGL.Shader, FpImage;
+  {%H-}LearnOpenGL.Shader,
+  FpImage;
 
 procedure Run();
 
 implementation
 
 uses
-  Case01_04_01_Textures;
+  Case01_04_03_Textures_Exercise1;
 
 procedure Test;
-var
-  img: TFPMemoryImage;
-  reader: TFPCustomImageReaderClass;
 begin
-  img:=TFPMemoryImage.Create(0,0);
-  reader:= img.FindReaderFromFileName('D:\Users\DELL\Documents\Projects\01_Pictures\sample2.jpg');
 
-  reader.Create
 end;
 
 procedure Run();
 begin
-  Test;
-  //Main;
+  //Test;
+  Main;
 end;
 
 end.

@@ -65,7 +65,7 @@ begin
   if gladLoadGL(TLoadProc(@glfwGetProcAddress)) = false then
   begin
     WriteLn('Failed to initialize GLAD');
-    Exit;
+    Exit(nil);
   end;
 
   // 设置窗口的维度(Dimension)
@@ -78,10 +78,10 @@ end;
 
 procedure Main;
 const
-  vs = '..\..\Source\1.Getting_Started\4.2.Textures_Combined\4.2.texture.vs';
-  fs = '..\..\Source\1.Getting_Started\4.2.Textures_Combined\4.2.texture.fs';
-  tx1 = '..\..\Resources\textures\container.jpg';
-  tx2 = '..\..\Resources\textures\awesomeface.png';
+  vs = '..\Source\1.Getting_Started\4.2.Textures_Combined\4.2.texture.vs';
+  fs = '..\Source\1.Getting_Started\4.2.Textures_Combined\4.2.texture.fs';
+  tx1 = '..\Resources\textures\container.jpg';
+  tx2 = '..\Resources\textures\awesomeface.png';
 var
   window: PGLFWwindow;
   vertices: TArr_GLfloat;

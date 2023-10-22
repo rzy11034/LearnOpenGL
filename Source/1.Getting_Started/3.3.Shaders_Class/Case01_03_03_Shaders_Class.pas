@@ -65,7 +65,7 @@ begin
   if gladLoadGL(TLoadProc(@glfwGetProcAddress)) = false then
   begin
     WriteLn('Failed to initialize GLAD');
-    Exit;
+    Exit(nil);
   end;
 
   // 设置窗口的维度(Dimension)
