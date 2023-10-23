@@ -21,16 +21,21 @@ procedure Run();
 implementation
 
 uses
-  Case01_04_03_Textures_Exercise1;
+  Case01_04_04_Textures_Exercise2;
 
 procedure Test;
+var
+  v: TVec4f;
 begin
+  v := RGBAToOpenGLColor(241, 50, 39);
 
+
+  exit;
 end;
 
 procedure Run();
 begin
-  //Test;
+  Test;
   Main;
 end;
 

@@ -1,4 +1,4 @@
-﻿unit Case01_04_03_Textures_Exercise1;
+﻿unit Case01_04_04_Textures_Exercise2;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -78,8 +78,8 @@ end;
 
 procedure Main;
 const
-  vs = '..\Source\1.Getting_Started\4.3.Textures_Exercise1\4.3.texture.vs';
-  fs = '..\Source\1.Getting_Started\4.3.Textures_Exercise1\4.3.texture.fs';
+  vs = '..\Source\1.Getting_Started\4.4.Textures_Exercise2\4.4.texture.vs';
+  fs = '..\Source\1.Getting_Started\4.4.Textures_Exercise2\4.4.texture.fs';
   tx1 = '..\Resources\textures\container.jpg';
   tx2 = '..\Resources\textures\awesomeface.png';
 var
@@ -89,6 +89,7 @@ var
   ot: TOpenGLTexture;
   indices: TArr_GLint;
   VAO, VBO, EBO, texture0, texture1: GLuint;
+  borderColor: TVec4f;
 begin
   window := InitWindows;
 
@@ -143,9 +144,13 @@ begin
     texture0 := GLuint(0);
     glGenTextures(1, @texture0);
     glBindTexture(GL_TEXTURE_2D, texture0);
+
+    borderColor := HtmlRGBToOpenGLColor($FF0000);
+    glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, @borderColor);
+
     // 为当前绑定的纹理对象设置环绕、过滤方式
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     ot := TOpenGLTexture.Create(CrossFixFileName(tx1));
@@ -161,8 +166,8 @@ begin
     glGenTextures(1, @texture1);
     glBindTexture(GL_TEXTURE_2D, texture1);
     // 为当前绑定的纹理对象设置环绕、过滤方式
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     ot := TOpenGLTexture.Create(CrossFixFileName(tx2));

@@ -8,7 +8,7 @@ interface
 
 uses
   Classes,
-  SysUtils,DeepStar.UString,
+  SysUtils,
   GLAD_GL,
   LearnOpenGL.Utils;
 
@@ -58,17 +58,24 @@ var
   sl: TStringList;
   vertexStr, fragmentStr: PGLchar;
   vertexShader, fragmentShader, shaderProgram: GLuint;
-  s: string;
 begin
   sl := TStringList.Create();
   try
-    sl.LoadFromFile(vertexFile);
+    try
+      sl.LoadFromFile(vertexFile);
+    except
+      raise Exception.Create('Vertex File load Error!');
+    end;
     vertexStr := PGLchar('');
-    s := sl.Text;
-    vertexStr := s.ToPAnsiChar;
+    vertexStr := PGLchar(sl.Text);
 
     sl.Clear;
-    sl.LoadFromFile(fragmentFile);
+
+    try
+      sl.LoadFromFile(fragmentFile);
+    except
+      raise Exception.Create('Fragment File load Error!');
+    end;
     fragmentStr := PGLchar('');
     fragmentStr := PGLchar(sl.Text);
   finally
