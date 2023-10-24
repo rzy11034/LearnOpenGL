@@ -1,4 +1,4 @@
-﻿unit Case01_04_04_Textures_Exercise2;
+﻿unit Case01_04_06_Textures_Exercise4;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -78,8 +78,8 @@ end;
 
 procedure Main;
 const
-  vs = '..\Source\1.Getting_Started\4.4.Textures_Exercise2\4.4.texture.vs';
-  fs = '..\Source\1.Getting_Started\4.4.Textures_Exercise2\4.4.texture.fs';
+  vs = '..\Source\1.Getting_Started\4.6.Textures_Exercise4\4.6.texture.vs';
+  fs = '..\Source\1.Getting_Started\4.6.Textures_Exercise4\4.6.texture.fs';
   tx1 = '..\Resources\textures\container.jpg';
   tx2 = '..\Resources\textures\awesomeface.png';
 var
@@ -144,15 +144,11 @@ begin
     texture0 := GLuint(0);
     glGenTextures(1, @texture0);
     glBindTexture(GL_TEXTURE_2D, texture0);
-
-    borderColor := HtmlRGBToOpenGLColor($00323E);
-    glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, @borderColor);
-
     // 为当前绑定的纹理对象设置环绕、过滤方式
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     ot := TOpenGLTexture.Create(CrossFixFileName(tx1));
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
@@ -166,8 +162,8 @@ begin
     glGenTextures(1, @texture1);
     glBindTexture(GL_TEXTURE_2D, texture1);
     // 为当前绑定的纹理对象设置环绕、过滤方式
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     ot := TOpenGLTexture.Create(CrossFixFileName(tx2));
@@ -182,6 +178,7 @@ begin
     shader.UseProgram;
     shader.SetUniformInt('texture1', [0]);
     shader.SetUniformInt('texture2', [1]);
+    shader.SetUniformFloat('mixValue', [0.5]);
 
     // 取消此调用的注释以绘制线框多边形。
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);

@@ -50,7 +50,7 @@ type
   end;
 
 function RGBAToOpenGLColor(red, green, blue: GLubyte; alpha: GLubyte = 0): TVec4f;
-function HtmlRGBToOpenGLColor(HtmlColor: cardinal): TVec4f;
+function HtmlRGBToOpenGLColor(HtmlColor: GLuint): TVec4f;
 
 implementation
 
@@ -65,16 +65,16 @@ begin
   Result := res;
 end;
 
-function HtmlRGBToOpenGLColor(HtmlColor: cardinal): TVec4f;
+function HtmlRGBToOpenGLColor(HtmlColor: GLuint): TVec4f;
 var
   r, g, b, a: GLubyte;
-  p: PByte;
+  p: PGLubyte;
 begin
   p := @HtmlColor;
-  b := p^; Inc(p);
-  g := p^; Inc(p);
-  r := p^; Inc(p);
-  a := p^;
+  b := p[0];
+  g := p[1]; //Inc(p);
+  r := p[2]; //Inc(p);
+  a := p[3];
 
   Result := RGBAToOpenGLColor(r, g, b, a);
 end;
