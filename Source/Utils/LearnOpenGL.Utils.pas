@@ -29,7 +29,7 @@ type
   TArrayUtils_GLfloat = specialize TArrayUtils<GLfloat>;
   TArrayUtils_GLint = specialize TArrayUtils<GLint>;
 
-  TVec4f = array[0..3] of GLfloat;
+  TArray4_GLfloat = array[0..3] of GLfloat;
 
 type
   TOpenGLTexture = class(TObject)
@@ -49,14 +49,14 @@ type
     property Pixels: Pointer read __getDate;
   end;
 
-function RGBAToOpenGLColor(red, green, blue: GLubyte; alpha: GLubyte = 0): TVec4f;
-function HtmlRGBToOpenGLColor(HtmlColor: GLuint): TVec4f;
+function RGBAToOpenGLColor(red, green, blue: GLubyte; alpha: GLubyte = 0): TArray4_GLfloat;
+function HtmlRGBToOpenGLColor(HtmlColor: GLuint): TArray4_GLfloat;
 
 implementation
 
-function RGBAToOpenGLColor(red, green, blue: GLubyte; alpha: GLubyte): TVec4f;
+function RGBAToOpenGLColor(red, green, blue: GLubyte; alpha: GLubyte): TArray4_GLfloat;
 var
-  res: TVec4f;
+  res: TArray4_GLfloat;
 begin
   res[0] := red / 255;
   res[1] := green / 255;
@@ -65,7 +65,7 @@ begin
   Result := res;
 end;
 
-function HtmlRGBToOpenGLColor(HtmlColor: GLuint): TVec4f;
+function HtmlRGBToOpenGLColor(HtmlColor: GLuint): TArray4_GLfloat;
 var
   r, g, b, a: GLubyte;
   p: PGLubyte;

@@ -89,7 +89,7 @@ var
   ot: TOpenGLTexture;
   indices: TArr_GLint;
   VAO, VBO, EBO, texture0, texture1: GLuint;
-  borderColor: TVec4f;
+  borderColor: TArray4_GLfloat;
 begin
   window := InitWindows;
 

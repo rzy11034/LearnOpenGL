@@ -29,7 +29,8 @@ uses
   Case01_04_02_Textures_Combined,
   Case01_04_03_Textures_Exercise1,
   Case01_04_04_Textures_Exercise2,
-  Case01_04_05_Textures_Exercise3, Case01_04_06_Textures_Exercise4;
+  Case01_04_05_Textures_Exercise3, Case01_04_06_Textures_Exercise4, Case01_05_01_Transformations, LearnOpenGL.GLM,
+Case01_05_02_Transformations_Exercise1;
 
 begin
   try

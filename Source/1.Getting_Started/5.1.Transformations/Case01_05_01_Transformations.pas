@@ -1,4 +1,4 @@
-﻿unit Case01_04_06_Textures_Exercise4;
+﻿unit Case01_05_01_Transformations;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -18,14 +18,12 @@ uses
   GLAD_GL,
   GLFW,
   LearnOpenGL.Shader,
-  LearnOpenGL.Utils;
+  LearnOpenGL.Utils,
+  LearnOpenGL.GLM;
 
 const
   SCR_WIDTH = 800;
   SCR_HEIGHT = 600;
-
-var
-  mixValue: GLfloat = 0.2;
 
   // 每当窗口大小发生变化(由操作系统或用户调整大小)，这个回调函数就会执行
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl;
@@ -40,12 +38,6 @@ procedure ProcessInput(window: PGLFWwindow);
 begin
   if glfwGetKey(window, GLFW_KEY_ESCAPE) = GLFW_PRESS then
     glfwSetWindowShouldClose(window, true.ToInteger);
-
-  if glfwGetKey(window, GLFW_KEY_UP) = GLFW_PRESS then
-    mixValue += 0.01;
-
-  if glfwGetKey(window, GLFW_KEY_DOWN) = GLFW_PRESS then
-    mixValue -= 0.01;
 end;
 
 function InitWindows: PGLFWwindow;
@@ -63,7 +55,7 @@ begin
   window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, PGLchar('LearnOpenGL'), nil, nil);
   if window = nil then
   begin
-    WriteLn('Failed to create GLFW window');
+    WriteLn(' Failed to create GLFW window');
     glfwTerminate;
   end;
 
@@ -87,8 +79,8 @@ end;
 
 procedure Main;
 const
-  vs = '..\Source\1.Getting_Started\4.6.Textures_Exercise4\4.6.texture.vs';
-  fs = '..\Source\1.Getting_Started\4.6.Textures_Exercise4\4.6.texture.fs';
+  vs = '..\Source\1.Getting_Started\5.1.Transformations\5.1.texture.vs';
+  fs = '..\Source\1.Getting_Started\5.1.Transformations\5.1.texture.fs';
   tx1 = '..\Resources\textures\container.jpg';
   tx2 = '..\Resources\textures\awesomeface.png';
 var
@@ -98,6 +90,7 @@ var
   ot: TOpenGLTexture;
   indices: TArr_GLint;
   VAO, VBO, EBO, texture0, texture1: GLuint;
+  transform: TMat4;
 begin
   window := InitWindows;
 
@@ -155,8 +148,8 @@ begin
     // 为当前绑定的纹理对象设置环绕、过滤方式
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     ot := TOpenGLTexture.Create(CrossFixFileName(tx1));
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
@@ -186,7 +179,6 @@ begin
     shader.UseProgram;
     shader.SetUniformInt('texture1', [0]);
     shader.SetUniformInt('texture2', [1]);
-    shader.SetUniformFloat('mixValue', [mixValue]);
 
     // 取消此调用的注释以绘制线框多边形。
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -206,9 +198,13 @@ begin
       glActiveTexture(GL_TEXTURE1);
       glBindTexture(GL_TEXTURE_2D, texture1);
 
+      transform := TGLM.Mat4_Identity;
+      transform := TGLM.Translate(transform, [0.5, -0.5, 0]);
+      transform := TGLM.RotateZ(transform, glfwGetTime * 100);
+
       // 激活这个程序对象
       shader.UseProgram;
-      shader.SetUniformFloat('mixValue', [mixValue]);
+      shader.SetUniformMatrix4fv('transform', TGLM.ValuePtr(transform));
 
       // 画出第一个三角形
       glBindVertexArray(VAO);

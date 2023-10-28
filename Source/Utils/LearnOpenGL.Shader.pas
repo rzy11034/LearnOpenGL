@@ -13,7 +13,6 @@ uses
   LearnOpenGL.Utils;
 
 type
-
   TShaderTypes = (vertexObj, fragmentObj, programObj);
 
   TShaderProgram = class(TObject)
@@ -30,6 +29,7 @@ type
     // uniform工具函数
     procedure SetUniformInt(uniform: PGLchar; Value: TArr_GLint);
     procedure SetUniformFloat(uniform: PGLchar; Value: TArr_GLfloat);
+    procedure SetUniformMatrix4fv(uniform: PGLchar; Value: PSingle);
 
     constructor Create();
     destructor Destroy; override;
@@ -146,6 +146,15 @@ begin
     3: glUniform3i(uniformLocation, Value[0], Value[1], Value[2]);
     4: glUniform4i(uniformLocation, Value[0], Value[1], Value[2], Value[3]);
   end;
+end;
+
+procedure TShaderProgram.SetUniformMatrix4fv(uniform: PGLchar; Value: PSingle);
+var
+  uniformLocation: GLint;
+begin
+  uniformLocation := GLint(0);
+  uniformLocation := glGetUniformLocation(_id, uniform);
+  glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, Value);
 end;
 
 procedure TShaderProgram.UseProgram;

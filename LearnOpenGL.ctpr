@@ -25,13 +25,13 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="Source;Source\Utils;Source\1.Getting_Started\1.1.Hello_Window;Source\1.Getting_Started\1.2.Hello_Window_Clear;Source\1.Getting_Started\2.1.Hello_Triangle;Source\1.Getting_Started\2.2.Hello_Triangle_Indexed;Source\1.Getting_Started\2.3.Hello_Triangle_Exercise1;Source\1.Getting_Started\2.4.Hello_Triangle_Exercise2;Source\1.Getting_Started\2.5.Hello_Triangle_Exercise3;Source\1.Getting_Started\3.1.Shaders_Uniform;Source\1.Getting_Started\3.2.Shaders_Interpolation;Source\1.Getting_Started\3.3.Shaders_Class;Source\1.Getting_Started\3.4.Shaders_Exercise1;Source\1.Getting_Started\3.5.Shaders_Exercise2;Source\1.Getting_Started\3.6.Shaders_Exercise3;Source\1.Getting_Started\4.1.Textures;Source\1.Getting_Started\4.2.Textures_Combined;Source\1.Getting_Started\4.3.Textures_Exercise1;Source\1.Getting_Started\4.4.Textures_Exercise2;Source\1.Getting_Started\4.5.Textures_Exercise3;Source\1.Getting_Started\4.6.Textures_Exercise4"/>
+            <OtherUnitFiles Value="Source;Source\Utils;Source\1.Getting_Started\1.1.Hello_Window;Source\1.Getting_Started\1.2.Hello_Window_Clear;Source\1.Getting_Started\2.1.Hello_Triangle;Source\1.Getting_Started\2.2.Hello_Triangle_Indexed;Source\1.Getting_Started\2.3.Hello_Triangle_Exercise1;Source\1.Getting_Started\2.4.Hello_Triangle_Exercise2;Source\1.Getting_Started\2.5.Hello_Triangle_Exercise3;Source\1.Getting_Started\3.1.Shaders_Uniform;Source\1.Getting_Started\3.2.Shaders_Interpolation;Source\1.Getting_Started\3.3.Shaders_Class;Source\1.Getting_Started\3.4.Shaders_Exercise1;Source\1.Getting_Started\3.5.Shaders_Exercise2;Source\1.Getting_Started\3.6.Shaders_Exercise3;Source\1.Getting_Started\4.1.Textures;Source\1.Getting_Started\4.2.Textures_Combined;Source\1.Getting_Started\4.3.Textures_Exercise1;Source\1.Getting_Started\4.4.Textures_Exercise2;Source\1.Getting_Started\4.5.Textures_Exercise3;Source\1.Getting_Started\4.6.Textures_Exercise4;Source\1.Getting_Started\5.1.Transformations;Source\1.Getting_Started\5.2.Transformations_Exercise1"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
             <SmartLinkUnit Value="True"/>
             <Optimizations>
-              <OptimizationLevel Value="3"/>
+              <OptimizationLevel Value="4"/>
             </Optimizations>
           </CodeGeneration>
           <Linking>
@@ -158,6 +158,18 @@
         <Filename Value="Source\1.Getting_Started\4.6.Textures_Exercise4\Case01_04_06_Textures_Exercise4.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\5.1.Transformations\Case01_05_01_Transformations.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\Utils\LearnOpenGL.GLM.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\5.2.Transformations_Exercise1\Case01_05_02_Transformations_Exercise1.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -168,7 +180,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="Source\Utils;Source\1.Getting_Started\1.1.Hello_Window;Source\1.Getting_Started\1.2.Hello_Window_Clear;Source\1.Getting_Started\2.1.Hello_Triangle;Source\1.Getting_Started\2.2.Hello_Triangle_Indexed;Source\1.Getting_Started\2.3.Hello_Triangle_Exercise1;Source\1.Getting_Started\2.4.Hello_Triangle_Exercise2;Source\1.Getting_Started\2.5.Hello_Triangle_Exercise3;Source\1.Getting_Started\3.1.Shaders_Uniform;Source\1.Getting_Started\3.2.Shaders_Interpolation;Source\1.Getting_Started\3.3.Shaders_Class;Source\1.Getting_Started\3.4.Shaders_Exercise1;Source\1.Getting_Started\3.5.Shaders_Exercise2;Source\1.Getting_Started\3.6.Shaders_Exercise3;Source\1.Getting_Started\4.1.Textures;Source\1.Getting_Started\4.2.Textures_Combined;Source\1.Getting_Started\4.3.Textures_Exercise1;Source\1.Getting_Started\4.4.Textures_Exercise2;Source\1.Getting_Started\4.5.Textures_Exercise3;Source\1.Getting_Started\4.6.Textures_Exercise4"/>
+      <OtherUnitFiles Value="Source\Utils;Source\1.Getting_Started\1.1.Hello_Window;Source\1.Getting_Started\1.2.Hello_Window_Clear;Source\1.Getting_Started\2.1.Hello_Triangle;Source\1.Getting_Started\2.2.Hello_Triangle_Indexed;Source\1.Getting_Started\2.3.Hello_Triangle_Exercise1;Source\1.Getting_Started\2.4.Hello_Triangle_Exercise2;Source\1.Getting_Started\2.5.Hello_Triangle_Exercise3;Source\1.Getting_Started\3.1.Shaders_Uniform;Source\1.Getting_Started\3.2.Shaders_Interpolation;Source\1.Getting_Started\3.3.Shaders_Class;Source\1.Getting_Started\3.4.Shaders_Exercise1;Source\1.Getting_Started\3.5.Shaders_Exercise2;Source\1.Getting_Started\3.6.Shaders_Exercise3;Source\1.Getting_Started\4.1.Textures;Source\1.Getting_Started\4.2.Textures_Combined;Source\1.Getting_Started\4.3.Textures_Exercise1;Source\1.Getting_Started\4.4.Textures_Exercise2;Source\1.Getting_Started\4.5.Textures_Exercise3;Source\1.Getting_Started\4.6.Textures_Exercise4;Source\1.Getting_Started\5.1.Transformations;Source\1.Getting_Started\5.2.Transformations_Exercise1"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>
