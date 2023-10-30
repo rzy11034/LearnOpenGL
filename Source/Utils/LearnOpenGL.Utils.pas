@@ -13,7 +13,7 @@ uses
   FPReadJPEG,
   FPReadPNG,
   DeepStar.Utils,
-  GLAD_GL;
+  DeepStar.OpenGL.GLAD_GL;
 
 const
   LE = LineEnding;

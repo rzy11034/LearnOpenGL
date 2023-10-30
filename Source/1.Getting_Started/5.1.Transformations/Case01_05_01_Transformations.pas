@@ -15,8 +15,8 @@ implementation
 
 uses
   DeepStar.Utils,
-  GLAD_GL,
-  GLFW,
+  DeepStar.OpenGL.GLAD_GL,
+  DeepStar.OpenGL.GLFW,
   LearnOpenGL.Shader,
   LearnOpenGL.Utils,
   LearnOpenGL.GLM;

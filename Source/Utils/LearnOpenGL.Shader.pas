@@ -9,7 +9,7 @@ interface
 uses
   Classes,
   SysUtils,
-  GLAD_GL,
+  DeepStar.OpenGL.GLAD_GL,
   LearnOpenGL.Utils;
 
 type

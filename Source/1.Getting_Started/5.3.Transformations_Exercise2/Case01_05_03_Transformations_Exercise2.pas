@@ -1,4 +1,4 @@
-﻿unit Case01_04_01_Textures;
+﻿unit Case01_05_03_Transformations_Exercise2;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -17,6 +17,7 @@ uses
   DeepStar.Utils,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
+  DeepStar.OpenGL.GLM,
   LearnOpenGL.Shader,
   LearnOpenGL.Utils;
 
@@ -78,19 +79,21 @@ end;
 
 procedure Main;
 const
-  vs = '..\Source\1.Getting_Started\4.1.Textures\4.1.texture.vs';
-  fs = '..\Source\1.Getting_Started\4.1.Textures\4.1.texture.fs';
-  tx = '..\Resources\textures\container.jpg';
+  vs = '..\Source\1.Getting_Started\5.3.Transformations_Exercise2\5.3.texture.vs';
+  fs = '..\Source\1.Getting_Started\5.3.Transformations_Exercise2\5.3.texture.fs';
+  tx1 = '..\Resources\textures\container.jpg';
+  tx2 = '..\Resources\textures\awesomeface.png';
 var
   window: PGLFWwindow;
   vertices: TArr_GLfloat;
   shader: TShaderProgram;
   ot: TOpenGLTexture;
   indices: TArr_GLint;
-  VAO, VBO, EBO, texture: GLuint;
+  VAO, VBO, EBO, texture0, texture1: GLuint;
+  transform: TMat4;
+  scaleAmount: GLfloat;
 begin
   window := InitWindows;
-  if window = nil then Exit;
 
   shader := TShaderProgram.Create;
   try
@@ -140,23 +143,43 @@ begin
     glEnableVertexAttribArray(2);
 
     // 新建并加载一个纹理
-    texture := GLuint(0);
-    glGenTextures(1, @texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
+    texture0 := GLuint(0);
+    glGenTextures(1, @texture0);
+    glBindTexture(GL_TEXTURE_2D, texture0);
     // 为当前绑定的纹理对象设置环绕、过滤方式
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TOpenGLTexture.Create(CrossFixFileName(tx));
+    ot := TOpenGLTexture.Create(CrossFixFileName(tx1));
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
-
       glGenerateMipmap(GL_TEXTURE_2D);
     finally
       ot.Free;
     end;
+
+    texture1 := GLuint(0);
+    glGenTextures(1, @texture1);
+    glBindTexture(GL_TEXTURE_2D, texture1);
+    // 为当前绑定的纹理对象设置环绕、过滤方式
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    ot := TOpenGLTexture.Create(CrossFixFileName(tx2));
+    try
+      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
+        GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
+      glGenerateMipmap(GL_TEXTURE_2D);
+    finally
+      ot.Free;
+    end;
+
+    shader.UseProgram;
+    shader.SetUniformInt('texture1', [0]);
+    shader.SetUniformInt('texture2', [1]);
 
     // 取消此调用的注释以绘制线框多边形。
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -171,12 +194,24 @@ begin
       glClearColor(0.2, 0.3, 0.3, 1.0);
       glClear(GL_COLOR_BUFFER_BIT);
 
-      glBindTexture(GL_TEXTURE_2D, texture);
+      glActiveTexture(GL_TEXTURE0);
+      glBindTexture(GL_TEXTURE_2D, texture0);
+      glActiveTexture(GL_TEXTURE1);
+      glBindTexture(GL_TEXTURE_2D, texture1);
 
-      // 激活这个程序对象
-      shader.UseProgram;
-      // 画出第一个三角形
-      glBindVertexArray(VAO);
+      transform := TGLM.Mat4_Identity;
+      transform := TGLM.Translate(transform, [0.5, 0, 0]);
+      transform := TGLM.RotateZ(transform, glfwGetTime * 100);
+      transform := TGLM.Scale(transform, [0.5, 0.5, 0]);
+      shader.SetUniformMatrix4fv('transform', TGLM.ValuePtr(transform));
+      glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, Pointer(0));
+
+      scaleAmount := System.Default(GLfloat);
+      scaleAmount := Sin(glfwGetTime);
+      transform := TGLM.Mat4_Identity;
+      transform := TGLM.Translate(transform, [-0.5, 0.5, 0]);
+      transform := TGLM.Scale(transform, [scaleAmount, scaleAmount, scaleAmount]);
+      shader.SetUniformMatrix4fv('transform', TGLM.ValuePtr(transform));
       glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, Pointer(0));
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。

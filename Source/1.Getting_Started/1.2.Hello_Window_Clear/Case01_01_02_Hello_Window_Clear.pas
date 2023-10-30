@@ -7,8 +7,8 @@ interface
 uses
   Classes,
   SysUtils,
-  GLAD_GL,
-  GLFW;
+  DeepStar.OpenGL.GLAD_GL,
+  DeepStar.OpenGL.GLFW;
 
 procedure Main;
 

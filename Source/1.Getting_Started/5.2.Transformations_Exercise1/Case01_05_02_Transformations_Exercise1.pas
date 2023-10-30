@@ -15,8 +15,8 @@ implementation
 
 uses
   DeepStar.Utils,
-  GLAD_GL,
-  GLFW,
+  DeepStar.OpenGL.GLAD_GL,
+  DeepStar.OpenGL.GLFW,
   LearnOpenGL.Shader,
   LearnOpenGL.Utils,
   LearnOpenGL.GLM;
@@ -201,6 +201,7 @@ begin
       transform := TGLM.Mat4_Identity;
       transform := TGLM.RotateZ(transform, glfwGetTime * 100);
       transform := TGLM.Translate(transform, [0.5, -0.5, 0]);
+
 
       // 激活这个程序对象
       shader.UseProgram;
