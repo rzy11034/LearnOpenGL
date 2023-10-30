@@ -32,7 +32,9 @@ uses
   Case01_04_05_Textures_Exercise3,
   Case01_04_06_Textures_Exercise4,
   Case01_05_01_Transformations,
-  Case01_05_02_Transformations_Exercise1, Case01_05_03_Transformations_Exercise2;
+  Case01_05_02_Transformations_Exercise1,
+  Case01_05_03_Transformations_Exercise2,
+  Case01_06_01_Coordinate_Systems;
 
 begin
   try

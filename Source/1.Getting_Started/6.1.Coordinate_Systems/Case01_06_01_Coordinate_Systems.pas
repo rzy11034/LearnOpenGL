@@ -1,4 +1,4 @@
-﻿unit Case01_05_02_Transformations_Exercise1;
+﻿unit Case01_06_01_Coordinate_Systems;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -79,8 +79,8 @@ end;
 
 procedure Main;
 const
-  vs = '..\Source\1.Getting_Started\5.2.Transformations_Exercise1\5.2.texture.vs';
-  fs = '..\Source\1.Getting_Started\5.2.Transformations_Exercise1\5.2.texture.fs';
+  vs = '..\Source\1.Getting_Started\6.1.Coordinate_Systems\6.1.texture.vs';
+  fs = '..\Source\1.Getting_Started\6.1.Coordinate_Systems\6.1.texture.fs';
   tx1 = '..\Resources\textures\container.jpg';
   tx2 = '..\Resources\textures\awesomeface.png';
 var
@@ -90,7 +90,7 @@ var
   ot: TOpenGLTexture;
   indices: TArr_GLint;
   VAO, VBO, EBO, texture0, texture1: GLuint;
-  transform: TMat4;
+  model, projection, view: TMat4;
 begin
   window := InitWindows;
 
@@ -198,17 +198,18 @@ begin
       glActiveTexture(GL_TEXTURE1);
       glBindTexture(GL_TEXTURE_2D, texture1);
 
-      transform := TGLM.Mat4_Identity;
-      transform := TGLM.Rotate(transform, glfwGetTime * 100, TGLM.Vec3(0, 0, 1));
-      transform := TGLM.Translate(transform, TGLM.Vec3(0.5, -0.0, 0));
-      transform := TGLM.Scale(transform, TGLM.Vec3(0.5, 0.5, 0));
+      model := TGLM.Mat4_Identity;
+      view := TGLM.Mat4_Identity;
+      projection := TGLM.Mat4_Identity;
 
-      // 激活这个程序对象
-      shader.UseProgram;
-      shader.SetUniformMatrix4fv('transform', TGLM.ValuePtr(transform));
+      model := TGLM.Rotate(model, -55, TGLM.Vec3(1, 0, 0));
+      view := TGLM.Translate(view, TGLM.Vec3(0, 0, -2));
+      projection := TGLM.Perspective(45, SCR_WIDTH / SCR_HEIGHT, 1, 100);
+      shader.SetUniformMatrix4fv('model', TGLM.ValuePtr(model));
+      shader.SetUniformMatrix4fv('view', TGLM.ValuePtr(view));
+      shader.SetUniformMatrix4fv('projection', TGLM.ValuePtr(projection));
 
-      // 画出第一个三角形
-      glBindVertexArray(VAO);
+      //glBindVertexArray(VAO);
       glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, Pointer(0));
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。

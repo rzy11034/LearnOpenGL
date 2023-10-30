@@ -17,9 +17,9 @@ uses
   DeepStar.Utils,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
+  DeepStar.OpenGL.GLM,
   LearnOpenGL.Shader,
-  LearnOpenGL.Utils,
-  LearnOpenGL.GLM;
+  LearnOpenGL.Utils;
 
 const
   SCR_WIDTH = 800;
@@ -199,8 +199,9 @@ begin
       glBindTexture(GL_TEXTURE_2D, texture1);
 
       transform := TGLM.Mat4_Identity;
-      transform := TGLM.Translate(transform, [0.5, -0.5, 0]);
-      transform := TGLM.RotateZ(transform, glfwGetTime * 100);
+      //transform := TGLM.Translate(transform, TGLM.Vec3(0.5, -0.5, 0));
+      //transform := TGLM.Rotate(transform, glfwGetTime * 100, TGLM.Vec3(0, 0, 1));
+      transform := TGLM.Rotate(transform, 45, TGLM.Vec3(0, 0, 1));
 
       // 激活这个程序对象
       shader.UseProgram;
