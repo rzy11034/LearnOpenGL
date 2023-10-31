@@ -11,7 +11,7 @@
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="6"/>
-        <CursorPos X="33" Y="28"/>
+        <CursorPos X="25" Y="28"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit>
@@ -59,7 +59,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="26" Y="10"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\1.2.Hello_Window_Clear\Case01_01_02_Hello_Window_Clear.pas"/>
@@ -67,7 +67,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="11" Y="10"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\2.1.Hello_Triangle\Case01_02_01_Hello_Triangle.pas"/>
@@ -75,7 +75,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="11" Y="11"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\2.2.Hello_Triangle_Indexed\Case01_02_02_Hello_Triangle_Indexed.pas"/>
@@ -84,7 +84,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="137"/>
         <CursorPos X="53" Y="151"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\2.3.Hello_Triangle_Exercise1\Case01_02_03_Hello_Triangle_Exercise1.pas"/>
@@ -92,7 +92,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="24" Y="12"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\2.4.Hello_Triangle_Exercise2\Case01_02_04_Hello_Triangle_Exercise2.pas"/>
@@ -100,7 +100,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="24" Y="12"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\2.5.Hello_Triangle_Exercise3\Case01_02_05_Hello_Triangle_Exercise3.pas"/>
@@ -108,7 +108,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="24" Y="12"/>
-        <UsageCount Value="198"/>
+        <UsageCount Value="201"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\3.1.Shaders_Uniform\Case01_03_01_Shaders_Uniform.pas"/>
@@ -116,7 +116,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="24" Y="12"/>
-        <UsageCount Value="198"/>
+        <UsageCount Value="201"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\3.2.Shaders_Interpolation\Case01_03_02_Shaders_Interpolation.pas"/>
@@ -124,7 +124,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="24" Y="12"/>
-        <UsageCount Value="198"/>
+        <UsageCount Value="201"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\3.3.Shaders_Class\Case01_03_03_Shaders_Class.pas"/>
@@ -132,7 +132,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="24" Y="19"/>
-        <UsageCount Value="197"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\3.4.Shaders_Exercise1\Case01_03_04_Shaders_Exercise1.pas"/>
@@ -140,7 +140,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="24" Y="19"/>
-        <UsageCount Value="197"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\3.5.Shaders_Exercise2\Case01_03_05_Shaders_Exercise2.pas"/>
@@ -148,7 +148,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="12" Y="10"/>
-        <UsageCount Value="197"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\3.6.Shaders_Exercise3\Case01_03_06_Shaders_Exercise3.pas"/>
@@ -156,7 +156,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="24" Y="19"/>
-        <UsageCount Value="197"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\4.1.Textures\Case01_04_01_Textures.pas"/>
@@ -164,7 +164,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="24" Y="19"/>
-        <UsageCount Value="197"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\4.2.Textures_Combined\Case01_04_02_Textures_Combined.pas"/>
@@ -172,7 +172,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="24" Y="19"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="199"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\4.3.Textures_Exercise1\Case01_04_03_Textures_Exercise1.pas"/>
@@ -180,7 +180,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="24" Y="19"/>
-        <UsageCount Value="141"/>
+        <UsageCount Value="144"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\4.4.Textures_Exercise2\Case01_04_04_Textures_Exercise2.pas"/>
@@ -188,7 +188,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="24" Y="19"/>
-        <UsageCount Value="121"/>
+        <UsageCount Value="124"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\4.5.Textures_Exercise3\Case01_04_05_Textures_Exercise3.pas"/>
@@ -196,7 +196,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="24" Y="19"/>
-        <UsageCount Value="116"/>
+        <UsageCount Value="119"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\4.6.Textures_Exercise4\Case01_04_06_Textures_Exercise4.pas"/>
@@ -204,7 +204,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="24" Y="19"/>
-        <UsageCount Value="113"/>
+        <UsageCount Value="116"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\5.1.Transformations\Case01_05_01_Transformations.pas"/>
@@ -213,7 +213,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="191"/>
         <CursorPos X="44" Y="204"/>
-        <UsageCount Value="101"/>
+        <UsageCount Value="104"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\5.2.Transformations_Exercise1\Case01_05_02_Transformations_Exercise1.pas"/>
@@ -222,7 +222,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="198"/>
         <CursorPos X="71" Y="212"/>
-        <UsageCount Value="73"/>
+        <UsageCount Value="76"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\5.3.Transformations_Exercise2\Case01_05_03_Transformations_Exercise2.pas"/>
@@ -231,7 +231,27 @@
         <WindowIndex Value="0"/>
         <TopLine Value="187"/>
         <CursorPos X="51" Y="195"/>
-        <UsageCount Value="71"/>
+        <UsageCount Value="74"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\6.1.Coordinate_Systems\Case01_06_01_Coordinate_Systems.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="141"/>
+        <CursorPos X="61" Y="204"/>
+        <UsageCount Value="39"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\Case01_06_02_Coordinate_Systems_Depth.pas"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="196"/>
+        <CursorPos X="33" Y="199"/>
+        <UsageCount Value="23"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Source\Utils\LearnOpenGL.GLM.pas"/>
@@ -608,7 +628,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="2714"/>
         <CursorPos X="57" Y="2724"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_BGRAbitmap\source\bgrabitmaptypes.pas"/>
@@ -866,7 +886,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="22"/>
         <CursorPos X="29" Y="155"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGL\source\OpenGL_Textures.pas"/>
@@ -892,7 +912,7 @@
         <UnitName Value="Graph"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-image\src\fpcolorspace.pas"/>
@@ -900,7 +920,7 @@
         <UnitName Value="FPColorSpace"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\types.pp"/>
@@ -910,7 +930,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="441"/>
         <CursorPos X="13" Y="459"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\typshrdh.inc"/>
@@ -937,7 +957,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="4"/>
         <CursorPos X="4" Y="31"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\win64\classes.pp"/>
@@ -946,7 +966,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="3" Y="47"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\classes\classes.inc"/>
@@ -955,7 +975,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1151"/>
         <CursorPos X="3" Y="1154"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\packages\rtl-extra\src\inc\matrix.pp"/>
@@ -1144,17 +1164,6 @@
         <UsageCount Value="5"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\1.Getting_Started\6.1.Coordinate_Systems\Case01_06_01_Coordinate_Systems.pas"/>
-        <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="192"/>
-        <CursorPos X="12" Y="207"/>
-        <UsageCount Value="36"/>
-        <Loaded Value="True"/>
-      </Unit>
-      <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGLADV\source\oglpresentation.pas"/>
         <FRMtype Value="0"/>
         <UnitName Value="oglPresentation"/>
@@ -1218,43 +1227,95 @@
         <TopLine Value="16"/>
         <UsageCount Value="9"/>
       </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\6.1.texture.vs"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="101" Y="5"/>
+        <SyntaxHighlighter Value="C++"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\6.1.texture.fs"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="35" Y="14"/>
+        <SyntaxHighlighter Value="C++"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\6.1.Coordinate_Systems\6.1.texture.vs"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\6.1.Coordinate_Systems\6.1.texture.fs"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\6.2.texture.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="41" Y="14"/>
+        <UsageCount Value="20"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\6.2.texture.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="29" Y="20"/>
+        <UsageCount Value="20"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="8">
-      <Position>
-        <Filename Value="Source\1.Getting_Started\6.1.Coordinate_Systems\Case01_06_01_Coordinate_Systems.pas"/>
-        <Caret Line="205" TopLine="201"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\1.Getting_Started\6.1.Coordinate_Systems\Case01_06_01_Coordinate_Systems.pas"/>
-        <Caret Line="206" TopLine="201"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\1.Getting_Started\6.1.Coordinate_Systems\Case01_06_01_Coordinate_Systems.pas"/>
-        <Caret Line="205" TopLine="201"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\1.Getting_Started\6.1.Coordinate_Systems\Case01_06_01_Coordinate_Systems.pas"/>
-        <Caret Line="201" Column="58" TopLine="198"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\1.Getting_Started\6.1.Coordinate_Systems\Case01_06_01_Coordinate_Systems.pas"/>
-        <Caret Line="206" TopLine="198"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\1.Getting_Started\6.1.Coordinate_Systems\Case01_06_01_Coordinate_Systems.pas"/>
-        <Caret Line="207" TopLine="198"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\1.Getting_Started\6.1.Coordinate_Systems\Case01_06_01_Coordinate_Systems.pas"/>
-        <Caret Line="205" Column="25" TopLine="198"/>
-      </Position>
+    <JumpHistory HistoryIndex="7">
       <Position>
         <Filename Value="Source\Utils\LearnOpenGL.Main.pas"/>
         <Caret Line="25" Column="31" TopLine="12"/>
       </Position>
       <Position>
-        <Filename Value="Source\1.Getting_Started\6.1.Coordinate_Systems\Case01_06_01_Coordinate_Systems.pas"/>
-        <Caret Line="207" Column="74" TopLine="198"/>
+        <Filename Value="Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\Case01_06_02_Coordinate_Systems_Depth.pas"/>
+        <Caret Line="233" Column="5" TopLine="193"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\Case01_06_02_Coordinate_Systems_Depth.pas"/>
+        <Caret Line="101" Column="45" TopLine="89"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\Case01_06_02_Coordinate_Systems_Depth.pas"/>
+        <Caret Line="93" Column="35" TopLine="80"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\Case01_06_02_Coordinate_Systems_Depth.pas"/>
+        <Caret Line="37" Column="11" TopLine="17"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\Case01_06_02_Coordinate_Systems_Depth.pas"/>
+        <Caret Line="12" Column="11"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\Case01_06_02_Coordinate_Systems_Depth.pas"/>
+        <Caret Line="116" Column="35" TopLine="89"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\Case01_06_02_Coordinate_Systems_Depth.pas"/>
+        <Caret Line="117" Column="11" TopLine="89"/>
       </Position>
     </JumpHistory>
     <RunParams>
