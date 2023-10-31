@@ -7,7 +7,8 @@ interface
 
 uses
   Classes,
-  SysUtils;
+  SysUtils,
+  Math;
 
 procedure Main;
 
@@ -23,7 +24,7 @@ uses
 
 const
   SCR_WIDTH = 800;
-  SCR_HEIGHT = 600;
+  SCR_HEIGHT = 800;
 
   // 每当窗口大小发生变化(由操作系统或用户调整大小)，这个回调函数就会执行
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl;
@@ -79,8 +80,8 @@ end;
 
 procedure Main;
 const
-  vs = '..\Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\6.1.texture.vs';
-  fs = '..\Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\6.1.texture.fs';
+  vs = '..\Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\6.2.Coordinate_Systems.vs';
+  fs = '..\Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\6.2.Coordinate_Systems.fs';
   tx1 = '..\Resources\textures\container.jpg';
   tx2 = '..\Resources\textures\awesomeface.png';
 var
@@ -166,16 +167,18 @@ begin
       @indices[0], GL_STATIC_DRAW);
 
     // position attribute ---位置属性
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat), Pointer(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SizeOf(GLfloat), Pointer(0));
     glEnableVertexAttribArray(0);
+
     // color attribute  ---颜色属性
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat),
+    //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat),
+    //  Pointer(3 * SizeOf(GLfloat)));
+    //glEnableVertexAttribArray(1);
+
+    // texture coord attribute ---纹理坐标属性
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * SizeOf(GLfloat),
       Pointer(3 * SizeOf(GLfloat)));
     glEnableVertexAttribArray(1);
-    // texture coord attribute ---纹理坐标属性
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat),
-      Pointer(6 * SizeOf(GLfloat)));
-    glEnableVertexAttribArray(2);
 
     // 新建并加载一个纹理
     texture0 := GLuint(0);
@@ -219,6 +222,8 @@ begin
     // 取消此调用的注释以绘制线框多边形。
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
+    glEnable(GL_DEPTH_TEST);
+
     // 渲染循环
     while glfwWindowShouldClose(window) = 0 do
     begin
@@ -227,7 +232,7 @@ begin
 
       // render
       glClearColor(0.2, 0.3, 0.3, 1.0);
-      glClear(GL_COLOR_BUFFER_BIT);
+      glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
 
       glActiveTexture(GL_TEXTURE0);
       glBindTexture(GL_TEXTURE_2D, texture0);
@@ -238,15 +243,16 @@ begin
       view := TGLM.Mat4_Identity;
       projection := TGLM.Mat4_Identity;
 
-      model := TGLM.Rotate(model, -55, TGLM.Vec3(1, 0, 0));
-      view := TGLM.Translate(view, TGLM.Vec3(0, 0, -2));
+      model := TGLM.Rotate(model, glfwGetTime, TGLM.Vec3(0.5, 1.0, 0));
+      WriteLn(glfwGetTime);
+      view := TGLM.Translate(view, TGLM.Vec3(0, 0, -3));
       projection := TGLM.Perspective(45, SCR_WIDTH / SCR_HEIGHT, 1, 100);
       shader.SetUniformMatrix4fv('model', TGLM.ValuePtr(model));
       shader.SetUniformMatrix4fv('view', TGLM.ValuePtr(view));
       shader.SetUniformMatrix4fv('projection', TGLM.ValuePtr(projection));
 
       //glBindVertexArray(VAO);
-      glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, Pointer(0));
+      glDrawArrays(GL_TRIANGLES, 0, 36);
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
       glfwSwapBuffers(window);

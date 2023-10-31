@@ -22,7 +22,7 @@ procedure Run();
 implementation
 
 uses
-  Case01_06_01_Coordinate_Systems;
+  Case01_06_02_Coordinate_Systems_Depth;
 
 procedure Test;
 begin
