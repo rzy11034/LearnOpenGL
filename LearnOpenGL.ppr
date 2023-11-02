@@ -8,7 +8,6 @@ uses
   {$ENDIF}
   Classes,
   SysUtils,
-  //Interfaces,
   LearnOpenGL.Main,
   LearnOpenGL.Shader,
   LearnOpenGL.Utils,
@@ -34,7 +33,12 @@ uses
   Case01_05_01_Transformations,
   Case01_05_02_Transformations_Exercise1,
   Case01_05_03_Transformations_Exercise2,
-  Case01_06_01_Coordinate_Systems, Case01_06_02_Coordinate_Systems_Depth, LearnOpenGL.Vector, LearnOpenGL.Matrix, LearnOpenGL.GLM;
+  Case01_06_01_Coordinate_Systems,
+  Case01_06_02_Coordinate_Systems_Depth,
+  Case01_06_03_Coordinate_Systems_Multiple,
+  Case01_06_04_Coordinate_Systems_Exercise1,
+  Case01_06_05_Coordinate_Systems_Exercise2,
+  Case01_06_06_Coordinate_Systems_Exercise3;
 
 begin
   try

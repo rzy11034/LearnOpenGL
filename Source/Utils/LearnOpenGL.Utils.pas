@@ -13,6 +13,7 @@ uses
   FPReadJPEG,
   FPReadPNG,
   DeepStar.Utils,
+  DeepStar.OpenGL.GLM,
   DeepStar.OpenGL.GLAD_GL;
 
 const
@@ -25,6 +26,13 @@ type
   TArr_GLuint = array of GLuint;
   TArr_GLchar = array of GLchar;
   TArr_GLdouble = array of GLdouble;
+
+  TArr_TVec2 = array of TVec2;
+  TArr_TVec3 = array of TVec3;
+  TArr_TVec4 = array of TVec4;
+  TArr_TMat2 = array of TMat2;
+  TArr_TMat3 = array of TMat3;
+  TArr_TMat4 = array of TMat4;
 
   TArrayUtils_GLfloat = specialize TArrayUtils<GLfloat>;
   TArrayUtils_GLint = specialize TArrayUtils<GLint>;

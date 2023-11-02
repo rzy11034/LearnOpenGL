@@ -202,7 +202,7 @@ begin
       view := TGLM.Mat4_Identity;
       projection := TGLM.Mat4_Identity;
 
-      model := TGLM.Rotate(model, -55, TGLM.Vec3(1, 0, 0));
+      model := TGLM.Rotate(model, TGLM.Radians(45), TGLM.Vec3(1, 0, 0));
       view := TGLM.Translate(view, TGLM.Vec3(0, 0, -2));
       projection := TGLM.Perspective(45, SCR_WIDTH / SCR_HEIGHT, 1, 100);
       shader.SetUniformMatrix4fv('model', TGLM.ValuePtr(model));

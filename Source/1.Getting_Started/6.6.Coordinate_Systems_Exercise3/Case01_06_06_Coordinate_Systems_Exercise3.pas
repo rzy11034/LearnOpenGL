@@ -1,4 +1,4 @@
-﻿unit Case01_06_02_Coordinate_Systems_Depth;
+﻿unit Case01_06_06_Coordinate_Systems_Exercise3;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -79,27 +79,30 @@ end;
 
 procedure Main;
 const
-  vs = '..\Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\6.2.Coordinate_Systems.vs';
-  fs = '..\Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\6.2.Coordinate_Systems.fs';
+  vs = '..\Source\1.Getting_Started\6.5.Coordinate_Systems_Exercise2\6.5.Coordinate_Systems.vs';
+  fs = '..\Source\1.Getting_Started\6.5.Coordinate_Systems_Exercise2\6.5.Coordinate_Systems.fs';
   tx1 = '..\Resources\textures\container.jpg';
   tx2 = '..\Resources\textures\awesomeface.png';
 var
   window: PGLFWwindow;
   shader: TShaderProgram;
-  vertices: TArr_GLfloat;
   ot: TOpenGLTexture;
-  indices: TArr_GLint;
   VAO, VBO, EBO, texture0, texture1: GLuint;
   model, projection, view: TMat4;
+  i: integer;
+  angle: GLfloat;
+  vertices: TArr_GLfloat;
+  cubePositions: TArr_TVec3;
 begin
+  Randomize;
+
   window := InitWindows;
 
   shader := TShaderProgram.Create;
   try
     shader.LoadShaderFile(CrossFixFileName(vs), CrossFixFileName(fs));
 
-    vertices := System.Default(TArr_GLfloat);
-    vertices := [
+    vertices := TArr_GLfloat([
       -0.5, -0.5, -0.5, 0.0, 0.0,
       +0.5, -0.5, -0.5, 1.0, 0.0,
       +0.5, +0.5, -0.5, 1.0, 1.0,
@@ -140,12 +143,19 @@ begin
       +0.5, 0.5, +0.5, 1.0, 0.0,
       +0.5, 0.5, +0.5, 1.0, 0.0,
       -0.5, 0.5, +0.5, 0.0, 0.0,
-      -0.5, 0.5, -0.5, 0.0, 1.0];
+      -0.5, 0.5, -0.5, 0.0, 1.0]);
 
-    indices := TArr_GLint(nil);
-    indices := [
-      0, 1, 3, // first triangle
-      1, 2, 3];  // second triangle
+    cubePositions := TArr_TVec3([
+      TGLM.Vec3(0.0, 0.0, 0.0),
+      TGLM.Vec3(2.0, 5.0, -15.0),
+      TGLM.Vec3(-1.5, -2.2, -2.5),
+      TGLM.Vec3(-3.8, -2.0, -12.3),
+      TGLM.Vec3(2.4, -0.4, -3.5),
+      TGLM.Vec3(-1.7, 3.0, -7.5),
+      TGLM.Vec3(1.3, -2.0, -2.5),
+      TGLM.Vec3(1.5, 2.0, -2.5),
+      TGLM.Vec3(1.5, 0.2, -1.5),
+      TGLM.Vec3(-1.3, 1.0, -1.5)]);
 
     VAO := GLuint(0);
     VBO := GLuint(0);
@@ -161,18 +171,9 @@ begin
     glBufferData(GL_ARRAY_BUFFER, TArrayUtils_GLfloat.MemorySize(vertices),
       @vertices[0], GL_STATIC_DRAW);
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, TArrayUtils_GLint.MemorySize(indices),
-      @indices[0], GL_STATIC_DRAW);
-
     // position attribute ---位置属性
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SizeOf(GLfloat), Pointer(0));
     glEnableVertexAttribArray(0);
-
-    // color attribute  ---颜色属性
-    //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat),
-    //  Pointer(3 * SizeOf(GLfloat)));
-    //glEnableVertexAttribArray(1);
 
     // texture coord attribute ---纹理坐标属性
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * SizeOf(GLfloat),
@@ -239,20 +240,27 @@ begin
       glActiveTexture(GL_TEXTURE1);
       glBindTexture(GL_TEXTURE_2D, texture1);
 
-      model := TGLM.Mat4_Identity;
       view := TGLM.Mat4_Identity;
       projection := TGLM.Mat4_Identity;
-
-      model := TGLM.Rotate(model, TGLM.Radians(glfwGetTime)*50, TGLM.Vec3(0.5, 1, 0));
-      WriteLn(glfwGetTime);
       view := TGLM.Translate(view, TGLM.Vec3(0, 0, -3));
-      projection := TGLM.Perspective(45, SCR_WIDTH / SCR_HEIGHT, 1, 100);
-      shader.SetUniformMatrix4fv('model', TGLM.ValuePtr(model));
+
+      projection := TGLM.Perspective(30, SCR_WIDTH / SCR_HEIGHT, 1, 100);
       shader.SetUniformMatrix4fv('view', TGLM.ValuePtr(view));
       shader.SetUniformMatrix4fv('projection', TGLM.ValuePtr(projection));
 
-      //glBindVertexArray(VAO);
-      glDrawArrays(GL_TRIANGLES, 0, 36);
+      for i := 0 to High(cubePositions) do
+      begin
+        model := TGLM.Mat4_Identity;
+        model := TGLM.Translate(model, cubePositions[i]);
+
+        angle := GLfloat(20 *i);
+        if i mod 3 = 0 then
+          angle := GLfloat(25) * glfwGetTime;
+
+        model := TGLM.Rotate(model, TGLM.Radians(angle), TGLM.Vec3(1, 0.3, 0.5));
+        shader.SetUniformMatrix4fv('model', TGLM.ValuePtr(model));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+      end;
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
       glfwSwapBuffers(window);

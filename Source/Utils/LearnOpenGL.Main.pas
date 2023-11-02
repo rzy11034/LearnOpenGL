@@ -22,16 +22,10 @@ procedure Run();
 implementation
 
 uses
-  Case01_06_02_Coordinate_Systems_Depth;
+  Case01_06_06_Coordinate_Systems_Exercise3;
 
 procedure Test;
-var
-  a, b, c: TMat4;
 begin
-  a := TGLM.Mat4_Identity;
-  b := TGLM.Mat4_Zero;
-  c := a * b;
-
   Exit;
 end;
 
