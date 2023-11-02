@@ -34,7 +34,7 @@ uses
   Case01_05_01_Transformations,
   Case01_05_02_Transformations_Exercise1,
   Case01_05_03_Transformations_Exercise2,
-  Case01_06_01_Coordinate_Systems, Case01_06_02_Coordinate_Systems_Depth;
+  Case01_06_01_Coordinate_Systems, Case01_06_02_Coordinate_Systems_Depth, LearnOpenGL.Vector, LearnOpenGL.Matrix, LearnOpenGL.GLM;
 
 begin
   try

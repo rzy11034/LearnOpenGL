@@ -19,12 +19,13 @@ uses
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
   DeepStar.OpenGL.GLM,
+  //LearnOpenGL.GLM,
   LearnOpenGL.Shader,
   LearnOpenGL.Utils;
 
 const
   SCR_WIDTH = 800;
-  SCR_HEIGHT = 800;
+  SCR_HEIGHT = 600;
 
   // 每当窗口大小发生变化(由操作系统或用户调整大小)，这个回调函数就会执行
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl;
@@ -232,6 +233,7 @@ begin
 
       // render
       glClearColor(0.2, 0.3, 0.3, 1.0);
+      //glClear(GL_COLOR_BUFFER_BIT);
       glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
 
       glActiveTexture(GL_TEXTURE0);
@@ -243,7 +245,7 @@ begin
       view := TGLM.Mat4_Identity;
       projection := TGLM.Mat4_Identity;
 
-      model := TGLM.Rotate(model, glfwGetTime, TGLM.Vec3(0.5, 1.0, 0));
+      model := TGLM.Rotate(model, TGLM.Radians(glfwGetTime)*50, TGLM.Vec3(0.5, 1, 0));
       WriteLn(glfwGetTime);
       view := TGLM.Translate(view, TGLM.Vec3(0, 0, -3));
       projection := TGLM.Perspective(45, SCR_WIDTH / SCR_HEIGHT, 1, 100);
