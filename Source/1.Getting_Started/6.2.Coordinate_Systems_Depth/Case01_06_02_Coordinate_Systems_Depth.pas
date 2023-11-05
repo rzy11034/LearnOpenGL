@@ -7,7 +7,7 @@ interface
 
 uses
   Classes,
-  SysUtils, ctgl,ctGLU;
+  SysUtils;
 
 procedure Main;
 

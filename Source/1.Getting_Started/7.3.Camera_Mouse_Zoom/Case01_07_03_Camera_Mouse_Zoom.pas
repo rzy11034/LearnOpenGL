@@ -14,7 +14,6 @@ procedure Main;
 implementation
 
 uses
-  matrix,
   DeepStar.Utils,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
@@ -239,7 +238,6 @@ begin
 
     glDeleteVertexArrays(1, @VAO);
     glDeleteBuffers(1, @VBO);
-    //glDeleteBuffers(1, @EBO);
   finally
     shader.Free;
   end;

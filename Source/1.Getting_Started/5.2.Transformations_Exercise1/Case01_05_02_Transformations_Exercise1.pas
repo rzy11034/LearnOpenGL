@@ -199,7 +199,7 @@ begin
       glBindTexture(GL_TEXTURE_2D, texture1);
 
       transform := TGLM.Mat4_Identity;
-      transform := TGLM.Rotate(transform, glfwGetTime * 100, TGLM.Vec3(0, 0, 1));
+      transform := TGLM.Rotate(transform, glfwGetTime, TGLM.Vec3(0, 0, 1));
       transform := TGLM.Translate(transform, TGLM.Vec3(0.5, -0.0, 0));
       transform := TGLM.Scale(transform, TGLM.Vec3(0.5, 0.5, 0));
 

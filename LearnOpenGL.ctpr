@@ -58,9 +58,6 @@
     </RunParams>
     <RequiredPackages>
       <Item>
-        <PackageName Value="pl_OpenGL"/>
-      </Item>
-      <Item>
         <PackageName Value="DeepStar_Lib"/>
       </Item>
     </RequiredPackages>

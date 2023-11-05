@@ -14,7 +14,6 @@ procedure Main;
 implementation
 
 uses
-  matrix,
   DeepStar.Utils,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
