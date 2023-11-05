@@ -1,4 +1,4 @@
-﻿unit Case01_07_02_Camera_Circle_keyboard_dt;
+﻿unit Case01_07_03_Camera_Mouse_Zoom;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -40,8 +40,8 @@ var
 
 procedure Main;
 const
-  vs = '..\Source\1.Getting_Started\7.2.Camera_Circle_keyboard_dt\7.2.camera.vs';
-  fs = '..\Source\1.Getting_Started\7.2.Camera_Circle_keyboard_dt\7.2.camera.fs';
+  vs = '..\Source\1.Getting_Started\7.3.Camera_Mouse_Zoom\7.3.camera.vs';
+  fs = '..\Source\1.Getting_Started\7.3.Camera_Mouse_Zoom\7.3.camera.fs';
   tx1 = '..\Resources\textures\container.jpg';
   tx2 = '..\Resources\textures\awesomeface.png';
 var
@@ -309,6 +309,7 @@ begin
   glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
 
   glEnable(GL_DEPTH_TEST);
+  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
   // 注册一个回调函数(Callback Function)，它会在每次窗口大小被调整的时候被调用
   glfwSetFramebufferSizeCallback(window, @Framebuffer_size_callback);
