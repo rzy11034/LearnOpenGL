@@ -79,8 +79,8 @@ end;
 
 procedure Main;
 const
-  vs = '..\Source\1.Getting_Started\6.5.Coordinate_Systems_Exercise2\6.5.Coordinate_Systems.vs';
-  fs = '..\Source\1.Getting_Started\6.5.Coordinate_Systems_Exercise2\6.5.Coordinate_Systems.fs';
+  vs = '..\Source\1.Getting_Started\6.6.Coordinate_Systems_Exercise3\6.6.Coordinate_Systems.vs';
+  fs = '..\Source\1.Getting_Started\6.6.Coordinate_Systems_Exercise3\6.6.Coordinate_Systems.fs';
   tx1 = '..\Resources\textures\container.jpg';
   tx2 = '..\Resources\textures\awesomeface.png';
 var

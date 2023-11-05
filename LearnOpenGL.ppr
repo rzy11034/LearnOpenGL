@@ -38,7 +38,8 @@ uses
   Case01_06_03_Coordinate_Systems_Multiple,
   Case01_06_04_Coordinate_Systems_Exercise1,
   Case01_06_05_Coordinate_Systems_Exercise2,
-  Case01_06_06_Coordinate_Systems_Exercise3;
+  Case01_06_06_Coordinate_Systems_Exercise3,
+  Case01_07_01_Camera_Circle, Case01_07_02_Camera_Circle_keyboard_dt;
 
 begin
   try

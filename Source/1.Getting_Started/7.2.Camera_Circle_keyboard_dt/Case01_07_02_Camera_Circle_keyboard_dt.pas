@@ -1,4 +1,4 @@
-﻿unit Case01_06_02_Coordinate_Systems_Depth;
+﻿unit Case01_07_02_Camera_Circle_keyboard_dt;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -7,13 +7,14 @@ interface
 
 uses
   Classes,
-  SysUtils, ctgl,ctGLU;
+  SysUtils;
 
 procedure Main;
 
 implementation
 
 uses
+  matrix,
   DeepStar.Utils,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
@@ -25,6 +26,9 @@ const
   SCR_WIDTH = 800;
   SCR_HEIGHT = 600;
 
+var
+  cameraPos, cameraFront, cameraUp: TVec3;
+
   // 每当窗口大小发生变化(由操作系统或用户调整大小)，这个回调函数就会执行
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl;
 begin
@@ -35,9 +39,24 @@ end;
 
 // 处理所有输入:查询GLFW是否按下/释放了相关的键，并做出相应的反应
 procedure ProcessInput(window: PGLFWwindow);
+var
+  cameraSpeed: GLfloat;
 begin
   if glfwGetKey(window, GLFW_KEY_ESCAPE) = GLFW_PRESS then
     glfwSetWindowShouldClose(window, true.ToInteger);
+
+  cameraSpeed := GLfloat(0.05);
+  if (glfwGetKey(window, GLFW_KEY_W) = GLFW_PRESS) then
+    cameraPos += cameraFront * cameraSpeed;
+
+  if (glfwGetKey(window, GLFW_KEY_S) = GLFW_PRESS) then
+    cameraPos -= cameraFront * cameraSpeed;
+
+  if (glfwGetKey(window, GLFW_KEY_A) = GLFW_PRESS) then
+    cameraPos -= TGLM.normalize(TGLM.cross(cameraFront, cameraUp)) * cameraSpeed;
+
+  if (glfwGetKey(window, GLFW_KEY_D) = GLFW_PRESS) then
+    cameraPos += TGLM.normalize(TGLM.cross(cameraFront, cameraUp)) * cameraSpeed;
 end;
 
 function InitWindows: PGLFWwindow;
@@ -71,6 +90,9 @@ begin
 
   // 设置窗口的维度(Dimension)
   glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
+
+  glEnable(GL_DEPTH_TEST);
+
   // 注册一个回调函数(Callback Function)，它会在每次窗口大小被调整的时候被调用
   glfwSetFramebufferSizeCallback(window, @Framebuffer_size_callback);
 
@@ -79,27 +101,30 @@ end;
 
 procedure Main;
 const
-  vs = '..\Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\6.2.Coordinate_Systems.vs';
-  fs = '..\Source\1.Getting_Started\6.2.Coordinate_Systems_Depth\6.2.Coordinate_Systems.fs';
+  vs = '..\Source\1.Getting_Started\7.2.Camera_Circle_keyboard_dt\7.2.camera.vs';
+  fs = '..\Source\1.Getting_Started\7.2.Camera_Circle_keyboard_dt\7.2.camera.fs';
   tx1 = '..\Resources\textures\container.jpg';
   tx2 = '..\Resources\textures\awesomeface.png';
 var
   window: PGLFWwindow;
   shader: TShaderProgram;
-  vertices: TArr_GLfloat;
   ot: TOpenGLTexture;
-  indices: TArr_GLint;
   VAO, VBO, EBO, texture0, texture1: GLuint;
   model, projection, view: TMat4;
+  i: integer;
+  angle: GLfloat;
+  vertices: TArr_GLfloat;
+  cubePositions: TArr_TVec3;
 begin
+  Randomize;
+
   window := InitWindows;
 
   shader := TShaderProgram.Create;
   try
     shader.LoadShaderFile(CrossFixFileName(vs), CrossFixFileName(fs));
 
-    vertices := System.Default(TArr_GLfloat);
-    vertices := [
+    vertices := TArr_GLfloat([
       -0.5, -0.5, -0.5, 0.0, 0.0,
       +0.5, -0.5, -0.5, 1.0, 0.0,
       +0.5, +0.5, -0.5, 1.0, 1.0,
@@ -140,12 +165,19 @@ begin
       +0.5, 0.5, +0.5, 1.0, 0.0,
       +0.5, 0.5, +0.5, 1.0, 0.0,
       -0.5, 0.5, +0.5, 0.0, 0.0,
-      -0.5, 0.5, -0.5, 0.0, 1.0];
+      -0.5, 0.5, -0.5, 0.0, 1.0]);
 
-    indices := TArr_GLint(nil);
-    indices := [
-      0, 1, 3, // first triangle
-      1, 2, 3];  // second triangle
+    cubePositions := TArr_TVec3([
+      TGLM.Vec3(0.0, 0.0, 0.0),
+      TGLM.Vec3(2.0, 5.0, -15.0),
+      TGLM.Vec3(-1.5, -2.2, -2.5),
+      TGLM.Vec3(-3.8, -2.0, -12.3),
+      TGLM.Vec3(2.4, -0.4, -3.5),
+      TGLM.Vec3(-1.7, 3.0, -7.5),
+      TGLM.Vec3(1.3, -2.0, -2.5),
+      TGLM.Vec3(1.5, 2.0, -2.5),
+      TGLM.Vec3(1.5, 0.2, -1.5),
+      TGLM.Vec3(-1.3, 1.0, -1.5)]);
 
     VAO := GLuint(0);
     VBO := GLuint(0);
@@ -160,10 +192,6 @@ begin
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, TArrayUtils_GLfloat.MemorySize(vertices),
       @vertices[0], GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, TArrayUtils_GLint.MemorySize(indices),
-      @indices[0], GL_STATIC_DRAW);
 
     // position attribute ---位置属性
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SizeOf(GLfloat), Pointer(0));
@@ -213,10 +241,16 @@ begin
     shader.SetUniformInt('texture1', [0]);
     shader.SetUniformInt('texture2', [1]);
 
+    projection := TGLM.Mat4_Identity;
+    projection := TGLM.Perspective(TGLM.Radians(45), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
+    shader.SetUniformMatrix4fv('projection', TGLM.ValuePtr(projection));
+
     // 取消此调用的注释以绘制线框多边形。
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-    glEnable(GL_DEPTH_TEST);
+    cameraPos := TGLM.vec3(0, 0, 3);
+    cameraFront := TGLM.vec3(0, 0, -1);
+    cameraUp := TGLM.vec3(0, 1, 0);
 
     // 渲染循环
     while glfwWindowShouldClose(window) = 0 do
@@ -235,21 +269,23 @@ begin
       glBindTexture(GL_TEXTURE_2D, texture1);
 
 
-      projection := TGLM.Mat4_Identity;
-      projection := TGLM.Perspective(TGLM.Radians(45), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
-      shader.SetUniformMatrix4fv('projection', TGLM.ValuePtr(projection));
-
-
       view := TGLM.Mat4_Identity;
-      view := TGLM.Translate(view, TGLM.Vec3(0, 0, -3));
+      view := TGLM.LookAt(cameraPos, cameraPos + cameraFront, cameraUp);
       shader.SetUniformMatrix4fv('view', TGLM.ValuePtr(view));
 
-      model := TGLM.Mat4_Identity;
-      model := TGLM.Rotate(model, TGLM.Radians(glfwGetTime) * 50, TGLM.Vec3(0.5, 1, 0));
-      shader.SetUniformMatrix4fv('model', TGLM.ValuePtr(model));
+      for i := 0 to High(cubePositions) do
+      begin
+        model := TGLM.Mat4_Identity;
+        model := TGLM.Translate(model, cubePositions[i]);
 
-      //glBindVertexArray(VAO);
-      glDrawArrays(GL_TRIANGLES, 0, 36);
+        angle := GLfloat(20 * i);
+        if i mod 3 = 0 then
+          angle := GLfloat(25) * glfwGetTime;
+
+        model := TGLM.Rotate(model, TGLM.Radians(angle), TGLM.Vec3(1, 0.3, 0.5));
+        shader.SetUniformMatrix4fv('model', TGLM.ValuePtr(model));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+      end;
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
       glfwSwapBuffers(window);
