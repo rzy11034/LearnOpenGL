@@ -23,6 +23,10 @@ uses
 
   // 每当窗口大小发生变化(由操作系统或用户调整大小)，这个回调函数就会执行
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl; forward;
+// 每当鼠标滚轮滚动时，这个回调就被调用
+procedure Scroll_Callback(window: PGLFWwindow; xoffset, yoffset: integer); cdecl; forward;
+// 每当鼠标移动时，就调用这个回调
+procedure Mouse_Callback(window: PGLFWwindow; xpos, ypos: integer); cdecl; forward;
 // 处理所有输入:查询GLFW是否按下/释放了相关的键，并做出相应的反应
 procedure ProcessInput(window: PGLFWwindow); forward;
 // glfw & glad  初始化
@@ -34,8 +38,18 @@ const
 
 var
   cameraPos, cameraFront, cameraUp: TVec3;
+
   deltaTime: GLfloat = 0.0;  // time between current frame and last frame
   lastFrame: GLfloat = 0.0;
+
+  firstMouse: boolean = true;
+  //偏航被初始化为-90.0度，因为0.0的偏航导致一个指向右的方向矢量，所以我们最初
+  //向左旋转一点。
+  yaw: GLfloat = -90.0;
+  pitch: GLfloat = 0.0;
+  lastX: GLfloat = 800.0 / 2.0;
+  lastY: GLfloat = 600.0 / 2.0;
+  fov: GLfloat = 45.0;
 
 procedure Main;
 const
@@ -179,10 +193,6 @@ begin
     shader.SetUniformInt('texture1', [0]);
     shader.SetUniformInt('texture2', [1]);
 
-    projection := TGLM.Mat4_Identity;
-    projection := TGLM.Perspective(TGLM.Radians(45), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
-    shader.SetUniformMatrix4fv('projection', TGLM.ValuePtr(projection));
-
     // 取消此调用的注释以绘制线框多边形。
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
@@ -210,6 +220,9 @@ begin
       glActiveTexture(GL_TEXTURE1);
       glBindTexture(GL_TEXTURE_2D, texture1);
 
+      projection := TGLM.Mat4_Identity;
+      projection := TGLM.Perspective(TGLM.Radians(fov), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
+      shader.SetUniformMatrix4fv('projection', TGLM.ValuePtr(projection));
 
       view := TGLM.Mat4_Identity;
       view := TGLM.LookAt(cameraPos, cameraPos + cameraFront, cameraUp);
@@ -229,7 +242,7 @@ begin
         glDrawArrays(GL_TRIANGLES, 0, 36);
       end;
 
-      WriteLn(TGLM.Mat4ToString('view', view));
+      //WriteLn(TGLM.Mat4ToString('view', view));
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
       glfwSwapBuffers(window);
@@ -307,12 +320,60 @@ begin
   glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
 
   glEnable(GL_DEPTH_TEST);
-  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
   // 注册一个回调函数(Callback Function)，它会在每次窗口大小被调整的时候被调用
   glfwSetFramebufferSizeCallback(window, @Framebuffer_size_callback);
+  glfwSetCursorPosCallback(window, @Mouse_Callback);
+  glfwSetScrollCallback(window, @Scroll_Callback);
 
   Result := window;
+end;
+
+procedure Mouse_Callback(window: PGLFWwindow; xposIn, yposIn: integer); cdecl;
+var
+  xpos, ypos, xoffset, sensitivity: GLfloat;
+  front: TVec3;
+begin
+  xpos := GLfloat(xposIn);
+  ypos := GLfloat(yposIn);
+
+  if firstMouse then
+  begin
+    lastX := xpos;
+    lastY := ypos;
+    firstMouse := false;
+  end;
+
+  xoffset := GLfloat(xpos - lastX);
+  yoffset := GLfloat(lastY - ypos);
+  lastX := xpos;
+  lastY := ypos;
+
+  sensitivity := GLfloat(0.1);
+  xoffset *= sensitivity;
+  yoffset *= sensitivity;
+
+  yaw += xoffset;
+  pitch += yoffset;
+
+  if pitch > 89.0 then pitch := 89.0;
+  if pitch < -89.0 then pitch := -89.0;
+
+  front := TGLM.Vec3(0,0,0);
+  front.x := cos(TGLM.Radians(yaw)) * cos(TGLM.Radians(pitch));
+    front.y := sin(TGLM.Radians(pitch));
+    front.z := sin(TGLM.Radians(yaw)) * cosTGLM.Radians(pitch));
+    cameraFront := TGLM.Normalize(front);
+end;
+
+procedure Scroll_Callback(window: PGLFWwindow; xoffset, yoffset: integer); cdecl;
+begin
+  fov -= yoffset;
+  if fov < 1.0 then
+    fov := 1.0;
+  if fov > 45.0 then
+    fov := 45.0;
 end;
 
 end.

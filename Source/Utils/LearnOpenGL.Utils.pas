@@ -30,7 +30,6 @@ type
   TArr_TVec2 = array of TVec2;
   TArr_TVec3 = array of TVec3;
   TArr_TVec4 = array of TVec4;
-  TArr_TMat2 = array of TMat2;
   TArr_TMat3 = array of TMat3;
   TArr_TMat4 = array of TMat4;
 
