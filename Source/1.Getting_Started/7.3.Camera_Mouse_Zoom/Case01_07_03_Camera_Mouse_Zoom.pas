@@ -7,7 +7,8 @@ interface
 
 uses
   Classes,
-  SysUtils;
+  SysUtils,
+  ctGLU;
 
 procedure Main;
 
@@ -24,9 +25,9 @@ uses
   // 每当窗口大小发生变化(由操作系统或用户调整大小)，这个回调函数就会执行
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl; forward;
 // 每当鼠标滚轮滚动时，这个回调就被调用
-procedure Scroll_Callback(window: PGLFWwindow; xoffset, yoffset: integer); cdecl; forward;
+procedure Scroll_callback(window: PGLFWwindow; xoffset, yoffset: integer); cdecl; forward;
 // 每当鼠标移动时，就调用这个回调
-procedure Mouse_Callback(window: PGLFWwindow; xpos, ypos: integer); cdecl; forward;
+procedure Mouse_callback(window: PGLFWwindow; xposIn, yposIn: integer); cdecl; forward;
 // 处理所有输入:查询GLFW是否按下/释放了相关的键，并做出相应的反应
 procedure ProcessInput(window: PGLFWwindow); forward;
 // glfw & glad  初始化
@@ -37,7 +38,9 @@ const
   SCR_HEIGHT = 600;
 
 var
-  cameraPos, cameraFront, cameraUp: TVec3;
+  cameraPos: TVec3 = (x: 0; y: 0; z: 3);
+  cameraFront: TVec3 = (x: 0; y: 0; z: -1);
+  cameraUp: TVec3 = (x: 0; y: 1; z: 3);
 
   deltaTime: GLfloat = 0.0;  // time between current frame and last frame
   lastFrame: GLfloat = 0.0;
@@ -196,10 +199,6 @@ begin
     // 取消此调用的注释以绘制线框多边形。
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-    cameraPos := TGLM.vec3(0, 0, 3);
-    cameraFront := TGLM.vec3(0, 0, -1);
-    cameraUp := TGLM.vec3(0, 1, 0);
-
     // 渲染循环
     while glfwWindowShouldClose(window) = 0 do
     begin
@@ -227,6 +226,18 @@ begin
       view := TGLM.Mat4_Identity;
       view := TGLM.LookAt(cameraPos, cameraPos + cameraFront, cameraUp);
       shader.SetUniformMatrix4fv('view', TGLM.ValuePtr(view));
+
+      //gluPerspective(TGLM.Radians(fov), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
+      //gluLookAt(
+      //  cameraPos.x, cameraPos.y, cameraPos.z,
+      //  (cameraPos + cameraFront).x, (cameraPos + cameraFront).y, (cameraPos + cameraFront).z,
+      //  cameraUp.x, cameraUp.y, cameraUp.z);
+
+
+      //WriteLn(TGLM.Vec3ToString('cameraPos', cameraPos));
+      //WriteLn(TGLM.Vec3ToString('cameraFront', cameraFront));
+      //WriteLn(TGLM.Vec3ToString('cameraUp', cameraUp));
+      //WriteLn(TGLM.Mat4ToString('view', view));
 
       for i := 0 to High(cubePositions) do
       begin
@@ -320,19 +331,20 @@ begin
   glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
 
   glEnable(GL_DEPTH_TEST);
-  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
   // 注册一个回调函数(Callback Function)，它会在每次窗口大小被调整的时候被调用
   glfwSetFramebufferSizeCallback(window, @Framebuffer_size_callback);
-  glfwSetCursorPosCallback(window, @Mouse_Callback);
-  glfwSetScrollCallback(window, @Scroll_Callback);
+  glfwSetCursorPosCallback(window, @Mouse_callback);
+  glfwSetScrollCallback(window, @Scroll_callback);
+
+  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
   Result := window;
 end;
 
-procedure Mouse_Callback(window: PGLFWwindow; xposIn, yposIn: integer); cdecl;
+procedure Mouse_callback(window: PGLFWwindow; xposIn, yposIn: integer); cdecl;
 var
-  xpos, ypos, xoffset, sensitivity: GLfloat;
+  xpos, ypos, xoffset, sensitivity, yoffset: GLfloat;
   front: TVec3;
 begin
   xpos := GLfloat(xposIn);
@@ -360,16 +372,17 @@ begin
   if pitch > 89.0 then pitch := 89.0;
   if pitch < -89.0 then pitch := -89.0;
 
-  front := TGLM.Vec3(0,0,0);
-  front.x := cos(TGLM.Radians(yaw)) * cos(TGLM.Radians(pitch));
-    front.y := sin(TGLM.Radians(pitch));
-    front.z := sin(TGLM.Radians(yaw)) * cosTGLM.Radians(pitch));
-    cameraFront := TGLM.Normalize(front);
+  front := TGLM.Vec3(0, 0, 0);
+  front.x := Cos(TGLM.Radians(yaw)) * Cos(TGLM.Radians(pitch));
+  front.y := Sin(TGLM.Radians(pitch));
+  front.z := Sin(TGLM.Radians(yaw)) * Cos(TGLM.Radians(pitch));
+  cameraFront := TGLM.Normalize(front);
 end;
 
-procedure Scroll_Callback(window: PGLFWwindow; xoffset, yoffset: integer); cdecl;
+procedure Scroll_callback(window: PGLFWwindow; xoffset, yoffset: integer); cdecl;
 begin
-  fov -= yoffset;
+  if (fov >= 1.0) and (fov <= 45.0) then
+    fov -= yoffset;
   if fov < 1.0 then
     fov := 1.0;
   if fov > 45.0 then

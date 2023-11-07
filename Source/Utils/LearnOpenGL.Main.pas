@@ -26,8 +26,18 @@ uses
   Case01_07_03_Camera_Mouse_Zoom;
 
 procedure Test;
+var
+  m: TMat4;
 begin
-  Exit;
+  m := TGLM.Mat4_Init(
+    0,0,0,1,
+    0,0,0,2,
+    0,0,0,3,
+    0,0,0,4);
+
+  m := m.Transpose;
+
+   Exit;
 end;
 
 procedure Run();
