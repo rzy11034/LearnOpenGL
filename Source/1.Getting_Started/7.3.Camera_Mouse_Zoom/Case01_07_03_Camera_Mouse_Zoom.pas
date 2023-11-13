@@ -25,9 +25,9 @@ uses
   // 每当窗口大小发生变化(由操作系统或用户调整大小)，这个回调函数就会执行
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl; forward;
 // 每当鼠标滚轮滚动时，这个回调就被调用
-procedure Scroll_callback(window: PGLFWwindow; xoffset, yoffset: integer); cdecl; forward;
+procedure Scroll_callback(window: PGLFWwindow; xoffset, yoffset: double); cdecl; forward;
 // 每当鼠标移动时，就调用这个回调
-procedure Mouse_callback(window: PGLFWwindow; xposIn, yposIn: integer); cdecl; forward;
+procedure Mouse_callback(window: PGLFWwindow; xpos, ypos: double); cdecl; forward;
 // 处理所有输入:查询GLFW是否按下/释放了相关的键，并做出相应的反应
 procedure ProcessInput(window: PGLFWwindow); forward;
 // glfw & glad  初始化
@@ -227,18 +227,6 @@ begin
       view := TGLM.LookAt(cameraPos, cameraPos + cameraFront, cameraUp);
       shader.SetUniformMatrix4fv('view', TGLM.ValuePtr(view));
 
-      //gluPerspective(TGLM.Radians(fov), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
-      //gluLookAt(
-      //  cameraPos.x, cameraPos.y, cameraPos.z,
-      //  (cameraPos + cameraFront).x, (cameraPos + cameraFront).y, (cameraPos + cameraFront).z,
-      //  cameraUp.x, cameraUp.y, cameraUp.z);
-
-
-      //WriteLn(TGLM.Vec3ToString('cameraPos', cameraPos));
-      //WriteLn(TGLM.Vec3ToString('cameraFront', cameraFront));
-      //WriteLn(TGLM.Vec3ToString('cameraUp', cameraUp));
-      //WriteLn(TGLM.Mat4ToString('view', view));
-
       for i := 0 to High(cubePositions) do
       begin
         model := TGLM.Mat4_Identity;
@@ -252,8 +240,6 @@ begin
         shader.SetUniformMatrix4fv('model', TGLM.ValuePtr(model));
         glDrawArrays(GL_TRIANGLES, 0, 36);
       end;
-
-      //WriteLn(TGLM.Mat4ToString('view', view));
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
       glfwSwapBuffers(window);
@@ -332,24 +318,20 @@ begin
 
   glEnable(GL_DEPTH_TEST);
 
+  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
   // 注册一个回调函数(Callback Function)，它会在每次窗口大小被调整的时候被调用
   glfwSetFramebufferSizeCallback(window, @Framebuffer_size_callback);
   glfwSetCursorPosCallback(window, @Mouse_callback);
   glfwSetScrollCallback(window, @Scroll_callback);
 
-  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-
   Result := window;
 end;
 
-procedure Mouse_callback(window: PGLFWwindow; xposIn, yposIn: integer); cdecl;
+procedure Mouse_callback(window: PGLFWwindow; xpos, ypos: double); cdecl;
 var
-  xpos, ypos, xoffset, sensitivity, yoffset: GLfloat;
+  xoffset, sensitivity, yoffset: GLfloat;
   front: TVec3;
 begin
-  xpos := GLfloat(xposIn);
-  ypos := GLfloat(yposIn);
-
   if firstMouse then
   begin
     lastX := xpos;
@@ -379,7 +361,7 @@ begin
   cameraFront := TGLM.Normalize(front);
 end;
 
-procedure Scroll_callback(window: PGLFWwindow; xoffset, yoffset: integer); cdecl;
+procedure Scroll_callback(window: PGLFWwindow; xoffset, yoffset: double); cdecl;
 begin
   if (fov >= 1.0) and (fov <= 45.0) then
     fov -= yoffset;
