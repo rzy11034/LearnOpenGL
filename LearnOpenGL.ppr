@@ -11,6 +11,12 @@ uses
   LearnOpenGL.Main,
   LearnOpenGL.Shader,
   LearnOpenGL.Utils,
+  LearnOpenGL.Camera,
+  DeepStar.OpenGL.GLAD_GL,
+  DeepStar.OpenGL.GLFW,
+  DeepStar.OpenGL.GLM,
+  DeepStar.OpenGL.Matrix,
+  DeepStar.OpenGL.Vector,
   Case01_01_01_Hello_Window,
   Case01_01_02_Hello_Window_Clear,
   Case01_02_01_Hello_Triangle,
@@ -41,7 +47,8 @@ uses
   Case01_06_06_Coordinate_Systems_Exercise3,
   Case01_07_01_Camera_Circle,
   Case01_07_02_Camera_Circle_keyboard_dt,
-  Case01_07_03_Camera_Mouse_Zoom;
+  Case01_07_03_Camera_Mouse_Zoom,
+  Case01_07_04_Camera_Class;
 
 begin
   try
