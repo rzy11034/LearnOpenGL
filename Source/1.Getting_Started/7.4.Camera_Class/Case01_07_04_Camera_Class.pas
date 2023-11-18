@@ -48,8 +48,6 @@ var
   //向左旋转一点。
   lastX: GLfloat = 800.0 / 2.0;
   lastY: GLfloat = 600.0 / 2.0;
-  fov: GLfloat = 45.0;
-
 procedure Main;
 const
   vs = '..\Source\1.Getting_Started\7.3.Camera_Mouse_Zoom\7.3.camera.vs';
@@ -216,7 +214,7 @@ begin
       glBindTexture(GL_TEXTURE_2D, texture1);
 
       projection := TGLM.Mat4_Identity;
-      projection := TGLM.Perspective(TGLM.Radians(fov), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
+      projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
       shader.SetUniformMatrix4fv('projection', TGLM.ValuePtr(projection));
 
       view := TGLM.Mat4_Identity;

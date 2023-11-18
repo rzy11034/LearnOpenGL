@@ -45,6 +45,8 @@ type
     procedure ProcessMouseMovement(xoffset, yoffset: GLfloat;
       constrainPitch: GLboolean = GLboolean(true));
     procedure ProcessMouseScroll(yoffset: GLfloat);
+
+    property Zoom:GLfloat read _zoom write _zoom;
   end;
 
 
@@ -138,19 +140,21 @@ end;
 procedure TCamera.ProcessMouseScroll(yoffset: GLfloat);
 begin
   _zoom -= yoffset;
-  if _zoom < 1 then _zoom := 1;
-  if _zoom > 45 then _zoom := 45;
+  if _zoom < 1 then
+    _zoom := 1;
+  if _zoom > 45 then
+    _zoom := 45;
 end;
 
 procedure TCamera.__updateCameraVectors;
 var
   f: TVec3;
 begin
-  f := TGLM.Vec3(0,0,0);
+  f := TGLM.Vec3(0, 0, 0);
   f.x := Cos(TGLM.Radians(_yaw)) * Cos(TGLM.Radians(_pitch));
   f.y := Sin(TGLM.Radians(_pitch));
   f.z := Sin(TGLM.Radians(_yaw)) * Cos(TGLM.Radians(_pitch));
-  f := TGLM.Normalize(f);
+  _front := TGLM.Normalize(f);
 
   // also re-calculate the Right and Up vector
   // normalize the vectors, because their length gets closer to 0 the more you
