@@ -23,21 +23,11 @@ procedure Run();
 implementation
 
 uses
-  Case01_07_03_Camera_Mouse_Zoom;
+  Case01_07_04_Camera_Class;
 
 procedure Test;
-var
-  m: TMat4;
 begin
-  m := TGLM.Mat4_Init(
-    0,0,0,1,
-    0,0,0,2,
-    0,0,0,3,
-    0,0,0,4);
-
-  m := m.Transpose;
-
-   Exit;
+  Exit;
 end;
 
 procedure Run();
