@@ -19,7 +19,8 @@ uses
   DeepStar.OpenGL.GLFW,
   DeepStar.OpenGL.GLM,
   LearnOpenGL.Shader,
-  LearnOpenGL.Utils;
+  LearnOpenGL.Utils,
+  LearnOpenGL.Texture;
 
 const
   SCR_WIDTH = 800;
@@ -87,7 +88,7 @@ var
   window: PGLFWwindow;
   vertices: TArr_GLfloat;
   shader: TShaderProgram;
-  ot: TOpenGLTexture;
+  ot: TTexture;
   indices: TArr_GLint;
   VAO, VBO, EBO, texture0, texture1: GLuint;
   transform: TMat4;
@@ -151,7 +152,7 @@ begin
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TOpenGLTexture.Create(CrossFixFileName(tx1));
+    ot := TTexture.Create(CrossFixFileName(tx1));
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -168,7 +169,7 @@ begin
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TOpenGLTexture.Create(CrossFixFileName(tx2));
+    ot := TTexture.Create(CrossFixFileName(tx2));
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -203,7 +204,7 @@ begin
       transform := TGLM.Translate(transform, TGLM.Vec3(0.5, 0, 0));
       transform := TGLM.Rotate(transform, glfwGetTime, TGLM.Vec3(0, 0, 1));
       transform := TGLM.Scale(transform, TGLM.Vec3(0.5, 0.5, 0));
-      shader.SetUniformMatrix4fv('transform', TGLM.ValuePtr(transform));
+      shader.SetUniformMatrix4fv('transform', Mat4Ptr(transform));
       glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, Pointer(0));
 
       scaleAmount := System.Default(GLfloat);
@@ -211,7 +212,7 @@ begin
       transform := TGLM.Mat4_Identity;
       transform := TGLM.Translate(transform, TGLM.Vec3(-0.5, 0.5, 0));
       transform := TGLM.Scale(transform, TGLM.Vec3(scaleAmount, scaleAmount, scaleAmount));
-      shader.SetUniformMatrix4fv('transform', TGLM.ValuePtr(transform));
+      shader.SetUniformMatrix4fv('transform', Mat4Ptr(transform));
       glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, Pointer(0));
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。

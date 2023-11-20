@@ -72,8 +72,6 @@ type
     class function Rotate(m: TMat4; deg: single; vec: TVec3): TMat4;
     // 返回缩放矩阵
     class function Scale(m: TMat4; vec: TVec3): TMat4;
-    // 按列优先返回一个一维数组指针
-    class function ValuePtr(const m: TMat4): TArr_Single16;
     // 使用视场和创建透视图投影矩阵纵横比，以确定左，右，上，下平面。这
     // 方法类似于现在已弃用的gluPerspective方法。
     class function Perspective(fovy, aspect, znear, zfar: single): TMat4;
@@ -137,10 +135,10 @@ class function TGLM.LookAt(const eyes, center, up: TVec3): TMat4;
     u := Cross(s, f);
 
     Result.Create(
-      s.Data[0], s.Data[1], s.Data[2], -Dot(s, eyes),
-      u.Data[0], u.Data[1], u.Data[2], -Dot(u, eyes),
+      s.Data[0],  s.Data[1],  s.Data[2], -Dot(s, eyes),
+      u.Data[0],  u.Data[1],  u.Data[2], -Dot(u, eyes),
       -f.Data[0], -f.Data[1], -f.Data[2], Dot(f, eyes),
-      0, 0, 0, 1);
+      0,          0,          0,          1          );
   end;
 
   //function __LookAt2__(eyes, center, up: TVec3): TMat4;
@@ -342,10 +340,10 @@ begin
   m32 := single(-(zFar + zNear) / (zFar - zNear));
 
   Result := Mat4_Init(
-    m00, 0, 0, m30,
-    0, m11, 0, m31,
-    0, 0, m22, m32,
-    0, 0, 0, 1);
+    m00,  0,    0,    m30,
+    0,    m11,  0,    m31,
+    0,    0,    m22,  m32,
+    0,    0,    0,    1);
 end;
 
 class function TGLM.Ortho2d(left, right, bottom, top: single): TMat4;
@@ -359,10 +357,10 @@ begin
   m31 := single(-(top + bottom) / (top - bottom));
 
   Result.Create(
-    m00, 0, 0, m30,
-    0, m11, 0, m31,
-    0, 0, m22, 0,
-    0, 0, 0, 1);
+    m00,  0,    0,    m30,
+    0,    m11,  0,    m31,
+    0,    0,    m22,  0,
+    0,    0,    0,    1);
 end;
 
 class function TGLM.Perspective(fovy, aspect, znear, zfar: single): TMat4;
@@ -443,21 +441,6 @@ begin
   res.Data[2, 3] += vec.Data[2];
 
   Result := m * res;
-end;
-
-class function TGLM.ValuePtr(const m: TMat4): TArr_Single16;
-var
-  res: TArr_Single16;
-  i, j: integer;
-  temp: TMat4;
-begin
-  temp := m.Transpose;
-
-  for i := 0 to High(temp.Data) do
-    for j := 0 to High(temp.Data[0]) do
-      res[j + i * Length(temp.Data[i])] := temp.Data[i, j];
-
-  Result := res;
 end;
 
 class function TGLM.Vec4ToString(VecName: string; v: TVec4): string;

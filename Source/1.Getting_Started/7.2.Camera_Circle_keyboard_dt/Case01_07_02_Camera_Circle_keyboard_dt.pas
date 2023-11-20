@@ -19,7 +19,8 @@ uses
   DeepStar.OpenGL.GLFW,
   DeepStar.OpenGL.GLM,
   LearnOpenGL.Shader,
-  LearnOpenGL.Utils;
+  LearnOpenGL.Utils,
+  LearnOpenGL.Texture;
 
   // 每当窗口大小发生变化(由操作系统或用户调整大小)，这个回调函数就会执行
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl; forward;
@@ -46,7 +47,7 @@ const
 var
   window: PGLFWwindow;
   shader: TShaderProgram;
-  ot: TOpenGLTexture;
+  ot: TTexture;
   VAO, VBO, EBO, texture0, texture1: GLuint;
   model, projection, view: TMat4;
   i: integer;
@@ -149,7 +150,7 @@ begin
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TOpenGLTexture.Create(CrossFixFileName(tx1));
+    ot := TTexture.Create(CrossFixFileName(tx1));
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -166,7 +167,7 @@ begin
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TOpenGLTexture.Create(CrossFixFileName(tx2));
+    ot := TTexture.Create(CrossFixFileName(tx2));
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -181,7 +182,7 @@ begin
 
     projection := TGLM.Mat4_Identity;
     projection := TGLM.Perspective(TGLM.Radians(45), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
-    shader.SetUniformMatrix4fv('projection', TGLM.ValuePtr(projection));
+    shader.SetUniformMatrix4fv('projection', Mat4Ptr(projection));
 
     // 取消此调用的注释以绘制线框多边形。
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -213,7 +214,7 @@ begin
 
       view := TGLM.Mat4_Identity;
       view := TGLM.LookAt(cameraPos, cameraPos + cameraFront, cameraUp);
-      shader.SetUniformMatrix4fv('view', TGLM.ValuePtr(view));
+      shader.SetUniformMatrix4fv('view', Mat4Ptr(view));
 
       for i := 0 to High(cubePositions) do
       begin
@@ -225,7 +226,7 @@ begin
           angle := GLfloat(25) * glfwGetTime;
 
         model := TGLM.Rotate(model, TGLM.Radians(angle), TGLM.Vec3(1, 0.3, 0.5));
-        shader.SetUniformMatrix4fv('model', TGLM.ValuePtr(model));
+        shader.SetUniformMatrix4fv('model', Mat4Ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 36);
       end;
 

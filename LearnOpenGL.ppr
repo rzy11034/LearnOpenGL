@@ -9,6 +9,7 @@ uses
   Classes,
   SysUtils,
   LearnOpenGL.Main,
+  LearnOpenGL.Texture,
   LearnOpenGL.Shader,
   LearnOpenGL.Utils,
   LearnOpenGL.Camera,
@@ -51,7 +52,8 @@ uses
   Case01_07_04_Camera_Class,
   Case01_07_05_Camera_Exercise1,
   Case01_07_05_Camera_Exercise1.MyCamera,
-  Case01_07_06_Camera_Exercise2;
+  Case01_07_06_Camera_Exercise2,
+  Case02_01_01_Colors;
 
 begin
   try

@@ -19,7 +19,8 @@ uses
   DeepStar.OpenGL.GLFW,
   DeepStar.OpenGL.GLM,
   LearnOpenGL.Shader,
-  LearnOpenGL.Utils;
+  LearnOpenGL.Utils,
+  LearnOpenGL.Texture;
 
 const
   SCR_WIDTH = 800;
@@ -87,7 +88,7 @@ var
   window: PGLFWwindow;
   vertices: TArr_GLfloat;
   shader: TShaderProgram;
-  ot: TOpenGLTexture;
+  ot: TTexture;
   indices: TArr_GLint;
   VAO, VBO, EBO, texture0, texture1: GLuint;
   transform: TMat4;
@@ -150,7 +151,7 @@ begin
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TOpenGLTexture.Create(CrossFixFileName(tx1));
+    ot := TTexture.Create(CrossFixFileName(tx1));
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -167,7 +168,7 @@ begin
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TOpenGLTexture.Create(CrossFixFileName(tx2));
+    ot := TTexture.Create(CrossFixFileName(tx2));
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -205,7 +206,7 @@ begin
 
       // 激活这个程序对象
       shader.UseProgram;
-      shader.SetUniformMatrix4fv('transform', TGLM.ValuePtr(transform));
+      shader.SetUniformMatrix4fv('transform', Mat4Ptr(transform));
 
       // 画出第一个三角形
       glBindVertexArray(VAO);

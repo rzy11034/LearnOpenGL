@@ -17,6 +17,7 @@ uses
   DeepStar.Utils,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
+  LearnOpenGL.Texture,
   LearnOpenGL.Shader,
   LearnOpenGL.Utils;
 
@@ -85,7 +86,7 @@ var
   window: PGLFWwindow;
   vertices: TArr_GLfloat;
   shader: TShaderProgram;
-  ot: TOpenGLTexture;
+  ot: TTexture;
   indices: TArr_GLint;
   VAO, VBO, EBO, texture: GLuint;
 begin
@@ -148,7 +149,7 @@ begin
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TOpenGLTexture.Create(CrossFixFileName(tx));
+    ot := TTexture.Create(CrossFixFileName(tx));
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);

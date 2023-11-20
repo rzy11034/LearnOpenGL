@@ -19,7 +19,8 @@ uses
   DeepStar.OpenGL.GLFW,
   DeepStar.OpenGL.GLM,
   LearnOpenGL.Shader,
-  LearnOpenGL.Utils;
+  LearnOpenGL.Utils,
+  LearnOpenGL.Texture;
 
 const
   SCR_WIDTH = 800;
@@ -86,7 +87,7 @@ const
 var
   window: PGLFWwindow;
   shader: TShaderProgram;
-  ot: TOpenGLTexture;
+  ot: TTexture;
   VAO, VBO, EBO, texture0, texture1: GLuint;
   model, projection, view: TMat4;
   i: integer;
@@ -168,8 +169,7 @@ begin
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, TArrayUtils_GLfloat.MemorySize(vertices),
-      @vertices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, SizeOfArray(vertices), @vertices[0], GL_STATIC_DRAW);
 
     // position attribute ---位置属性
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SizeOf(GLfloat), Pointer(0));
@@ -189,7 +189,7 @@ begin
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TOpenGLTexture.Create(CrossFixFileName(tx1));
+    ot := TTexture.Create(CrossFixFileName(tx1));
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -206,7 +206,7 @@ begin
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TOpenGLTexture.Create(CrossFixFileName(tx2));
+    ot := TTexture.Create(CrossFixFileName(tx2));
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -244,8 +244,8 @@ begin
       projection := TGLM.Mat4_Identity;
       view := TGLM.Translate(view, TGLM.Vec3(0, 0, -3));
       projection := TGLM.Perspective(cos(glfwGetTime)+30, SCR_WIDTH / SCR_HEIGHT, 1, 100);
-      shader.SetUniformMatrix4fv('view', TGLM.ValuePtr(view));
-      shader.SetUniformMatrix4fv('projection', TGLM.ValuePtr(projection));
+      shader.SetUniformMatrix4fv('view', Mat4Ptr(view));
+      shader.SetUniformMatrix4fv('projection', Mat4Ptr(projection));
 
       for i := 0 to High(cubePositions) do
       begin
@@ -255,7 +255,7 @@ begin
         model := TGLM.Translate(model, cubePositions[i]);
         model := TGLM.Rotate(model, glfwGetTime * TGLM.Radians(angle), TGLM.Vec3(1, 1, 1));
 
-        shader.SetUniformMatrix4fv('model', TGLM.ValuePtr(model));
+        shader.SetUniformMatrix4fv('model', Mat4Ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 36);
       end;
 

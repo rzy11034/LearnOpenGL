@@ -19,7 +19,8 @@ uses
   DeepStar.OpenGL.GLFW,
   DeepStar.OpenGL.GLM,
   LearnOpenGL.Shader,
-  LearnOpenGL.Utils;
+  LearnOpenGL.Utils,
+  LearnOpenGL.Texture;
 
 const
   SCR_WIDTH = 800;
@@ -87,7 +88,7 @@ var
   window: PGLFWwindow;
   shader: TShaderProgram;
   vertices: TArr_GLfloat;
-  ot: TOpenGLTexture;
+  ot: TTexture;
   indices: TArr_GLint;
   VAO, VBO, EBO, texture0, texture1: GLuint;
   model, projection, view: TMat4;
@@ -183,7 +184,7 @@ begin
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TOpenGLTexture.Create(CrossFixFileName(tx1));
+    ot := TTexture.Create(CrossFixFileName(tx1));
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -200,7 +201,7 @@ begin
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TOpenGLTexture.Create(CrossFixFileName(tx2));
+    ot := TTexture.Create(CrossFixFileName(tx2));
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -237,16 +238,16 @@ begin
 
       projection := TGLM.Mat4_Identity;
       projection := TGLM.Perspective(TGLM.Radians(45), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
-      shader.SetUniformMatrix4fv('projection', TGLM.ValuePtr(projection));
+      shader.SetUniformMatrix4fv('projection', Mat4Ptr(projection));
 
 
       view := TGLM.Mat4_Identity;
       view := TGLM.Translate(view, TGLM.Vec3(0, 0, -3));
-      shader.SetUniformMatrix4fv('view', TGLM.ValuePtr(view));
+      shader.SetUniformMatrix4fv('view', Mat4Ptr(view));
 
       model := TGLM.Mat4_Identity;
       model := TGLM.Rotate(model, TGLM.Radians(glfwGetTime) * 50, TGLM.Vec3(0.5, 1, 0));
-      shader.SetUniformMatrix4fv('model', TGLM.ValuePtr(model));
+      shader.SetUniformMatrix4fv('model', Mat4Ptr(model));
 
       //glBindVertexArray(VAO);
       glDrawArrays(GL_TRIANGLES, 0, 36);

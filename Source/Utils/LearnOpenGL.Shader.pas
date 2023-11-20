@@ -10,6 +10,7 @@ uses
   Classes,
   SysUtils,
   DeepStar.OpenGL.GLAD_GL,
+  DeepStar.OpenGL.GLM,
   LearnOpenGL.Utils;
 
 type
@@ -29,7 +30,7 @@ type
     // uniform工具函数
     procedure SetUniformInt(uniform: PGLchar; Value: TArr_GLint);
     procedure SetUniformFloat(uniform: PGLchar; Value: TArr_GLfloat);
-    procedure SetUniformMatrix4fv(uniform: PGLchar; Value: PSingle);
+    procedure SetUniformMatrix4fv(uniform: PGLchar; Value: PGLfloat);
 
     constructor Create();
     destructor Destroy; override;
@@ -37,7 +38,25 @@ type
     property ID: GLuint read _id;
   end;
 
+  // 4X4矩阵按列优先返回一个一维数组
+function Mat4Ptr(const m: TMat4): TArr_GLfloat16;
+
 implementation
+
+function Mat4Ptr(const m: TMat4): TArr_GLfloat16;
+var
+  res: TArr_Single16;
+  i, j: integer;
+  temp: TMat4;
+begin
+  temp := m.Transpose;
+
+  for i := 0 to High(temp.Data) do
+    for j := 0 to High(temp.Data[0]) do
+      res[j + i * Length(temp.Data[i])] := temp.Data[i, j];
+
+  Result := res;
+end;
 
 { TShaderProgram }
 
@@ -148,7 +167,7 @@ begin
   end;
 end;
 
-procedure TShaderProgram.SetUniformMatrix4fv(uniform: PGLchar; Value: PSingle);
+procedure TShaderProgram.SetUniformMatrix4fv(uniform: PGLchar; Value: PGLfloat);
 var
   uniformLocation: GLint;
 begin

@@ -2,28 +2,28 @@
 
 {$mode ObjFPC}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
-{$ModeSwitch unicodestrings}{$J-}
+{$ModeSwitch defaultparameters}
 
 interface
 
 uses
   Classes,
   SysUtils,
-  {%H-}matrix,
   {%H-}DeepStar.UString,
   {%H-}DeepStar.Utils,
   {%H-}DeepStar.OpenGL.GLAD_GL,
   {%H-}DeepStar.OpenGL.GLFW,
   {%H-}DeepStar.OpenGL.GLM,
   {%H-}LearnOpenGL.Utils,
-  {%H-}LearnOpenGL.Shader;
+  {%H-}LearnOpenGL.Shader,
+  {%H-}LearnOpenGL.Texture;
 
 procedure Run();
 
 implementation
 
 uses
-  Case01_07_06_Camera_Exercise2;
+  Case02_01_01_Colors;
 
 procedure Test;
 begin
