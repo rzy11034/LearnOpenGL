@@ -23,7 +23,7 @@ procedure Run();
 implementation
 
 uses
-  Case01_07_05_Camera_Exercise1;
+  Case01_07_06_Camera_Exercise2;
 
 procedure Test;
 begin
