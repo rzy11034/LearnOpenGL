@@ -1,4 +1,4 @@
-﻿unit LearnOpenGL.Camera;
+﻿unit Case01_07_05_Camera_Exercise1.MyCamera;
 
 {$mode ObjFPC}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -113,6 +113,8 @@ begin
     LEFT: _position -= _right * velocity;
     RIGHT: _position += _right * velocity;
   end;
+
+  _position.y := 0;
 end;
 
 procedure TCamera.ProcessMouseMovement(xoffset, yoffset: GLfloat; constrainPitch: GLboolean);
