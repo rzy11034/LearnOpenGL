@@ -38,7 +38,7 @@ type
       1: (m00, m01, m02, m10, m11, m12, m20, m21, m22: single);
   end;
 
-  TMat4 =  record
+  TMat4 = packed record
     constructor Create(x00, x01, x02, x03, x10, x11, x12, x13, x20, x21, x22, x23,
       x30, x31, x32, x33: single);
     procedure Init_Zero;
@@ -302,7 +302,7 @@ end;
 
 function TMat3.Transpose: TMat3;
 begin
-  Result := Create(
+  Result.Create(
     m00, m10, m20,
     m01, m11, m21,
     m02, m12, m22);
@@ -692,13 +692,13 @@ begin
     end;
 
     else
-      raise Exception.Create(ERROR_4X4); ;
+      raise Exception.Create(ERROR_4X4);
   end;
 end;
 
 function TMat4.Transpose: TMat4;
 begin
-  Result := Create(
+  Result.Create(
     m00, m10, m20, m30,
     m01, m11, m21, m31,
     m02, m12, m22, m32,

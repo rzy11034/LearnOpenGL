@@ -26,7 +26,17 @@ uses
   Case02_01_01_Colors;
 
 procedure Test;
+var
+  m, n: TMat4;
 begin
+  m.Data := [
+    [1.81066, 0, 0, 0],
+    [0, 2.4142134, 0, 0],
+    [0, 0, -1.002002, -0.2002002],
+    [0, 0, -1, 0]];
+
+  n := m.Transpose;
+
   Exit;
 end;
 

@@ -2,8 +2,7 @@
 
 {$mode ObjFPC}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
-{$WARN 4105 off : Implicit string type conversion with potential data loss from "$1" to "$2"}
-{$WARN 4104 off : Implicit string type conversion from "$1" to "$2"}
+
 interface
 
 uses
