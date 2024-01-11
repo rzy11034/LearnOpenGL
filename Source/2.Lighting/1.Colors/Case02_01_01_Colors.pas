@@ -207,7 +207,7 @@ function InitWindows: PGLFWwindow;
 var
   window: PGLFWwindow;
 begin
-  glfwInit;
+  if not glfwInit.ToBoolean then Exit(nil);
 
   // 设置主要版本和次要版本
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);

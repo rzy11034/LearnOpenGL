@@ -10,7 +10,6 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="33"/>
         <CursorPos X="40" Y="43"/>
         <UsageCount Value="111"/>
         <Loaded Value="True"/>
@@ -38,12 +37,11 @@
       <Unit>
         <Filename Value="Source\Utils\LearnOpenGL.Main.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="16"/>
-        <CursorPos X="48" Y="24"/>
+        <CursorPos X="22" Y="26"/>
         <UsageCount Value="111"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Source\Utils\LearnOpenGL.Shader.pas"/>
@@ -57,8 +55,9 @@
       <Unit>
         <Filename Value="Source\1.Getting_Started\1.1.Hello_Window\Case01_01_01_Hello_Window.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="0"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
+        <CursorPos X="32" Y="74"/>
         <UsageCount Value="111"/>
       </Unit>
       <Unit>
@@ -701,27 +700,29 @@
       <Unit>
         <Filename Value="Source\OpenGL_Lib\DeepStar.OpenGL.GLAD_GL.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1672"/>
+        <TopLine Value="13"/>
         <CursorPos X="54" Y="1689"/>
         <UsageCount Value="82"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Source\OpenGL_Lib\DeepStar.OpenGL.GLFW.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="34" Y="49"/>
         <UsageCount Value="82"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Source\OpenGL_Lib\DeepStar.OpenGL.GLM.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="290"/>
+        <TopLine Value="395"/>
         <CursorPos X="20" Y="430"/>
         <UsageCount Value="82"/>
       </Unit>
@@ -787,13 +788,11 @@
       <Unit>
         <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="153"/>
-        <CursorPos X="8" Y="165"/>
+        <TopLine Value="209"/>
+        <CursorPos X="23" Y="216"/>
         <UsageCount Value="29"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\1.Colors\2.1.colors.fs"/>
@@ -1387,108 +1386,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="24">
-      <Position>
-        <Filename Value="Source\Utils\LearnOpenGL.Main.pas"/>
-        <Caret Line="29" Column="34" TopLine="16"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\Utils\LearnOpenGL.Main.pas"/>
-        <Caret Line="38" TopLine="32"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\Utils\LearnOpenGL.Main.pas"/>
-        <Caret Line="39" Column="4" TopLine="25"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\Utils\LearnOpenGL.Main.pas"/>
-        <Caret Line="39" Column="4" TopLine="25"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\Utils\LearnOpenGL.Main.pas"/>
-        <Caret Line="38" TopLine="26"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\Utils\LearnOpenGL.Main.pas"/>
-        <Caret Line="40" TopLine="28"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\Utils\LearnOpenGL.Main.pas"/>
-        <Caret Line="38" TopLine="28"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\Utils\LearnOpenGL.Main.pas"/>
-        <Caret Line="40" TopLine="28"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\Utils\LearnOpenGL.Main.pas"/>
-        <Caret Line="38" TopLine="32"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
-        <Caret Line="165" TopLine="159"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
-        <Caret Line="166" TopLine="159"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
-        <Caret Line="167" TopLine="159"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
-        <Caret Line="168" TopLine="159"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
-        <Caret Line="170" TopLine="159"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
-        <Caret Line="171" TopLine="159"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
-        <Caret Line="173" TopLine="166"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
-        <Caret Line="174" TopLine="166"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
-        <Caret Line="176" TopLine="166"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
-        <Caret Line="177" TopLine="166"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
-        <Caret Line="178" TopLine="166"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
-        <Caret Line="179" TopLine="167"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
-        <Caret Line="180" TopLine="168"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
-        <Caret Line="181" TopLine="169"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
-        <Caret Line="182" TopLine="170"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
-        <Caret Line="184" TopLine="177"/>
-      </Position>
-    </JumpHistory>
+    <JumpHistory HistoryIndex="-1"/>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode="default">

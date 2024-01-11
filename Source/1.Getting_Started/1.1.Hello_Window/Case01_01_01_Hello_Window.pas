@@ -40,9 +40,10 @@ begin
   glfwInit;
 
   // 设置主要版本和次要版本
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-  glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+  //glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+  //glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+  //glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+  glfwDefaultWindowHints;
 
   // 创建一个窗口对象
   window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, PAnsiChar('LearnOpenGL'), nil, nil);
