@@ -534,7 +534,7 @@
     </Linking>
     <Other>
       <CompilerMessages>
-        <IgnoredMessages idx4105="True"/>
+        <IgnoredMessages idx5089="True" idx4105="True" idx4104="True"/>
       </CompilerMessages>
       <ConfigFile>
         <WriteConfigFilePath Value=""/>

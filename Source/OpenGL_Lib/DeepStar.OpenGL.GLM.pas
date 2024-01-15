@@ -206,7 +206,10 @@ end;
 
 class function TGLM.Mat3(x: single): TMat3;
 begin
-  Result.Create(x, 0, 0, 0, x, 0, 0, 0, x);
+  Result.Create(
+    x, 0, 0,
+    0, x, 0,
+    0, 0, x);
 end;
 
 class function TGLM.Mat3ToString(matName: string; m: TMat3): string;
@@ -259,7 +262,11 @@ end;
 
 class function TGLM.Mat4(x: single): TMat4;
 begin
-  Result.Create(x, 0, 0, 0, 0, x, 0, 0, 0, 0, x, 0, 0, 0, 0, x);
+  Result.Create(
+    x, 0, 0, 0,
+    0, x, 0, 0,
+    0, 0, x, 0,
+    0, 0, 0, x);
 end;
 
 class function TGLM.Mat4ToString(matName: string; m: TMat4): string;
@@ -297,7 +304,7 @@ end;
 
 class function TGLM.Mat4_Identity: TMat4;
 begin
-  Result.init_identity;
+  Result.Init_Identity;
 end;
 
 class function TGLM.Mat4_Init(x00, x01, x02, x03, x10, x11, x12, x13, x20, x21, x22, x23,
@@ -309,7 +316,7 @@ end;
 
 class function TGLM.Mat4_Zero: TMat4;
 begin
-  Result.init_zero;
+  Result.Init_Zero;
 end;
 
 class function TGLM.Normalize(vec: TVec3): TVec3;

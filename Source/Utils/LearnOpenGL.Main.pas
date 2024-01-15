@@ -23,19 +23,18 @@ procedure Run();
 implementation
 
 uses
-  Case01_01_01_Hello_Window;
+  Case01_06_02_Coordinate_Systems_Depth;
 
 procedure Test;
 var
-  m, n: TMat4;
+  s: string;
+  i: integer;
 begin
-  m.Data := [
-    [1.81066, 0, 0, 0],
-    [0, 2.4142134, 0, 0],
-    [0, 0, -1.002002, -0.2002002],
-    [0, 0, -1, 0]];
-
-  n := m.Transpose;
+  for i := integer(0) to 10 do
+  begin
+    s += i.ToString;
+    Continue;
+  end;
 
   Exit;
 end;

@@ -1307,7 +1307,6 @@ procedure glfwDefaultWindowHints; cdecl; external GLFW_DLL;
 
    since Added in version 3.0.  Replaces `glfwOpenWindowHint`.
 }
-
 procedure glfwWindowHint(target: integer; hint: integer); cdecl; external GLFW_DLL;
 {
 /!   Sets the specified window hint to the desired value.

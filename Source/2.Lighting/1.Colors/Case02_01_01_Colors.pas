@@ -46,8 +46,8 @@ var
   firstMouse: boolean = true;
   //偏航被初始化为-90.0度，因为0.0的偏航导致一个指向右的方向矢量，所以我们最初
   //向左旋转一点。
-  lastX: GLfloat = 800.0 / 2.0;
-  lastY: GLfloat = 600.0 / 2.0;
+  lastX: GLfloat = SCR_WIDTH / 2.0;
+  lastY: GLfloat = SCR_HEIGHT / 2.0;
 
   lightPos: TVec3 = (data:(1.2, 1.0, 2.0));
 
@@ -68,7 +68,7 @@ begin
   Randomize;
   lightingShader := TShaderProgram.Create;
   lightCubeShader := TShaderProgram.Create;
-  camera := TCamera.Create(TGLM.Vec3(0, 0, 3));
+  camera := TCamera.Create(TGLM.Vec3(0, 0, 5));
   try
     window := InitWindows;
 
@@ -207,7 +207,7 @@ function InitWindows: PGLFWwindow;
 var
   window: PGLFWwindow;
 begin
-  if not glfwInit.ToBoolean then Exit(nil);
+  if not glfwInit.ToBoolean then Exit;
 
   // 设置主要版本和次要版本
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);

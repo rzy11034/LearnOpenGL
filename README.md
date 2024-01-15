@@ -44,8 +44,6 @@ LearnOpenGL文档学习
         讨论的观察矩阵。用你的函数实现来替换GLM的LookAt函数，看看它是否还能一样
         地工作。 <br>
 ## 第2节 光照 <br>
-  1.
-
-
-
+  1. 颜色	Colors <br>
+  2. 基础光照 Basic Lighting <br>
 

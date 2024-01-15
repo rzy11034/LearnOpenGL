@@ -36,52 +36,56 @@ end;
 procedure Main;
 var
   window: PGLFWwindow;
+  //glfwState: Integer;
 begin
-  glfwInit;
+  try
+    if not glfwInit.ToBoolean then Exit;
 
-  // 设置主要版本和次要版本
-  //glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-  //glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-  //glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-  glfwDefaultWindowHints;
+    // 设置主要版本和次要版本
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-  // 创建一个窗口对象
-  window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, PAnsiChar('LearnOpenGL'), nil, nil);
-  if window = nil then
-  begin
-    WriteLn(' Failed to create GLFW window');
+    // 创建一个窗口对象
+    window := PGLFWwindow(nil);
+    window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, PGLchar('LearnOpenGL'), nil, nil);
+
+    if window= nil then
+    begin
+      WriteLn(' Failed to create GLFW window');
+      Exit;
+    end;
+
+    // 将窗口的上下文设置为当前线程的主上下文
+    glfwMakeContextCurrent(window);
+
+    // 初始化GLAD
+    if gladLoadGL(TLoadProc(@glfwGetProcAddress)) = false then
+    begin
+      WriteLn('Failed to initialize GLAD');
+      Exit;
+    end;
+
+    // 设置窗口的维度(Dimension)
+    glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
+
+    // 注册一个回调函数(Callback Function)，它会在每次窗口大小被调整的时候被调用
+    glfwSetFramebufferSizeCallback(window, @Framebuffer_size_callback);
+
+    // 渲染循环
+    while glfwWindowShouldClose(window) = 0 do
+    begin
+      // 输入
+      ProcessInput(window);
+
+      // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
+      glfwSwapBuffers(window);
+      glfwPollEvents;
+    end;
+  finally
+    // 释放 / 删除之前的分配的所有资源
     glfwTerminate;
   end;
-
-  // 将窗口的上下文设置为当前线程的主上下文
-  glfwMakeContextCurrent(window);
-
-  // 初始化GLAD
-  if gladLoadGL(TLoadProc(@glfwGetProcAddress)) = false then
-  begin
-    WriteLn('Failed to initialize GLAD');
-    Exit;
-  end;
-
-  // 设置窗口的维度(Dimension)
-  glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
-
-  // 注册一个回调函数(Callback Function)，它会在每次窗口大小被调整的时候被调用
-  glfwSetFramebufferSizeCallback(window, @Framebuffer_size_callback);
-
-  // 渲染循环
-  while glfwWindowShouldClose(window) = 0 do
-  begin
-    // 输入
-    ProcessInput(window);
-
-    // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
-    glfwSwapBuffers(window);
-    glfwPollEvents;
-  end;
-
-  // 释放 / 删除之前的分配的所有资源
-  glfwTerminate;
 end;
 
 end.
