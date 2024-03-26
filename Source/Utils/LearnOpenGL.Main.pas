@@ -1,8 +1,7 @@
 ﻿unit LearnOpenGL.Main;
 
-{$mode ObjFPC}{$H+}
+{$mode delphi}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
-{$ModeSwitch defaultparameters}
 
 interface
 
@@ -23,19 +22,10 @@ procedure Run();
 implementation
 
 uses
-  Case01_06_02_Coordinate_Systems_Depth;
+  Case02_02_01_Basic_Lighting_Diffuse;
 
 procedure Test;
-var
-  s: string;
-  i: integer;
 begin
-  for i := integer(0) to 10 do
-  begin
-    s += i.ToString;
-    Continue;
-  end;
-
   Exit;
 end;
 

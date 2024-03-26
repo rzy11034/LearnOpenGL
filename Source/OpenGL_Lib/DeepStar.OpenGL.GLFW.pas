@@ -46,8 +46,10 @@ unit DeepStar.OpenGL.GLFW;
 
 interface
 
+{$IFDEF UNIX}
 uses
   GL;
+{$ENDIF}
 
 type
   GLFW_INT = integer;

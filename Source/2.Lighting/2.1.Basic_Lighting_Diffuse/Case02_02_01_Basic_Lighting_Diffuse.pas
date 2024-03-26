@@ -1,4 +1,4 @@
-﻿unit Case02_01_01_Colors;
+﻿unit Case02_02_01_Basic_Lighting_Diffuse;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -65,13 +65,18 @@ var
   projection, view, model: TMat4;
   currentFrame: GLfloat;
 begin
+  window := InitWindows;
+  if window = nil then
+  begin
+    glfwTerminate;
+    Exit;
+  end;
+
   Randomize;
   lightingShader := TShaderProgram.Create;
   lightCubeShader := TShaderProgram.Create;
   camera := TCamera.Create(TGLM.Vec3(0, 0, 5));
   try
-    window := InitWindows;
-
     lightingShader.LoadShaderFile(cfn(vs), cfn(fs));
     lightCubeShader.LoadShaderFile(cfn(light_cube_vs), cfn(light_cube_fs));
 
@@ -197,17 +202,17 @@ begin
     camera.Free;
     lightCubeShader.Free;
     lightingShader.Free;
-  end;
 
-  // 释放 / 删除之前的分配的所有资源
-  glfwTerminate;
+    // 释放 / 删除之前的分配的所有资源
+    glfwTerminate;
+  end;
 end;
 
 function InitWindows: PGLFWwindow;
 var
-  window: PGLFWwindow;
+  window: PGLFWwindow = nil;
 begin
-  if not glfwInit.ToBoolean then Exit;
+  if not glfwInit.ToBoolean then Exit(nil);
 
   // 设置主要版本和次要版本
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -219,7 +224,7 @@ begin
   if window = nil then
   begin
     WriteLn(' Failed to create GLFW window');
-    glfwTerminate;
+    Exit(nil);
   end;
 
   // 将窗口的上下文设置为当前线程的主上下文
