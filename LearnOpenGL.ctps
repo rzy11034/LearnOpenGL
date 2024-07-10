@@ -38,10 +38,11 @@
       <Unit>
         <Filename Value="Source\Utils\LearnOpenGL.Main.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="4"/>
-        <CursorPos X="38" Y="25"/>
+        <CursorPos X="12" Y="10"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
@@ -846,10 +847,9 @@
       <Unit>
         <Filename Value="Source\2.Lighting\2.1.Basic_Lighting_Diffuse\Case02_02_01_Basic_Lighting_Diffuse.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="106"/>
-        <CursorPos X="120" Y="114"/>
+        <CursorPos X="88" Y="138"/>
         <UsageCount Value="105"/>
         <Loaded Value="True"/>
       </Unit>
@@ -900,11 +900,10 @@
       <Unit>
         <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\Utils\DeepStar.UString.pas"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="157"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\2.0.Colors\2.0.colors.fs"/>
@@ -968,12 +967,11 @@
       <Unit>
         <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\DSA\DeepStar.DSA.Interfaces.pas"/>
         <FRMtype Value="0"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <CursorPos X="29" Y="9"/>
+        <TopLine Value="18"/>
+        <CursorPos X="101" Y="18"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\Utils\DeepStar.Utils.pas"/>
@@ -988,25 +986,34 @@
         <Filename Value="C:\codetyphon\fpcsrc\packages\rtl-generics\src\generics.defaults.pas"/>
         <FRMtype Value="0"/>
         <UnitName Value="Generics.Defaults"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="5"/>
         <CursorPos X="21" Y="23"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\Temp\002\Unit1.pas"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="4"/>
         <CursorPos X="57" Y="22"/>
         <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_SDL\source\libsdl2.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="libSDL2"/>
+        <EditorIndex Value="4"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="735"/>
+        <CursorPos X="4" Y="753"/>
+        <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
+    <JumpHistory HistoryIndex="14">
       <Position>
         <Filename Value="Source\2.Lighting\2.1.Basic_Lighting_Diffuse\Case02_02_01_Basic_Lighting_Diffuse.pas"/>
         <Caret Line="12" Column="11"/>
@@ -1044,34 +1051,6 @@
         <Caret Line="12" Column="11"/>
       </Position>
       <Position>
-        <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\DSA\DeepStar.DSA.Interfaces.pas"/>
-        <Caret Line="23" Column="20"/>
-      </Position>
-      <Position>
-        <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\DSA\DeepStar.DSA.Interfaces.pas"/>
-        <Caret Line="20" Column="64"/>
-      </Position>
-      <Position>
-        <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\DSA\DeepStar.DSA.Interfaces.pas"/>
-        <Caret Line="22" Column="24"/>
-      </Position>
-      <Position>
-        <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\DSA\DeepStar.DSA.Interfaces.pas"/>
-        <Caret Line="23" Column="21" TopLine="5"/>
-      </Position>
-      <Position>
-        <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\DSA\DeepStar.DSA.Interfaces.pas"/>
-        <Caret Line="20" Column="54"/>
-      </Position>
-      <Position>
-        <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\DSA\DeepStar.DSA.Interfaces.pas"/>
-        <Caret Line="23" Column="6"/>
-      </Position>
-      <Position>
-        <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\DSA\DeepStar.DSA.Interfaces.pas"/>
-        <Caret Line="21" Column="12" TopLine="8"/>
-      </Position>
-      <Position>
         <Filename Value="Source\Utils\LearnOpenGL.Main.pas"/>
         <Caret Line="38" Column="46" TopLine="19"/>
       </Position>
@@ -1092,40 +1071,8 @@
         <Caret Line="50" Column="72" TopLine="28"/>
       </Position>
       <Position>
-        <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\DSA\DeepStar.DSA.Interfaces.pas"/>
-        <Caret Line="11" Column="16"/>
-      </Position>
-      <Position>
-        <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\DSA\DeepStar.DSA.Interfaces.pas"/>
-        <Caret Line="18" Column="53"/>
-      </Position>
-      <Position>
-        <Filename Value="..\Temp\002\Unit1.pas"/>
-        <Caret Line="22" Column="18"/>
-      </Position>
-      <Position>
-        <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\DSA\DeepStar.DSA.Interfaces.pas"/>
-        <Caret Line="23" Column="57"/>
-      </Position>
-      <Position>
-        <Filename Value="C:\codetyphon\fpcsrc\packages\rtl-generics\src\generics.defaults.pas"/>
-        <Caret Line="23" Column="21" TopLine="5"/>
-      </Position>
-      <Position>
-        <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\DSA\DeepStar.DSA.Interfaces.pas"/>
-        <Caret Line="10" Column="21"/>
-      </Position>
-      <Position>
-        <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\DSA\DeepStar.DSA.Interfaces.pas"/>
-        <Caret Line="9" Column="12"/>
-      </Position>
-      <Position>
-        <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\DSA\DeepStar.DSA.Interfaces.pas"/>
-        <Caret Line="13" Column="37"/>
-      </Position>
-      <Position>
-        <Filename Value="..\DeepStar-Lib\Typhon\Package\Source\DSA\DeepStar.DSA.Interfaces.pas"/>
-        <Caret Line="23" Column="7"/>
+        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_SDL\source\libsdl2.pas"/>
+        <Caret Line="3433" Column="23" TopLine="3411"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -1150,6 +1097,7 @@
         <Item5 Value="$(Pas2JSBrowser) &quot;$(Pas2JSProjectURL)&quot;"/>
         <Item6 Value="/usr/bin/gnome-terminal -t &apos;Typhon Run Output&apos; -e &apos;$(TargetCmdLine)&apos;"/>
       </List>
+      <List Name="CommandLineParameters" Count="1"/>
     </HistoryLists>
   </ProjectSession>
 </CONFIG>

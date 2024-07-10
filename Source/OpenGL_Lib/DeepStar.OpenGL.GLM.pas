@@ -81,7 +81,7 @@ type
     class function Frustum(left, right, bottom, top, znear, zfar: single): TMat4;
     // 视点转换
     class function LookAt(const eyes, center, up: TVec3): TMat4;
-    // 创建一个2D正交投影矩阵。这种方法与现在类似已弃用的gluOrtho2D方法。
+    // 创建一个2D正交投影矩阵。这种方法类似现在已弃用的gluOrtho2D方法。
     class function Ortho2d(left, right, bottom, top: single): TMat4;
 
     //═════════════════════════════════════════════════════════════════════════
@@ -173,7 +173,7 @@ class function TGLM.LookAt(const eyes, center, up: TVec3): TMat4;
   //  // Return lookAt matrix as combination of translation and rotation matrix
   //  Result := (rotation * translation).Transpose;
   //end;
-  //
+  
   //function __LookAt3__(eye, center, up: TVec3): TMat4;
   //var
   //  f, s, u: TVec3;
