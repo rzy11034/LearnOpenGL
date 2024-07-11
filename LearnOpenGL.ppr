@@ -9,15 +9,6 @@ uses
   Classes,
   SysUtils,
   LearnOpenGL.Main,
-  LearnOpenGL.Texture,
-  LearnOpenGL.Shader,
-  LearnOpenGL.Utils,
-  LearnOpenGL.Camera,
-  DeepStar.OpenGL.GLAD_GL,
-  DeepStar.OpenGL.GLFW,
-  DeepStar.OpenGL.GLM,
-  DeepStar.OpenGL.Matrix,
-  DeepStar.OpenGL.Vector,
   Case01_01_01_Hello_Window,
   Case01_01_02_Hello_Window_Clear,
   Case01_02_01_Hello_Triangle,
@@ -52,9 +43,7 @@ uses
   Case01_07_04_Camera_Class,
   Case01_07_05_Camera_Exercise1,
   Case01_07_05_Camera_Exercise1.MyCamera,
-  Case01_07_06_Camera_Exercise2,
-  Case02_01_01_Colors,
-  Case02_02_01_Basic_Lighting_Diffuse;
+  Case01_07_06_Camera_Exercise2;
 
 begin
   try

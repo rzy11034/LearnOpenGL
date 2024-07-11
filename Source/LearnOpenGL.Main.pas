@@ -1,6 +1,6 @@
 ﻿unit LearnOpenGL.Main;
 
-{$mode delphi}{$H+}
+{$mode ObjFPC}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
 
 interface
@@ -8,21 +8,20 @@ interface
 uses
   Classes,
   SysUtils,
-  {%H-}DeepStar.UString,
   {%H-}DeepStar.Utils,
   {%H-}DeepStar.OpenGL.GLAD_GL,
   {%H-}DeepStar.OpenGL.GLFW,
   {%H-}DeepStar.OpenGL.GLM,
-  {%H-}LearnOpenGL.Utils,
-  {%H-}LearnOpenGL.Shader,
-  {%H-}LearnOpenGL.Texture;
+  {%H-}DeepStar.OpenGL.Utils,
+  {%H-}DeepStar.OpenGL.Shader,
+  {%H-}DeepStar.OpenGL.Texture;
 
 procedure Run();
 
 implementation
 
 uses
-  Case02_02_01_Basic_Lighting_Diffuse;
+  Case02_01_01_Colors;
 
 procedure Test;
 begin

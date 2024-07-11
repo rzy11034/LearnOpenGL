@@ -18,9 +18,9 @@ uses
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
   DeepStar.OpenGL.GLM,
-  LearnOpenGL.Shader,
-  LearnOpenGL.Utils,
-  LearnOpenGL.Texture;
+  DeepStar.OpenGL.Shader,
+  DeepStar.OpenGL.Utils,
+  DeepStar.OpenGL.Texture;
 
 const
   SCR_WIDTH = 800;
@@ -172,7 +172,7 @@ begin
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, TArrayUtils_GLfloat.MemorySize(vertices),
+    glBufferData(GL_ARRAY_BUFFER, vertices.MemSize,
       @vertices[0], GL_STATIC_DRAW);
 
     // position attribute ---位置属性
@@ -225,7 +225,7 @@ begin
 
     projection := TGLM.Mat4_Identity;
     projection := TGLM.Perspective(TGLM.Radians(45), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
-    shader.SetUniformMatrix4fv('projection', Mat4Ptr(projection));
+    shader.SetUniformMatrix4fv('projection', projection.ToArray);
 
     // 取消此调用的注释以绘制线框多边形。
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -251,7 +251,7 @@ begin
       camX := GLfloat(Sin(glfwGetTime) * radius);
       camZ := GLfloat(Cos(glfwGetTime) * radius);
       view := TGLM.LookAt(TGLM.vec3(camX, 0, camZ), TGLM.vec3(0, 0, 0), TGLM.vec3(0, 1, 0));
-      shader.SetUniformMatrix4fv('view', Mat4Ptr(view));
+      shader.SetUniformMatrix4fv('view', view.ToArray);
 
       for i := 0 to High(cubePositions) do
       begin
@@ -263,7 +263,7 @@ begin
           angle := GLfloat(25) * glfwGetTime;
 
         model := TGLM.Rotate(model, TGLM.Radians(angle), TGLM.Vec3(1, 0.3, 0.5));
-        shader.SetUniformMatrix4fv('model', Mat4Ptr(model));
+        shader.SetUniformMatrix4fv('model', model.ToArray);
         glDrawArrays(GL_TRIANGLES, 0, 36);
       end;
 

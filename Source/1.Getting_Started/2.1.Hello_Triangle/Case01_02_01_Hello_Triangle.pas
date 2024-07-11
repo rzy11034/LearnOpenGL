@@ -10,7 +10,7 @@ uses
   SysUtils,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
-  LearnOpenGL.Utils;
+  DeepStar.OpenGL.Utils;
 
 procedure Main;
 

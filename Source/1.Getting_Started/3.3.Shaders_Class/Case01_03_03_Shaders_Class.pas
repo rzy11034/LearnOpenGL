@@ -17,8 +17,8 @@ uses
   DeepStar.Utils,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
-  LearnOpenGL.Utils,
-  LearnOpenGL.Shader;
+  DeepStar.OpenGL.Utils,
+  DeepStar.OpenGL.Shader;
 
 const
   SCR_WIDTH = 800;
@@ -78,8 +78,8 @@ end;
 
 procedure Main;
 const
-  vs = '..\..\Source\1.Getting_Started\3.3.Shaders_Class\3.3.shader.vs';
-  fs = '..\..\Source\1.Getting_Started\3.3.Shaders_Class\3.3.shader.fs';
+  vs = '..\Source\1.Getting_Started\3.3.Shaders_Class\3.3.shader.vs';
+  fs = '..\Source\1.Getting_Started\3.3.Shaders_Class\3.3.shader.fs';
 var
   window: PGLFWwindow;
   VAO, VBO: GLuint;
@@ -109,8 +109,7 @@ begin
     glGenBuffers(1, @VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     // 把之前定义的顶点数据复制到缓冲的内存中
-    glBufferData(GL_ARRAY_BUFFER, TArrayUtils_GLfloat.MemorySize(vertices),
-      @vertices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices.MemSize, @vertices[0], GL_STATIC_DRAW);
     // 解析顶点数据
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * SizeOf(GLfloat), Pointer(0));
     glEnableVertexAttribArray(0);
