@@ -18,9 +18,9 @@ uses
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
   DeepStar.OpenGL.GLM,
-  LearnOpenGL.Shader,
-  LearnOpenGL.Utils,
-  LearnOpenGL.Texture;
+  DeepStar.OpenGL.Shader,
+  DeepStar.OpenGL.Utils,
+  DeepStar.OpenGL.Texture;
 
 const
   SCR_WIDTH = 800;
@@ -167,8 +167,7 @@ begin
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, TArrayUtils_GLfloat.MemorySize(vertices),
-      @vertices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices.MemSize, @vertices[0], GL_STATIC_DRAW);
 
     // position attribute ---位置属性
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SizeOf(GLfloat), Pointer(0));
@@ -243,8 +242,8 @@ begin
       projection := TGLM.Mat4_Identity;
       view := TGLM.Translate(view, TGLM.Vec3(0, 0, -3));
       projection := TGLM.Perspective(45, SCR_WIDTH / SCR_HEIGHT, 1, 100);
-      shader.SetUniformMatrix4fv('view', Mat4Ptr(view));
-      shader.SetUniformMatrix4fv('projection', Mat4Ptr(projection));
+      shader.SetUniformMatrix4fv('view', view.ToPtr);
+      shader.SetUniformMatrix4fv('projection', projection.ToPtr);
 
       for i := 0 to High(cubePositions) do
       begin
@@ -254,7 +253,7 @@ begin
         model := TGLM.Translate(model, cubePositions[i]);
         model := TGLM.Rotate(model, glfwGetTime * TGLM.Radians(angle), TGLM.Vec3(1, 1, 1));
 
-        shader.SetUniformMatrix4fv('model', Mat4Ptr(model));
+        shader.SetUniformMatrix4fv('model', model.ToPtr);
         glDrawArrays(GL_TRIANGLES, 0, 36);
       end;
 

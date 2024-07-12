@@ -10,7 +10,7 @@ uses
   SysUtils,
   GLAD_GL,
   GLFW,
-  LearnOpenGL.Utils;
+  ;
 
 procedure Main;
 

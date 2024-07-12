@@ -18,9 +18,9 @@ uses
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
   DeepStar.OpenGL.GLM,
-  LearnOpenGL.Shader,
-  LearnOpenGL.Camera,
-  LearnOpenGL.Utils;
+  DeepStar.OpenGL.Shader,
+  DeepStar.OpenGL.Camera,
+  DeepStar.OpenGL.Utils;
 
   // 每当窗口大小发生变化(由操作系统或用户调整大小)，这个回调函数就会执行
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl; forward;
@@ -77,8 +77,8 @@ begin
   lightCubeShader := TShaderProgram.Create;
   camera := TCamera.Create(TGLM.Vec3(0, 0, 5));
   try
-    lightingShader.LoadShaderFile(cfn(vs), cfn(fs));
-    lightCubeShader.LoadShaderFile(cfn(light_cube_vs), cfn(light_cube_fs));
+    lightingShader.LoadShaderFile(vs, fs);
+    lightCubeShader.LoadShaderFile(light_cube_vs, light_cube_fs);
 
     vertices := TArr_GLfloat([
       -0.5, -0.5, -0.5,
@@ -129,7 +129,7 @@ begin
     glGenBuffers(1, @VBO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, SizeOfArray(vertices), @vertices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices.MemSize, @vertices[0], GL_STATIC_DRAW);
 
     glBindVertexArray(cubeVAO);
 
@@ -169,22 +169,22 @@ begin
 
       projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
       view := camera.GetViewMatrix;
-      lightingShader.SetUniformMatrix4fv('projection', Mat4Ptr(projection));
-      lightingShader.SetUniformMatrix4fv('view', Mat4Ptr(view));
+      lightingShader.SetUniformMatrix4fv('projection', projection.ToPtr);
+      lightingShader.SetUniformMatrix4fv('view', view.ToPtr);
 
       model := TGLM.Mat4_Identity;
-      lightingShader.SetUniformMatrix4fv('model', Mat4Ptr(model));
+      lightingShader.SetUniformMatrix4fv('model', model.ToPtr);
 
       glBindVertexArray(cubeVAO);
       glDrawArrays(GL_TRIANGLES, 0, 36);
 
       lightCubeShader.UseProgram;
-      lightCubeShader.SetUniformMatrix4fv('projection', Mat4Ptr(projection));
-      lightCubeShader.SetUniformMatrix4fv('view', Mat4Ptr(view));
+      lightCubeShader.SetUniformMatrix4fv('projection', projection.ToPtr);
+      lightCubeShader.SetUniformMatrix4fv('view', view.ToPtr);
       model := TGLM.Mat4_Identity;
       model := TGLM.Translate(model, lightPos);
       model := TGLM.Scale(model, TGLM.Vec3(0.2, 0.2, 0.2));
-      lightCubeShader.SetUniformMatrix4fv('model', Mat4Ptr(model));
+      lightCubeShader.SetUniformMatrix4fv('model', model.ToPtr);
 
       glBindVertexArray(lightCubeVAO);
       glDrawArrays(GL_TRIANGLES, 0, 36);

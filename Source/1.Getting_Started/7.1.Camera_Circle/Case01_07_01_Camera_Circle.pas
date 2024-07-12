@@ -225,7 +225,7 @@ begin
 
     projection := TGLM.Mat4_Identity;
     projection := TGLM.Perspective(TGLM.Radians(45), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
-    shader.SetUniformMatrix4fv('projection', projection.ToArray);
+    shader.SetUniformMatrix4fv('projection', projection.ToPtr);
 
     // 取消此调用的注释以绘制线框多边形。
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -251,7 +251,7 @@ begin
       camX := GLfloat(Sin(glfwGetTime) * radius);
       camZ := GLfloat(Cos(glfwGetTime) * radius);
       view := TGLM.LookAt(TGLM.vec3(camX, 0, camZ), TGLM.vec3(0, 0, 0), TGLM.vec3(0, 1, 0));
-      shader.SetUniformMatrix4fv('view', view.ToArray);
+      shader.SetUniformMatrix4fv('view', view.ToPtr);
 
       for i := 0 to High(cubePositions) do
       begin
@@ -263,7 +263,7 @@ begin
           angle := GLfloat(25) * glfwGetTime;
 
         model := TGLM.Rotate(model, TGLM.Radians(angle), TGLM.Vec3(1, 0.3, 0.5));
-        shader.SetUniformMatrix4fv('model', model.ToArray);
+        shader.SetUniformMatrix4fv('model', model.ToPtr);
         glDrawArrays(GL_TRIANGLES, 0, 36);
       end;
 

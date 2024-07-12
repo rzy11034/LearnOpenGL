@@ -18,9 +18,9 @@ uses
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
   DeepStar.OpenGL.GLM,
-  LearnOpenGL.Shader,
-  LearnOpenGL.Utils,
-  LearnOpenGL.Texture;
+  DeepStar.OpenGL.Shader,
+  DeepStar.OpenGL.Utils,
+  DeepStar.OpenGL.Texture;
 
 const
   SCR_WIDTH = 800;
@@ -123,12 +123,10 @@ begin
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, TArrayUtils_GLfloat.MemorySize(vertices),
-      @vertices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices.MemSize, @vertices[0], GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, TArrayUtils_GLint.MemorySize(indices),
-      @indices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.MemSize, @indices[0], GL_STATIC_DRAW);
 
     // position attribute ---位置属性
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat), Pointer(0));
@@ -206,9 +204,9 @@ begin
       model := TGLM.Rotate(model, TGLM.Radians(-55), TGLM.Vec3(1, 0, 0));
       view := TGLM.Translate(view, TGLM.Vec3(0, 0, -3));
       projection := TGLM.Perspective(45, SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
-      shader.SetUniformMatrix4fv('model', Mat4Ptr(model));
-      shader.SetUniformMatrix4fv('view', Mat4Ptr(view));
-      shader.SetUniformMatrix4fv('projection', Mat4Ptr(projection));
+      shader.SetUniformMatrix4fv('model', model.ToPtr);
+      shader.SetUniformMatrix4fv('view', view.ToPtr);
+      shader.SetUniformMatrix4fv('projection', projection.ToPtr);
 
       //glBindVertexArray(VAO);
       glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, Pointer(0));

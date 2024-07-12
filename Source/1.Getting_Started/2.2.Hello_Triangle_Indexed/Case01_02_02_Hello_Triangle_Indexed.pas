@@ -10,7 +10,7 @@ uses
   SysUtils,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
-  LearnOpenGL.Utils;
+  DeepStar.OpenGL.Utils;
 
 procedure Main;
 
@@ -166,14 +166,12 @@ begin
   VBO := GLuint(0);
   glGenBuffers(1, @VBO);
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
-  glBufferData(GL_ARRAY_BUFFER, TArrayUtils_GLfloat.MemorySize(vertices),
-    @vertices[0], GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, vertices.MemSize, @vertices[0], GL_STATIC_DRAW);
   // 生成一个EBO对象， 并绑定
   EBO := GLint(0);
   glGenBuffers(1, @EBO);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, TArrayUtils_GLint.MemorySize(indices),
-    @indices[0], GL_STATIC_DRAW);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.MemSize, @indices[0], GL_STATIC_DRAW);
   // 解析顶点数据
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(0));
   glEnableVertexAttribArray(0); //}

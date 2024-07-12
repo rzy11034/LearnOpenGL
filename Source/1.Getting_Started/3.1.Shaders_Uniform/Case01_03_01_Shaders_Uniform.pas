@@ -10,7 +10,7 @@ uses
   SysUtils,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
-  LearnOpenGL.Utils;
+  DeepStar.OpenGL.Utils;
 
 procedure Main;
 
@@ -161,8 +161,7 @@ begin
   glGenBuffers(1, @VBO);
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
   // 把之前定义的顶点数据复制到缓冲的内存中
-  glBufferData(GL_ARRAY_BUFFER, TArrayUtils_GLfloat.MemorySize(vertices),
-    @vertices[0], GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, vertices.MemSize, @vertices[0], GL_STATIC_DRAW);
   // 解析顶点数据
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(0));
   glEnableVertexAttribArray(0);

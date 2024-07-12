@@ -18,9 +18,9 @@ uses
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
   DeepStar.OpenGL.GLM,
-  LearnOpenGL.Shader,
-  LearnOpenGL.Utils,
-  LearnOpenGL.Texture;
+  DeepStar.OpenGL.Shader,
+  DeepStar.OpenGL.Utils,
+  DeepStar.OpenGL.Texture;
 
 const
   SCR_WIDTH = 800;
@@ -124,12 +124,10 @@ begin
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, TArrayUtils_GLfloat.MemorySize(vertices),
-      @vertices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices.MemSize, @vertices[0], GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, TArrayUtils_GLint.MemorySize(indices),
-      @indices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.MemSize, @indices[0], GL_STATIC_DRAW);
 
     // position attribute ---位置属性
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat), Pointer(0));
@@ -204,7 +202,7 @@ begin
       transform := TGLM.Translate(transform, TGLM.Vec3(0.5, 0, 0));
       transform := TGLM.Rotate(transform, glfwGetTime, TGLM.Vec3(0, 0, 1));
       transform := TGLM.Scale(transform, TGLM.Vec3(0.5, 0.5, 0));
-      shader.SetUniformMatrix4fv('transform', Mat4Ptr(transform));
+      shader.SetUniformMatrix4fv('transform', transform.ToPtr);
       glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, Pointer(0));
 
       scaleAmount := System.Default(GLfloat);
@@ -212,7 +210,7 @@ begin
       transform := TGLM.Mat4_Identity;
       transform := TGLM.Translate(transform, TGLM.Vec3(-0.5, 0.5, 0));
       transform := TGLM.Scale(transform, TGLM.Vec3(scaleAmount, scaleAmount, scaleAmount));
-      shader.SetUniformMatrix4fv('transform', Mat4Ptr(transform));
+      shader.SetUniformMatrix4fv('transform', transform.ToPtr);
       glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, Pointer(0));
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。

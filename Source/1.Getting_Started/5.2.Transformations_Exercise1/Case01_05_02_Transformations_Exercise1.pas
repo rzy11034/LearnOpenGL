@@ -18,9 +18,9 @@ uses
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
   DeepStar.OpenGL.GLM,
-  LearnOpenGL.Shader,
-  LearnOpenGL.Utils,
-  LearnOpenGL.Texture;
+  DeepStar.OpenGL.Shader,
+  DeepStar.OpenGL.Utils,
+  DeepStar.OpenGL.Texture;
 
 const
   SCR_WIDTH = 800;
@@ -101,11 +101,11 @@ begin
 
     vertices := TArr_GLfloat(nil);
     vertices := [
-      // ---位置---    ----颜色----  -纹理坐标-
-      +0.5, +0.5, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0,   // 右上
-      +0.5, -0.5, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0,   // 右下
-      -0.5, -0.5, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,   // 左下
-      -0.5, +0.5, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0];  // 左上
+      // ---位置---       ----颜色----      -纹理坐标-
+      +0.5, +0.5, 0.0,    1.0, 0.0, 0.0,    1.0, 1.0,   // 右上
+      +0.5, -0.5, 0.0,    0.0, 1.0, 0.0,    1.0, 0.0,   // 右下
+      -0.5, -0.5, 0.0,    0.0, 0.0, 1.0,    0.0, 0.0,   // 左下
+      -0.5, +0.5, 0.0,    1.0, 1.0, 0.0,    0.0, 1.0];  // 左上
 
     indices := TArr_GLint(nil);
     indices := [
@@ -123,12 +123,10 @@ begin
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, TArrayUtils_GLfloat.MemorySize(vertices),
-      @vertices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices.MemSize, @vertices[0], GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, TArrayUtils_GLint.MemorySize(indices),
-      @indices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.MemSize, @indices[0], GL_STATIC_DRAW);
 
     // position attribute ---位置属性
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat), Pointer(0));
@@ -206,7 +204,7 @@ begin
 
       // 激活这个程序对象
       shader.UseProgram;
-      shader.SetUniformMatrix4fv('transform', Mat4Ptr(transform));
+      shader.SetUniformMatrix4fv('transform', transform.ToPtr);
 
       // 画出第一个三角形
       glBindVertexArray(VAO);

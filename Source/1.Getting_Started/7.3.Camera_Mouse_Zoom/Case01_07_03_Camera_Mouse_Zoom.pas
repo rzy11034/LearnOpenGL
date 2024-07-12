@@ -18,9 +18,9 @@ uses
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
   DeepStar.OpenGL.GLM,
-  LearnOpenGL.Shader,
-  LearnOpenGL.Utils,
-  LearnOpenGL.Texture;
+  DeepStar.OpenGL.Shader,
+  DeepStar.OpenGL.Utils,
+  DeepStar.OpenGL.Texture;
 
   // 每当窗口大小发生变化(由操作系统或用户调整大小)，这个回调函数就会执行
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl; forward;
@@ -145,8 +145,7 @@ begin
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, TArrayUtils_GLfloat.MemorySize(vertices),
-      @vertices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices.MemSize, @vertices[0], GL_STATIC_DRAW);
 
     // position attribute ---位置属性
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SizeOf(GLfloat), Pointer(0));
@@ -221,11 +220,11 @@ begin
 
       projection := TGLM.Mat4_Identity;
       projection := TGLM.Perspective(TGLM.Radians(fov), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
-      shader.SetUniformMatrix4fv('projection', Mat4Ptr(projection));
+      shader.SetUniformMatrix4fv('projection', projection.ToPtr);
 
       view := TGLM.Mat4_Identity;
       view := TGLM.LookAt(cameraPos, cameraPos + cameraFront, cameraUp);
-      shader.SetUniformMatrix4fv('view', Mat4Ptr(view));
+      shader.SetUniformMatrix4fv('view', view.ToPtr);
 
       for i := 0 to High(cubePositions) do
       begin
@@ -237,7 +236,7 @@ begin
           angle := GLfloat(25) * glfwGetTime;
 
         model := TGLM.Rotate(model, TGLM.Radians(angle), TGLM.Vec3(1, 0.3, 0.5));
-        shader.SetUniformMatrix4fv('model', Mat4Ptr(model));
+        shader.SetUniformMatrix4fv('model', model.ToPtr);
         glDrawArrays(GL_TRIANGLES, 0, 36);
       end;
 

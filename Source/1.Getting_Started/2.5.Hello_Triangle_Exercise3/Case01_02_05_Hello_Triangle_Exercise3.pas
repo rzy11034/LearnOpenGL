@@ -10,7 +10,7 @@ uses
   SysUtils,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
-  LearnOpenGL.Utils;
+  DeepStar.OpenGL.Utils;
 
 procedure Main;
 
@@ -195,8 +195,7 @@ begin
 
   glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
   glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
-  glBufferData(GL_ARRAY_BUFFER, TArrayUtils_GLfloat.MemorySize(vertices),
-    @vertices[0], GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, vertices.MemSize, @vertices[0], GL_STATIC_DRAW);
 
   glBindVertexArray(VAOs[0]);
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(0));
