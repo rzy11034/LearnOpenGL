@@ -25,18 +25,7 @@ uses
   Case02_01_01_Colors;
 
 procedure Test;
-var
-  v: TVec3;
-  s: String;
-  va:TValue;
 begin
-  s := '';
-  v := TGLM.Vec3(5);
-
-  TValue.Make(@v, TypeInfo(TVec3), va);
-  s := va.ToString;
-  getv
-
   Exit;
 end;
 
