@@ -90,7 +90,7 @@ begin
 
   shader := TShaderProgram.Create;
   try
-    shader.LoadShaderFile(CrossFixFileName(vs), CrossFixFileName(fs));
+    shader.LoadShaderFile(vs, fs);
 
     // 创建一个VAO
     VAO := GLuint(0);

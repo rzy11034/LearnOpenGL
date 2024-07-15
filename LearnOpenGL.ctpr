@@ -53,6 +53,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="adFCL"/>
+      </Item>
+      <Item>
         <PackageName Value="DeepStar_Lib"/>
       </Item>
     </RequiredPackages>

@@ -2,7 +2,6 @@
 
 {$mode ObjFPC}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
-{$WARN 5025 off : Local variable "$1" not used}
 interface
 
 uses
