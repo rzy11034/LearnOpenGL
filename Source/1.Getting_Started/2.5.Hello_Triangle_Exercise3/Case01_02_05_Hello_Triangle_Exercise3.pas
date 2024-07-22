@@ -174,8 +174,7 @@ begin
   glDeleteShader(fragmentShader1);
   glDeleteShader(fragmentShader2);
 
-  vertices := TArr_GLfloat(nil);
-  vertices := [
+  vertices := TArr_GLfloat([
     // 第一个三角形
     -0.9, -0.5, 0.0,
     -0.0, -0.5, 0.0,
@@ -183,7 +182,7 @@ begin
     // 第二个三角形
     0.0, -0.5, 0.0,
     0.9, -0.5, 0.0,
-    0.45, 0.5, 0.0];
+    0.45, 0.5, 0.0]);
 
   VAOs := TArr_GLuint(nil);
   VBOs := TArr_GLuint(nil);

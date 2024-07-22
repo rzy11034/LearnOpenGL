@@ -155,15 +155,16 @@ begin
   glBindVertexArray(VAO);
   // 顶点数组模
   //设置顶点数据(和缓冲区)并配置顶点属性
-  vertices := TArr_GLfloat(nil);
-  vertices := [
+  vertices := TArr_GLfloat([
     // 位置             // 颜色
     +0.5, -0.5, 0.0,    1.0, 0.0, 0.0,   // 右下
     -0.5, -0.5, 0.0,    0.0, 1.0, 0.0,   // 左下
-    +0.0, +0.5, 0.0,    0.0, 0.0, 1.0];  // 顶部
+    +0.0, +0.5, 0.0,    0.0, 0.0, 1.0]);  // 顶部
+
   // 生成一个VBO对象, 新创建的缓冲绑定到GL_ARRAY_BUFFER目标上
   glGenBuffers(1, @VBO);
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
   // 把之前定义的顶点数据复制到缓冲的内存中
   glBufferData(GL_ARRAY_BUFFER, vertices.MemSize, @vertices[0], GL_STATIC_DRAW);
   // 解析顶点数据

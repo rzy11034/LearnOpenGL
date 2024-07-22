@@ -8,7 +8,6 @@ interface
 uses
   Classes,
   SysUtils,
-  Rtti,
   {%H-}DeepStar.Utils,
   {%H-}DeepStar.OpenGL.GLAD_GL,
   {%H-}DeepStar.OpenGL.GLFW,

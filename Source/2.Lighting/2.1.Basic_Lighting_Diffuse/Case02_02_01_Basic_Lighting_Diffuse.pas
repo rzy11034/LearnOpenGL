@@ -135,7 +135,7 @@ begin
     // 位置属性
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * SizeOf(GLfloat), Pointer(0));
     glEnableVertexAttribArray(0);
-    // 正常属性
+    // 法向量
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * SizeOf(GLfloat), Pointer(3 * SizeOf(GLfloat)));
     glEnableVertexAttribArray(1);
 
@@ -147,7 +147,7 @@ begin
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
     // 注意，我们更新了灯的位置属性的步幅来反映更新后的缓冲区数据
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * SizeOf(GLfloat), Pointer(0));
     glEnableVertexAttribArray(0);
 
     // 渲染循环
