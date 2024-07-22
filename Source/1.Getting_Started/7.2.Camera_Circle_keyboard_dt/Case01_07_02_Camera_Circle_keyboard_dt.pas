@@ -181,7 +181,7 @@ begin
 
     projection := TGLM.Mat4_Identity;
     projection := TGLM.Perspective(TGLM.Radians(45), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
-    shader.SetUniformMatrix4fv('projection', projection.ToPtr);
+    shader.SetUniformMatrix4fv('projection', @projection.m);
 
     // 取消此调用的注释以绘制线框多边形。
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -213,7 +213,7 @@ begin
 
       view := TGLM.Mat4_Identity;
       view := TGLM.LookAt(cameraPos, cameraPos + cameraFront, cameraUp);
-      shader.SetUniformMatrix4fv('view', view.ToPtr);
+      shader.SetUniformMatrix4fv('view', @view.m);
 
       for i := 0 to High(cubePositions) do
       begin
@@ -225,11 +225,11 @@ begin
           angle := GLfloat(25) * glfwGetTime;
 
         model := TGLM.Rotate(model, TGLM.Radians(angle), TGLM.Vec3(1, 0.3, 0.5));
-        shader.SetUniformMatrix4fv('model', model.ToPtr);
+        shader.SetUniformMatrix4fv('model', @model.m);
         glDrawArrays(GL_TRIANGLES, 0, 36);
       end;
 
-      WriteLn(TGLM.Mat4ToString('view', view));
+      //WriteLn(TGLM.Mat4ToString('view', view));
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
       glfwSwapBuffers(window);

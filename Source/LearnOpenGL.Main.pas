@@ -22,7 +22,7 @@ procedure Run();
 implementation
 
 uses
-  Case02_01_01_Colors;
+  Case02_02_01_Basic_Lighting_Diffuse;
 
 procedure Test;
 begin

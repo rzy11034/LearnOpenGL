@@ -49,7 +49,7 @@ var
   lastX: GLfloat = SCR_WIDTH / 2.0;
   lastY: GLfloat = SCR_HEIGHT / 2.0;
 
-  lightPos: TVec3 = (data:(1.2, 1.0, 2.0));
+  lightPos: TVec3 = (v:(1.2, 1.0, 2.0));
 
 procedure Main;
 const
@@ -169,22 +169,22 @@ begin
 
       projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
       view := camera.GetViewMatrix;
-      lightingShader.SetUniformMatrix4fv('projection', projection.ToPtr);
-      lightingShader.SetUniformMatrix4fv('view', view.ToPtr);
+      lightingShader.SetUniformMatrix4fv('projection', @projection.m);
+      lightingShader.SetUniformMatrix4fv('view', @view.m);
 
       model := TGLM.Mat4_Identity;
-      lightingShader.SetUniformMatrix4fv('model', model.ToPtr);
+      lightingShader.SetUniformMatrix4fv('model', @model.m);
 
       glBindVertexArray(cubeVAO);
       glDrawArrays(GL_TRIANGLES, 0, 36);
 
       lightCubeShader.UseProgram;
-      lightCubeShader.SetUniformMatrix4fv('projection', projection.ToPtr);
-      lightCubeShader.SetUniformMatrix4fv('view', view.ToPtr);
+      lightCubeShader.SetUniformMatrix4fv('projection', @projection.m);
+      lightCubeShader.SetUniformMatrix4fv('view', @view.m);
       model := TGLM.Mat4_Identity;
       model := TGLM.Translate(model, lightPos);
       model := TGLM.Scale(model, TGLM.Vec3(0.2));
-      lightCubeShader.SetUniformMatrix4fv('model', model.ToPtr);
+      lightCubeShader.SetUniformMatrix4fv('model', @model.m);
 
       glBindVertexArray(lightCubeVAO);
       glDrawArrays(GL_TRIANGLES, 0, 36);

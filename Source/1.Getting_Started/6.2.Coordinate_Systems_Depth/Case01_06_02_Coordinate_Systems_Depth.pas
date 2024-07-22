@@ -236,16 +236,16 @@ begin
 
       projection := TGLM.Mat4_Identity;
       projection := TGLM.Perspective(TGLM.Radians(45), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
-      shader.SetUniformMatrix4fv('projection', projection.ToPtr);
+      shader.SetUniformMatrix4fv('projection', @projection.m);
 
 
       view := TGLM.Mat4_Identity;
       view := TGLM.Translate(view, TGLM.Vec3(0, 0, -3));
-      shader.SetUniformMatrix4fv('view', view.ToPtr);
+      shader.SetUniformMatrix4fv('view', @view.m);
 
       model := TGLM.Mat4_Identity;
       model := TGLM.Rotate(model, TGLM.Radians(glfwGetTime) * 50, TGLM.Vec3(0.5, 1, 0));
-      shader.SetUniformMatrix4fv('model', model.ToPtr);
+      shader.SetUniformMatrix4fv('model', @model.m);
 
       //glBindVertexArray(VAO);
       glDrawArrays(GL_TRIANGLES, 0, 36);

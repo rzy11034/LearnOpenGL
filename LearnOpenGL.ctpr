@@ -53,9 +53,6 @@
     </RunParams>
     <RequiredPackages>
       <Item>
-        <PackageName Value="adFCL"/>
-      </Item>
-      <Item>
         <PackageName Value="DeepStar_Lib"/>
       </Item>
     </RequiredPackages>
@@ -458,6 +455,26 @@
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\2.1.Basic_Lighting_Diffuse\Case02_02_01_Basic_Lighting_Diffuse.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\2.1.Basic_Lighting_Diffuse\2.1.basic_lighting.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\2.1.Basic_Lighting_Diffuse\2.1.basic_lighting.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\2.1.Basic_Lighting_Diffuse\2.1.light_cube.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\2.1.Basic_Lighting_Diffuse\2.1.light_cube.vs"/>
+        <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
       </Unit>
     </Units>

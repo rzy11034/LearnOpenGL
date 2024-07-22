@@ -79,7 +79,7 @@ begin
 
   shader := TShaderProgram.Create;
   try
-    shader.LoadShaderFile(CrossFixFileName(vs), CrossFixFileName(fs));
+    shader.LoadShaderFile(vs, fs);
 
     vertices := TArr_GLfloat([
       -0.5, -0.5, -0.5, 0.0, 0.0,
@@ -125,16 +125,16 @@ begin
       -0.5, 0.5, -0.5, 0.0, 1.0]);
 
     cubePositions := TArr_TVec3([
-      TGLM.Vec3(0.0, 0.0, 0.0),
-      TGLM.Vec3(2.0, 5.0, -15.0),
+      TGLM.Vec3( 0.0,  0.0,  0.0),
+      TGLM.Vec3( 2.0,  5.0, -15.0),
       TGLM.Vec3(-1.5, -2.2, -2.5),
       TGLM.Vec3(-3.8, -2.0, -12.3),
-      TGLM.Vec3(2.4, -0.4, -3.5),
-      TGLM.Vec3(-1.7, 3.0, -7.5),
-      TGLM.Vec3(1.3, -2.0, -2.5),
-      TGLM.Vec3(1.5, 2.0, -2.5),
-      TGLM.Vec3(1.5, 0.2, -1.5),
-      TGLM.Vec3(-1.3, 1.0, -1.5)]);
+      TGLM.Vec3( 2.4, -0.4, -3.5),
+      TGLM.Vec3(-1.7,  3.0, -7.5),
+      TGLM.Vec3( 1.3, -2.0, -2.5),
+      TGLM.Vec3( 1.5,  2.0, -2.5),
+      TGLM.Vec3( 1.5,  0.2, -1.5),
+      TGLM.Vec3(-1.3,  1.0, -1.5)]);
 
     VAO := GLuint(0);
     VBO := GLuint(0);
@@ -201,7 +201,7 @@ begin
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     // 渲染循环
-    while glfwWindowShouldClose(window).ToBoolean do
+    while glfwWindowShouldClose(window) = 0 do
     begin
       // 每帧时时逻辑
       currentFrame := GLfloat(glfwGetTime);
@@ -222,11 +222,11 @@ begin
 
       projection := TGLM.Mat4_Identity;
       projection := TGLM.Perspective(TGLM.Radians(fov), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
-      shader.SetUniformMatrix4fv('projection', projection.ToPtr);
+      shader.SetUniformMatrix4fv('projection', @projection.m);
 
       view := TGLM.Mat4_Identity;
       view := Calculate_lookAt_matrix(cameraPos, cameraPos + cameraFront, cameraUp);
-      shader.SetUniformMatrix4fv('view', view.ToPtr);
+      shader.SetUniformMatrix4fv('view', @view.m);
 
       for i := 0 to High(cubePositions) do
       begin
@@ -238,7 +238,7 @@ begin
           angle := GLfloat(25) * glfwGetTime;
 
         model := TGLM.Rotate(model, TGLM.Radians(angle), TGLM.Vec3(1, 0.3, 0.5));
-        shader.SetUniformMatrix4fv('model',model.ToPtr);
+        shader.SetUniformMatrix4fv('model',@model.m);
         glDrawArrays(GL_TRIANGLES, 0, 36);
       end;
 
@@ -338,20 +338,20 @@ begin
   yaxis := TGLM.Cross(zaxis, xaxis);
 
   translation := TGLM.Mat4_Identity; // Identity matrix by default
-  translation.Data[3][0] := -position.x; // Third column, first row
-  translation.Data[3][1] := -position.y;
-  translation.Data[3][2] := -position.z;
+  translation.m[3, 0] := -position.x; // Third column, first row
+  translation.m[3, 1] := -position.y;
+  translation.m[3, 2] := -position.z;
 
   rotation := TGLM.Mat4_Identity;
-  rotation.Data[0][0] := xaxis.x; // First column, first row
-  rotation.Data[1][0] := xaxis.y;
-  rotation.Data[2][0] := xaxis.z;
-  rotation.Data[0][1] := yaxis.x; // First column, second row
-  rotation.Data[1][1] := yaxis.y;
-  rotation.Data[2][1] := yaxis.z;
-  rotation.Data[0][2] := zaxis.x; // First column, third row
-  rotation.Data[1][2] := zaxis.y;
-  rotation.Data[2][2] := zaxis.z;
+  rotation.m[0, 0] := xaxis.x; // First column, first row
+  rotation.m[1, 0] := xaxis.y;
+  rotation.m[2, 0] := xaxis.z;
+  rotation.m[0, 1] := yaxis.x; // First column, second row
+  rotation.m[1, 1] := yaxis.y;
+  rotation.m[2, 1] := yaxis.z;
+  rotation.m[0, 2] := zaxis.x; // First column, third row
+  rotation.m[1, 2] := zaxis.y;
+  rotation.m[2, 2] := zaxis.z;
 
   // Return lookAt matrix as combination of translation and rotation matrix
   Result := (rotation * translation).Transpose;

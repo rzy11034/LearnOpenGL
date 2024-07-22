@@ -148,20 +148,21 @@ begin
   glGenVertexArrays(1, @VAO);
   glBindVertexArray(VAO);
 
-  vertices := TArr_GLfloat(nil);
-  vertices := [
-    0.5, 0.5, 0.0,   // 右上角
-    0.5, -0.5, 0.0,  // 右下角
+  vertices := TArr_GLfloat([
+     0.5,  0.5, 0.0,   // 右上角
+     0.5, -0.5, 0.0,  // 右下角
     -0.5, -0.5, 0.0, // 左下角
-    -0.5, 0.5, 0.0];   // 左上角
+    -0.5,  0.5, 0.0]);   // 左上角
+
   // 绘制出矩形所需的索引
-  indices := TArr_GLint(nil);
-  indices := [
-    // 注意索引从0开始!
-    // 此例的索引(0,1,2,3)就是顶点数组vertices的下标，
-    // 这样可以由下标代表顶点组合成矩形
+  // 注意索引从0开始!
+  // 此例的索引(0,1,2,3)就是顶点数组vertices的下标，
+  // 这样可以由下标代表顶点组合成矩形
+  indices := TArr_GLint([
     0, 1, 3, // 第一个三角形
-    1, 2, 3];  // 第二个三角形
+    1, 2, 3]);  // 第二个三角形
+
+
   // 生成一个VBO对象, 新创建的缓冲绑定到GL_ARRAY_BUFFER目标上
   VBO := GLuint(0);
   glGenBuffers(1, @VBO);

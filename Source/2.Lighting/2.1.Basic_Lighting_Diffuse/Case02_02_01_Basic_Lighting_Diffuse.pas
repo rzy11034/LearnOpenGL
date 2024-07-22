@@ -49,14 +49,14 @@ var
   lastX: GLfloat = SCR_WIDTH / 2.0;
   lastY: GLfloat = SCR_HEIGHT / 2.0;
 
-  lightPos: TVec3 = (data:(1.2, 1.0, 2.0));
+  lightPos: TVec3 = (v:(1.2, 1.0, 2.0));
 
 procedure Main;
 const
-  fs = '..\Source\2.Lighting\1.Colors\2.1.colors.fs';
-  vs = '..\Source\2.Lighting\1.Colors\2.1.colors.vs';
-  light_cube_fs = '..\Source\2.Lighting\1.Colors\2.1.light_cube.fs';
-  light_cube_vs = '..\Source\2.Lighting\1.Colors\2.1.light_cube.vs';
+  fs = '..\Source\2.Lighting\2.1.Basic_Lighting_Diffuse\2.1.basic_lighting.fs';
+  vs = '..\Source\2.Lighting\2.1.Basic_Lighting_Diffuse\2.1.basic_lighting.vs';
+  light_cube_fs = '..\Source\2.Lighting\2.1.Basic_Lighting_Diffuse\2.1.light_cube.fs';
+  light_cube_vs = '..\Source\2.Lighting\2.1.Basic_Lighting_Diffuse\2.1.light_cube.vs';
 var
   window: PGLFWwindow;
   lightingShader, lightCubeShader: TShaderProgram;
@@ -72,7 +72,6 @@ begin
     Exit;
   end;
 
-  Randomize;
   lightingShader := TShaderProgram.Create;
   lightCubeShader := TShaderProgram.Create;
   camera := TCamera.Create(TGLM.Vec3(0, 0, 5));
@@ -81,47 +80,47 @@ begin
     lightCubeShader.LoadShaderFile(light_cube_vs, light_cube_fs);
 
     vertices := TArr_GLfloat([
-      -0.5, -0.5, -0.5,
-       0.5, -0.5, -0.5,
-       0.5,  0.5, -0.5,
-       0.5,  0.5, -0.5,
-      -0.5,  0.5, -0.5,
-      -0.5, -0.5, -0.5,
+      -0.5, -0.5, -0.5,  0.0,  0.0, -1.0,
+       0.5, -0.5, -0.5,  0.0,  0.0, -1.0,
+       0.5,  0.5, -0.5,  0.0,  0.0, -1.0,
+       0.5,  0.5, -0.5,  0.0,  0.0, -1.0,
+      -0.5,  0.5, -0.5,  0.0,  0.0, -1.0,
+      -0.5, -0.5, -0.5,  0.0,  0.0, -1.0,
 
-      -0.5, -0.5,  0.5,
-       0.5, -0.5,  0.5,
-       0.5,  0.5,  0.5,
-       0.5,  0.5,  0.5,
-      -0.5,  0.5,  0.5,
-      -0.5, -0.5,  0.5,
+      -0.5, -0.5,  0.5,  0.0,  0.0,  1.0,
+       0.5, -0.5,  0.5,  0.0,  0.0,  1.0,
+       0.5,  0.5,  0.5,  0.0,  0.0,  1.0,
+       0.5,  0.5,  0.5,  0.0,  0.0,  1.0,
+      -0.5,  0.5,  0.5,  0.0,  0.0,  1.0,
+      -0.5, -0.5,  0.5,  0.0,  0.0,  1.0,
 
-      -0.5,  0.5,  0.5,
-      -0.5,  0.5, -0.5,
-      -0.5, -0.5, -0.5,
-      -0.5, -0.5, -0.5,
-      -0.5, -0.5,  0.5,
-      -0.5,  0.5,  0.5,
+      -0.5,  0.5,  0.5, -1.0,  0.0,  0.0,
+      -0.5,  0.5, -0.5, -1.0,  0.0,  0.0,
+      -0.5, -0.5, -0.5, -1.0,  0.0,  0.0,
+      -0.5, -0.5, -0.5, -1.0,  0.0,  0.0,
+      -0.5, -0.5,  0.5, -1.0,  0.0,  0.0,
+      -0.5,  0.5,  0.5, -1.0,  0.0,  0.0,
 
-       0.5,  0.5,  0.5,
-       0.5,  0.5, -0.5,
-       0.5, -0.5, -0.5,
-       0.5, -0.5, -0.5,
-       0.5, -0.5,  0.5,
-       0.5,  0.5,  0.5,
+       0.5,  0.5,  0.5,  1.0,  0.0,  0.0,
+       0.5,  0.5, -0.5,  1.0,  0.0,  0.0,
+       0.5, -0.5, -0.5,  1.0,  0.0,  0.0,
+       0.5, -0.5, -0.5,  1.0,  0.0,  0.0,
+       0.5, -0.5,  0.5,  1.0,  0.0,  0.0,
+       0.5,  0.5,  0.5,  1.0,  0.0,  0.0,
 
-      -0.5, -0.5, -0.5,
-       0.5, -0.5, -0.5,
-       0.5, -0.5,  0.5,
-       0.5, -0.5,  0.5,
-      -0.5, -0.5,  0.5,
-      -0.5, -0.5, -0.5,
+      -0.5, -0.5, -0.5,  0.0, -1.0,  0.0,
+       0.5, -0.5, -0.5,  0.0, -1.0,  0.0,
+       0.5, -0.5,  0.5,  0.0, -1.0,  0.0,
+       0.5, -0.5,  0.5,  0.0, -1.0,  0.0,
+      -0.5, -0.5,  0.5,  0.0, -1.0,  0.0,
+      -0.5, -0.5, -0.5,  0.0, -1.0,  0.0,
 
-      -0.5,  0.5, -0.5,
-       0.5,  0.5, -0.5,
-       0.5,  0.5,  0.5,
-       0.5,  0.5,  0.5,
-      -0.5,  0.5,  0.5,
-      -0.5,  0.5, -0.5]);
+      -0.5,  0.5, -0.5,  0.0,  1.0,  0.0,
+       0.5,  0.5, -0.5,  0.0,  1.0,  0.0,
+       0.5,  0.5,  0.5,  0.0,  1.0,  0.0,
+       0.5,  0.5,  0.5,  0.0,  1.0,  0.0,
+      -0.5,  0.5,  0.5,  0.0,  1.0,  0.0,
+      -0.5,  0.5, -0.5,  0.0,  1.0,  0.0]);
 
     cubeVAO := GLuint(0);
     VBO := GLuint(0);
@@ -133,9 +132,12 @@ begin
 
     glBindVertexArray(cubeVAO);
 
-    // position attribute ---位置属性
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(0));
+    // 位置属性
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * SizeOf(GLfloat), Pointer(0));
     glEnableVertexAttribArray(0);
+    // 正常属性
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * SizeOf(GLfloat), Pointer(3 * SizeOf(GLfloat)));
+    glEnableVertexAttribArray(1);
 
     // 第二，配置灯的VAO (VBO保持不变;对于同样是3D立方体的光物体，顶点是相同的)
     lightCubeVAO := GLuint(0);
@@ -144,6 +146,7 @@ begin
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
+    // 注意，我们更新了灯的位置属性的步幅来反映更新后的缓冲区数据
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(0));
     glEnableVertexAttribArray(0);
 
@@ -162,29 +165,31 @@ begin
       glClearColor(0.1, 0.1, 0.1, 0.1);
       glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
 
-      // 在设置制服/绘制对象时，请确保激活着色器
+      // 在设置uniforms/绘制对象时，请确保激活着色器
       lightingShader.UseProgram;
       lightingShader.SetUniformFloat('objectColor', [1.0, 0.5, 0.31]);
       lightingShader.SetUniformFloat('lightColor',  [1.0, 1.0, 1.0]);
+      lightingShader.SetUniformFloat('lightPos', lightPos);
 
+      // 视图/投影转换
       projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
       view := camera.GetViewMatrix;
-      lightingShader.SetUniformMatrix4fv('projection', projection.ToPtr);
-      lightingShader.SetUniformMatrix4fv('view', view.ToPtr);
+      lightingShader.SetUniformMatrix4fv('projection', @projection.m);
+      lightingShader.SetUniformMatrix4fv('view', @view.m);
 
       model := TGLM.Mat4_Identity;
-      lightingShader.SetUniformMatrix4fv('model', model.ToPtr);
+      lightingShader.SetUniformMatrix4fv('model', @model.m);
 
       glBindVertexArray(cubeVAO);
       glDrawArrays(GL_TRIANGLES, 0, 36);
 
       lightCubeShader.UseProgram;
-      lightCubeShader.SetUniformMatrix4fv('projection', projection.ToPtr);
-      lightCubeShader.SetUniformMatrix4fv('view', view.ToPtr);
+      lightCubeShader.SetUniformMatrix4fv('projection', @projection.m);
+      lightCubeShader.SetUniformMatrix4fv('view', @view.m);
       model := TGLM.Mat4_Identity;
       model := TGLM.Translate(model, lightPos);
       model := TGLM.Scale(model, TGLM.Vec3(0.2, 0.2, 0.2));
-      lightCubeShader.SetUniformMatrix4fv('model', model.ToPtr);
+      lightCubeShader.SetUniformMatrix4fv('model', @model.m);
 
       glBindVertexArray(lightCubeVAO);
       glDrawArrays(GL_TRIANGLES, 0, 36);

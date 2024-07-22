@@ -204,7 +204,7 @@ begin
 
       // 激活这个程序对象
       shader.UseProgram;
-      shader.SetUniformMatrix4fv('transform', transform.ToPtr);
+      shader.SetUniformMatrix4fv('transform', @transform.m);
 
       // 画出第一个三角形
       glBindVertexArray(VAO);

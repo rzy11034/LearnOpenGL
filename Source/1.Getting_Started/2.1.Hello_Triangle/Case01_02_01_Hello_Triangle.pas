@@ -149,11 +149,11 @@ begin
 
   // 顶点数组模
   //设置顶点数据(和缓冲区)并配置顶点属性
-  vertices := TArr_GLfloat(nil);
-  vertices := [
+  vertices := TArr_GLfloat([
     -0.5, -0.5, 0.0,
-    0.5, -0.5, 0.0,
-    0.0, 0.5, 0.0];
+     0.5, -0.5, 0.0,
+     0.0,  0.5, 0.0]);
+
   // 生成一个VBO对象, 新创建的缓冲绑定到GL_ARRAY_BUFFER目标上
   VBO := GLuint(0);
   glGenBuffers(1, @VBO);
