@@ -20,7 +20,8 @@ const
   SCR_HEIGHT = 600;
 
 const
-  vertexShaderSource: PGLchar = '#version 330 core'
+  vertexShaderSource: PGLchar = ''
+    + LE + '#version 330 core'
     + LE + 'layout (location = 0) in vec3 aPos; // 位置变量的属性位置值为0'
     + LE + 'void main() '
     + LE + '{ '

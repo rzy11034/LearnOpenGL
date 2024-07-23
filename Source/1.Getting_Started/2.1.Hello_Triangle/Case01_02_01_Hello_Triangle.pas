@@ -53,7 +53,7 @@ end;
 procedure Main;
 var
   window: PGLFWwindow;
-  success, EBO: GLint;
+  success: GLint;
   vertices: TArr_GLfloat;
   infoLog: TArr_GLchar;
   vertexShader, fragmentShader, shaderProgram, VBO, VAO: GLuint;
@@ -191,7 +191,6 @@ begin
 
   glDeleteVertexArrays(1, @VAO);
   glDeleteBuffers(1, @VBO);
-  glDeleteBuffers(1, @EBO);
   glDeleteProgram(shaderProgram);
 
   // 释放 / 删除之前的分配的所有资源

@@ -21,14 +21,16 @@ const
   SCR_HEIGHT = 600;
 
 const
-  vertexShaderSource: PGLchar = '#version 330 core' + LE
+  vertexShaderSource: PGLchar = ''
+    +'#version 330 core' + LE
     + 'layout (location = 0) in vec3 aPos; '
     + 'void main() '
     + '{ '
     + '   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0); '
     + '} ';
 
-  fragmentShaderSource: PGLchar = '#version 330 core' + LE
+  fragmentShaderSource: PGLchar = ''
+    + '#version 330 core' + LE
     + 'out vec4 FragColor;'
     + 'void main()'
     + '{'
@@ -149,10 +151,10 @@ begin
   glBindVertexArray(VAO);
 
   vertices := TArr_GLfloat([
-     0.5,  0.5, 0.0,   // 右上角
-     0.5, -0.5, 0.0,  // 右下角
-    -0.5, -0.5, 0.0, // 左下角
-    -0.5,  0.5, 0.0]);   // 左上角
+     0.5,  0.5, 0.0,    // 右上角
+     0.5, -0.5, 0.0,    // 右下角
+    -0.5, -0.5, 0.0,    // 左下角
+    -0.5,  0.5, 0.0]);  // 左上角
 
   // 绘制出矩形所需的索引
   // 注意索引从0开始!

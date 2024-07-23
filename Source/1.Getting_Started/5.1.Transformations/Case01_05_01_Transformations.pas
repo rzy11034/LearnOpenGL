@@ -7,7 +7,7 @@ interface
 
 uses
   Classes,
-  SysUtils;
+  SysUtils, DeepStar.OpenGL.Utils, DeepStar.OpenGL.GLM;
 
 procedure Main;
 
@@ -17,9 +17,7 @@ uses
   DeepStar.Utils,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
-  DeepStar.OpenGL.GLM,
   DeepStar.OpenGL.Shader,
-  DeepStar.OpenGL.Utils,
   DeepStar.OpenGL.Texture;
 
 const
@@ -86,12 +84,12 @@ const
   tx2 = '..\Resources\textures\awesomeface.png';
 var
   window: PGLFWwindow;
-  vertices: TArr_GLfloat;
   shader: TShaderProgram;
   ot: TTexture;
-  indices: TArr_GLint;
   VAO, VBO, EBO, texture0, texture1: GLuint;
-  transform: TMat4;
+  transform, rotate, translation: TMat4;
+  vertices: TArr_GLfloat;
+  indices: TArr_GLint;
 begin
   window := InitWindows;
 
@@ -99,18 +97,16 @@ begin
   try
     shader.LoadShaderFile(CrossFixFileName(vs), CrossFixFileName(fs));
 
-    vertices := TArr_GLfloat(nil);
-    vertices := [
+    vertices := TArr_GLfloat([
       // ---位置---       ----颜色----      -纹理坐标-
       +0.5, +0.5, 0.0,    1.0, 0.0, 0.0,    1.0, 1.0,   // 右上
       +0.5, -0.5, 0.0,    0.0, 1.0, 0.0,    1.0, 0.0,   // 右下
       -0.5, -0.5, 0.0,    0.0, 0.0, 1.0,    0.0, 0.0,   // 左下
-      -0.5, +0.5, 0.0,    1.0, 1.0, 0.0,    0.0, 1.0];  // 左上
+      -0.5, +0.5, 0.0,    1.0, 1.0, 0.0,    0.0, 1.0]);  // 左上
 
-    indices := TArr_GLint(nil);
-    indices := [
+    indices := TArr_GLint([
       0, 1, 3, // first triangle
-      1, 2, 3];  // second triangle
+      1, 2, 3]);  // second triangle
 
     VAO := GLuint(0);
     VBO := GLuint(0);
@@ -129,27 +125,27 @@ begin
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.MemSize, @indices[0], GL_STATIC_DRAW);
 
     // position attribute ---位置属性
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat), Pointer(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(0));
     glEnableVertexAttribArray(0);
     // color attribute  ---颜色属性
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat),
-      Pointer(3 * SizeOf(GLfloat)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(3 * SIZE_F));
     glEnableVertexAttribArray(1);
     // texture coord attribute ---纹理坐标属性
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat),
-      Pointer(6 * SizeOf(GLfloat)));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(6 * SIZE_F));
     glEnableVertexAttribArray(2);
 
     // 新建并加载一个纹理
     texture0 := GLuint(0);
     glGenTextures(1, @texture0);
     glBindTexture(GL_TEXTURE_2D, texture0);
+
     // 为当前绑定的纹理对象设置环绕、过滤方式
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TTexture.Create(CrossFixFileName(tx1));
+
+    ot := TTexture.Create(tx1);
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -161,12 +157,14 @@ begin
     texture1 := GLuint(0);
     glGenTextures(1, @texture1);
     glBindTexture(GL_TEXTURE_2D, texture1);
+
     // 为当前绑定的纹理对象设置环绕、过滤方式
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TTexture.Create(CrossFixFileName(tx2));
+
+    ot := TTexture.Create(tx2);
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -197,10 +195,9 @@ begin
       glActiveTexture(GL_TEXTURE1);
       glBindTexture(GL_TEXTURE_2D, texture1);
 
-      transform := TGLM.Mat4_Identity;
-      transform := TGLM.Translate(transform, TGLM.Vec3(0.5, -0.5, 0));
-      transform := TGLM.Rotate(transform, glfwGetTime, TGLM.Vec3(0, 0, 1));
-      //transform := TGLM.Rotate(transform, 45, TGLM.Vec3(0, 0, 1));
+      translation := TGLM.Translate(TGLM.Mat4(1), TGLM.Vec3(0.5, -0.5, 0));
+      rotate := TGLM.Rotate(TGLM.Mat4(1), glfwGetTime, TGLM.Vec3(0, 0, 1));
+      transform := translation * rotate ;
 
       // 激活这个程序对象
       shader.UseProgram;
@@ -218,6 +215,9 @@ begin
     glDeleteVertexArrays(1, @VAO);
     glDeleteBuffers(1, @VBO);
     glDeleteBuffers(1, @EBO);
+
+    glDeleteTextures(1, @texture1);
+    glDeleteTextures(1, @texture0);
   finally
     shader.Free;
   end;

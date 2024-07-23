@@ -99,11 +99,11 @@ begin
 
     vertices := TArr_GLfloat(nil);
     vertices := [
-      // ---位置---    ----颜色----  -纹理坐标-
-      +0.5, +0.5, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0,   // 右上
-      +0.5, -0.5, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0,   // 右下
-      -0.5, -0.5, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,   // 左下
-      -0.5, +0.5, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0];  // 左上
+      // ---位置---      ----颜色----     -纹理坐标-
+      +0.5, +0.5, 0.0,   1.0, 0.0, 0.0,   1.0, 1.0,   // 右上
+      +0.5, -0.5, 0.0,   0.0, 1.0, 0.0,   1.0, 0.0,   // 右下
+      -0.5, -0.5, 0.0,   0.0, 0.0, 1.0,   0.0, 0.0,   // 左下
+      -0.5, +0.5, 0.0,   1.0, 1.0, 0.0,   0.0, 1.0];  // 左上
 
     indices := TArr_GLint(nil);
     indices := [
@@ -142,12 +142,14 @@ begin
     texture0 := GLuint(0);
     glGenTextures(1, @texture0);
     glBindTexture(GL_TEXTURE_2D, texture0);
+
     // 为当前绑定的纹理对象设置环绕、过滤方式
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TTexture.Create(CrossFixFileName(tx1));
+
+    ot := TTexture.Create(tx1);
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -159,12 +161,14 @@ begin
     texture1 := GLuint(0);
     glGenTextures(1, @texture1);
     glBindTexture(GL_TEXTURE_2D, texture1);
+
     // 为当前绑定的纹理对象设置环绕、过滤方式
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TTexture.Create(CrossFixFileName(tx2));
+
+    ot := TTexture.Create(tx2);
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -209,6 +213,8 @@ begin
     glDeleteVertexArrays(1, @VAO);
     glDeleteBuffers(1, @VBO);
     glDeleteBuffers(1, @EBO);
+    glDeleteTextures(1, @texture0);
+    glDeleteTextures(1, @texture1);
   finally
     shader.Free;
   end;
