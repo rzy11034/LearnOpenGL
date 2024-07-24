@@ -102,59 +102,59 @@ begin
     shader.LoadShaderFile(CrossFixFileName(vs), CrossFixFileName(fs));
 
     vertices := TArr_GLfloat([
-      -0.5, -0.5, -0.5, 0.0, 0.0,
-      +0.5, -0.5, -0.5, 1.0, 0.0,
-      +0.5, +0.5, -0.5, 1.0, 1.0,
-      +0.5, +0.5, -0.5, 1.0, 1.0,
-      -0.5, +0.5, -0.5, 0.0, 1.0,
-      -0.5, -0.5, -0.5, 0.0, 0.0,
+      -0.5, -0.5, -0.5,   0.0, 0.0,
+       0.5, -0.5, -0.5,   1.0, 0.0,
+       0.5,  0.5, -0.5,   1.0, 1.0,
+       0.5,  0.5, -0.5,   1.0, 1.0,
+      -0.5,  0.5, -0.5,   0.0, 1.0,
+      -0.5, -0.5, -0.5,   0.0, 0.0,
 
-      -0.5, -0.5, +0.5, 0.0, 0.0,
-      +0.5, -0.5, +0.5, 1.0, 0.0,
-      +0.5, +0.5, +0.5, 1.0, 1.0,
-      +0.5, +0.5, +0.5, 1.0, 1.0,
-      -0.5, +0.5, +0.5, 0.0, 1.0,
-      -0.5, -0.5, +0.5, 0.0, 0.0,
+      -0.5, -0.5,  0.5,   0.0, 0.0,
+       0.5, -0.5,  0.5,   1.0, 0.0,
+       0.5,  0.5,  0.5,   1.0, 1.0,
+       0.5,  0.5,  0.5,   1.0, 1.0,
+      -0.5,  0.5,  0.5,   0.0, 1.0,
+      -0.5, -0.5,  0.5,   0.0, 0.0,
 
-      -0.5, +0.5, +0.5, 1.0, 0.0,
-      -0.5, +0.5, -0.5, 1.0, 1.0,
-      -0.5, -0.5, -0.5, 0.0, 1.0,
-      -0.5, -0.5, -0.5, 0.0, 1.0,
-      -0.5, -0.5, +0.5, 0.0, 0.0,
-      -0.5, +0.5, +0.5, 1.0, 0.0,
+      -0.5,  0.5,  0.5,   1.0, 0.0,
+      -0.5,  0.5, -0.5,   1.0, 1.0,
+      -0.5, -0.5, -0.5,   0.0, 1.0,
+      -0.5, -0.5, -0.5,   0.0, 1.0,
+      -0.5, -0.5,  0.5,   0.0, 0.0,
+      -0.5,  0.5,  0.5,   1.0, 0.0,
 
-      0.5, +0.5, +0.5, 1.0, 0.0,
-      0.5, +0.5, -0.5, 1.0, 1.0,
-      0.5, -0.5, -0.5, 0.0, 1.0,
-      0.5, -0.5, -0.5, 0.0, 1.0,
-      0.5, -0.5, +0.5, 0.0, 0.0,
-      0.5, +0.5, +0.5, 1.0, 0.0,
+       0.5,  0.5,  0.5,   1.0, 0.0,
+       0.5,  0.5, -0.5,   1.0, 1.0,
+       0.5, -0.5, -0.5,   0.0, 1.0,
+       0.5, -0.5, -0.5,   0.0, 1.0,
+       0.5, -0.5,  0.5,   0.0, 0.0,
+       0.5,  0.5,  0.5,   1.0, 0.0,
 
-      -0.5, -0.5, -0.5, 0.0, 1.0,
-      +0.5, -0.5, -0.5, 1.0, 1.0,
-      +0.5, -0.5, +0.5, 1.0, 0.0,
-      +0.5, -0.5, +0.5, 1.0, 0.0,
-      -0.5, -0.5, +0.5, 0.0, 0.0,
-      -0.5, -0.5, -0.5, 0.0, 1.0,
+      -0.5, -0.5, -0.5,   0.0, 1.0,
+       0.5, -0.5, -0.5,   1.0, 1.0,
+       0.5, -0.5,  0.5,   1.0, 0.0,
+       0.5, -0.5,  0.5,   1.0, 0.0,
+      -0.5, -0.5,  0.5,   0.0, 0.0,
+      -0.5, -0.5, -0.5,   0.0, 1.0,
 
-      -0.5, 0.5, -0.5, 0.0, 1.0,
-      +0.5, 0.5, -0.5, 1.0, 1.0,
-      +0.5, 0.5, +0.5, 1.0, 0.0,
-      +0.5, 0.5, +0.5, 1.0, 0.0,
-      -0.5, 0.5, +0.5, 0.0, 0.0,
-      -0.5, 0.5, -0.5, 0.0, 1.0]);
+      -0.5,  0.5, -0.5,   0.0, 1.0,
+       0.5,  0.5, -0.5,   1.0, 1.0,
+       0.5,  0.5,  0.5,   1.0, 0.0,
+       0.5,  0.5,  0.5,   1.0, 0.0,
+      -0.5,  0.5,  0.5,   0.0, 0.0,
+      -0.5,  0.5, -0.5,   0.0, 1.0]);
 
     cubePositions := TArr_TVec3([
-      TGLM.Vec3(0.0, 0.0, 0.0),
-      TGLM.Vec3(2.0, 5.0, -15.0),
-      TGLM.Vec3(-1.5, -2.2, -2.5),
+      TGLM.Vec3( 0.0,  0.0,  0.0 ),
+      TGLM.Vec3( 2.0,  5.0, -15.0),
+      TGLM.Vec3(-1.5, -2.2, -2.5 ),
       TGLM.Vec3(-3.8, -2.0, -12.3),
-      TGLM.Vec3(2.4, -0.4, -3.5),
-      TGLM.Vec3(-1.7, 3.0, -7.5),
-      TGLM.Vec3(1.3, -2.0, -2.5),
-      TGLM.Vec3(1.5, 2.0, -2.5),
-      TGLM.Vec3(1.5, 0.2, -1.5),
-      TGLM.Vec3(-1.3, 1.0, -1.5)]);
+      TGLM.Vec3( 2.4, -0.4, -3.5 ),
+      TGLM.Vec3(-1.7,  3.0, -7.5 ),
+      TGLM.Vec3( 1.3, -2.0, -2.5 ),
+      TGLM.Vec3( 1.5,  2.0, -2.5 ),
+      TGLM.Vec3( 1.5,  0.2, -1.5 ),
+      TGLM.Vec3(-1.3,  1.0, -1.5 )]);
 
     VAO := GLuint(0);
     VBO := GLuint(0);
@@ -170,12 +170,11 @@ begin
     glBufferData(GL_ARRAY_BUFFER, vertices.MemSize, @vertices[0], GL_STATIC_DRAW);
 
     // position attribute ---位置属性
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SizeOf(GLfloat), Pointer(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SIZE_F, Pointer(0));
     glEnableVertexAttribArray(0);
 
     // texture coord attribute ---纹理坐标属性
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * SizeOf(GLfloat),
-      Pointer(3 * SizeOf(GLfloat)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * SIZE_F, Pointer(3 * SIZE_F));
     glEnableVertexAttribArray(1);
 
     // 新建并加载一个纹理
@@ -241,9 +240,9 @@ begin
       view := TGLM.Mat4_Identity;
       projection := TGLM.Mat4_Identity;
       view := TGLM.Translate(view, TGLM.Vec3(0, 0, -3));
-      projection := TGLM.Perspective(45, SCR_WIDTH / SCR_HEIGHT, 1, 100);
-      shader.SetUniformMatrix4fv('view', @view.m);
-      shader.SetUniformMatrix4fv('projection', @projection.m);
+      projection := TGLM.Perspective(TGLM.Radians(45), SCR_WIDTH / SCR_HEIGHT, 1, 100);
+      shader.SetUniformMatrix4fv('view', view);
+      shader.SetUniformMatrix4fv('projection', projection);
 
       for i := 0 to High(cubePositions) do
       begin
@@ -253,7 +252,7 @@ begin
         model := TGLM.Translate(model, cubePositions[i]);
         model := TGLM.Rotate(model, glfwGetTime * TGLM.Radians(angle), TGLM.Vec3(1, 1, 1));
 
-        shader.SetUniformMatrix4fv('model', @model.m);
+        shader.SetUniformMatrix4fv('model', model);
         glDrawArrays(GL_TRIANGLES, 0, 36);
       end;
 

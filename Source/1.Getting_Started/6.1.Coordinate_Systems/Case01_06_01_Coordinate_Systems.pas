@@ -204,9 +204,10 @@ begin
       model := TGLM.Rotate(model, TGLM.Radians(-55), TGLM.Vec3(1, 0, 0));
       view := TGLM.Translate(view, TGLM.Vec3(0, 0, -3));
       projection := TGLM.Perspective(45, SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
-      shader.SetUniformMatrix4fv('model', @model.m);
-      shader.SetUniformMatrix4fv('view', @view.m);
-      shader.SetUniformMatrix4fv('projection', @projection.m);
+
+      shader.SetUniformMatrix4fv('model', model);
+      shader.SetUniformMatrix4fv('view', view);
+      shader.SetUniformMatrix4fv('projection', projection);
 
       //glBindVertexArray(VAO);
       glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, Pointer(0));

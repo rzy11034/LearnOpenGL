@@ -197,11 +197,11 @@ begin
 
       translation := TGLM.Translate(TGLM.Mat4(1), TGLM.Vec3(0.5, -0.5, 0));
       rotate := TGLM.Rotate(TGLM.Mat4(1), glfwGetTime, TGLM.Vec3(0, 0, 1));
-      transform := translation * rotate ;
+      transform := translation * rotate;
 
       // 激活这个程序对象
       shader.UseProgram;
-      shader.SetUniformMatrix4fv('transform', @transform.m);
+      shader.SetUniformMatrix4fv('transform', transform);
 
       // 画出第一个三角形
       glBindVertexArray(VAO);
