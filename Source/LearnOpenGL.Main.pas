@@ -21,7 +21,7 @@ procedure Run();
 implementation
 
 uses
-  Case01_06_03_Coordinate_Systems_Multiple;
+  Case01_04_02_Textures_Combined;
 
 procedure Test;
 begin

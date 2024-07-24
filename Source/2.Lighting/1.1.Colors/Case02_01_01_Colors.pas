@@ -75,7 +75,7 @@ begin
   Randomize;
   lightingShader := TShaderProgram.Create;
   lightCubeShader := TShaderProgram.Create;
-  camera := TCamera.Create(TGLM.Vec3(0, 0, 5));
+  camera := TCamera.Create(TGLM.Vec3(0, 0, 3));
   try
     lightingShader.LoadShaderFile(vs, fs);
     lightCubeShader.LoadShaderFile(light_cube_vs, light_cube_fs);
