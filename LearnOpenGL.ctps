@@ -11,7 +11,7 @@
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="23"/>
-        <CursorPos X="34" Y="22"/>
+        <CursorPos X="3" Y="49"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
@@ -32,7 +32,7 @@
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="11"/>
-        <CursorPos X="7" Y="28"/>
+        <CursorPos X="35" Y="19"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
@@ -752,7 +752,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="136"/>
+        <UsageCount Value="140"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -763,7 +763,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="136"/>
+        <UsageCount Value="140"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -772,7 +772,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="136"/>
+        <UsageCount Value="140"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -781,7 +781,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="136"/>
+        <UsageCount Value="140"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -791,18 +791,16 @@
         <WindowIndex Value="0"/>
         <TopLine Value="129"/>
         <CursorPos X="48" Y="78"/>
-        <UsageCount Value="136"/>
+        <UsageCount Value="140"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\2.1.Basic_Lighting_Diffuse\Case02_02_01_Basic_Lighting_Diffuse.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="166"/>
-        <CursorPos X="63" Y="150"/>
-        <UsageCount Value="136"/>
-        <Loaded Value="True"/>
+        <TopLine Value="271"/>
+        <CursorPos X="5" Y="305"/>
+        <UsageCount Value="140"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\2.1.Basic_Lighting_Diffuse\2.1.basic_lighting.fs"/>
@@ -810,7 +808,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="100"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -820,7 +818,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="26" Y="16"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="100"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -829,7 +827,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="100"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -838,7 +836,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="100"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1181,11 +1179,13 @@
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.GLM.pas"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="4"/>
-        <CursorPos X="44" Y="19"/>
-        <UsageCount Value="21"/>
+        <TopLine Value="18"/>
+        <CursorPos X="36" Y="30"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Vector.pas"/>
@@ -1201,8 +1201,8 @@
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="159"/>
-        <CursorPos X="49" Y="161"/>
+        <TopLine Value="64"/>
+        <CursorPos X="45" Y="78"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
@@ -1689,8 +1689,17 @@
         <CursorPos X="40" Y="160"/>
         <UsageCount Value="11"/>
       </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\2.2.Basic_Lighting_Specular\Case02_02_02_Basic_Lighting_Specular.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="31" Y="215"/>
+        <UsageCount Value="24"/>
+        <Loaded Value="True"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="3">
+    <JumpHistory HistoryIndex="5">
       <Position>
         <Filename Value="Source\LearnOpenGL.Main.pas"/>
         <Caret Line="25" Column="38" TopLine="12"/>
@@ -1700,12 +1709,20 @@
         <Caret Line="31" TopLine="15"/>
       </Position>
       <Position>
-        <Filename Value="Source\2.Lighting\2.1.Basic_Lighting_Diffuse\Case02_02_01_Basic_Lighting_Diffuse.pas"/>
-        <Caret Line="172" Column="54" TopLine="143"/>
+        <Filename Value="Source\2.Lighting\2.2.Basic_Lighting_Specular\Case02_02_02_Basic_Lighting_Specular.pas"/>
+        <Caret Line="191" Column="41" TopLine="166"/>
       </Position>
       <Position>
-        <Filename Value="Source\2.Lighting\2.1.Basic_Lighting_Diffuse\Case02_02_01_Basic_Lighting_Diffuse.pas"/>
-        <Caret Line="150" Column="63" TopLine="166"/>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.GLM.pas"/>
+        <Caret Line="35" Column="20" TopLine="4"/>
+      </Position>
+      <Position>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.GLM.pas"/>
+        <Caret Line="614" Column="3" TopLine="612"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\2.Lighting\2.2.Basic_Lighting_Specular\Case02_02_02_Basic_Lighting_Specular.pas"/>
+        <Caret Line="215" Column="31"/>
       </Position>
     </JumpHistory>
     <RunParams>

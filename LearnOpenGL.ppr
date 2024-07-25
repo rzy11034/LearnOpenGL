@@ -45,7 +45,8 @@ uses
   Case01_07_05_Camera_Exercise1.MyCamera,
   Case01_07_06_Camera_Exercise2,
   Case02_01_01_Colors,
-  Case02_02_01_Basic_Lighting_Diffuse;
+  Case02_02_01_Basic_Lighting_Diffuse,
+  Case02_02_02_Basic_Lighting_Specular;
 
 begin
   try
