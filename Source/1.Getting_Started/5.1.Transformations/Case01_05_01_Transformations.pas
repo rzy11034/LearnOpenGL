@@ -87,7 +87,7 @@ var
   shader: TShaderProgram;
   ot: TTexture;
   VAO, VBO, EBO, texture0, texture1: GLuint;
-  transform, rotate, translation: TMat4;
+  rotate, translation, transform: TMat4;
   vertices: TArr_GLfloat;
   indices: TArr_GLint;
 begin

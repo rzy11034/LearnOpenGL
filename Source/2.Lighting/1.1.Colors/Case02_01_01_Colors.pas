@@ -169,22 +169,22 @@ begin
 
       projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
       view := camera.GetViewMatrix;
-      lightingShader.SetUniformMatrix4fv('projection', @projection.m);
-      lightingShader.SetUniformMatrix4fv('view', @view.m);
+      lightingShader.SetUniformMatrix4fv('projection', projection);
+      lightingShader.SetUniformMatrix4fv('view', view);
 
       model := TGLM.Mat4_Identity;
-      lightingShader.SetUniformMatrix4fv('model', @model.m);
+      lightingShader.SetUniformMatrix4fv('model', model);
 
       glBindVertexArray(cubeVAO);
       glDrawArrays(GL_TRIANGLES, 0, 36);
 
       lightCubeShader.UseProgram;
-      lightCubeShader.SetUniformMatrix4fv('projection', @projection.m);
-      lightCubeShader.SetUniformMatrix4fv('view', @view.m);
+      lightCubeShader.SetUniformMatrix4fv('projection', projection);
+      lightCubeShader.SetUniformMatrix4fv('view', view);
       model := TGLM.Mat4_Identity;
       model := TGLM.Translate(model, lightPos);
       model := TGLM.Scale(model, TGLM.Vec3(0.2));
-      lightCubeShader.SetUniformMatrix4fv('model', @model.m);
+      lightCubeShader.SetUniformMatrix4fv('model', model);
 
       glBindVertexArray(lightCubeVAO);
       glDrawArrays(GL_TRIANGLES, 0, 36);

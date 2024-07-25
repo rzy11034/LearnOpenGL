@@ -163,12 +163,11 @@ begin
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.MemSize, @indices[0], GL_STATIC_DRAW);
 
     // position attribute ---位置属性
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SizeOf(GLfloat), Pointer(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SIZE_F, Pointer(0));
     glEnableVertexAttribArray(0);
 
     // texture coord attribute ---纹理坐标属性
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * SizeOf(GLfloat),
-      Pointer(3 * SizeOf(GLfloat)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * SIZE_F, Pointer(3 * SIZE_F));
     glEnableVertexAttribArray(1);
 
     // 新建并加载一个纹理
@@ -180,7 +179,7 @@ begin
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TTexture.Create(CrossFixFileName(tx1));
+    ot := TTexture.Create(tx1);
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -197,7 +196,7 @@ begin
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TTexture.Create(CrossFixFileName(tx2));
+    ot := TTexture.Create(tx2);
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -243,7 +242,7 @@ begin
 
       model := TGLM.Mat4_Identity;
       model := TGLM.Rotate(model, TGLM.Radians(glfwGetTime) * 50, TGLM.Vec3(0.5, 1, 0));
-      shader.SetUniformMatrix4fv('model', @model.m);
+      shader.SetUniformMatrix4fv('model', model);
 
       //glBindVertexArray(VAO);
       glDrawArrays(GL_TRIANGLES, 0, 36);

@@ -106,18 +106,16 @@ begin
   try
     shader.LoadShaderFile(CrossFixFileName(vs), CrossFixFileName(fs));
 
-    vertices := TArr_GLfloat(nil);
-    vertices := [
-      // ---位置---    ----颜色----  -纹理坐标-
-      +0.5, +0.5, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0,   // 右上
-      +0.5, -0.5, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0,   // 右下
-      -0.5, -0.5, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,   // 左下
-      -0.5, +0.5, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0];  // 左上
+    vertices := TArr_GLfloat([
+      // ---位置---      ----颜色----     -纹理坐标-
+       0.5,  0.5, 0.0,   1.0, 0.0, 0.0,   1.0, 1.0,   // 右上
+       0.5, -0.5, 0.0,   0.0, 1.0, 0.0,   1.0, 0.0,   // 右下
+      -0.5, -0.5, 0.0,   0.0, 0.0, 1.0,   0.0, 0.0,   // 左下
+      -0.5,  0.5, 0.0,   1.0, 1.0, 0.0,   0.0, 1.0]); // 左上
 
-    indices := TArr_GLint(nil);
-    indices := [
-      0, 1, 3, // first triangle
-      1, 2, 3];  // second triangle
+    indices := TArr_GLint([
+      0, 1, 3,    // first triangle
+      1, 2, 3]);  // second triangle
 
     VAO := GLuint(0);
     VBO := GLuint(0);

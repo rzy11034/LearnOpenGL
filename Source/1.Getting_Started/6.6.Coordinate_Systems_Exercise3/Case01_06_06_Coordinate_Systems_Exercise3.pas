@@ -245,8 +245,8 @@ begin
       view := TGLM.Translate(view, TGLM.Vec3(0, 0, -3));
 
       projection := TGLM.Perspective(30, SCR_WIDTH / SCR_HEIGHT, 1, 100);
-      shader.SetUniformMatrix4fv('view', @view.m);
-      shader.SetUniformMatrix4fv('projection', @projection.m);
+      shader.SetUniformMatrix4fv('view', view);
+      shader.SetUniformMatrix4fv('projection', projection);
 
       for i := 0 to High(cubePositions) do
       begin
@@ -258,7 +258,7 @@ begin
           angle := GLfloat(25) * glfwGetTime;
 
         model := TGLM.Rotate(model, TGLM.Radians(angle), TGLM.Vec3(1, 0.3, 0.5));
-        shader.SetUniformMatrix4fv('model', @model.m);
+        shader.SetUniformMatrix4fv('model', model);
         glDrawArrays(GL_TRIANGLES, 0, 36);
       end;
 

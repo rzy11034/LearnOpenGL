@@ -8,6 +8,7 @@ interface
 uses
   Classes,
   SysUtils,
+  System.UITypes,
   {%H-}DeepStar.Utils,
   {%H-}DeepStar.OpenGL.GLAD_GL,
   {%H-}DeepStar.OpenGL.GLFW,
@@ -21,7 +22,7 @@ procedure Run();
 implementation
 
 uses
-  Case01_04_02_Textures_Combined;
+  Case02_02_01_Basic_Lighting_Diffuse;
 
 procedure Test;
 begin
