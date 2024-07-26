@@ -22,7 +22,7 @@ procedure Run();
 implementation
 
 uses
-  Case02_02_02_Basic_Lighting_Specular;
+  Case01_07_05_Camera_Exercise1;
 
 procedure Test;
 begin

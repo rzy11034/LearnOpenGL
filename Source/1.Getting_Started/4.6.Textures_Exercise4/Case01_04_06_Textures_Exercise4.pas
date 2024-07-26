@@ -43,10 +43,16 @@ begin
     glfwSetWindowShouldClose(window, true.ToInteger);
 
   if glfwGetKey(window, GLFW_KEY_UP) = GLFW_PRESS then
-    mixValue += 0.01;
+  begin
+    mixValue += 0.001;
+    if mixValue >= 1 then mixValue := 1;
+  end;
 
   if glfwGetKey(window, GLFW_KEY_DOWN) = GLFW_PRESS then
-    mixValue -= 0.01;
+  begin
+    mixValue -= 0.001;
+    if mixValue <= 0 then mixValue := 0;
+  end;
 end;
 
 function InitWindows: PGLFWwindow;
@@ -134,15 +140,13 @@ begin
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.MemSize, @indices[0], GL_STATIC_DRAW);
 
     // position attribute ---位置属性
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat), Pointer(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(0));
     glEnableVertexAttribArray(0);
     // color attribute  ---颜色属性
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat),
-      Pointer(3 * SizeOf(GLfloat)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(3 * SIZE_F));
     glEnableVertexAttribArray(1);
     // texture coord attribute ---纹理坐标属性
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat),
-      Pointer(6 * SizeOf(GLfloat)));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(6 * SIZE_F));
     glEnableVertexAttribArray(2);
 
     // 新建并加载一个纹理
@@ -152,9 +156,9 @@ begin
     // 为当前绑定的纹理对象设置环绕、过滤方式
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    ot := TTexture.Create(CrossFixFileName(tx1));
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    ot := TTexture.Create(tx1);
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -171,7 +175,7 @@ begin
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TTexture.Create(CrossFixFileName(tx2));
+    ot := TTexture.Create(tx2);
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);

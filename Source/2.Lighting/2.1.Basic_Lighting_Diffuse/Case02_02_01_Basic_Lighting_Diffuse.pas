@@ -74,7 +74,7 @@ begin
 
   lightingShader := TShaderProgram.Create;
   lightCubeShader := TShaderProgram.Create;
-  camera := TCamera.Create(TGLM.Vec3(0, 0, 8));
+  camera := TCamera.Create(TGLM.Vec3(0, 0, 3));
   try
     lightingShader.LoadShaderFile(vs, fs);
     lightCubeShader.LoadShaderFile(light_cube_vs, light_cube_fs);
@@ -247,7 +247,7 @@ begin
 
   glEnable(GL_DEPTH_TEST);
 
-  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
   // 注册一个回调函数(Callback Function)，它会在每次窗口大小被调整的时候被调用
   glfwSetFramebufferSizeCallback(window, @Framebuffer_size_callback);
   glfwSetCursorPosCallback(window, @Mouse_callback);

@@ -128,15 +128,13 @@ begin
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.MemSize, @indices[0], GL_STATIC_DRAW);
 
     // position attribute ---位置属性
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat), Pointer(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(0));
     glEnableVertexAttribArray(0);
     // color attribute  ---颜色属性
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat),
-      Pointer(3 * SizeOf(GLfloat)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(3 * SIZE_F));
     glEnableVertexAttribArray(1);
     // texture coord attribute ---纹理坐标属性
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat),
-      Pointer(6 * SizeOf(GLfloat)));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(6 * SIZE_F));
     glEnableVertexAttribArray(2);
 
     // 新建并加载一个纹理
@@ -203,7 +201,7 @@ begin
       shader.SetUniformMatrix4fv('transform', transform);
       glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, Pointer(0));
 
-      scaleAmount := System.Default(GLfloat);
+      scaleAmount := GLfloat(0);
       scaleAmount := Sin(glfwGetTime);
       transform := TGLM.Mat4_Identity;
       transform := TGLM.Translate(transform, TGLM.Vec3(-0.5, 0.5, 0));

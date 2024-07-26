@@ -183,7 +183,7 @@ begin
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     // 渲染循环
-    while glfwWindowShouldClose(window) = 0 do
+    while not glfwWindowShouldClose(window).ToBoolean do
     begin
       // 输入
       ProcessInput(window);
@@ -201,7 +201,8 @@ begin
 
       transform := TGLM.Rotate(transform, glfwGetTime, TGLM.Vec3(0, 0, 1));
       transform := TGLM.Translate(transform, TGLM.Vec3(0.5, -0.0, 0));
-      transform := TGLM.Scale(transform, TGLM.Vec3(0.5, 0.5, 0));
+      //transform := TGLM.Scale(transform, TGLM.Vec3(0.5, 0.5, 0));
+
 
       // 激活这个程序对象
       shader.UseProgram;

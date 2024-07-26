@@ -17,7 +17,6 @@ uses
   DeepStar.Utils,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
-  DeepStar.OpenGL.GLM,
   DeepStar.OpenGL.Shader,
   DeepStar.OpenGL.Utils,
   DeepStar.OpenGL.Texture;
@@ -90,8 +89,7 @@ var
   shader: TShaderProgram;
   ot: TTexture;
   indices: TArr_GLint;
-  VAO, VBO, EBO, texture0, texture1: GLuint;
-  borderColor: TVec3;
+  VAO, VBO, EBO, texture1, texture2: GLuint;
 begin
   window := InitWindows;
 
@@ -101,10 +99,10 @@ begin
 
     vertices := TArr_GLfloat([
       // ---位置---      ----颜色----    -纹理坐标-
-       0.5,  0.5, 0.0,   1.0, 0.0, 0.0,   1.0, 1.0,   // 右上
-       0.5, -0.5, 0.0,   0.0, 1.0, 0.0,   1.0, 0.0,   // 右下
+       0.5,  0.5, 0.0,   1.0, 0.0, 0.0,   2.0, 2.0,   // 右上
+       0.5, -0.5, 0.0,   0.0, 1.0, 0.0,   2.0, 0.0,   // 右下
       -0.5, -0.5, 0.0,   0.0, 0.0, 1.0,   0.0, 0.0,   // 左下
-      -0.5,  0.5, 0.0,   1.0, 1.0, 0.0,   0.0, 1.0]); // 左上
+      -0.5,  0.5, 0.0,   1.0, 1.0, 0.0,   0.0, 2.0]); // 左上
 
     indices := TArr_GLint([
       0, 1, 3,    // first triangle
@@ -127,31 +125,28 @@ begin
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.MemSize, @indices[0], GL_STATIC_DRAW);
 
     // position attribute ---位置属性
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat), Pointer(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(0));
     glEnableVertexAttribArray(0);
     // color attribute  ---颜色属性
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat),
-      Pointer(3 * SizeOf(GLfloat)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(3 * SIZE_F));
     glEnableVertexAttribArray(1);
     // texture coord attribute ---纹理坐标属性
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat),
-      Pointer(6 * SizeOf(GLfloat)));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(6 * SIZE_F));
     glEnableVertexAttribArray(2);
 
     // 新建并加载一个纹理
-    texture0 := GLuint(0);
-    glGenTextures(1, @texture0);
-    glBindTexture(GL_TEXTURE_2D, texture0);
-
-    borderColor := RGBToOpenGLColor($00323E);
-    glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, @borderColor);
+    texture1 := GLuint(0);
+    glGenTextures(1, @texture1);
+    glBindTexture(GL_TEXTURE_2D, texture1);
 
     // 为当前绑定的纹理对象设置环绕、过滤方式
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+    // 请注意，我们将容器包装方法设置为GL_CLAMP_TO_EDGE
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    // 设置纹理过滤参数
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TTexture.Create(CrossFixFileName(tx1));
+    ot := TTexture.Create(tx1);
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -160,15 +155,16 @@ begin
       ot.Free;
     end;
 
-    texture1 := GLuint(0);
-    glGenTextures(1, @texture1);
-    glBindTexture(GL_TEXTURE_2D, texture1);
+    texture2 := GLuint(0);
+    glGenTextures(1, @texture2);
+    glBindTexture(GL_TEXTURE_2D, texture2);
     // 为当前绑定的纹理对象设置环绕、过滤方式
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    // 我们想重复 AwesomeFace 模式，所以我们将其保持在GL_REPEAT
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TTexture.Create(CrossFixFileName(tx2));
+    ot := TTexture.Create(tx2);
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -195,15 +191,15 @@ begin
       glClear(GL_COLOR_BUFFER_BIT);
 
       glActiveTexture(GL_TEXTURE0);
-      glBindTexture(GL_TEXTURE_2D, texture0);
-      glActiveTexture(GL_TEXTURE1);
       glBindTexture(GL_TEXTURE_2D, texture1);
+      glActiveTexture(GL_TEXTURE1);
+      glBindTexture(GL_TEXTURE_2D, texture2);
 
       // 激活这个程序对象
       shader.UseProgram;
       // 画出第一个三角形
       glBindVertexArray(VAO);
-      glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, Pointer(0));
+      glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nil);
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
       glfwSwapBuffers(window);

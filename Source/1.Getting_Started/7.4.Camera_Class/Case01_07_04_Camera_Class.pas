@@ -72,7 +72,7 @@ begin
   try
     window := InitWindows;
 
-    shader.LoadShaderFile(CrossFixFileName(vs), CrossFixFileName(fs));
+    shader.LoadShaderFile(vs, fs);
 
     vertices := TArr_GLfloat([
       -0.5, -0.5, -0.5,   0.0, 0.0,

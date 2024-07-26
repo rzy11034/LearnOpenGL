@@ -101,62 +101,62 @@ begin
 
   shader := TShaderProgram.Create;
   try
-    shader.LoadShaderFile(CrossFixFileName(vs), CrossFixFileName(fs));
+    shader.LoadShaderFile(vs, fs);
 
     vertices := TArr_GLfloat([
-      -0.5, -0.5, -0.5, 0.0, 0.0,
-      +0.5, -0.5, -0.5, 1.0, 0.0,
-      +0.5, +0.5, -0.5, 1.0, 1.0,
-      +0.5, +0.5, -0.5, 1.0, 1.0,
-      -0.5, +0.5, -0.5, 0.0, 1.0,
-      -0.5, -0.5, -0.5, 0.0, 0.0,
+      -0.5, -0.5, -0.5,   0.0, 0.0,
+       0.5, -0.5, -0.5,   1.0, 0.0,
+       0.5,  0.5, -0.5,   1.0, 1.0,
+       0.5,  0.5, -0.5,   1.0, 1.0,
+      -0.5,  0.5, -0.5,   0.0, 1.0,
+      -0.5, -0.5, -0.5,   0.0, 0.0,
 
-      -0.5, -0.5, +0.5, 0.0, 0.0,
-      +0.5, -0.5, +0.5, 1.0, 0.0,
-      +0.5, +0.5, +0.5, 1.0, 1.0,
-      +0.5, +0.5, +0.5, 1.0, 1.0,
-      -0.5, +0.5, +0.5, 0.0, 1.0,
-      -0.5, -0.5, +0.5, 0.0, 0.0,
+      -0.5, -0.5,  0.5,   0.0, 0.0,
+       0.5, -0.5,  0.5,   1.0, 0.0,
+       0.5,  0.5,  0.5,   1.0, 1.0,
+       0.5,  0.5,  0.5,   1.0, 1.0,
+      -0.5,  0.5,  0.5,   0.0, 1.0,
+      -0.5, -0.5,  0.5,   0.0, 0.0,
 
-      -0.5, +0.5, +0.5, 1.0, 0.0,
-      -0.5, +0.5, -0.5, 1.0, 1.0,
-      -0.5, -0.5, -0.5, 0.0, 1.0,
-      -0.5, -0.5, -0.5, 0.0, 1.0,
-      -0.5, -0.5, +0.5, 0.0, 0.0,
-      -0.5, +0.5, +0.5, 1.0, 0.0,
+      -0.5,  0.5,  0.5,   1.0, 0.0,
+      -0.5,  0.5, -0.5,   1.0, 1.0,
+      -0.5, -0.5, -0.5,   0.0, 1.0,
+      -0.5, -0.5, -0.5,   0.0, 1.0,
+      -0.5, -0.5,  0.5,   0.0, 0.0,
+      -0.5,  0.5,  0.5,   1.0, 0.0,
 
-      0.5, +0.5, +0.5, 1.0, 0.0,
-      0.5, +0.5, -0.5, 1.0, 1.0,
-      0.5, -0.5, -0.5, 0.0, 1.0,
-      0.5, -0.5, -0.5, 0.0, 1.0,
-      0.5, -0.5, +0.5, 0.0, 0.0,
-      0.5, +0.5, +0.5, 1.0, 0.0,
+       0.5,  0.5,  0.5,   1.0, 0.0,
+       0.5,  0.5, -0.5,   1.0, 1.0,
+       0.5, -0.5, -0.5,   0.0, 1.0,
+       0.5, -0.5, -0.5,   0.0, 1.0,
+       0.5, -0.5,  0.5,   0.0, 0.0,
+       0.5,  0.5,  0.5,   1.0, 0.0,
 
-      -0.5, -0.5, -0.5, 0.0, 1.0,
-      +0.5, -0.5, -0.5, 1.0, 1.0,
-      +0.5, -0.5, +0.5, 1.0, 0.0,
-      +0.5, -0.5, +0.5, 1.0, 0.0,
-      -0.5, -0.5, +0.5, 0.0, 0.0,
-      -0.5, -0.5, -0.5, 0.0, 1.0,
+      -0.5, -0.5, -0.5,   0.0, 1.0,
+       0.5, -0.5, -0.5,   1.0, 1.0,
+       0.5, -0.5,  0.5,   1.0, 0.0,
+       0.5, -0.5,  0.5,   1.0, 0.0,
+      -0.5, -0.5,  0.5,   0.0, 0.0,
+      -0.5, -0.5, -0.5,   0.0, 1.0,
 
-      -0.5, 0.5, -0.5, 0.0, 1.0,
-      +0.5, 0.5, -0.5, 1.0, 1.0,
-      +0.5, 0.5, +0.5, 1.0, 0.0,
-      +0.5, 0.5, +0.5, 1.0, 0.0,
-      -0.5, 0.5, +0.5, 0.0, 0.0,
-      -0.5, 0.5, -0.5, 0.0, 1.0]);
+      -0.5, 0.5, -0.5,    0.0, 1.0,
+       0.5, 0.5, -0.5,    1.0, 1.0,
+       0.5, 0.5,  0.5,    1.0, 0.0,
+       0.5, 0.5,  0.5,    1.0, 0.0,
+      -0.5, 0.5,  0.5,    0.0, 0.0,
+      -0.5, 0.5, -0.5,    0.0, 1.0]);
 
     cubePositions := TArr_TVec3([
-      TGLM.Vec3(0.0, 0.0, 0.0),
-      TGLM.Vec3(2.0, 5.0, -15.0),
-      TGLM.Vec3(-1.5, -2.2, -2.5),
+      TGLM.Vec3( 0.0,  0.0,   0.0),
+      TGLM.Vec3( 2.0,  5.0, -15.0),
+      TGLM.Vec3(-1.5, -2.2,  -2.5),
       TGLM.Vec3(-3.8, -2.0, -12.3),
-      TGLM.Vec3(2.4, -0.4, -3.5),
-      TGLM.Vec3(-1.7, 3.0, -7.5),
-      TGLM.Vec3(1.3, -2.0, -2.5),
-      TGLM.Vec3(1.5, 2.0, -2.5),
-      TGLM.Vec3(1.5, 0.2, -1.5),
-      TGLM.Vec3(-1.3, 1.0, -1.5)]);
+      TGLM.Vec3( 2.4, -0.4,  -3.5),
+      TGLM.Vec3(-1.7,  3.0,  -7.5),
+      TGLM.Vec3( 1.3, -2.0,  -2.5),
+      TGLM.Vec3( 1.5,  2.0,  -2.5),
+      TGLM.Vec3( 1.5,  0.2,  -1.5),
+      TGLM.Vec3(-1.3,  1.0,  -1.5)]);
 
     VAO := GLuint(0);
     VBO := GLuint(0);
@@ -189,7 +189,7 @@ begin
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TTexture.Create(CrossFixFileName(tx1));
+    ot := TTexture.Create(tx1);
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -206,7 +206,7 @@ begin
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    ot := TTexture.Create(CrossFixFileName(tx2));
+    ot := TTexture.Create(tx2);
     try
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ot.Width, ot.Height, 0,
         GL_RGBA, GL_UNSIGNED_BYTE, ot.Pixels);
@@ -240,12 +240,11 @@ begin
       glActiveTexture(GL_TEXTURE1);
       glBindTexture(GL_TEXTURE_2D, texture1);
 
-      view := TGLM.Mat4_Identity;
       projection := TGLM.Mat4_Identity;
-      view := TGLM.Translate(view, TGLM.Vec3(0, 0, cos(glfwGetTime)-3));
+      view := TGLM.Mat4_Identity;
 
-
-      projection := TGLM.Perspective(cos(glfwGetTime)+30, SCR_WIDTH / SCR_HEIGHT, 1, 100);
+      projection := TGLM.Perspective(TGLM.Radians(45), SCR_WIDTH / SCR_HEIGHT, 1, 100);
+      view := TGLM.Translate(view, TGLM.Vec3(Sin(glfwGetTime), Cos(glfwGetTime), -5));
       shader.SetUniformMatrix4fv('view', view);
       shader.SetUniformMatrix4fv('projection', projection);
 
@@ -255,7 +254,7 @@ begin
 
         angle := GLfloat(20 * i);
         model := TGLM.Translate(model, cubePositions[i]);
-        model := TGLM.Rotate(model, glfwGetTime * TGLM.Radians(angle), TGLM.Vec3(1, 1, 1));
+        model := TGLM.Rotate(model, glfwGetTime * TGLM.Radians(angle), TGLM.Vec3(1, 0.3, 0.5));
 
         shader.SetUniformMatrix4fv('model', model);
         glDrawArrays(GL_TRIANGLES, 0, 36);

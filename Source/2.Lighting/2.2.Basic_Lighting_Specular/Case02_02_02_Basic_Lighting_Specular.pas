@@ -170,6 +170,7 @@ begin
       lightingShader.SetUniformFloat('objectColor', [1.0, 0.5, 0.31]);
       lightingShader.SetUniformFloat('lightColor',  [1.0, 1.0, 1.0]);
       lightingShader.SetUniformFloat('lightPos', lightPos);
+      lightingShader.SetUniformFloat('viewPos', camera.Position);
 
       // 视图/投影转换
       projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
@@ -247,7 +248,7 @@ begin
 
   glEnable(GL_DEPTH_TEST);
 
-  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
   // 注册一个回调函数(Callback Function)，它会在每次窗口大小被调整的时候被调用
   glfwSetFramebufferSizeCallback(window, @Framebuffer_size_callback);
   glfwSetCursorPosCallback(window, @Mouse_callback);
