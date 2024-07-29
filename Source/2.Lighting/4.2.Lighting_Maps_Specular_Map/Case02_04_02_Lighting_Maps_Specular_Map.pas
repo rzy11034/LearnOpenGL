@@ -1,4 +1,4 @@
-﻿unit Case02_01_01_Colors;
+﻿unit Case02_04_02_Lighting_Maps_Specular_Map;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -20,6 +20,7 @@ uses
   DeepStar.OpenGL.GLM,
   DeepStar.OpenGL.Shader,
   DeepStar.OpenGL.Camera,
+  DeepStar.OpenGL.Texture,
   DeepStar.OpenGL.Utils;
 
   // 每当窗口大小发生变化(由操作系统或用户调整大小)，这个回调函数就会执行
@@ -32,6 +33,8 @@ procedure Mouse_callback(window: PGLFWwindow; xpos, ypos: double); cdecl; forwar
 procedure ProcessInput(window: PGLFWwindow); forward;
 // glfw & glad  初始化
 function InitWindows: PGLFWwindow; forward;
+// 加载贴图
+function LoadTexture(fileName: string): cardinal; forward;
 
 const
   SCR_WIDTH = 800;
@@ -53,10 +56,12 @@ var
 
 procedure Main;
 const
-  fs = '..\Source\2.Lighting\1.1.Colors\1.1.colors.fs';
-  vs = '..\Source\2.Lighting\1.1.Colors\1.1.colors.vs';
-  light_cube_fs = '..\Source\2.Lighting\1.1.Colors\1.1.light_cube.fs';
-  light_cube_vs = '..\Source\2.Lighting\1.1.Colors\1.1.light_cube.vs';
+  fs = '..\Source\2.Lighting\4.2.Lighting_Maps_Specular_Map\4.2.lighting_maps.fs';
+  vs = '..\Source\2.Lighting\4.2.Lighting_Maps_Specular_Map\4.2.lighting_maps.vs';
+  light_cube_fs = '..\Source\2.Lighting\4.2.Lighting_Maps_Specular_Map\4.2.light_cube.fs';
+  light_cube_vs = '..\Source\2.Lighting\4.2.Lighting_Maps_Specular_Map\4.2.light_cube.vs';
+  diffuseTexture = '..\Resources\textures\container2.png';
+  specularTexture = '..\Resources\textures\container2_specular.png';
 var
   window: PGLFWwindow;
   lightingShader, lightCubeShader: TShaderProgram;
@@ -64,6 +69,7 @@ var
   cubeVAO, VBO, lightCubeVAO: GLuint;
   projection, view, model: TMat4;
   currentFrame: GLfloat;
+  diffuseMap, specularMap: Cardinal;
 begin
   window := InitWindows;
   if window = nil then
@@ -72,7 +78,6 @@ begin
     Exit;
   end;
 
-  Randomize;
   lightingShader := TShaderProgram.Create;
   lightCubeShader := TShaderProgram.Create;
   camera := TCamera.Create(TGLM.Vec3(0, 0, 3));
@@ -81,47 +86,48 @@ begin
     lightCubeShader.LoadShaderFile(light_cube_vs, light_cube_fs);
 
     vertices := TArr_GLfloat([
-      -0.5, -0.5, -0.5,
-       0.5, -0.5, -0.5,
-       0.5,  0.5, -0.5,
-       0.5,  0.5, -0.5,
-      -0.5,  0.5, -0.5,
-      -0.5, -0.5, -0.5,
+      // positions         // normals          // texture coords
+      -0.5, -0.5, -0.5,    0.0,  0.0, -1.0,    0.0, 0.0,
+       0.5, -0.5, -0.5,    0.0,  0.0, -1.0,    1.0, 0.0,
+       0.5,  0.5, -0.5,    0.0,  0.0, -1.0,    1.0, 1.0,
+       0.5,  0.5, -0.5,    0.0,  0.0, -1.0,    1.0, 1.0,
+      -0.5,  0.5, -0.5,    0.0,  0.0, -1.0,    0.0, 1.0,
+      -0.5, -0.5, -0.5,    0.0,  0.0, -1.0,    0.0, 0.0,
 
-      -0.5, -0.5,  0.5,
-       0.5, -0.5,  0.5,
-       0.5,  0.5,  0.5,
-       0.5,  0.5,  0.5,
-      -0.5,  0.5,  0.5,
-      -0.5, -0.5,  0.5,
+      -0.5, -0.5,  0.5,    0.0,  0.0,  1.0,    0.0, 0.0,
+       0.5, -0.5,  0.5,    0.0,  0.0,  1.0,    1.0, 0.0,
+       0.5,  0.5,  0.5,    0.0,  0.0,  1.0,    1.0, 1.0,
+       0.5,  0.5,  0.5,    0.0,  0.0,  1.0,    1.0, 1.0,
+      -0.5,  0.5,  0.5,    0.0,  0.0,  1.0,    0.0, 1.0,
+      -0.5, -0.5,  0.5,    0.0,  0.0,  1.0,    0.0, 0.0,
 
-      -0.5,  0.5,  0.5,
-      -0.5,  0.5, -0.5,
-      -0.5, -0.5, -0.5,
-      -0.5, -0.5, -0.5,
-      -0.5, -0.5,  0.5,
-      -0.5,  0.5,  0.5,
+      -0.5,  0.5,  0.5,   -1.0,  0.0,  0.0,    1.0, 0.0,
+      -0.5,  0.5, -0.5,   -1.0,  0.0,  0.0,    1.0, 1.0,
+      -0.5, -0.5, -0.5,   -1.0,  0.0,  0.0,    0.0, 1.0,
+      -0.5, -0.5, -0.5,   -1.0,  0.0,  0.0,    0.0, 1.0,
+      -0.5, -0.5,  0.5,   -1.0,  0.0,  0.0,    0.0, 0.0,
+      -0.5,  0.5,  0.5,   -1.0,  0.0,  0.0,    1.0, 0.0,
 
-       0.5,  0.5,  0.5,
-       0.5,  0.5, -0.5,
-       0.5, -0.5, -0.5,
-       0.5, -0.5, -0.5,
-       0.5, -0.5,  0.5,
-       0.5,  0.5,  0.5,
+       0.5,  0.5,  0.5,    1.0,  0.0,  0.0,    1.0, 0.0,
+       0.5,  0.5, -0.5,    1.0,  0.0,  0.0,    1.0, 1.0,
+       0.5, -0.5, -0.5,    1.0,  0.0,  0.0,    0.0, 1.0,
+       0.5, -0.5, -0.5,    1.0,  0.0,  0.0,    0.0, 1.0,
+       0.5, -0.5,  0.5,    1.0,  0.0,  0.0,    0.0, 0.0,
+       0.5,  0.5,  0.5,    1.0,  0.0,  0.0,    1.0, 0.0,
 
-      -0.5, -0.5, -0.5,
-       0.5, -0.5, -0.5,
-       0.5, -0.5,  0.5,
-       0.5, -0.5,  0.5,
-      -0.5, -0.5,  0.5,
-      -0.5, -0.5, -0.5,
+      -0.5, -0.5, -0.5,    0.0, -1.0,  0.0,    0.0, 1.0,
+       0.5, -0.5, -0.5,    0.0, -1.0,  0.0,    1.0, 1.0,
+       0.5, -0.5,  0.5,    0.0, -1.0,  0.0,    1.0, 0.0,
+       0.5, -0.5,  0.5,    0.0, -1.0,  0.0,    1.0, 0.0,
+      -0.5, -0.5,  0.5,    0.0, -1.0,  0.0,    0.0, 0.0,
+      -0.5, -0.5, -0.5,    0.0, -1.0,  0.0,    0.0, 1.0,
 
-      -0.5,  0.5, -0.5,
-       0.5,  0.5, -0.5,
-       0.5,  0.5,  0.5,
-       0.5,  0.5,  0.5,
-      -0.5,  0.5,  0.5,
-      -0.5,  0.5, -0.5]);
+      -0.5,  0.5, -0.5,    0.0,  1.0,  0.0,    0.0, 1.0,
+       0.5,  0.5, -0.5,    0.0,  1.0,  0.0,    1.0, 1.0,
+       0.5,  0.5,  0.5,    0.0,  1.0,  0.0,    1.0, 0.0,
+       0.5,  0.5,  0.5,    0.0,  1.0,  0.0,    1.0, 0.0,
+      -0.5,  0.5,  0.5,    0.0,  1.0,  0.0,    0.0, 0.0,
+      -0.5,  0.5, -0.5,    0.0,  1.0,  0.0,    0.0, 1.0]);
 
     cubeVAO := GLuint(0);
     VBO := GLuint(0);
@@ -133,9 +139,15 @@ begin
 
     glBindVertexArray(cubeVAO);
 
-    // position attribute ---位置属性
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(0));
+    // 位置属性
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(0));
     glEnableVertexAttribArray(0);
+    // 法向量
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(3 * SIZE_F));
+    glEnableVertexAttribArray(1);
+    // 漫反射贴图坐标
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(6 * SIZE_F));
+    glEnableVertexAttribArray(2);
 
     // 第二，配置灯的VAO (VBO保持不变;对于同样是3D立方体的光物体，顶点是相同的)
     lightCubeVAO := GLuint(0);
@@ -144,8 +156,17 @@ begin
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(0));
+    // 注意，我们更新了灯的位置属性的步幅来反映更新后的缓冲区数据
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(0));
     glEnableVertexAttribArray(0);
+
+    // 加载纹理(现在使用一个实用函数来保持代码更有条理)
+    diffuseMap := LoadTexture(diffuseTexture);
+    specularMap := LoadTexture(specularTexture);
+
+    lightingShader.UseProgram;
+    lightingShader.SetUniformInt('material.diffuse', [0]);
+    lightingShader.SetUniformInt('material.specular', [1]);
 
     // 渲染循环
     while not glfwWindowShouldClose(window).ToBoolean do
@@ -162,18 +183,34 @@ begin
       glClearColor(0.1, 0.1, 0.1, 0.1);
       glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
 
-      // 在设置制服/绘制对象时，请确保激活着色器
+      // 在设置uniforms/绘制对象时，请确保激活着色器
       lightingShader.UseProgram;
-      lightingShader.SetUniformFloat('objectColor', [1.0, 0.5, 0.31]);
-      lightingShader.SetUniformFloat('lightColor',  [1.0, 1.0, 1.0]);
+      lightingShader.SetUniformFloat('light.position', lightPos);
+      lightingShader.SetUniformFloat('viewPos', camera.Position);
 
+      lightingShader.SetUniformFloat('light.ambient', [0.2, 0.2, 0.2]);
+      lightingShader.SetUniformFloat('light.diffuse', [0.5, 0.5, 0.5]);
+      lightingShader.SetUniformFloat('light.specular', [1.0, 1.0, 1.0]);
+
+      // material properties
+      lightingShader.SetUniformFloat('material.specular', [0.5, 0.5, 0.5]);
+      lightingShader.SetUniformFloat('material.shininess', [64]);
+
+      // 视图/投影转换
       projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
       view := camera.GetViewMatrix;
       lightingShader.SetUniformMatrix4fv('projection', projection);
       lightingShader.SetUniformMatrix4fv('view', view);
 
-      model := TGLM.Mat4_Identity;
+      model := TGLM.Mat4(1);
       lightingShader.SetUniformMatrix4fv('model', model);
+
+      // bind diffuse map
+      glActiveTexture(GL_TEXTURE0);
+      glBindTexture(GL_TEXTURE_2D, diffuseMap);
+      // bind specular map
+      glActiveTexture(GL_TEXTURE1);
+      glBindTexture(GL_TEXTURE_2D, specularMap);
 
       glBindVertexArray(cubeVAO);
       glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -197,7 +234,8 @@ begin
     glDeleteVertexArrays(1, @cubeVAO);
     glDeleteVertexArrays(1, @lightCubeVAO);
     glDeleteBuffers(1, @VBO);
-
+    glDeleteTextures(1, @diffuseMap);
+    glDeleteTextures(1, @specularMap);
   finally
     camera.Free;
     lightCubeShader.Free;
@@ -249,6 +287,32 @@ begin
   glfwSetScrollCallback(window, @Scroll_callback);
 
   Result := window;
+end;
+
+function LoadTexture(fileName: string): cardinal;
+var
+  texture_ID: GLuint;
+  tx: TTexture;
+begin
+  texture_ID := GLuint(0);
+  glGenTextures(1, @texture_ID);
+
+  tx := TTexture.Create(fileName);
+  try
+    glBindTexture(GL_TEXTURE_2D, texture_ID);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tx.Width, tx.Height, 0, GL_RGBA,
+      GL_UNSIGNED_BYTE, tx.Pixels);
+    glGenerateMipmap(GL_TEXTURE_2D);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    Result := texture_ID;
+  finally
+    tx.Destroy;
+  end;
 end;
 
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl;

@@ -22,7 +22,7 @@ procedure Run();
 implementation
 
 uses
-  Case01_07_05_Camera_Exercise1;
+  Case02_05_01_Light_Casters_Directional;
 
 procedure Test;
 begin

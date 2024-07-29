@@ -1,4 +1,4 @@
-﻿unit Case02_01_01_Colors;
+﻿unit Case02_03_02_Materials_Exercise1;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -53,10 +53,10 @@ var
 
 procedure Main;
 const
-  fs = '..\Source\2.Lighting\1.1.Colors\1.1.colors.fs';
-  vs = '..\Source\2.Lighting\1.1.Colors\1.1.colors.vs';
-  light_cube_fs = '..\Source\2.Lighting\1.1.Colors\1.1.light_cube.fs';
-  light_cube_vs = '..\Source\2.Lighting\1.1.Colors\1.1.light_cube.vs';
+  fs = '..\Source\2.Lighting\3.2.Materials_Exercise1\3.2.materials.fs';
+  vs = '..\Source\2.Lighting\3.2.Materials_Exercise1\3.2.materials.vs';
+  light_cube_fs = '..\Source\2.Lighting\3.2.Materials_Exercise1\3.2.light_cube.fs';
+  light_cube_vs = '..\Source\2.Lighting\3.2.Materials_Exercise1\3.2.light_cube.vs';
 var
   window: PGLFWwindow;
   lightingShader, lightCubeShader: TShaderProgram;
@@ -64,6 +64,7 @@ var
   cubeVAO, VBO, lightCubeVAO: GLuint;
   projection, view, model: TMat4;
   currentFrame: GLfloat;
+  lightColor, diffuseColor, ambientColor: TVec3;
 begin
   window := InitWindows;
   if window = nil then
@@ -72,7 +73,6 @@ begin
     Exit;
   end;
 
-  Randomize;
   lightingShader := TShaderProgram.Create;
   lightCubeShader := TShaderProgram.Create;
   camera := TCamera.Create(TGLM.Vec3(0, 0, 3));
@@ -81,47 +81,47 @@ begin
     lightCubeShader.LoadShaderFile(light_cube_vs, light_cube_fs);
 
     vertices := TArr_GLfloat([
-      -0.5, -0.5, -0.5,
-       0.5, -0.5, -0.5,
-       0.5,  0.5, -0.5,
-       0.5,  0.5, -0.5,
-      -0.5,  0.5, -0.5,
-      -0.5, -0.5, -0.5,
+      -0.5, -0.5, -0.5,    0.0,  0.0, -1.0,
+       0.5, -0.5, -0.5,    0.0,  0.0, -1.0,
+       0.5,  0.5, -0.5,    0.0,  0.0, -1.0,
+       0.5,  0.5, -0.5,    0.0,  0.0, -1.0,
+      -0.5,  0.5, -0.5,    0.0,  0.0, -1.0,
+      -0.5, -0.5, -0.5,    0.0,  0.0, -1.0,
 
-      -0.5, -0.5,  0.5,
-       0.5, -0.5,  0.5,
-       0.5,  0.5,  0.5,
-       0.5,  0.5,  0.5,
-      -0.5,  0.5,  0.5,
-      -0.5, -0.5,  0.5,
+      -0.5, -0.5,  0.5,    0.0,  0.0,  1.0,
+       0.5, -0.5,  0.5,    0.0,  0.0,  1.0,
+       0.5,  0.5,  0.5,    0.0,  0.0,  1.0,
+       0.5,  0.5,  0.5,    0.0,  0.0,  1.0,
+      -0.5,  0.5,  0.5,    0.0,  0.0,  1.0,
+      -0.5, -0.5,  0.5,    0.0,  0.0,  1.0,
 
-      -0.5,  0.5,  0.5,
-      -0.5,  0.5, -0.5,
-      -0.5, -0.5, -0.5,
-      -0.5, -0.5, -0.5,
-      -0.5, -0.5,  0.5,
-      -0.5,  0.5,  0.5,
+      -0.5,  0.5,  0.5,   -1.0,  0.0,  0.0,
+      -0.5,  0.5, -0.5,   -1.0,  0.0,  0.0,
+      -0.5, -0.5, -0.5,   -1.0,  0.0,  0.0,
+      -0.5, -0.5, -0.5,   -1.0,  0.0,  0.0,
+      -0.5, -0.5,  0.5,   -1.0,  0.0,  0.0,
+      -0.5,  0.5,  0.5,   -1.0,  0.0,  0.0,
 
-       0.5,  0.5,  0.5,
-       0.5,  0.5, -0.5,
-       0.5, -0.5, -0.5,
-       0.5, -0.5, -0.5,
-       0.5, -0.5,  0.5,
-       0.5,  0.5,  0.5,
+       0.5,  0.5,  0.5,    1.0,  0.0,  0.0,
+       0.5,  0.5, -0.5,    1.0,  0.0,  0.0,
+       0.5, -0.5, -0.5,    1.0,  0.0,  0.0,
+       0.5, -0.5, -0.5,    1.0,  0.0,  0.0,
+       0.5, -0.5,  0.5,    1.0,  0.0,  0.0,
+       0.5,  0.5,  0.5,    1.0,  0.0,  0.0,
 
-      -0.5, -0.5, -0.5,
-       0.5, -0.5, -0.5,
-       0.5, -0.5,  0.5,
-       0.5, -0.5,  0.5,
-      -0.5, -0.5,  0.5,
-      -0.5, -0.5, -0.5,
+      -0.5, -0.5, -0.5,    0.0, -1.0,  0.0,
+       0.5, -0.5, -0.5,    0.0, -1.0,  0.0,
+       0.5, -0.5,  0.5,    0.0, -1.0,  0.0,
+       0.5, -0.5,  0.5,    0.0, -1.0,  0.0,
+      -0.5, -0.5,  0.5,    0.0, -1.0,  0.0,
+      -0.5, -0.5, -0.5,    0.0, -1.0,  0.0,
 
-      -0.5,  0.5, -0.5,
-       0.5,  0.5, -0.5,
-       0.5,  0.5,  0.5,
-       0.5,  0.5,  0.5,
-      -0.5,  0.5,  0.5,
-      -0.5,  0.5, -0.5]);
+      -0.5,  0.5, -0.5,    0.0,  1.0,  0.0,
+       0.5,  0.5, -0.5,    0.0,  1.0,  0.0,
+       0.5,  0.5,  0.5,    0.0,  1.0,  0.0,
+       0.5,  0.5,  0.5,    0.0,  1.0,  0.0,
+      -0.5,  0.5,  0.5,    0.0,  1.0,  0.0,
+      -0.5,  0.5, -0.5,    0.0,  1.0,  0.0]);
 
     cubeVAO := GLuint(0);
     VBO := GLuint(0);
@@ -133,9 +133,12 @@ begin
 
     glBindVertexArray(cubeVAO);
 
-    // position attribute ---位置属性
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(0));
+    // 位置属性
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * SIZE_F, Pointer(0));
     glEnableVertexAttribArray(0);
+    // 法向量
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * SIZE_F, Pointer(3 * SIZE_F));
+    glEnableVertexAttribArray(1);
 
     // 第二，配置灯的VAO (VBO保持不变;对于同样是3D立方体的光物体，顶点是相同的)
     lightCubeVAO := GLuint(0);
@@ -144,7 +147,8 @@ begin
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(0));
+    // 注意，我们更新了灯的位置属性的步幅来反映更新后的缓冲区数据
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * SIZE_F, Pointer(0));
     glEnableVertexAttribArray(0);
 
     // 渲染循环
@@ -162,11 +166,29 @@ begin
       glClearColor(0.1, 0.1, 0.1, 0.1);
       glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
 
-      // 在设置制服/绘制对象时，请确保激活着色器
+      // 在设置uniforms/绘制对象时，请确保激活着色器
       lightingShader.UseProgram;
-      lightingShader.SetUniformFloat('objectColor', [1.0, 0.5, 0.31]);
-      lightingShader.SetUniformFloat('lightColor',  [1.0, 1.0, 1.0]);
+      lightingShader.SetUniformFloat('light.position', lightPos);
+      lightingShader.SetUniformFloat('viewPos', camera.Position);
 
+      // light properties
+      lightColor := TGLM.Vec3(0);
+      lightColor.x := Sin(glfwGetTime * 2.0);
+      lightColor.y := Sin(glfwGetTime * 0.7);
+      lightColor.z := sin(glfwGetTime * 1.3);
+      diffuseColor := lightColor * TGLM.Vec3(0.5); // 减少影响
+      ambientColor := diffuseColor * TGLM.Vec3(0.2); // 极低辐照度反应
+      lightingShader.SetUniformFloat('light.ambient', ambientColor);
+      lightingShader.SetUniformFloat('light.diffuse', diffuseColor);
+      lightingShader.SetUniformFloat('light.specular', [1.0, 1.0, 1.0]);
+
+      // material properties
+      lightingShader.SetUniformFloat('material.ambient', [1.0, 0.5, 0.31]);
+      lightingShader.SetUniformFloat('material.duffuse', [1.0, 0.5, 0.31]);
+      lightingShader.SetUniformFloat('material.specular', [0.5, 0.5, 0.5]); // specular lighting doesn't have full effect on this object's material
+      lightingShader.SetUniformFloat('material.shininess', [32.0]);
+
+      // 视图/投影转换
       projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
       view := camera.GetViewMatrix;
       lightingShader.SetUniformMatrix4fv('projection', projection);
@@ -181,6 +203,7 @@ begin
       lightCubeShader.UseProgram;
       lightCubeShader.SetUniformMatrix4fv('projection', projection);
       lightCubeShader.SetUniformMatrix4fv('view', view);
+      lightCubeShader.SetUniformFloat('lightColor', lightColor);
       model := TGLM.Mat4_Identity;
       model := TGLM.Translate(model, lightPos);
       model := TGLM.Scale(model, TGLM.Vec3(0.2));

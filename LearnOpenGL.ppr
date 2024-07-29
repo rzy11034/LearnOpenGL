@@ -46,7 +46,22 @@ uses
   Case01_07_06_Camera_Exercise2,
   Case02_01_01_Colors,
   Case02_02_01_Basic_Lighting_Diffuse,
-  Case02_02_02_Basic_Lighting_Specular;
+  Case02_02_02_Basic_Lighting_Specular,
+  Case02_02_03_Basic_Lighting_Exercise1,
+  Case02_02_04_Basic_Lighting_Exercise2,
+  Case02_02_05_Basic_Lighting_Exercise3,
+  Case02_02_06_Basic_Lighting_Exercise4,
+  Case02_03_01_Materials,
+  Case02_03_02_Materials_Exercise1,
+  Case02_03_03_Materials_Exercise2,
+  Case02_04_01_Lighting_Maps_Diffuse_Map,
+  Case02_04_02_Lighting_Maps_Specular_Map,
+  Case02_04_03_Lighting_Maps_Exercise1,
+  Case02_04_04_Lighting_Maps_Exercise2,
+  Case02_04_05_Lighting_Maps_Exercise3,
+  Case02_04_06_Lighting_Maps_Exercise4,
+  Case02_05_01_Light_Casters_Directional,
+  Case02_05_02_Light_Casters_Point;
 
 begin
   try

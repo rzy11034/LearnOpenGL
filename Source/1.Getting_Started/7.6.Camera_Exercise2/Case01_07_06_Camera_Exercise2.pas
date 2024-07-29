@@ -353,7 +353,7 @@ begin
   rotation.m[2, 2] := zaxis.z;
 
   // Return lookAt matrix as combination of translation and rotation matrix
-  Result := (rotation * translation).Transpose;
+  Result := rotation * translation;
 end;
 
 procedure Mouse_callback(window: PGLFWwindow; xpos, ypos: double); cdecl;
