@@ -61,7 +61,8 @@ uses
   Case02_04_05_Lighting_Maps_Exercise3,
   Case02_04_06_Lighting_Maps_Exercise4,
   Case02_05_01_Light_Casters_Directional,
-  Case02_05_02_Light_Casters_Point;
+  Case02_05_02_Light_Casters_Point,
+  Case02_05_03_Light_Casters_Spot;
 
 begin
   try

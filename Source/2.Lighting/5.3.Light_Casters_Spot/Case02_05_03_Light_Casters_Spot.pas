@@ -1,4 +1,4 @@
-﻿unit Case02_05_02_Light_Casters_Point;
+﻿unit Case02_05_03_Light_Casters_Spot;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -7,7 +7,7 @@ interface
 
 uses
   Classes,
-  SysUtils;
+  SysUtils,
 
 procedure Main;
 
@@ -56,10 +56,10 @@ var
 
 procedure Main;
 const
-  fs = '..\Source\2.Lighting\5.2.Light_Casters_Point\5.2.light_casters.fs';
-  vs = '..\Source\2.Lighting\5.2.Light_Casters_Point\5.2.light_casters.vs';
-  light_cube_fs = '..\Source\2.Lighting\5.2.Light_Casters_Point\5.2.light_cube.fs';
-  light_cube_vs = '..\Source\2.Lighting\5.2.Light_Casters_Point\5.2.light_cube.vs';
+  fs = '..\Source\2.Lighting\5.3.Light_Casters_Spot\5.3.light_casters.fs';
+  vs = '..\Source\2.Lighting\5.3.Light_Casters_Spot\5.3.light_casters.vs';
+  light_cube_fs = '..\Source\2.Lighting\5.3.Light_Casters_Spot\5.3.light_cube.fs';
+  light_cube_vs = '..\Source\2.Lighting\5.3.Light_Casters_Spot\5.3.light_cube.vs';
   diffuseTexture = '..\Resources\textures\container2.png';
   specularTexture = '..\Resources\textures\container2_specular.png';
 var
@@ -199,17 +199,17 @@ begin
 
       // 在设置uniforms/绘制对象时，请确保激活着色器
       lightingShader.UseProgram;
-      lightingShader.SetUniformFloat('light.position', lightPos);
+      lightingShader.SetUniformFloat('light.position', camera.Position)
+      lightingShader.SetUniformFloat('light.direction', camera.Front);
       lightingShader.SetUniformFloat('viewPos', camera.Position);
 
-      lightingShader.SetUniformFloat('light.ambient', [0.2, 0.2, 0.2]);
+      lightingShader.SetUniformFloat('light.ambient', [0.5, 0.5, 0.5]);
       lightingShader.SetUniformFloat('light.diffuse', [0.5, 0.5, 0.5]);
       lightingShader.SetUniformFloat('light.specular', [1.0, 1.0, 1.0]);
 
       lightingShader.SetUniformFloat('light.constant',  [1.0]);
       lightingShader.SetUniformFloat('light.linear',    [0.09]);
       lightingShader.SetUniformFloat('light.quadratic', [0.032]);
-      lightingShader.SetUniformFloat('light.cutOff', [TGLM.Radians(12.5)]);
 
       // material properties
       lightingShader.SetUniformFloat('material.shininess', [32]);

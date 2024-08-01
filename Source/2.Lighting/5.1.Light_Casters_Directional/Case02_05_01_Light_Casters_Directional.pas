@@ -7,7 +7,7 @@ interface
 
 uses
   Classes,
-  SysUtils, DeepStar.OpenGL.Utils, DeepStar.OpenGL.GLAD_GL;
+  SysUtils;
 
 procedure Main;
 
@@ -15,6 +15,8 @@ implementation
 
 uses
   DeepStar.Utils,
+  DeepStar.OpenGL.Utils,
+  DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
   DeepStar.OpenGL.GLM,
   DeepStar.OpenGL.Shader,
@@ -49,8 +51,6 @@ var
   //向左旋转一点。
   lastX: GLfloat = SCR_WIDTH / 2.0;
   lastY: GLfloat = SCR_HEIGHT / 2.0;
-
-  lightPos: TVec3 = (v:(1.2, 1.0, 2.0));
 
 procedure Main;
 const
@@ -213,15 +213,6 @@ begin
       lightingShader.SetUniformMatrix4fv('projection', projection);
       lightingShader.SetUniformMatrix4fv('view', view);
 
-      for i := 0 to High(cubePositions) do
-      begin
-        angle := GLfloat(20 * i);
-        model := TGLM.Translate(TGLM.Mat4(1), cubePositions[i]);
-        model := TGLM.Rotate(model, glfwGetTime * TGLM.Radians(angle), TGLM.Vec3(1, 1, 1));
-        lightingShader.SetUniformMatrix4fv('model', model);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-      end;
-
       // bind diffuse map
       glActiveTexture(GL_TEXTURE0);
       glBindTexture(GL_TEXTURE_2D, diffuseMap);
@@ -232,16 +223,14 @@ begin
       glBindVertexArray(cubeVAO);
       glDrawArrays(GL_TRIANGLES, 0, 36);
 
-      //lightCubeShader.UseProgram;
-      //lightCubeShader.SetUniformMatrix4fv('projection', projection);
-      //lightCubeShader.SetUniformMatrix4fv('view', view);
-      //model := TGLM.Mat4_Identity;
-      //model := TGLM.Translate(model, lightPos);
-      //model := TGLM.Scale(model, TGLM.Vec3(0.2));
-      //lightCubeShader.SetUniformMatrix4fv('model', model);
-      //
-      //glBindVertexArray(lightCubeVAO);
-      //glDrawArrays(GL_TRIANGLES, 0, 36);
+      for i := 0 to High(cubePositions) do
+      begin
+        angle := GLfloat(20 * i);
+        model := TGLM.Translate(TGLM.Mat4(1), cubePositions[i]);
+        model := TGLM.Rotate(model, glfwGetTime * TGLM.Radians(angle), TGLM.Vec3(1, 1, 1));
+        lightingShader.SetUniformMatrix4fv('model', model);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+      end;
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
       glfwSwapBuffers(window);

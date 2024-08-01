@@ -22,7 +22,7 @@ procedure Run();
 implementation
 
 uses
-  Case02_05_01_Light_Casters_Directional;
+  Case02_05_03_Light_Casters_Spot;
 
 procedure Test;
 begin
