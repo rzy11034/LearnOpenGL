@@ -7,7 +7,7 @@ interface
 
 uses
   Classes,
-  SysUtils,
+  SysUtils;
 
 procedure Main;
 
@@ -199,11 +199,12 @@ begin
 
       // 在设置uniforms/绘制对象时，请确保激活着色器
       lightingShader.UseProgram;
-      lightingShader.SetUniformFloat('light.position', camera.Position)
+      lightingShader.SetUniformFloat('light.position', camera.Position);
       lightingShader.SetUniformFloat('light.direction', camera.Front);
+      lightingShader.SetUniformFloat('light.cutOff', [Cos(TGLM.Radians(12.5))]);
       lightingShader.SetUniformFloat('viewPos', camera.Position);
 
-      lightingShader.SetUniformFloat('light.ambient', [0.5, 0.5, 0.5]);
+      lightingShader.SetUniformFloat('light.ambient', [0.2, 0.2, 0.2]);
       lightingShader.SetUniformFloat('light.diffuse', [0.5, 0.5, 0.5]);
       lightingShader.SetUniformFloat('light.specular', [1.0, 1.0, 1.0]);
 
@@ -282,7 +283,7 @@ begin
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
   // 创建一个窗口对象
-  window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, PGLchar('LearnOpenGL'), nil, nil);
+  window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, string('LearnOpenGL'), nil, nil);
   if window = nil then
   begin
     WriteLn(' Failed to create GLFW window');

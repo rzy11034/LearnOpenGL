@@ -75,3 +75,5 @@ LearnOpenGL文档学习
         或是箱子上的灯带）。将这个纹理（作者为 creativesam）作为放射光贴图添加到
         箱子上，产生这些字母都在发光的效果。<br>
   5. 投光物	Light casters <br>
+  6. 多光源 Multiple lights <br>
+    - Exercise_01 通过调节光照属性变量，重现最后一张图片上不同的氛围 <br>

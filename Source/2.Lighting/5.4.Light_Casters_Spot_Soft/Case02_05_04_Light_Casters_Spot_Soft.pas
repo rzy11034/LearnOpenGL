@@ -1,4 +1,4 @@
-﻿unit Case02_03_03_Materials_Exercise2;
+﻿unit Case02_05_04_Light_Casters_Spot_Soft;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -15,12 +15,13 @@ implementation
 
 uses
   DeepStar.Utils,
+  DeepStar.OpenGL.Utils,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLFW,
   DeepStar.OpenGL.GLM,
   DeepStar.OpenGL.Shader,
   DeepStar.OpenGL.Camera,
-  DeepStar.OpenGL.Utils;
+  DeepStar.OpenGL.Texture;
 
   // 每当窗口大小发生变化(由操作系统或用户调整大小)，这个回调函数就会执行
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl; forward;
@@ -32,6 +33,8 @@ procedure Mouse_callback(window: PGLFWwindow; xpos, ypos: double); cdecl; forwar
 procedure ProcessInput(window: PGLFWwindow); forward;
 // glfw & glad  初始化
 function InitWindows: PGLFWwindow; forward;
+// 加载贴图
+function LoadTexture(fileName: string): cardinal; forward;
 
 const
   SCR_WIDTH = 800;
@@ -53,17 +56,22 @@ var
 
 procedure Main;
 const
-  fs = '..\Source\2.Lighting\3.3.Materials_Exercise2\3.3.materials.fs';
-  vs = '..\Source\2.Lighting\3.3.Materials_Exercise2\3.3.materials.vs';
-  light_cube_fs = '..\Source\2.Lighting\3.3.Materials_Exercise2\3.3.light_cube.fs';
-  light_cube_vs = '..\Source\2.Lighting\3.3.Materials_Exercise2\3.3.light_cube.vs';
+  fs = '..\Source\2.Lighting\5.4.Light_Casters_Spot_Soft\5.4.light_casters.fs';
+  vs = '..\Source\2.Lighting\5.4.Light_Casters_Spot_Soft\5.4.light_casters.vs';
+  light_cube_fs = '..\Source\2.Lighting\5.4.Light_Casters_Spot_Soft\5.4.light_cube.fs';
+  light_cube_vs = '..\Source\2.Lighting\5.4.Light_Casters_Spot_Soft\5.4.light_cube.vs';
+  diffuseTexture = '..\Resources\textures\container2.png';
+  specularTexture = '..\Resources\textures\container2_specular.png';
 var
   window: PGLFWwindow;
   lightingShader, lightCubeShader: TShaderProgram;
   vertices: TArr_GLfloat;
   cubeVAO, VBO, lightCubeVAO: GLuint;
   projection, view, model: TMat4;
-  currentFrame: GLfloat;
+  currentFrame, angle: GLfloat;
+  diffuseMap, specularMap: Cardinal;
+  cubePositions: TArr_TVec3;
+  i: Integer;
 begin
   window := InitWindows;
   if window = nil then
@@ -80,47 +88,60 @@ begin
     lightCubeShader.LoadShaderFile(light_cube_vs, light_cube_fs);
 
     vertices := TArr_GLfloat([
-      -0.5, -0.5, -0.5,    0.0,  0.0, -1.0,
-       0.5, -0.5, -0.5,    0.0,  0.0, -1.0,
-       0.5,  0.5, -0.5,    0.0,  0.0, -1.0,
-       0.5,  0.5, -0.5,    0.0,  0.0, -1.0,
-      -0.5,  0.5, -0.5,    0.0,  0.0, -1.0,
-      -0.5, -0.5, -0.5,    0.0,  0.0, -1.0,
+      // positions         // normals          // texture coords
+      -0.5, -0.5, -0.5,    0.0,  0.0, -1.0,    0.0, 0.0,
+       0.5, -0.5, -0.5,    0.0,  0.0, -1.0,    1.0, 0.0,
+       0.5,  0.5, -0.5,    0.0,  0.0, -1.0,    1.0, 1.0,
+       0.5,  0.5, -0.5,    0.0,  0.0, -1.0,    1.0, 1.0,
+      -0.5,  0.5, -0.5,    0.0,  0.0, -1.0,    0.0, 1.0,
+      -0.5, -0.5, -0.5,    0.0,  0.0, -1.0,    0.0, 0.0,
 
-      -0.5, -0.5,  0.5,    0.0,  0.0,  1.0,
-       0.5, -0.5,  0.5,    0.0,  0.0,  1.0,
-       0.5,  0.5,  0.5,    0.0,  0.0,  1.0,
-       0.5,  0.5,  0.5,    0.0,  0.0,  1.0,
-      -0.5,  0.5,  0.5,    0.0,  0.0,  1.0,
-      -0.5, -0.5,  0.5,    0.0,  0.0,  1.0,
+      -0.5, -0.5,  0.5,    0.0,  0.0,  1.0,    0.0, 0.0,
+       0.5, -0.5,  0.5,    0.0,  0.0,  1.0,    1.0, 0.0,
+       0.5,  0.5,  0.5,    0.0,  0.0,  1.0,    1.0, 1.0,
+       0.5,  0.5,  0.5,    0.0,  0.0,  1.0,    1.0, 1.0,
+      -0.5,  0.5,  0.5,    0.0,  0.0,  1.0,    0.0, 1.0,
+      -0.5, -0.5,  0.5,    0.0,  0.0,  1.0,    0.0, 0.0,
 
-      -0.5,  0.5,  0.5,   -1.0,  0.0,  0.0,
-      -0.5,  0.5, -0.5,   -1.0,  0.0,  0.0,
-      -0.5, -0.5, -0.5,   -1.0,  0.0,  0.0,
-      -0.5, -0.5, -0.5,   -1.0,  0.0,  0.0,
-      -0.5, -0.5,  0.5,   -1.0,  0.0,  0.0,
-      -0.5,  0.5,  0.5,   -1.0,  0.0,  0.0,
+      -0.5,  0.5,  0.5,   -1.0,  0.0,  0.0,    1.0, 0.0,
+      -0.5,  0.5, -0.5,   -1.0,  0.0,  0.0,    1.0, 1.0,
+      -0.5, -0.5, -0.5,   -1.0,  0.0,  0.0,    0.0, 1.0,
+      -0.5, -0.5, -0.5,   -1.0,  0.0,  0.0,    0.0, 1.0,
+      -0.5, -0.5,  0.5,   -1.0,  0.0,  0.0,    0.0, 0.0,
+      -0.5,  0.5,  0.5,   -1.0,  0.0,  0.0,    1.0, 0.0,
 
-       0.5,  0.5,  0.5,    1.0,  0.0,  0.0,
-       0.5,  0.5, -0.5,    1.0,  0.0,  0.0,
-       0.5, -0.5, -0.5,    1.0,  0.0,  0.0,
-       0.5, -0.5, -0.5,    1.0,  0.0,  0.0,
-       0.5, -0.5,  0.5,    1.0,  0.0,  0.0,
-       0.5,  0.5,  0.5,    1.0,  0.0,  0.0,
+       0.5,  0.5,  0.5,    1.0,  0.0,  0.0,    1.0, 0.0,
+       0.5,  0.5, -0.5,    1.0,  0.0,  0.0,    1.0, 1.0,
+       0.5, -0.5, -0.5,    1.0,  0.0,  0.0,    0.0, 1.0,
+       0.5, -0.5, -0.5,    1.0,  0.0,  0.0,    0.0, 1.0,
+       0.5, -0.5,  0.5,    1.0,  0.0,  0.0,    0.0, 0.0,
+       0.5,  0.5,  0.5,    1.0,  0.0,  0.0,    1.0, 0.0,
 
-      -0.5, -0.5, -0.5,    0.0, -1.0,  0.0,
-       0.5, -0.5, -0.5,    0.0, -1.0,  0.0,
-       0.5, -0.5,  0.5,    0.0, -1.0,  0.0,
-       0.5, -0.5,  0.5,    0.0, -1.0,  0.0,
-      -0.5, -0.5,  0.5,    0.0, -1.0,  0.0,
-      -0.5, -0.5, -0.5,    0.0, -1.0,  0.0,
+      -0.5, -0.5, -0.5,    0.0, -1.0,  0.0,    0.0, 1.0,
+       0.5, -0.5, -0.5,    0.0, -1.0,  0.0,    1.0, 1.0,
+       0.5, -0.5,  0.5,    0.0, -1.0,  0.0,    1.0, 0.0,
+       0.5, -0.5,  0.5,    0.0, -1.0,  0.0,    1.0, 0.0,
+      -0.5, -0.5,  0.5,    0.0, -1.0,  0.0,    0.0, 0.0,
+      -0.5, -0.5, -0.5,    0.0, -1.0,  0.0,    0.0, 1.0,
 
-      -0.5,  0.5, -0.5,    0.0,  1.0,  0.0,
-       0.5,  0.5, -0.5,    0.0,  1.0,  0.0,
-       0.5,  0.5,  0.5,    0.0,  1.0,  0.0,
-       0.5,  0.5,  0.5,    0.0,  1.0,  0.0,
-      -0.5,  0.5,  0.5,    0.0,  1.0,  0.0,
-      -0.5,  0.5, -0.5,    0.0,  1.0,  0.0]);
+      -0.5,  0.5, -0.5,    0.0,  1.0,  0.0,    0.0, 1.0,
+       0.5,  0.5, -0.5,    0.0,  1.0,  0.0,    1.0, 1.0,
+       0.5,  0.5,  0.5,    0.0,  1.0,  0.0,    1.0, 0.0,
+       0.5,  0.5,  0.5,    0.0,  1.0,  0.0,    1.0, 0.0,
+      -0.5,  0.5,  0.5,    0.0,  1.0,  0.0,    0.0, 0.0,
+      -0.5,  0.5, -0.5,    0.0,  1.0,  0.0,    0.0, 1.0]);
+
+    cubePositions := TArr_TVec3([
+      TGLM.Vec3( 0.0,  0.0,  0.0 ),
+      TGLM.Vec3( 2.0,  5.0, -15.0),
+      TGLM.Vec3(-1.5, -2.2, -2.5 ),
+      TGLM.Vec3(-3.8, -2.0, -12.3),
+      TGLM.Vec3( 2.4, -0.4, -3.5 ),
+      TGLM.Vec3(-1.7,  3.0, -7.5 ),
+      TGLM.Vec3( 1.3, -2.0, -2.5 ),
+      TGLM.Vec3( 1.5,  2.0, -2.5 ),
+      TGLM.Vec3( 1.5,  0.2, -1.5 ),
+      TGLM.Vec3(-1.3,  1.0, -1.5 )]);
 
     cubeVAO := GLuint(0);
     VBO := GLuint(0);
@@ -133,11 +154,14 @@ begin
     glBindVertexArray(cubeVAO);
 
     // 位置属性
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * SIZE_F, Pointer(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(0));
     glEnableVertexAttribArray(0);
     // 法向量
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * SIZE_F, Pointer(3 * SIZE_F));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(3 * SIZE_F));
     glEnableVertexAttribArray(1);
+    // 漫反射贴图坐标
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(6 * SIZE_F));
+    glEnableVertexAttribArray(2);
 
     // 第二，配置灯的VAO (VBO保持不变;对于同样是3D立方体的光物体，顶点是相同的)
     lightCubeVAO := GLuint(0);
@@ -147,8 +171,16 @@ begin
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
     // 注意，我们更新了灯的位置属性的步幅来反映更新后的缓冲区数据
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * SIZE_F, Pointer(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(0));
     glEnableVertexAttribArray(0);
+
+    // 加载纹理(现在使用一个实用函数来保持代码更有条理)
+    diffuseMap := LoadTexture(diffuseTexture);
+    specularMap := LoadTexture(specularTexture);
+
+    lightingShader.UseProgram;
+    lightingShader.SetUniformInt('material.diffuse', [0]);
+    lightingShader.SetUniformInt('material.specular', [1]);
 
     // 渲染循环
     while not glfwWindowShouldClose(window).ToBoolean do
@@ -167,19 +199,22 @@ begin
 
       // 在设置uniforms/绘制对象时，请确保激活着色器
       lightingShader.UseProgram;
-      lightingShader.SetUniformFloat('light.position', lightPos);
+      lightingShader.SetUniformFloat('light.position', camera.Position);
+      lightingShader.SetUniformFloat('light.direction', camera.Front);
+      lightingShader.SetUniformFloat('light.cutOff', [Cos(TGLM.Radians(12.5))]);
+      lightingShader.SetUniformFloat('light.outerCutOff', [Cos(TGLM.Radians(17.5))]);
       lightingShader.SetUniformFloat('viewPos', camera.Position);
 
-      lightingShader.SetUniformFloat('light.ambient', [1.0, 1.0, 1.0]);
-      lightingShader.SetUniformFloat('light.diffuse', [1.0, 1.0, 1.0]);
+      lightingShader.SetUniformFloat('light.ambient', [0.2, 0.2, 0.2]);
+      lightingShader.SetUniformFloat('light.diffuse', [0.5, 0.5, 0.5]);
       lightingShader.SetUniformFloat('light.specular', [1.0, 1.0, 1.0]);
 
+      lightingShader.SetUniformFloat('light.constant',  [1.0]);
+      lightingShader.SetUniformFloat('light.linear',    [0.09]);
+      lightingShader.SetUniformFloat('light.quadratic', [0.032]);
+
       // material properties
-      lightingShader.SetUniformFloat('material.ambient', [0.0, 0.1, 0.06]);
-      lightingShader.SetUniformFloat('material.duffuse', [0.0, 0.50980392, 0.50980392]);
-      // specular lighting doesn't have full effect on this object's material
-      lightingShader.SetUniformFloat('material.specular', [0.50196078, 0.50196078, 0.50196078]);
-      lightingShader.SetUniformFloat('material.shininess', [32.0]);
+      lightingShader.SetUniformFloat('material.shininess', [32]);
 
       // 视图/投影转换
       projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
@@ -187,11 +222,24 @@ begin
       lightingShader.SetUniformMatrix4fv('projection', projection);
       lightingShader.SetUniformMatrix4fv('view', view);
 
-      model := TGLM.Mat4(1);
-      lightingShader.SetUniformMatrix4fv('model', model);
+      // bind diffuse map
+      glActiveTexture(GL_TEXTURE0);
+      glBindTexture(GL_TEXTURE_2D, diffuseMap);
+      // bind specular map
+      glActiveTexture(GL_TEXTURE1);
+      glBindTexture(GL_TEXTURE_2D, specularMap);
 
       glBindVertexArray(cubeVAO);
       glDrawArrays(GL_TRIANGLES, 0, 36);
+
+      for i := 0 to High(cubePositions) do
+      begin
+        angle := GLfloat(20 * i);
+        model := TGLM.Translate(TGLM.Mat4(1), cubePositions[i]);
+        model := TGLM.Rotate(model, glfwGetTime * TGLM.Radians(angle), TGLM.Vec3(1, 1, 1));
+        lightingShader.SetUniformMatrix4fv('model', model);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+      end;
 
       lightCubeShader.UseProgram;
       lightCubeShader.SetUniformMatrix4fv('projection', projection);
@@ -212,6 +260,8 @@ begin
     glDeleteVertexArrays(1, @cubeVAO);
     glDeleteVertexArrays(1, @lightCubeVAO);
     glDeleteBuffers(1, @VBO);
+    glDeleteTextures(1, @diffuseMap);
+    glDeleteTextures(1, @specularMap);
   finally
     camera.Free;
     lightCubeShader.Free;
@@ -234,7 +284,7 @@ begin
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
   // 创建一个窗口对象
-  window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, string('LearnOpenGL'), nil, nil);
+  window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, '的的LearnOpenGL', nil, nil);
   if window = nil then
   begin
     WriteLn(' Failed to create GLFW window');
@@ -263,6 +313,32 @@ begin
   glfwSetScrollCallback(window, @Scroll_callback);
 
   Result := window;
+end;
+
+function LoadTexture(fileName: string): cardinal;
+var
+  texture_ID: GLuint;
+  tx: TTexture;
+begin
+  texture_ID := GLuint(0);
+  glGenTextures(1, @texture_ID);
+
+  tx := TTexture.Create(fileName);
+  try
+    glBindTexture(GL_TEXTURE_2D, texture_ID);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tx.Width, tx.Height, 0, GL_RGBA,
+      GL_UNSIGNED_BYTE, tx.Pixels);
+    glGenerateMipmap(GL_TEXTURE_2D);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    Result := texture_ID;
+  finally
+    tx.Destroy;
+  end;
 end;
 
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl;
@@ -312,3 +388,4 @@ begin
 end;
 
 end.
+

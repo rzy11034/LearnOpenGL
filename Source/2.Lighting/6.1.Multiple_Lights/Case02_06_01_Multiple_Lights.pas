@@ -1,4 +1,4 @@
-﻿unit Case02_04_02_Lighting_Maps_Specular_Map;
+﻿unit Case02_06_01_Multiple_Lights;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -7,7 +7,7 @@ interface
 
 uses
   Classes,
-  SysUtils;
+  SysUtils, DeepStar.OpenGL.Utils;
 
 procedure Main;
 
@@ -20,8 +20,7 @@ uses
   DeepStar.OpenGL.GLM,
   DeepStar.OpenGL.Shader,
   DeepStar.OpenGL.Camera,
-  DeepStar.OpenGL.Texture,
-  DeepStar.OpenGL.Utils;
+  DeepStar.OpenGL.Texture;
 
   // 每当窗口大小发生变化(由操作系统或用户调整大小)，这个回调函数就会执行
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl; forward;
@@ -52,14 +51,12 @@ var
   lastX: GLfloat = SCR_WIDTH / 2.0;
   lastY: GLfloat = SCR_HEIGHT / 2.0;
 
-  lightPos: TVec3 = (v:(1.2, 1.0, 2.0));
-
 procedure Main;
 const
-  fs = '..\Source\2.Lighting\4.2.Lighting_Maps_Specular_Map\4.2.lighting_maps.fs';
-  vs = '..\Source\2.Lighting\4.2.Lighting_Maps_Specular_Map\4.2.lighting_maps.vs';
-  light_cube_fs = '..\Source\2.Lighting\4.2.Lighting_Maps_Specular_Map\4.2.light_cube.fs';
-  light_cube_vs = '..\Source\2.Lighting\4.2.Lighting_Maps_Specular_Map\4.2.light_cube.vs';
+  fs = '..\Source\2.Lighting\6.1.Multiple_Lights\6.1.multiple_lights.fs';
+  vs = '..\Source\2.Lighting\6.1.Multiple_Lights\6.1.multiple_lights.vs';
+  light_cube_fs = '..\Source\2.Lighting\6.1.Multiple_Lights\6.1.light_cube.fs';
+  light_cube_vs = '..\Source\2.Lighting\6.1.Multiple_Lights\6.1.light_cube.vs';
   diffuseTexture = '..\Resources\textures\container2.png';
   specularTexture = '..\Resources\textures\container2_specular.png';
 var
@@ -68,8 +65,11 @@ var
   vertices: TArr_GLfloat;
   cubeVAO, VBO, lightCubeVAO: GLuint;
   projection, view, model: TMat4;
-  currentFrame: GLfloat;
+  currentFrame, angle: GLfloat;
   diffuseMap, specularMap: Cardinal;
+  cubePositions, pointLightPositions: TArr_TVec3;
+  i: Integer;
+  uniformStr: string;
 begin
   window := InitWindows;
   if window = nil then
@@ -129,6 +129,24 @@ begin
       -0.5,  0.5,  0.5,    0.0,  1.0,  0.0,    0.0, 0.0,
       -0.5,  0.5, -0.5,    0.0,  1.0,  0.0,    0.0, 1.0]);
 
+    cubePositions := TArr_TVec3([
+      TGLM.Vec3( 0.0,  0.0,  0.0 ),
+      TGLM.Vec3( 2.0,  5.0, -15.0),
+      TGLM.Vec3(-1.5, -2.2, -2.5 ),
+      TGLM.Vec3(-3.8, -2.0, -12.3),
+      TGLM.Vec3( 2.4, -0.4, -3.5 ),
+      TGLM.Vec3(-1.7,  3.0, -7.5 ),
+      TGLM.Vec3( 1.3, -2.0, -2.5 ),
+      TGLM.Vec3( 1.5,  2.0, -2.5 ),
+      TGLM.Vec3( 1.5,  0.2, -1.5 ),
+      TGLM.Vec3(-1.3,  1.0, -1.5 )]);
+
+    pointLightPositions := TArr_TVec3([
+      TGLM.Vec3( 0.7,  0.2,  2.0 ),
+      TGLM.Vec3( 2.3, -3.3, -4.0 ),
+      TGLM.Vec3(-4.0,  2.0, -12.0),
+      TGLM.Vec3( 0.0,  0.0, -3.0)]);
+
     cubeVAO := GLuint(0);
     VBO := GLuint(0);
     glGenVertexArrays(1, @cubeVAO);
@@ -185,46 +203,90 @@ begin
 
       // 在设置uniforms/绘制对象时，请确保激活着色器
       lightingShader.UseProgram;
-      lightingShader.SetUniformFloat('light.position', lightPos);
       lightingShader.SetUniformFloat('viewPos', camera.Position);
+      lightingShader.SetUniformFloat('material.shininess', [32.0]);
 
-      lightingShader.SetUniformFloat('light.ambient', [0.2, 0.2, 0.2]);
-      lightingShader.SetUniformFloat('light.diffuse', [0.5, 0.5, 0.5]);
-      lightingShader.SetUniformFloat('light.specular', [1.0, 1.0, 1.0]);
+      // 在这里，我们为我们拥有的 5/6 种类型的灯设置了所有制服。我们必须手动设置它们并编制索引
+      // 数组中的正确 PointLight 结构，用于设置每个统一变量。这可以更直观地完成代码操作
+      // 通过将光源类型定义为类并在其中设置其值，或使用更有效的统一方法
+      // 通过使用“统一缓冲区对象”，但这是我们将在“高级 GLSL”教程中讨论的内容
+      // directional light
+      lightingShader.SetUniformFloat('dirLight.direction', [-0.2, -1.0, -0.3]);
+      lightingShader.SetUniformFloat('dirLight.ambient', [0.05, 0.05, 0.05]);
+      lightingShader.SetUniformFloat('dirLight.diffuse', [0.4, 0.4, 0.4]);
+      lightingShader.SetUniformFloat('dirLight.specular', [0.5, 0.5, 0.5]);
 
-      // material properties
-      lightingShader.SetUniformFloat('material.specular', [0.5, 0.5, 0.5]);
-      lightingShader.SetUniformFloat('material.shininess', [64]);
+      // point light
+      for i := 0 to 3 do
+      begin
+        uniformStr := UnicodeFormat('pointLights[%d].position', [i]);
+        lightingShader.SetUniformFloat(uniformStr, pointLightPositions[i]);
+
+        uniformStr := UnicodeFormat('pointLights[%d].ambient', [i]);
+        lightingShader.SetUniformFloat(uniformStr, [0.05, 0.05, 0.05]);
+
+        uniformStr := UnicodeFormat('pointLights[%d].diffuse', [i]);
+        lightingShader.SetUniformFloat(uniformStr, [0.8, 0.8, 0.8]);
+
+        uniformStr := UnicodeFormat('pointLights[%d].specular', [i]);
+        lightingShader.SetUniformFloat(uniformStr, [1.0, 1.0, 1.0]);
+
+        uniformStr := UnicodeFormat('pointLights[%d].constant', [i]);
+        lightingShader.SetUniformFloat(uniformStr, [1.0]);
+
+        uniformStr := UnicodeFormat('pointLights[%d].linear', [i]);
+        lightingShader.SetUniformFloat(uniformStr, [0.09]);
+
+        uniformStr := UnicodeFormat('pointLights[%d].quadratic', [i]);
+        lightingShader.SetUniformFloat(uniformStr, [0.032]);
+      end;
+
+      // spotLight
+      lightingShader.SetUniformFloat('spotLight.position', camera.Position);
+      lightingShader.SetUniformFloat('spotLight.direction', camera.Front);
+      lightingShader.SetUniformFloat('spotLight.ambient', [0.0, 0.0, 0.0]);
+      lightingShader.SetUniformFloat('spotLight.diffuse', [1.0, 1.0, 1.0]);
+      lightingShader.SetUniformFloat('spotLight.specular', [1.0, 1.0, 1.0]);
+      lightingShader.SetUniformFloat('spotLight.constant', [1.0]);
+      lightingShader.SetUniformFloat('spotLight.linear', [0.09]);
+      lightingShader.SetUniformFloat('spotLight.quadratic', [0.032]);
+      lightingShader.SetUniformFloat('spotLight.cutOff', [Cos(TGLM.Radians(12.5))]);
+      lightingShader.SetUniformFloat('spotLight.outerCutOff', [Cos(TGLM.Radians(15.0))]);
 
       // 视图/投影转换
       projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
       view := camera.GetViewMatrix;
       lightingShader.SetUniformMatrix4fv('projection', projection);
       lightingShader.SetUniformMatrix4fv('view', view);
-
-      model := TGLM.Mat4(1);
-      lightingShader.SetUniformMatrix4fv('model', model);
-
       // bind diffuse map
       glActiveTexture(GL_TEXTURE0);
       glBindTexture(GL_TEXTURE_2D, diffuseMap);
       // bind specular map
       glActiveTexture(GL_TEXTURE1);
       glBindTexture(GL_TEXTURE_2D, specularMap);
-
       glBindVertexArray(cubeVAO);
-      glDrawArrays(GL_TRIANGLES, 0, 36);
+      for i := 0 to High(cubePositions) do
+      begin
+        angle := GLfloat(20 * i);
+        model := TGLM.Translate(TGLM.Mat4(1), cubePositions[i]);
+        model := TGLM.Rotate(model, glfwGetTime * TGLM.Radians(angle), TGLM.Vec3(1, 1, 1));
+        lightingShader.SetUniformMatrix4fv('model', model);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+      end;
 
+      // also draw the lamp object(s)
       lightCubeShader.UseProgram;
       lightCubeShader.SetUniformMatrix4fv('projection', projection);
       lightCubeShader.SetUniformMatrix4fv('view', view);
-      model := TGLM.Mat4_Identity;
-      model := TGLM.Translate(model, lightPos);
-      model := TGLM.Scale(model, TGLM.Vec3(0.2));
-      lightCubeShader.SetUniformMatrix4fv('model', model);
-
       glBindVertexArray(lightCubeVAO);
-      glDrawArrays(GL_TRIANGLES, 0, 36);
+      for i := 0 to 3 do
+      begin
+        model := TGLM.Mat4_Identity;
+        model := TGLM.Translate(model, pointLightPositions[i]);
+        model := TGLM.Scale(model, TGLM.Vec3(0.2));
+        lightCubeShader.SetUniformMatrix4fv('model', model);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+      end;
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
       glfwSwapBuffers(window);
@@ -258,7 +320,7 @@ begin
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
   // 创建一个窗口对象
-  window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, string('LearnOpenGL'), nil, nil);
+  window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, string('的LearnOpenGL'), nil, nil);
   if window = nil then
   begin
     WriteLn(' Failed to create GLFW window');
@@ -362,3 +424,4 @@ begin
 end;
 
 end.
+

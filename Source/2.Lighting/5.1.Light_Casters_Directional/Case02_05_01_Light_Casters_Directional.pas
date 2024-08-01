@@ -200,7 +200,7 @@ begin
       lightingShader.SetUniformFloat('light.direction', [-0.2, -1, -0.3]);
       lightingShader.SetUniformFloat('viewPos', camera.Position);
 
-      lightingShader.SetUniformFloat('light.ambient', [0.5, 0.5, 0.5]);
+      lightingShader.SetUniformFloat('light.ambient', [0.2, 0.2, 0.2]);
       lightingShader.SetUniformFloat('light.diffuse', [0.5, 0.5, 0.5]);
       lightingShader.SetUniformFloat('light.specular', [1.0, 1.0, 1.0]);
 
@@ -264,7 +264,7 @@ begin
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
   // 创建一个窗口对象
-  window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, PGLchar('LearnOpenGL'), nil, nil);
+  window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, string('LearnOpenGL'), nil, nil);
   if window = nil then
   begin
     WriteLn(' Failed to create GLFW window');

@@ -2,13 +2,13 @@
 
 {$mode ObjFPC}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
+{$ModeSwitch advancedrecords}
 
 interface
 
 uses
   Classes,
   SysUtils,
-  System.UITypes,
   {%H-}DeepStar.Utils,
   {%H-}DeepStar.OpenGL.GLAD_GL,
   {%H-}DeepStar.OpenGL.GLFW,
@@ -22,7 +22,7 @@ procedure Run();
 implementation
 
 uses
-  Case02_05_03_Light_Casters_Spot;
+  Case02_06_02_Multiple_Lights_Exercise1;
 
 procedure Test;
 begin

@@ -20,7 +20,7 @@ const
   SCR_HEIGHT = 600;
 
 const
-  vertexShaderSource: PGLchar = ''
+  vertexShaderSource: string = ''
     + LE + '#version 330 core'
     + LE + 'layout (location = 0) in vec3 aPos; // 位置变量的属性位置值为0'
     + LE + 'void main() '
@@ -28,7 +28,7 @@ const
     + LE + '  gl_Position = vec4(aPos, 1.0); // 注意我们如何把一个vec3作为vec4的构造器的参数'
     + LE + '} ';
 
-  fragmentShaderSource: PGLchar = '#version 330 core'
+  fragmentShaderSource: string = '#version 330 core'
     + LE + 'out vec4 FragColor;'
     + LE + 'uniform vec4 ourColor; // 在OpenGL程序代码中设定这个变量'
     + LE + 'void main()'
@@ -67,7 +67,7 @@ begin
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
   // 创建一个窗口对象
-  window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, PGLchar('LearnOpenGL'), nil, nil);
+  window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, string('LearnOpenGL'), nil, nil);
   if window = nil then
   begin
     WriteLn(' Failed to create GLFW window');
@@ -105,7 +105,7 @@ begin
   if not success.ToBoolean then
   begin
     glGetShaderInfoLog(vertexShader, 512, nil, @infoLog[0]);
-    WriteLn('ERROR::SHADER::VERTEX::COMPILATION_FAILED' + LE, PGLchar(infoLog));
+    WriteLn('ERROR::SHADER::VERTEX::COMPILATION_FAILED' + LE, string(infoLog));
   end;
 
   // 编译片段着色器的过程与顶点着色器类似，
@@ -121,7 +121,7 @@ begin
   if not success.ToBoolean then
   begin
     glGetShaderInfoLog(fragmentShader, 512, nil, @infoLog[0]);
-    WriteLn('ERROR::SHADER::FRAGMENT::COMPILATION_FAILED' + LE, PGLchar(infoLog));
+    WriteLn('ERROR::SHADER::FRAGMENT::COMPILATION_FAILED' + LE, string(infoLog));
   end;
 
   // 把每个着色器的输出链接到下个着色器的输入

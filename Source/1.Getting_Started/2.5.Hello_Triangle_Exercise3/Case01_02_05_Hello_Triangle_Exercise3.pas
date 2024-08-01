@@ -67,7 +67,7 @@ begin
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-  window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, PGLchar('LearnOpenGL'), nil, nil);
+  window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, string('LearnOpenGL'), nil, nil);
   if window = nil then
   begin
     WriteLn(' Failed to create GLFW window');
@@ -96,7 +96,7 @@ begin
   if not success.ToBoolean then
   begin
     glGetShaderInfoLog(vertexShader, 512, nil, @infoLog[0]);
-    WriteLn('ERROR::SHADER::VERTEX::COMPILATION_FAILED' + LE, PGLchar(infoLog));
+    WriteLn('ERROR::SHADER::VERTEX::COMPILATION_FAILED' + LE, string(infoLog));
   end;
 
   ////////////////////////////////////////////////////////////////////////////
@@ -118,7 +118,7 @@ begin
   if not success.ToBoolean then
   begin
     glGetShaderInfoLog(fragmentShader1, 512, nil, @infoLog[0]);
-    WriteLn('ERROR::SHADER::FRAGMENT1::COMPILATION_FAILED' + LE, PGLchar(infoLog));
+    WriteLn('ERROR::SHADER::FRAGMENT1::COMPILATION_FAILED' + LE, string(infoLog));
   end;
 
   glCompileShader(fragmentShader2);
@@ -129,7 +129,7 @@ begin
   if not success.ToBoolean then
   begin
     glGetShaderInfoLog(fragmentShader2, 512, nil, @infoLog[0]);
-    WriteLn('ERROR::SHADER::FRAGMENT2::COMPILATION_FAILED' + LE, PGLchar(infoLog));
+    WriteLn('ERROR::SHADER::FRAGMENT2::COMPILATION_FAILED' + LE, string(infoLog));
   end;
 
   //////////////////////////////////////////////////////////////////////////
@@ -155,7 +155,7 @@ begin
   if not success.ToBoolean then
   begin
     glGetProgramInfoLog(shaderProgram1, 512, nil, @infoLog[0]);
-    WriteLn('ERROR::SHADER::SHADERPROGRAM1::COMPILATION_FAILED' + LE, PGLchar(infoLog));
+    WriteLn('ERROR::SHADER::SHADERPROGRAM1::COMPILATION_FAILED' + LE, string(infoLog));
   end;
 
   infoLog := nil;
@@ -165,7 +165,7 @@ begin
   if not success.ToBoolean then
   begin
     glGetProgramInfoLog(shaderProgram2, 512, nil, @infoLog[0]);
-    WriteLn('ERROR::SHADER::SHADERPROGRAM2::COMPILATION_FAILED' + LE, PGLchar(infoLog));
+    WriteLn('ERROR::SHADER::SHADERPROGRAM2::COMPILATION_FAILED' + LE, string(infoLog));
   end;
 
   /////////////////////////////////////////////////////////////////////////////
