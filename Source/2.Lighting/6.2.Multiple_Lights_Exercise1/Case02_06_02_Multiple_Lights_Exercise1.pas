@@ -1,4 +1,4 @@
-unit Case02_06_02_Multiple_Lights_Exercise1;
+﻿unit Case02_06_02_Multiple_Lights_Exercise1;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -700,8 +700,10 @@ begin
   texture_ID := GLuint(0);
   glGenTextures(1, @texture_ID);
 
-  tx := TTexture.Create(fileName);
+  tx := TTexture.Create;
   try
+    tx.LoadFormFile(fileName);
+
     glBindTexture(GL_TEXTURE_2D, texture_ID);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tx.Width, tx.Height, 0, GL_RGBA,
       GL_UNSIGNED_BYTE, tx.Pixels);

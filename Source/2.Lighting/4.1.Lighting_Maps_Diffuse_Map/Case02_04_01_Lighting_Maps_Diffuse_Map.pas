@@ -290,8 +290,10 @@ begin
   txID := GLuint(0);
   glGenTextures(1, @txID);
 
-  tx := TTexture.Create(fileName);
+  tx := TTexture.Create();
   try
+    tx.LoadFormFile(fileName);
+
     glBindTexture(GL_TEXTURE_2D, txID);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tx.Width, tx.Height, 0, GL_RGBA,
       GL_UNSIGNED_BYTE, tx.Pixels);

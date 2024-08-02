@@ -9,7 +9,7 @@ interface
 uses
   Classes,
   SysUtils,
-  {%H-}DeepStar.Utils,
+  {%H-}DeepStar.Utils,DeepStar.SDL2.Texture,
   {%H-}DeepStar.OpenGL.GLAD_GL,
   {%H-}DeepStar.OpenGL.GLFW,
   {%H-}DeepStar.OpenGL.GLM,
