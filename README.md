@@ -1,7 +1,7 @@
 # LearnOpenGL
 LearnOpenGL文档学习
 
-## 第1节 入门 <br>
+## 第1章 入门 <br>
   1. 你好，窗口 Hello Window <br>
   2. 你好，三角形 Hello Triangle <br>
     - Exercise_01 添加更多顶点到数据中，使用glDrawArrays，尝试绘制两个
@@ -43,7 +43,8 @@ LearnOpenGL文档学习
     - Exercise_02 试着创建你自己的LookAt函数，其中你需要手动创建一个我们在一开始
         讨论的观察矩阵。用你的函数实现来替换GLM的LookAt函数，看看它是否还能一样
         地工作。 <br>
-## 第2节 光照 <br>
+
+## 第2章 光照 <br>
   1. 颜色	Colors <br>
   2. 基础光照 Basic Lighting <br>
     - Exercise_01 目前，我们的光源是静止的，你可以尝试使用sin或cos函数让光源在
@@ -77,3 +78,6 @@ LearnOpenGL文档学习
   5. 投光物	Light casters <br>
   6. 多光源 Multiple lights <br>
     - Exercise_01 通过调节光照属性变量，重现最后一张图片上不同的氛围 <br>
+
+## 第3章 模型加载 <br>
+  1. 模型加载	Model Loading <br>

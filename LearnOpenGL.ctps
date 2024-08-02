@@ -10,18 +10,18 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="47"/>
-        <CursorPos X="23" Y="47"/>
+        <CursorPos Y="69"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="README.md"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="64"/>
-        <CursorPos X="23" Y="79"/>
+        <TopLine Value="58"/>
+        <CursorPos X="22" Y="83"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
@@ -31,7 +31,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <CursorPos X="41" Y="25"/>
+        <TopLine Value="7"/>
+        <CursorPos X="13" Y="31"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
@@ -839,7 +840,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="272"/>
         <CursorPos X="5" Y="306"/>
-        <UsageCount Value="126"/>
+        <UsageCount Value="131"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\2.3.Basic_Lighting_Exercise1\Case02_02_03_Basic_Lighting_Exercise1.pas"/>
@@ -848,7 +849,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="49"/>
         <CursorPos X="82" Y="57"/>
-        <UsageCount Value="113"/>
+        <UsageCount Value="118"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\2.2.Basic_Lighting_Specular\2.2.basic_lighting.fs"/>
@@ -858,7 +859,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="113"/>
+        <UsageCount Value="118"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -869,7 +870,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="113"/>
+        <UsageCount Value="118"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -880,7 +881,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="113"/>
+        <UsageCount Value="118"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -891,7 +892,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="113"/>
+        <UsageCount Value="118"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -901,7 +902,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="273"/>
         <CursorPos X="5" Y="307"/>
-        <UsageCount Value="113"/>
+        <UsageCount Value="118"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\2.3.Basic_Lighting_Exercise1\2.3.basic_lighting.fs"/>
@@ -911,7 +912,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="113"/>
+        <UsageCount Value="118"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -922,7 +923,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="113"/>
+        <UsageCount Value="118"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -933,7 +934,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="113"/>
+        <UsageCount Value="118"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -944,7 +945,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="113"/>
+        <UsageCount Value="118"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -953,7 +954,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="5" Y="307"/>
-        <UsageCount Value="112"/>
+        <UsageCount Value="117"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\2.6.Basic_Lighting_Exercise4\Case02_02_06_Basic_Lighting_Exercise4.pas"/>
@@ -962,7 +963,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="213"/>
         <CursorPos X="60" Y="230"/>
-        <UsageCount Value="112"/>
+        <UsageCount Value="117"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\2.4.Basic_Lighting_Exercise2\2.4.basic_lighting.fs"/>
@@ -972,7 +973,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="116"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -983,7 +984,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="116"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -994,7 +995,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="116"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1005,7 +1006,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="116"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1016,7 +1017,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="116"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1027,7 +1028,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="116"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1038,7 +1039,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="116"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1049,7 +1050,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="116"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1060,7 +1061,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="116"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1071,7 +1072,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="116"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1082,7 +1083,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="116"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1093,7 +1094,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="116"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1101,14 +1102,14 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="109"/>
+        <UsageCount Value="114"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\3.2.Materials_Exercise1\Case02_03_02_Materials_Exercise1.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="110"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\3.1.Materials\3.1.light_cube.fs"/>
@@ -1118,7 +1119,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="110"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1129,7 +1130,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="110"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1140,7 +1141,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="110"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1151,7 +1152,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="110"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1161,7 +1162,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="24" Y="4"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="110"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1170,7 +1171,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="110"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1179,7 +1180,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="110"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1190,7 +1191,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="110"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1198,14 +1199,14 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="103"/>
+        <UsageCount Value="108"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\4.1.Lighting_Maps_Diffuse_Map\Case02_04_01_Lighting_Maps_Diffuse_Map.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="101"/>
+        <UsageCount Value="106"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\4.1.Lighting_Maps_Diffuse_Map\4.1.light_cube.fs"/>
@@ -1215,7 +1216,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="100"/>
+        <UsageCount Value="105"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1226,7 +1227,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="100"/>
+        <UsageCount Value="105"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1236,7 +1237,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="28" Y="21"/>
-        <UsageCount Value="100"/>
+        <UsageCount Value="105"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1246,7 +1247,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="30" Y="4"/>
-        <UsageCount Value="100"/>
+        <UsageCount Value="105"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1254,7 +1255,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="67"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\3.3.Materials_Exercise2\3.3.light_cube.fs"/>
@@ -1264,7 +1265,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="67"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1275,7 +1276,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="67"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1286,7 +1287,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="67"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1297,7 +1298,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="67"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1308,7 +1309,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="65"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1319,7 +1320,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="65"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1330,7 +1331,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="22"/>
         <CursorPos X="12" Y="27"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="65"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1340,7 +1341,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="56" Y="17"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="65"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1350,7 +1351,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="176"/>
         <CursorPos X="51" Y="179"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="64"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\4.3.Lighting_Maps_Exercise1\4.3.light_cube.fs"/>
@@ -1358,7 +1359,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="63"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1367,7 +1368,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="63"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1378,7 +1379,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="16"/>
         <CursorPos X="28" Y="35"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="63"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1388,7 +1389,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="24" Y="19"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="63"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1398,7 +1399,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="244"/>
         <CursorPos X="60" Y="261"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="63"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\4.4.Lighting_Maps_Exercise2\4.4.light_cube.fs"/>
@@ -1408,7 +1409,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="61"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1419,7 +1420,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="61"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1430,7 +1431,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="28"/>
         <CursorPos X="41" Y="45"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="61"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1441,7 +1442,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="61"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1450,14 +1451,14 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="43" Y="21"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="61"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\4.6.Lighting_Maps_Exercise4\Case02_04_06_Lighting_Maps_Exercise4.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="61"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\4.5.Lighting_Maps_Exercise3\4.5.light_cube.fs"/>
@@ -1467,7 +1468,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="61"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1478,7 +1479,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="61"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1489,7 +1490,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="61"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1500,7 +1501,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="61"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1511,7 +1512,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="61"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1522,7 +1523,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="61"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1533,7 +1534,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="19"/>
         <CursorPos X="53" Y="34"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="61"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1543,7 +1544,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="22" Y="16"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="61"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1553,7 +1554,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="188"/>
         <CursorPos X="69" Y="203"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="58"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\5.1.Light_Casters_Directional\5.1.light_cube.fs"/>
@@ -1562,7 +1563,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="40" Y="9"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="58"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1572,7 +1573,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="45" Y="12"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="58"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1582,7 +1583,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="57" Y="15"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="58"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1593,7 +1594,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="4"/>
         <CursorPos X="48" Y="14"/>
-        <UsageCount Value="52"/>
+        <UsageCount Value="57"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1602,7 +1603,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="189"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="53"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\5.2.Light_Casters_Point\5.2.light_casters.fs"/>
@@ -1612,7 +1613,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="49"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1623,7 +1624,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="49"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1634,7 +1635,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="49"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1645,7 +1646,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="49"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1655,7 +1656,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="356"/>
         <CursorPos Y="390"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="48"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\5.3.Light_Casters_Spot\5.3.light_casters.fs"/>
@@ -1666,7 +1667,7 @@
         <TopLine Value="43"/>
         <CursorPos X="19" Y="14"/>
         <SyntaxHighlighter Value="C_2B_2B"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="48"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1677,7 +1678,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="48"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1688,7 +1689,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="48"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1699,7 +1700,165 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="48"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\5.4.Light_Casters_Spot_Soft\Case02_05_04_Light_Casters_Spot_Soft.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="254"/>
+        <CursorPos X="23" Y="288"/>
+        <UsageCount Value="34"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\5.4.Light_Casters_Spot_Soft\5.4.light_casters.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="43"/>
+        <CursorPos X="22" Y="50"/>
+        <SyntaxHighlighter Value="C_2B_2B"/>
+        <UsageCount Value="34"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\5.4.Light_Casters_Spot_Soft\5.4.light_casters.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <SyntaxHighlighter Value="C_2B_2B"/>
+        <UsageCount Value="34"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\5.4.Light_Casters_Spot_Soft\5.4.light_cube.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="34"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\5.4.Light_Casters_Spot_Soft\5.4.light_cube.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="34"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\6.1.Multiple_Lights\Case02_06_01_Multiple_Lights.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="130"/>
+        <CursorPos X="38" Y="148"/>
+        <UsageCount Value="31"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\Case02_06_02_Multiple_Lights_Exercise1.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="16" Y="626"/>
+        <FoldState Value=" T3iT2{M1 pjHlc[A5PjHjJ2o"/>
+        <UsageCount Value="28"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\6.1.Multiple_Lights\6.1.light_cube.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="27"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\6.1.Multiple_Lights\6.1.light_cube.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="27"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\6.1.Multiple_Lights\6.1.multiple_lights.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="27"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\6.1.Multiple_Lights\6.1.multiple_lights.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="27"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\6.2.light_cube.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="17" Y="4"/>
+        <UsageCount Value="25"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\6.2.light_cube.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="25"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\6.2.multiple_lights.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="25"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\6.2.multiple_lights.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="25"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2030,9 +2189,12 @@
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\DeepStar.Utils.pas"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="9"/>
+        <TopLine Value="28"/>
+        <CursorPos X="42" Y="52"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Matrix.pas"/>
@@ -2150,9 +2312,9 @@
         <UnitName Value="SysUtils"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="148"/>
-        <CursorPos X="5" Y="150"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="358"/>
+        <CursorPos X="3" Y="378"/>
+        <UsageCount Value="11"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\win64\system.pp"/>
@@ -2551,59 +2713,6 @@
         <UsageCount Value="7"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\2.Lighting\5.4.Light_Casters_Spot_Soft\Case02_05_04_Light_Casters_Spot_Soft.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="254"/>
-        <CursorPos X="23" Y="288"/>
-        <UsageCount Value="29"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\2.Lighting\5.4.Light_Casters_Spot_Soft\5.4.light_casters.fs"/>
-        <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="43"/>
-        <CursorPos X="22" Y="50"/>
-        <SyntaxHighlighter Value="C_2B_2B"/>
-        <UsageCount Value="29"/>
-        <DefaultSyntaxHighlighter Value="None"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\2.Lighting\5.4.Light_Casters_Spot_Soft\5.4.light_casters.vs"/>
-        <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <SyntaxHighlighter Value="C_2B_2B"/>
-        <UsageCount Value="29"/>
-        <DefaultSyntaxHighlighter Value="None"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\2.Lighting\5.4.Light_Casters_Spot_Soft\5.4.light_cube.fs"/>
-        <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="29"/>
-        <DefaultSyntaxHighlighter Value="None"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\2.Lighting\5.4.Light_Casters_Spot_Soft\5.4.light_cube.vs"/>
-        <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="29"/>
-        <DefaultSyntaxHighlighter Value="None"/>
-      </Unit>
-      <Unit>
         <Filename Value="C:\codetyphon\typhon\components\BaseUtils\maps.pp"/>
         <FRMtype Value="0"/>
         <UnitName Value="Maps"/>
@@ -2798,15 +2907,6 @@
         <UsageCount Value="9"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\2.Lighting\6.1.Multiple_Lights\Case02_06_01_Multiple_Lights.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="130"/>
-        <CursorPos X="38" Y="148"/>
-        <UsageCount Value="26"/>
-      </Unit>
-      <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\sysstrh.inc"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
@@ -2832,165 +2932,156 @@
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\Case02_06_02_Multiple_Lights_Exercise1.pas"/>
-        <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\DeepStar.UnicodeStringHelper.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="592"/>
-        <CursorPos X="59" Y="604"/>
-        <FoldState Value=" T3iT2{M1 pjHlc[A5PjHjJ2o"/>
-        <UsageCount Value="23"/>
+        <CursorPos X="43" Y="14"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\syshelph.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="651"/>
+        <CursorPos X="48" Y="664"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp\DeepStar.OpenGL.Assimp.pas"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="28"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Assimp.pas"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="4"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="91"/>
+        <CursorPos X="55" Y="92"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\2.Lighting\6.1.Multiple_Lights\6.1.light_cube.fs"/>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp\aiimport.inc"/>
         <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="22"/>
-        <DefaultSyntaxHighlighter Value="None"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\2.Lighting\6.1.Multiple_Lights\6.1.light_cube.vs"/>
-        <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="22"/>
-        <DefaultSyntaxHighlighter Value="None"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\2.Lighting\6.1.Multiple_Lights\6.1.multiple_lights.fs"/>
-        <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="22"/>
-        <DefaultSyntaxHighlighter Value="None"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\2.Lighting\6.1.Multiple_Lights\6.1.multiple_lights.vs"/>
-        <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="22"/>
-        <DefaultSyntaxHighlighter Value="None"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\6.2.light_cube.fs"/>
-        <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <CursorPos X="17" Y="4"/>
-        <UsageCount Value="20"/>
-        <DefaultSyntaxHighlighter Value="None"/>
+        <TopLine Value="212"/>
+        <CursorPos X="10" Y="232"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\6.2.light_cube.vs"/>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp\aiexport.inc"/>
         <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="20"/>
-        <DefaultSyntaxHighlighter Value="None"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\6.2.multiple_lights.fs"/>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\aitexture.inc"/>
         <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="20"/>
-        <DefaultSyntaxHighlighter Value="None"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\6.2.multiple_lights.vs"/>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\aivector2.inc"/>
         <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="20"/>
-        <DefaultSyntaxHighlighter Value="None"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="21" Y="6"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\Utils_inc\DeepStar.Arrays.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\aitypes.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="9"/>
+        <CursorPos X="3" Y="29"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\aifileio.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="12"/>
+        <CursorPos X="5" Y="32"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\aiimport.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="378"/>
+        <CursorPos X="72" Y="398"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\aiversion.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\aiimporterdesc.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="22"/>
+        <CursorPos X="43" Y="37"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\Utils_inc\DeepStar.Object.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\Utils_inc\DeepStar.StringHelper.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="38" Y="15"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\aianim.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="14">
+    <JumpHistory HistoryIndex="2">
       <Position>
         <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="26" Column="29"/>
+        <Caret Line="12" Column="20"/>
       </Position>
       <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="10" Column="34"/>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\DeepStar.Utils.pas"/>
+        <Caret Line="63" Column="23" TopLine="28"/>
       </Position>
       <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="25" Column="41"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\Case02_06_02_Multiple_Lights_Exercise1.pas"/>
-        <Caret Line="3"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\Case02_06_02_Multiple_Lights_Exercise1.pas"/>
-        <Caret Line="97" Column="12" TopLine="84"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\Case02_06_02_Multiple_Lights_Exercise1.pas"/>
-        <Caret Line="293" Column="18" TopLine="207"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\Case02_06_02_Multiple_Lights_Exercise1.pas"/>
-        <Caret Line="73" Column="13" TopLine="56"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="25" Column="31"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\Case02_06_02_Multiple_Lights_Exercise1.pas"/>
-        <Caret Line="109" Column="67" TopLine="93"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="25" Column="41"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\Case02_06_02_Multiple_Lights_Exercise1.pas"/>
-        <Caret Line="73" Column="38" TopLine="85"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\Case02_06_02_Multiple_Lights_Exercise1.pas"/>
-        <Caret Line="204" Column="49" TopLine="187"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\Case02_06_02_Multiple_Lights_Exercise1.pas"/>
-        <Caret Line="380" Column="19" TopLine="361"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\Case02_06_02_Multiple_Lights_Exercise1.pas"/>
-        <Caret Line="76" Column="16" TopLine="55"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\Case02_06_02_Multiple_Lights_Exercise1.pas"/>
-        <Caret Line="374" Column="45" TopLine="356"/>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Assimp.pas"/>
+        <Caret Line="105" Column="12" TopLine="94"/>
       </Position>
     </JumpHistory>
     <RunParams>
