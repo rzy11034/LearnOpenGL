@@ -21,7 +21,7 @@ const
   SCR_HEIGHT = 600;
 
 const
-  vertexShaderSource: string = ''
+  vertexShaderSource: PGLchar = ''
     +'#version 330 core' + LE
     + 'layout (location = 0) in vec3 aPos; '
     + 'void main() '
@@ -29,7 +29,7 @@ const
     + '   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0); '
     + '} ';
 
-  fragmentShaderSource: string = ''
+  fragmentShaderSource: PGLchar = ''
     + '#version 330 core' + LE
     + 'out vec4 FragColor;'
     + 'void main()'

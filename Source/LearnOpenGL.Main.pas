@@ -9,13 +9,15 @@ interface
 uses
   Classes,
   SysUtils,
-  {%H-}DeepStar.Utils,DeepStar.SDL2.Texture,
+  {%H-}DeepStar.Utils,
   {%H-}DeepStar.OpenGL.GLAD_GL,
   {%H-}DeepStar.OpenGL.GLFW,
   {%H-}DeepStar.OpenGL.GLM,
   {%H-}DeepStar.OpenGL.Utils,
   {%H-}DeepStar.OpenGL.Shader,
-  {%H-}DeepStar.OpenGL.Texture;
+  {%H-}DeepStar.OpenGL.Texture,
+  {%H-}DeepStar.OpenGL.Mesh,
+  {%H-}DeepStar.OpenGL.Model;
 
 procedure Run();
 

@@ -20,7 +20,7 @@ const
   SCR_HEIGHT = 600;
 
 const
-  vertexShaderSource: string = ''
+  vertexShaderSource: PGLchar = ''
     + LE + '#version 330 core'
     + LE + 'layout (location = 0) in vec3 aPos; // 位置变量的属性位置值为0'
     + LE + 'void main() '
@@ -28,7 +28,7 @@ const
     + LE + '  gl_Position = vec4(aPos, 1.0); // 注意我们如何把一个vec3作为vec4的构造器的参数'
     + LE + '} ';
 
-  fragmentShaderSource: string = '#version 330 core'
+  fragmentShaderSource: PGLchar = '#version 330 core'
     + LE + 'out vec4 FragColor;'
     + LE + 'uniform vec4 ourColor; // 在OpenGL程序代码中设定这个变量'
     + LE + 'void main()'

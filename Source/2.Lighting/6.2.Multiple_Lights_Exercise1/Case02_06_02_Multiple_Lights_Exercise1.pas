@@ -618,7 +618,7 @@ begin
       ProcessInput(window);
 
       // DESERT
-      //__Desert__;
+      __Desert__;
 
       // FACTORY
       //__Factory__;
@@ -627,7 +627,7 @@ begin
       //__Horror__;
 
       // BIOCHEMICAL_LAB
-      __Biochemical_lab__;
+      //__Biochemical_lab__;
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
       glfwSwapBuffers(window);
