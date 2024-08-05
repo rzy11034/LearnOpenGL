@@ -29,7 +29,14 @@ type
     _textures_loaded: TList_TTexture;
     _meshes: TList_TMesh;
 
-    function __ProcessMesh(mesh: PaiMesh; const scene: PaiScene):TMesh;
+    function __ProcessMesh(mesh: PaiMesh; const scene: PaiScene): TMesh;
+
+    //检查给定类型的所有材质纹理，并加载尚未加载的纹理。
+    //所需的信息作为一个纹理结构返回。
+    function __LoadMaterialTextures(mat: PaiMaterial; type_: TaiTextureType;
+      typeName: string): TList_TTexture;
+
+    function __TextureFromFile(directory, fileName: string; gamma: Boolean = false): cardinal;
 
     procedure __LoadModel(fileName: string);
 
@@ -71,6 +78,50 @@ begin
   end;
 end;
 
+function TModel.__LoadMaterialTextures(mat: PaiMaterial; type_: TaiTextureType;
+  typeName: string): TList_TTexture;
+var
+  res: TList_TTexture;
+  i, j: Integer;
+  str: TaiString;
+  skip: Boolean;
+  texture: TTexture;
+begin
+  res := TList_TTexture.Create;
+
+  for i := 0 to aiGetMaterialTextureCount(mat, type_) - 1 do
+  begin
+    str := Default(TaiString);
+    aiGetMaterialTexture(mat, type_, i, @str);
+
+    // 检查之前是否加载了纹理，如果是，继续下一次迭代: 跳过加载新纹理
+    skip := false;
+    for j := 0 to _textures_loaded.Count - 1 do
+    begin
+      if CompareStr(_textures_loaded[j].Path.ToAnsiString, AnsiString(str.data)) = 0 then
+      begin
+        res.AddLast(_textures_loaded[j]);
+        skip := true; //具有相同文件路径的纹理已经加载，继续下一个。(优化)
+        Break;
+      end;
+    end;
+
+    //如果纹理尚未加载，加载它
+    if not skip then
+    begin
+      texture := Default(TTexture);
+      texture.ID := __TextureFromFile(str.data, _directory);
+      texture.Type_ := typeName;
+      texture.Path := str.data;
+
+      res.AddLast(texture);
+      _textures_loaded.AddLast(texture);
+    end;
+  end;
+
+  Result := res;
+end;
+
 procedure TModel.__LoadModel(fileName: string);
 var
   scene: PaiScene;
@@ -100,12 +151,13 @@ function TModel.__ProcessMesh(mesh: PaiMesh; const scene: PaiScene): TMesh;
 var
   vertices: TList_TVertex;
   indices: TList_Gluint;
-  textures: TList_TTexture;
+  textures, diffuseMaps, specularMap: TList_TTexture;
   vertex: TVertex;
-  i: cardinal;
+  i, j: cardinal;
   tempVec3: TVec3;
   tempVec2: TVec2;
   face: TaiFace;
+  materials: PaiMaterial;
 begin
   // data to fill
   vertices := TList_TVertex.Create;
@@ -127,13 +179,13 @@ begin
     vertex.Position := tempVec3;
 
     // normals
-    if mesh^.mNormals[i] <> nil then
-    begin
-      tempVec3.x := mesh^.mNormals[i].x;
-      tempVec3.y := mesh^.mNormals[i].y;
-      tempVec3.z := mesh^.mNormals[i].z;
-      vertex.Normal := tempVec3;
-    end;
+    //if mesh^.mNormals[i] <> nil then
+    //begin
+    //  tempVec3.x := mesh^.mNormals[i].x;
+    //  tempVec3.y := mesh^.mNormals[i].y;
+    //  tempVec3.z := mesh^.mNormals[i].z;
+    //  vertex.Normal := tempVec3;
+    //end;
 
     // texture coordinates
     if mesh^.mTextureCoords[0] <> nil then
@@ -169,15 +221,35 @@ begin
   begin
     face := mesh^.mFaces[i];
 
-    // 检索脸的所有索引并将它们存储在索引向量中
-
+    // 检索脸的所有索引并将它们存储在索引 list 中
+    for j := 0 to face.mNumIndices - 1 do
+    begin
+      indices.AddLast(face.mIndices[j]);
+    end;
   end;
+
+  // 处理材质  process materials
+  materials := scene^.mMaterials[mesh^.mMaterialIndex];
+  //我们假设在着色器中采样器名称有一个约定。每个漫反射纹理都应该命名
+  //作为'texture_diffuseN'，其中N是一个从1到MAX_SAMPLER_NUMBER的序列号。
+  //同样适用于其他纹理，如下所示:
+  // diffuse: texture_diffuseN
+  // specular: texture_specularN
+  // normal: texture_normalN
+
+  // 1. diffuse maps
+  diffuseMaps := __LoadMaterialTextures(materials, aiTextureType_DIFFUSE, 'texture_diffuse');
+  textures.AddRange(diffuseMaps.ToArray, 0, diffuseMaps.Count);
+
+  // 2.specular maps
+  specularMap := __LoadMaterialTextures(materials, aiTextureType_SPECULAR, 'texture_specular');
+  extures.AddRange(specularMap.ToArray, 0, specularMap.Count);
 end;
 
 procedure TModel.__ProcessNode(node: PaiNode; const scene: PaiScene);
 var
   mesh: PaiMesh;
-  i: cardinal;
+  i: integer;
 begin
   // 处理位于当前节点的每个网格
   for i := 0 to node^.mNumChildren - 1 do
@@ -190,9 +262,37 @@ begin
   end;
 
   //在我们处理完所有的网格(如果有的话)之后，我们递归地处理每个子节点
-  for i := 0 to node^.mNumChildren - 1 do
+  for i := cardinal(0) to node^.mNumChildren - 1 do
   begin
     __ProcessNode(node^.mChildren[i], scene);
+  end;
+end;
+
+function TModel.__TextureFromFile(directory, fileName: string; gamma: Boolean): cardinal;
+var
+  texture_ID: GLuint;
+  tx: DeepStar.OpenGL.Texture.TTexture;
+begin
+  texture_ID := GLuint(0);
+  glGenTextures(1, @texture_ID);
+
+  tx := DeepStar.OpenGL.Texture.TTexture.Create;
+  try
+    tx.LoadFormFile(fileName);
+
+    glBindTexture(GL_TEXTURE_2D, texture_ID);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tx.Width, tx.Height, 0, GL_RGBA,
+      GL_UNSIGNED_BYTE, tx.Pixels);
+    glGenerateMipmap(GL_TEXTURE_2D);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    Result := texture_ID;
+  finally
+    tx.Free;
   end;
 end;
 

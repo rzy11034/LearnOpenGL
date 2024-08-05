@@ -26,10 +26,21 @@ implementation
 uses
   Case02_06_02_Multiple_Lights_Exercise1;
 
+procedure aa(str: string);
+var
+  s: UnicodeString;
+begin
+  s := str
+end;
+
 procedure Test;
 var
-  a: array[0..3]
+  s: array[0..512] of AChar;
+  str: string;
 begin
+  s := 'aaaaaaaaaaa';
+  str := s;
+  aa(s);
   Exit;
 end;
 
