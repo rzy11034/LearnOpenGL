@@ -59,19 +59,35 @@ implementation
 constructor TModel.Create(fileName: string; gammaCorrection: boolean);
 begin
   _gammaCorrection := gammaCorrection;
+
+  _textures_loaded := TList_TTexture.Create;
+  _meshes := TList_TMesh.Create;
+
   __LoadModel(fileName);
 end;
 
 destructor TModel.Destroy;
+var
+  i: Integer;
 begin
+  for i := _meshes.Count - 1 downto 0 do
+  begin
+    _meshes[i].Free;
+  end;
+
+  _meshes.Free;
+  _textures_loaded.Free;
+
   inherited Destroy;
 end;
 
 procedure TModel.Draw(shader: TShaderProgram);
 var
-  i: cardinal;
+  i: integer;
 begin
-  for i := cardinal(0) to _meshes.Count - 1 do
+  i := _meshes.Count;
+
+  for i := 0 to _meshes.Count - 1 do
   begin
     _meshes[i].Draw(shader)
   end;
@@ -91,7 +107,7 @@ begin
   for i := 0 to aiGetMaterialTextureCount(mat, type_) - 1 do
   begin
     str := Default(TaiString);
-    aiGetMaterialTexture(mat, type_, i, @str);
+    aiGetMaterialString(mat, type_, i, @str);
 
     // 检查之前是否加载了纹理，如果是，继续下一次迭代: 跳过加载新纹理
     skip := false;
@@ -128,8 +144,11 @@ var
   exceptionStr: String;
 begin
   // read file via ASSIMP
-  pFlags := aiProcess_Triangulate or aiProcess_GenSmoothNormals
-    or aiProcess_FlipUVs or aiProcess_CalcTangentSpace;
+  pFlags := aiProcess_Triangulate
+    or aiProcess_GenSmoothNormals
+    or aiProcess_FlipUVs
+    or aiProcess_CalcTangentSpace;
+
   scene := aiImportFile(CrossFixFileName(fileName).ToPAnsiChar, pFlags);
 
   // check for errors
@@ -144,6 +163,8 @@ begin
 
   // 递归地处理ASSIMP的根节点
   __ProcessNode(scene^.mRootNode, scene);
+
+  aiReleaseImport(scene);
 end;
 
 function TModel.__ProcessMesh(mesh: PaiMesh; const scene: PaiScene): TMesh;
@@ -239,18 +260,22 @@ begin
   // 1. diffuse maps
   diffuseMaps := __LoadMaterialTextures(materials, aiTextureType_DIFFUSE, 'texture_diffuse');
   textures.AddRange(diffuseMaps.ToArray, 0, diffuseMaps.Count);
+  diffuseMaps.Free;
 
   // 2.specular maps
   specularMaps := __LoadMaterialTextures(materials, aiTextureType_SPECULAR, 'texture_specular');
   textures.AddRange(specularMaps.ToArray, 0, specularMaps.Count);
+  specularMaps.Free;
 
   // 3. normal maps
   normalMaps := __LoadMaterialTextures(materials, aiTextureType_HEIGHT, 'texture_normal');
   textures.AddRange(normalMaps.ToArray, 0, normalMaps.Count);
+  normalMaps.Free;
 
   // 4. height maps
   heightMaps := __LoadMaterialTextures(materials, aiTextureType_AMBIENT, 'texture_height');
   textures.AddRange(heightMaps.ToArray, 0, heightMaps.Count);
+  heightMaps.Free;
 
   // 返回从提取的网格数据创建的网格对象
   Result := TMesh.Create(vertices, indices, textures);
@@ -262,7 +287,7 @@ var
   i: integer;
 begin
   // 处理位于当前节点的每个网格
-  for i := 0 to node^.mNumChildren - 1 do
+  for i := 0 to node^.mNumMeshes - 1 do
   begin
     // 节点对象只包含索引来索引场景中的实际对象。
     // 场景包含所有的数据，节点只是保持东西的组织(像节点之间的关系)。

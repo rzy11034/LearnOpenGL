@@ -284,7 +284,7 @@ begin
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
   // 创建一个窗口对象
-  window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, '的的LearnOpenGL', nil, nil);
+  window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, 'LearnOpenGL', nil, nil);
   if window = nil then
   begin
     WriteLn(' Failed to create GLFW window');
