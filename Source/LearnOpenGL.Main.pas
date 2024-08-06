@@ -24,23 +24,10 @@ procedure Run();
 implementation
 
 uses
-  Case02_06_02_Multiple_Lights_Exercise1;
-
-procedure aa(str: string);
-var
-  s: UnicodeString;
-begin
-  s := str
-end;
+  Case03_01_01_Model_Loading;
 
 procedure Test;
-var
-  s: array[0..512] of AChar;
-  str: string;
 begin
-  s := 'aaaaaaaaaaa';
-  str := s;
-  aa(s);
   Exit;
 end;
 

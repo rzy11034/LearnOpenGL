@@ -65,7 +65,8 @@ uses
   Case02_05_03_Light_Casters_Spot,
   Case02_05_04_Light_Casters_Spot_Soft,
   Case02_06_01_Multiple_Lights,
-  Case02_06_02_Multiple_Lights_Exercise1;
+  Case02_06_02_Multiple_Lights_Exercise1,
+  Case03_01_01_Model_Loading;
 
 begin
   try

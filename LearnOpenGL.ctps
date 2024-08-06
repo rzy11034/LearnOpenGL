@@ -10,8 +10,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="58"/>
-        <CursorPos Y="70"/>
+        <TopLine Value="43"/>
+        <CursorPos X="3" Y="69"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
@@ -21,7 +21,7 @@
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="55"/>
-        <CursorPos X="53" Y="70"/>
+        <CursorPos X="36" Y="83"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
@@ -29,10 +29,10 @@
       <Unit>
         <Filename Value="Source\LearnOpenGL.Main.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="34"/>
-        <CursorPos Y="41"/>
+        <TopLine Value="11"/>
+        <CursorPos X="29" Y="27"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
@@ -1413,7 +1413,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1424,7 +1424,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1435,7 +1435,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="28"/>
         <CursorPos X="41" Y="45"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1446,7 +1446,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1456,7 +1456,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="280"/>
         <CursorPos X="25" Y="300"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\4.6.Lighting_Maps_Exercise4\Case02_04_06_Lighting_Maps_Exercise4.pas"/>
@@ -1465,7 +1465,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="286"/>
         <CursorPos X="33" Y="307"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\4.5.Lighting_Maps_Exercise3\4.5.light_cube.fs"/>
@@ -1475,7 +1475,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1486,7 +1486,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1497,7 +1497,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1508,7 +1508,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1519,7 +1519,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1530,7 +1530,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1541,7 +1541,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="19"/>
         <CursorPos X="53" Y="34"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1551,7 +1551,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="22" Y="16"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="201"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1561,7 +1561,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="286"/>
         <CursorPos X="33" Y="308"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\5.1.Light_Casters_Directional\5.1.light_cube.fs"/>
@@ -1570,7 +1570,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="40" Y="9"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="200"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1580,7 +1580,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="45" Y="12"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="200"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1590,7 +1590,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="57" Y="15"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="200"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1601,7 +1601,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="4"/>
         <CursorPos X="48" Y="14"/>
-        <UsageCount Value="195"/>
+        <UsageCount Value="199"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1611,7 +1611,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="304"/>
         <CursorPos X="24" Y="324"/>
-        <UsageCount Value="191"/>
+        <UsageCount Value="195"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\5.2.Light_Casters_Point\5.2.light_casters.fs"/>
@@ -1621,7 +1621,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="187"/>
+        <UsageCount Value="191"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1632,7 +1632,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="187"/>
+        <UsageCount Value="191"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1643,7 +1643,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="187"/>
+        <UsageCount Value="191"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1654,7 +1654,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="187"/>
+        <UsageCount Value="191"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1664,7 +1664,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="305"/>
         <CursorPos X="25" Y="325"/>
-        <UsageCount Value="186"/>
+        <UsageCount Value="190"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\5.3.Light_Casters_Spot\5.3.light_casters.fs"/>
@@ -1675,7 +1675,7 @@
         <TopLine Value="43"/>
         <CursorPos X="19" Y="14"/>
         <SyntaxHighlighter Value="C_2B_2B"/>
-        <UsageCount Value="186"/>
+        <UsageCount Value="190"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1686,7 +1686,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="186"/>
+        <UsageCount Value="190"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1697,7 +1697,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="186"/>
+        <UsageCount Value="190"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1708,7 +1708,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="186"/>
+        <UsageCount Value="190"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1718,7 +1718,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="306"/>
         <CursorPos X="25" Y="326"/>
-        <UsageCount Value="172"/>
+        <UsageCount Value="176"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\5.4.Light_Casters_Spot_Soft\5.4.light_casters.fs"/>
@@ -1729,7 +1729,7 @@
         <TopLine Value="43"/>
         <CursorPos X="22" Y="50"/>
         <SyntaxHighlighter Value="C_2B_2B"/>
-        <UsageCount Value="172"/>
+        <UsageCount Value="176"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1739,7 +1739,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <SyntaxHighlighter Value="C_2B_2B"/>
-        <UsageCount Value="172"/>
+        <UsageCount Value="176"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1750,7 +1750,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="172"/>
+        <UsageCount Value="176"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1761,26 +1761,28 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="172"/>
+        <UsageCount Value="176"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\6.1.Multiple_Lights\Case02_06_01_Multiple_Lights.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="342"/>
-        <CursorPos X="25" Y="362"/>
-        <UsageCount Value="169"/>
+        <TopLine Value="249"/>
+        <CursorPos X="65" Y="271"/>
+        <UsageCount Value="173"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\Case02_06_02_Multiple_Lights_Exercise1.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <CursorPos X="26" Y="22"/>
+        <TopLine Value="730"/>
+        <CursorPos Y="770"/>
         <FoldState Value=" T3iT2{M1 pjHlc[A5PjHjJ2o"/>
-        <UsageCount Value="166"/>
+        <UsageCount Value="170"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\6.1.Multiple_Lights\6.1.light_cube.fs"/>
@@ -1790,7 +1792,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="165"/>
+        <UsageCount Value="169"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1801,7 +1803,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="165"/>
+        <UsageCount Value="169"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1812,7 +1814,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="165"/>
+        <UsageCount Value="169"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1823,7 +1825,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="165"/>
+        <UsageCount Value="169"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1833,7 +1835,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="17" Y="4"/>
-        <UsageCount Value="163"/>
+        <UsageCount Value="167"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1844,7 +1846,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="163"/>
+        <UsageCount Value="167"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1855,7 +1857,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="163"/>
+        <UsageCount Value="167"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1866,19 +1868,17 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="163"/>
+        <UsageCount Value="167"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="231"/>
-        <CursorPos X="28" Y="245"/>
-        <UsageCount Value="99"/>
-        <Loaded Value="True"/>
+        <TopLine Value="152"/>
+        <CursorPos X="25" Y="190"/>
+        <UsageCount Value="103"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
@@ -2037,8 +2037,7 @@
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="51"/>
-        <CursorPos X="42" Y="56"/>
+        <CursorPos X="3" Y="6"/>
         <UsageCount Value="12"/>
       </Unit>
       <Unit>
@@ -2062,21 +2061,21 @@
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Shader.pas"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="99"/>
-        <CursorPos X="48" Y="87"/>
-        <UsageCount Value="1"/>
+        <TopLine Value="13"/>
+        <CursorPos X="15" Y="33"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Texture.pas"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="12"/>
         <CursorPos X="16" Y="32"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Utils.pas"/>
@@ -2332,19 +2331,17 @@
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="47"/>
-        <CursorPos X="3" Y="65"/>
+        <CursorPos X="3" Y="7"/>
         <UsageCount Value="16"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Mesh.pas"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="13"/>
         <CursorPos X="48" Y="39"/>
         <UsageCount Value="44"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\Utils_inc\Utils.Lists.inc"/>
@@ -2561,9 +2558,9 @@
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="46"/>
-        <CursorPos X="18" Y="65"/>
-        <UsageCount Value="9"/>
+        <TopLine Value="237"/>
+        <CursorPos X="34" Y="246"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\Assimp.aiimporterdesc.inc"/>
@@ -2683,40 +2680,35 @@
         <CursorPos X="5" Y="1086"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\Assimp.aivector3.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="3" Y="7"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\3.Model\1.1.Model_Loading\Case03_01_01_Model_Loading.pas"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="3"/>
+        <CursorPos X="23" Y="21"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\Utils_inc\Utils.Math.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="3" Y="6"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="24">
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="49" TopLine="43"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="50" TopLine="43"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="51" Column="17" TopLine="31"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="49" TopLine="42"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="50" TopLine="42"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="51" TopLine="42"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="43" TopLine="32"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="44" TopLine="32"/>
-      </Position>
+    <JumpHistory HistoryIndex="18">
       <Position>
         <Filename Value="Source\LearnOpenGL.Main.pas"/>
         <Caret Line="45" TopLine="33"/>
@@ -2730,32 +2722,8 @@
         <Caret Line="27" Column="38" TopLine="9"/>
       </Position>
       <Position>
-        <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="100" Column="42" TopLine="79"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="29" Column="5" TopLine="60"/>
-      </Position>
-      <Position>
         <Filename Value="Source\LearnOpenGL.Main.pas"/>
         <Caret Line="27" Column="38" TopLine="9"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="39" Column="98" TopLine="25"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="284" Column="12" TopLine="254"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="113" Column="9" TopLine="89"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="101" Column="81" TopLine="84"/>
       </Position>
       <Position>
         <Filename Value="Source\LearnOpenGL.Main.pas"/>
@@ -2778,12 +2746,44 @@
         <Caret Line="42" TopLine="34"/>
       </Position>
       <Position>
-        <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="238" Column="51" TopLine="186"/>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="30" Column="7" TopLine="11"/>
       </Position>
       <Position>
-        <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="242" Column="39" TopLine="225"/>
+        <Filename Value="Source\3.Model\1.1.Model_Loading\Case03_01_01_Model_Loading.pas"/>
+        <Caret Line="79" Column="9" TopLine="69"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\3.Model\1.1.Model_Loading\Case03_01_01_Model_Loading.pas"/>
+        <Caret Line="62" Column="36" TopLine="42"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\3.Model\1.1.Model_Loading\Case03_01_01_Model_Loading.pas"/>
+        <Caret Line="81" Column="20" TopLine="51"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="27" Column="29" TopLine="11"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\3.Model\1.1.Model_Loading\Case03_01_01_Model_Loading.pas"/>
+        <Caret Line="98" Column="28" TopLine="70"/>
+      </Position>
+      <Position>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Shader.pas"/>
+        <Caret Line="179" Column="3" TopLine="168"/>
+      </Position>
+      <Position>
+        <Filename Value="LearnOpenGL.ppr"/>
+        <Caret Line="69" Column="3" TopLine="43"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\3.Model\1.1.Model_Loading\Case03_01_01_Model_Loading.pas"/>
+        <Caret Line="59" TopLine="55"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\3.Model\1.1.Model_Loading\Case03_01_01_Model_Loading.pas"/>
+        <Caret Line="22" Column="3" TopLine="13"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -2806,6 +2806,7 @@
         <Item3 Value="&quot;$(Pas2JSBrowser)&quot; &quot;$(Pas2JSProjectURL)&quot;"/>
         <Item4 Value="$(Pas2JSBrowser) &quot;$(Pas2JSProjectURL)&quot;"/>
       </List>
+      <List Name="CommandLineParameters" Count="1"/>
     </HistoryLists>
   </ProjectSession>
   <Debugging>

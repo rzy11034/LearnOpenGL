@@ -11,7 +11,6 @@ uses
   ctypes,
   DeepStar.Utils,
   DeepStar.DSA.Linear.ArrayList,
-  DeepStar.OpenGL.Utils,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLM,
   DeepStar.OpenGL.Texture,
@@ -151,7 +150,7 @@ function TModel.__ProcessMesh(mesh: PaiMesh; const scene: PaiScene): TMesh;
 var
   vertices: TList_TVertex;
   indices: TList_Gluint;
-  textures, diffuseMaps, specularMap: TList_TTexture;
+  textures, diffuseMaps, specularMaps, normalMaps, heightMaps: TList_TTexture;
   vertex: TVertex;
   i, j: cardinal;
   tempVec3: TVec3;
@@ -179,13 +178,13 @@ begin
     vertex.Position := tempVec3;
 
     // normals
-    //if mesh^.mNormals[i] <> nil then
-    //begin
-    //  tempVec3.x := mesh^.mNormals[i].x;
-    //  tempVec3.y := mesh^.mNormals[i].y;
-    //  tempVec3.z := mesh^.mNormals[i].z;
-    //  vertex.Normal := tempVec3;
-    //end;
+    if mesh^.mNormals <> nil then
+    begin
+      tempVec3.x := mesh^.mNormals[i].x;
+      tempVec3.y := mesh^.mNormals[i].y;
+      tempVec3.z := mesh^.mNormals[i].z;
+      vertex.Normal := tempVec3;
+    end;
 
     // texture coordinates
     if mesh^.mTextureCoords[0] <> nil then
@@ -242,8 +241,19 @@ begin
   textures.AddRange(diffuseMaps.ToArray, 0, diffuseMaps.Count);
 
   // 2.specular maps
-  specularMap := __LoadMaterialTextures(materials, aiTextureType_SPECULAR, 'texture_specular');
-  extures.AddRange(specularMap.ToArray, 0, specularMap.Count);
+  specularMaps := __LoadMaterialTextures(materials, aiTextureType_SPECULAR, 'texture_specular');
+  textures.AddRange(specularMaps.ToArray, 0, specularMaps.Count);
+
+  // 3. normal maps
+  normalMaps := __LoadMaterialTextures(materials, aiTextureType_HEIGHT, 'texture_normal');
+  textures.AddRange(normalMaps.ToArray, 0, normalMaps.Count);
+
+  // 4. height maps
+  heightMaps := __LoadMaterialTextures(materials, aiTextureType_AMBIENT, 'texture_height');
+  textures.AddRange(heightMaps.ToArray, 0, heightMaps.Count);
+
+  // 返回从提取的网格数据创建的网格对象
+  Result := TMesh.Create(vertices, indices, textures);
 end;
 
 procedure TModel.__ProcessNode(node: PaiNode; const scene: PaiScene);
