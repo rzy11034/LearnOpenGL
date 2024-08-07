@@ -107,7 +107,11 @@ begin
   for i := 0 to aiGetMaterialTextureCount(mat, type_) - 1 do
   begin
     str := Default(TaiString);
-    aiGetMaterialString(mat, type_, i, @str);
+    aiGetMaterialTexture(mat, type_, i, @str);
+    typeName := string(str.data);
+    aiGetMaterialString(mat, AI_MATKEY_TEXTURE_DIFFUSE, @str);
+     typeName := string(str.data);
+     get
 
     // 检查之前是否加载了纹理，如果是，继续下一次迭代: 跳过加载新纹理
     skip := false;
