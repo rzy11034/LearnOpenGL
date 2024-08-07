@@ -53,7 +53,8 @@ procedure Main;
 const
   fs = '..\Source\3.Model\1.1.Model_Loading\1.model_loading.fs';
   vs = '..\Source\3.Model\1.1.Model_Loading\1.model_loading.vs';
-  objFile = '..\Resources\objects\backpack\backpack.obj';
+  //objFile = '..\Resources\objects\backpack\backpack.obj';
+  objFile = '..\Resources\objects\RotatingCube.3DS';
 var
   window: PGLFWwindow;
   ourShader: TShaderProgram;

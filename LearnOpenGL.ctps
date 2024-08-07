@@ -10,8 +10,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="43"/>
-        <CursorPos X="47" Y="49"/>
+        <TopLine Value="61"/>
+        <CursorPos X="14" Y="78"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
@@ -1718,7 +1718,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="270"/>
         <CursorPos X="54" Y="287"/>
-        <UsageCount Value="194"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\5.4.Light_Casters_Spot_Soft\5.4.light_casters.fs"/>
@@ -1729,7 +1729,7 @@
         <TopLine Value="43"/>
         <CursorPos X="22" Y="50"/>
         <SyntaxHighlighter Value="C_2B_2B"/>
-        <UsageCount Value="194"/>
+        <UsageCount Value="200"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1739,7 +1739,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <SyntaxHighlighter Value="C_2B_2B"/>
-        <UsageCount Value="194"/>
+        <UsageCount Value="200"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1750,7 +1750,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="194"/>
+        <UsageCount Value="200"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1761,7 +1761,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="194"/>
+        <UsageCount Value="200"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1771,7 +1771,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="305"/>
         <CursorPos X="61" Y="323"/>
-        <UsageCount Value="191"/>
+        <UsageCount Value="197"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\6.2.Multiple_Lights_Exercise1\Case02_06_02_Multiple_Lights_Exercise1.pas"/>
@@ -1781,7 +1781,7 @@
         <TopLine Value="61"/>
         <CursorPos X="61" Y="664"/>
         <FoldState Value=" T3iT2{M1 pjHlc[A5PjHjJ2o"/>
-        <UsageCount Value="188"/>
+        <UsageCount Value="194"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\6.1.Multiple_Lights\6.1.light_cube.fs"/>
@@ -1791,7 +1791,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="187"/>
+        <UsageCount Value="193"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1802,7 +1802,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="187"/>
+        <UsageCount Value="193"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1813,7 +1813,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="187"/>
+        <UsageCount Value="193"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1824,7 +1824,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="187"/>
+        <UsageCount Value="193"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1834,7 +1834,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="17" Y="4"/>
-        <UsageCount Value="185"/>
+        <UsageCount Value="191"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1845,7 +1845,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="185"/>
+        <UsageCount Value="191"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1856,7 +1856,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="185"/>
+        <UsageCount Value="191"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1867,7 +1867,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="185"/>
+        <UsageCount Value="191"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1876,12 +1876,12 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="96"/>
-        <CursorPos X="45" Y="101"/>
-        <UsageCount Value="121"/>
+        <TopLine Value="175"/>
+        <CursorPos X="28" Y="184"/>
+        <UsageCount Value="127"/>
         <Bookmarks Count="2">
-          <Item0 Y="265" ID="1"/>
-          <Item1 X="16" Y="110" ID="2"/>
+          <Item0 Y="281" ID="1"/>
+          <Item1 X="21" Y="114" ID="2"/>
         </Bookmarks>
         <Loaded Value="True"/>
       </Unit>
@@ -1890,9 +1890,9 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="34"/>
-        <CursorPos X="59" Y="56"/>
-        <UsageCount Value="40"/>
+        <TopLine Value="75"/>
+        <CursorPos X="46" Y="57"/>
+        <UsageCount Value="46"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -1901,14 +1901,14 @@
         <WindowIndex Value="0"/>
         <TopLine Value="261"/>
         <CursorPos X="32" Y="191"/>
-        <UsageCount Value="166"/>
+        <UsageCount Value="165"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\1.Colors\2.1.colors.fs"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="166"/>
+        <UsageCount Value="165"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1916,7 +1916,7 @@
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="166"/>
+        <UsageCount Value="165"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1925,7 +1925,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="58" Y="6"/>
-        <UsageCount Value="166"/>
+        <UsageCount Value="165"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1934,7 +1934,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="53" Y="11"/>
-        <UsageCount Value="166"/>
+        <UsageCount Value="165"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1943,35 +1943,35 @@
         <WindowIndex Value="0"/>
         <TopLine Value="3"/>
         <CursorPos X="3" Y="20"/>
-        <UsageCount Value="197"/>
+        <UsageCount Value="196"/>
       </Unit>
       <Unit>
         <Filename Value="Source\Utils\LearnOpenGL.Shader.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="58"/>
-        <UsageCount Value="197"/>
+        <UsageCount Value="196"/>
       </Unit>
       <Unit>
         <Filename Value="Source\Utils\LearnOpenGL.Camera.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="29"/>
-        <UsageCount Value="168"/>
+        <UsageCount Value="167"/>
       </Unit>
       <Unit>
         <Filename Value="Source\Utils\LearnOpenGL.Texture.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="43" Y="42"/>
-        <UsageCount Value="164"/>
+        <UsageCount Value="163"/>
       </Unit>
       <Unit>
         <Filename Value="Source\OpenGL_Lib\DeepStar.OpenGL.GLAD_GL.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="28" Y="25"/>
-        <UsageCount Value="168"/>
+        <UsageCount Value="167"/>
       </Unit>
       <Unit>
         <Filename Value="Source\OpenGL_Lib\DeepStar.OpenGL.GLFW.pas"/>
@@ -1979,14 +1979,14 @@
         <WindowIndex Value="0"/>
         <TopLine Value="27"/>
         <CursorPos X="23" Y="37"/>
-        <UsageCount Value="168"/>
+        <UsageCount Value="167"/>
       </Unit>
       <Unit>
         <Filename Value="Source\OpenGL_Lib\DeepStar.OpenGL.GLM.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="32" Y="17"/>
-        <UsageCount Value="168"/>
+        <UsageCount Value="167"/>
       </Unit>
       <Unit>
         <Filename Value="Source\OpenGL_Lib\DeepStar.OpenGL.Matrix.pas"/>
@@ -1994,14 +1994,14 @@
         <WindowIndex Value="0"/>
         <TopLine Value="12"/>
         <CursorPos X="53" Y="33"/>
-        <UsageCount Value="168"/>
+        <UsageCount Value="167"/>
       </Unit>
       <Unit>
         <Filename Value="Source\OpenGL_Lib\DeepStar.OpenGL.Vector.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="57" Y="11"/>
-        <UsageCount Value="168"/>
+        <UsageCount Value="167"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGLADV\source\ogltexturefont.pas"/>
@@ -2009,7 +2009,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="9" Y="13"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\SDL2\DeepStar.SDL2.Texture.pas"/>
@@ -2017,7 +2017,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="30" Y="21"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.GLAD_GL.pas"/>
@@ -2026,7 +2026,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="916"/>
         <CursorPos X="3" Y="933"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGLADV\source\oglvao.pas"/>
@@ -2035,7 +2035,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="34" Y="102"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGLADV\source\oglvbo.pas"/>
@@ -2045,7 +2045,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="9"/>
         <CursorPos X="48" Y="24"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\DeepStar.Utils.pas"/>
@@ -2053,16 +2053,16 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="3" Y="6"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.GLM.pas"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="651"/>
-        <CursorPos X="3" Y="653"/>
-        <UsageCount Value="8"/>
+        <TopLine Value="454"/>
+        <CursorPos X="3" Y="464"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Vector.pas"/>
@@ -2071,7 +2071,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="28"/>
         <CursorPos Y="43"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="3"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Shader.pas"/>
@@ -2080,16 +2080,17 @@
         <WindowIndex Value="0"/>
         <TopLine Value="13"/>
         <CursorPos X="15" Y="33"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Texture.pas"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="8"/>
         <WindowIndex Value="0"/>
         <TopLine Value="60"/>
         <CursorPos Y="69"/>
         <UsageCount Value="12"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Utils.pas"/>
@@ -2098,7 +2099,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="7"/>
         <CursorPos X="87" Y="13"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.GLFW.pas"/>
@@ -2107,7 +2108,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="37"/>
         <CursorPos X="35" Y="47"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\win\sysutils.pp"/>
@@ -2117,7 +2118,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="367"/>
         <CursorPos X="20" Y="390"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\win64\system.pp"/>
@@ -2127,7 +2128,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="222"/>
         <CursorPos X="8" Y="243"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\systemh.inc"/>
@@ -2136,7 +2137,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="105"/>
         <CursorPos X="3" Y="443"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGLADV\source\oglvector.pas"/>
@@ -2145,7 +2146,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="10" Y="212"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\objpash.inc"/>
@@ -2154,7 +2155,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="257"/>
         <CursorPos X="73" Y="256"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-image\src\fpimage.pp"/>
@@ -2164,7 +2165,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="162"/>
         <CursorPos X="3" Y="228"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\2.1.Basic Lighting Diffuse\2.1.basic_lighting.fs"/>
@@ -2173,7 +2174,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2183,7 +2184,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2193,7 +2194,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2203,14 +2204,14 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\2.1.Basic Lighting Diffuse\Case02_02_01_Basic_Lighting_Diffuse.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\2.2.Basic Lighting Specular\2.2.basic_lighting.fs"/>
@@ -2219,7 +2220,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2229,7 +2230,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2239,7 +2240,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2249,14 +2250,14 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\2.2.Basic Lighting Specular\Case02_02_02_Basic_Lighting_Specular.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\2.3.Basic Lighting Exercise1\Case02_02_03_Basic_Lighting_Exercise1.pas"/>
@@ -2264,7 +2265,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="43"/>
         <CursorPos X="39" Y="166"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\3.3.Materials_Exercise2\3.1.light_cube.fs"/>
@@ -2273,7 +2274,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="40"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2283,7 +2284,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="40"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2293,7 +2294,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="40"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2303,7 +2304,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="40"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2312,14 +2313,14 @@
         <UnitName Value="oglLighting"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\ctypes.pp"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="3"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGLADV\source\ogltexture.pas"/>
@@ -2329,7 +2330,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="52"/>
         <CursorPos X="29" Y="8"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\syshelph.inc"/>
@@ -2338,33 +2339,34 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1385"/>
         <CursorPos X="20" Y="390"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Assimp.pas"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="502"/>
-        <CursorPos X="10" Y="503"/>
-        <UsageCount Value="23"/>
+        <TopLine Value="97"/>
+        <CursorPos X="3" Y="117"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Mesh.pas"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="9"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="197"/>
-        <CursorPos X="37" Y="203"/>
-        <UsageCount Value="46"/>
+        <TopLine Value="59"/>
+        <CursorPos Y="207"/>
+        <UsageCount Value="47"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\Utils_inc\Utils.Lists.inc"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\Utils_inc\Utils.StringHelper.inc"/>
@@ -2373,7 +2375,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="67"/>
         <CursorPos X="41" Y="79"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGLADV\source\ogllinesvao.pas"/>
@@ -2381,7 +2383,7 @@
         <UnitName Value="oglLinesVAO"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGLADV\source\ogltexturevao.pas"/>
@@ -2390,7 +2392,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="355"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGLADV\source\ogltexturebody.pas"/>
@@ -2398,15 +2400,15 @@
         <UnitName Value="oglTextureBody"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\DSA\Linear\DeepStar.DSA.Linear.ArrayList.pas"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="77"/>
-        <CursorPos X="38" Y="99"/>
+        <TopLine Value="223"/>
+        <CursorPos Y="234"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
@@ -2416,7 +2418,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="48"/>
         <CursorPos X="32" Y="59"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\DSA\DeepStar.DSA.Interfaces.pas"/>
@@ -2425,7 +2427,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="70"/>
         <CursorPos X="11" Y="82"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="0"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\Utils_inc\Utils.Common.inc"/>
@@ -2434,7 +2436,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="20"/>
         <CursorPos X="53" Y="30"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\syshelpo.inc"/>
@@ -2442,7 +2444,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="4" Y="22"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGLADV\source\oglbackground.pas"/>
@@ -2450,7 +2452,7 @@
         <UnitName Value="oglBackground"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGLADV\source\ogllightingshader.pas"/>
@@ -2458,7 +2460,7 @@
         <UnitName Value="oglLightingShader"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGLADV\source\ogllogform.pas"/>
@@ -2466,7 +2468,7 @@
         <UnitName Value="oglLogForm"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGLADV\source\oglwavefrontobj.pas"/>
@@ -2474,7 +2476,7 @@
         <UnitName Value="oglWaveFrontOBJ"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGLADV\source\oglvectors.pas"/>
@@ -2482,7 +2484,7 @@
         <UnitName Value="oglVectors"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGLADV\source\oglunit.pas"/>
@@ -2490,7 +2492,7 @@
         <UnitName Value="oglUnit"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGLADV\source\oglubo.pas"/>
@@ -2498,7 +2500,7 @@
         <UnitName Value="oglUBO"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\DSA\Tree\DeepStar.DSA.Tree.TreeMap.pas"/>
@@ -2506,7 +2508,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="74"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\DSA\Tree\DeepStar.DSA.Tree.TreeSet.pas"/>
@@ -2514,7 +2516,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="9"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="0"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\DSA\Hash\DeepStar.DSA.Hash.HashMap.pas"/>
@@ -2523,7 +2525,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="7"/>
         <CursorPos X="5" Y="25"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="0"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\packages\rtl-objpas\src\inc\nullable.pp"/>
@@ -2532,16 +2534,16 @@
         <WindowIndex Value="0"/>
         <TopLine Value="23"/>
         <CursorPos X="14" Y="40"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="0"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\Assimp.aicamera.inc"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="30"/>
+        <TopLine Value="84"/>
         <CursorPos X="3" Y="47"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\Assimp.aiimport.inc"/>
@@ -2550,16 +2552,17 @@
         <WindowIndex Value="0"/>
         <TopLine Value="45"/>
         <CursorPos X="53" Y="62"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\Assimp.aiscene.inc"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="167"/>
-        <CursorPos X="11" Y="185"/>
-        <UsageCount Value="0"/>
+        <TopLine Value="174"/>
+        <CursorPos X="5" Y="194"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\Assimp.aimatrix3x3.inc"/>
@@ -2567,7 +2570,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="3" Y="8"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\Assimp.aimesh.inc"/>
@@ -2576,7 +2579,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="237"/>
         <CursorPos X="34" Y="246"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\Assimp.aiimporterdesc.inc"/>
@@ -2584,7 +2587,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="25" Y="18"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="3"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\Utils_inc\Utils.Object.inc"/>
@@ -2592,7 +2595,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="41" Y="17"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\Utils_inc\Utils.Types.inc"/>
@@ -2600,7 +2603,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="40" Y="14"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\SDL2\DeepStar.SDL2.Timer.pas"/>
@@ -2609,7 +2612,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="37"/>
         <CursorPos X="30" Y="57"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\packages\winunits-jedi\src\jwawindows.pas"/>
@@ -2618,40 +2621,38 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="694"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\packages\winunits-jedi\src\jwashlguid.pas"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\packages\winunits-jedi\src\jwawinwlx.pas"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\Assimp.aimaterial.inc"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="444"/>
-        <CursorPos X="3" Y="464"/>
+        <TopLine Value="700"/>
+        <CursorPos X="116" Y="705"/>
         <UsageCount Value="16"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\Assimp.aitypes.inc"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="42"/>
-        <CursorPos X="37" Y="63"/>
-        <UsageCount Value="13"/>
+        <CursorPos X="3" Y="8"/>
+        <UsageCount Value="12"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\Utils_inc\Utils.Arrays.inc"/>
@@ -2659,7 +2660,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="3" Y="8"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\syshelps.inc"/>
@@ -2668,7 +2669,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="147"/>
         <CursorPos X="32" Y="159"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\ustringh.inc"/>
@@ -2677,7 +2678,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="31"/>
         <CursorPos X="10" Y="48"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\uuchar.pp"/>
@@ -2686,7 +2687,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="10"/>
         <CursorPos X="5" Y="21"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\ustrings.inc"/>
@@ -2695,7 +2696,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1083"/>
         <CursorPos X="5" Y="1086"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\Assimp.aivector3.inc"/>
@@ -2703,7 +2704,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="3" Y="7"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\Utils_inc\Utils.Math.inc"/>
@@ -2711,16 +2712,17 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="3" Y="6"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\Assimp.aipostprocess.inc"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="141"/>
-        <CursorPos X="95" Y="147"/>
+        <TopLine Value="487"/>
+        <CursorPos X="38" Y="511"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\objpas.inc"/>
@@ -2729,139 +2731,133 @@
         <WindowIndex Value="0"/>
         <TopLine Value="394"/>
         <CursorPos X="12" Y="405"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\Assimp.aimaterialmacros.inc"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="6"/>
         <CursorPos X="28" Y="29"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
+    <JumpHistory HistoryIndex="28">
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="110" TopLine="94"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="105" TopLine="95"/>
+        <Caret Line="174" TopLine="156"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="111" Column="24" TopLine="89"/>
-      </Position>
-      <Position>
-        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Assimp.pas"/>
-        <Caret Line="464" Column="30" TopLine="449"/>
+        <Caret Line="172" Column="5" TopLine="156"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="110" TopLine="89"/>
+        <Caret Line="174" TopLine="164"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="111" Column="63" TopLine="94"/>
+        <Caret Line="175" TopLine="164"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="110" TopLine="94"/>
+        <Caret Line="177" TopLine="164"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="111" TopLine="95"/>
+        <Caret Line="174" TopLine="164"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="116" Column="5" TopLine="92"/>
+        <Caret Line="175" Column="30" TopLine="164"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="110" TopLine="94"/>
+        <Caret Line="174" TopLine="164"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="111" TopLine="95"/>
+        <Caret Line="175" Column="42" TopLine="155"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="112" TopLine="96"/>
+        <Caret Line="174" TopLine="165"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="113" TopLine="98"/>
+        <Caret Line="175" TopLine="165"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="110" Column="33" TopLine="95"/>
+        <Caret Line="182" TopLine="162"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="252" Column="49" TopLine="243"/>
+        <Caret Line="176" Column="22" TopLine="168"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="265" TopLine="243"/>
+        <Caret Line="173" TopLine="165"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\3.Model\1.1.Model_Loading\Case03_01_01_Model_Loading.pas"/>
+        <Caret Line="57" Column="46" TopLine="75"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="110" Column="16" TopLine="98"/>
+        <Caret Line="173" TopLine="164"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="265" TopLine="245"/>
+        <Caret Line="155" Column="30" TopLine="147"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="110" Column="16" TopLine="89"/>
+        <Caret Line="171" TopLine="155"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="265" TopLine="246"/>
+        <Caret Line="172" TopLine="156"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="110" TopLine="101"/>
+        <Caret Line="174" TopLine="158"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="111" TopLine="101"/>
+        <Caret Line="176" TopLine="160"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="110" Column="39" TopLine="101"/>
+        <Caret Line="181" TopLine="158"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="116" Column="50" TopLine="101"/>
+        <Caret Line="171" TopLine="158"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="106" Column="113" TopLine="91"/>
-      </Position>
-      <Position>
-        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\Assimp.aimaterial.inc"/>
-        <Caret Line="523" Column="63" TopLine="498"/>
-      </Position>
-      <Position>
-        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\Assimp.aimaterial.inc"/>
-        <Caret Line="464" Column="3" TopLine="444"/>
+        <Caret Line="181" TopLine="172"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="107" TopLine="91"/>
+        <Caret Line="179" TopLine="172"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="115" Column="36" TopLine="96"/>
+        <Caret Line="184" TopLine="172"/>
       </Position>
       <Position>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Caret Line="107" TopLine="96"/>
+        <Caret Line="152" TopLine="142"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
+        <Caret Line="184" Column="28" TopLine="175"/>
+      </Position>
+      <Position>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\Assimp.aiscene.inc"/>
+        <Caret Line="194" Column="5" TopLine="174"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -2893,12 +2889,15 @@
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="Source\DeepStar.OpenGL.Model.pas"/>
-        <Line Value="318"/>
+        <Line Value="184"/>
       </Item>
     </BreakPoints>
     <Watches>
       <Item ClassAutoCast="True">
-        <Expression Value="_meshes.Count"/>
+        <Expression Value="vertex"/>
+      </Item>
+      <Item ClassAutoCast="True">
+        <Expression Value="tempVec3"/>
       </Item>
     </Watches>
   </Debugging>

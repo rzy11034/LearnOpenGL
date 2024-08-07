@@ -101,17 +101,18 @@ var
   str: TaiString;
   skip: Boolean;
   texture: TTexture;
+  s: string;
+  k:TaiReturn;
+  pPropOut: PPaiMaterialProperty;
 begin
   res := TList_TTexture.Create;
 
+  i := aiGetMaterialTextureCount(mat, type_) - 1;
   for i := 0 to aiGetMaterialTextureCount(mat, type_) - 1 do
   begin
     str := Default(TaiString);
-    aiGetMaterialTexture(mat, type_, i, @str);
-    typeName := string(str.data);
-    aiGetMaterialString(mat, AI_MATKEY_TEXTURE_DIFFUSE, @str);
-     typeName := string(str.data);
-     get
+    k:=  aiGetMaterialTexture(mat, type_, 1, @str);
+    s := str.data;
 
     // 检查之前是否加载了纹理，如果是，继续下一次迭代: 跳过加载新纹理
     skip := false;
@@ -146,12 +147,11 @@ var
   scene: PaiScene;
   pFlags: cuint;
   exceptionStr: String;
+  i: Integer;
+  p: TaiVector3D;
 begin
   // read file via ASSIMP
-  pFlags := aiProcess_Triangulate
-    or aiProcess_GenSmoothNormals
-    or aiProcess_FlipUVs
-    or aiProcess_CalcTangentSpace;
+  pFlags := aiProcessPreset_TargetRealtime_Fast;
 
   scene := aiImportFile(CrossFixFileName(fileName).ToPAnsiChar, pFlags);
 
@@ -166,7 +166,22 @@ begin
   _directory := fileName;
 
   // 递归地处理ASSIMP的根节点
-  __ProcessNode(scene^.mRootNode, scene);
+  //__ProcessNode(scene^.mRootNode, scene);
+
+  pFlags := aiGetMaterialTextureCount(scene^.mMaterials^, aiTextureType_DIFFUSE);
+  pFlags := 0;
+
+  for i := 0 to scene^.mNumMeshes - 1 do
+  begin
+    pFlags += scene^.mMeshes[i]^.mNumVertices;
+  end;
+
+  for i := 0 to scene^.mNumMeshes - 1 do
+  begin
+    p := scene^.mMeshes^^.mVertices[i];
+  end;
+
+  pFlags := scene^.mCameras;
 
   aiReleaseImport(scene);
 end;
@@ -185,7 +200,7 @@ var
 begin
   // data to fill
   vertices := TList_TVertex.Create;
-  indices := TList_Gluint.Create;
+  indices  := TList_Gluint.Create;
   textures := TList_TTexture.Create;
 
   // 遍历每个网格的顶点
@@ -194,9 +209,8 @@ begin
     vertex := Default(TVertex);
     // 我们声明一个占位符向量，因为assimp使用自己的vector类，
     // 不能直接转换为glm的vec3类，所以我们首先将数据传输到这个占位符 TGLM.vec3。
-    tempVec3 := TGLM.Vec3(0);
-
     // position
+    tempVec3 := TGLM.Vec3(0);
     tempVec3.x := mesh^.mVertices[i].x;
     tempVec3.y := mesh^.mVertices[i].y;
     tempVec3.z := mesh^.mVertices[i].z;
@@ -205,6 +219,7 @@ begin
     // normals
     if mesh^.mNormals <> nil then
     begin
+      tempVec3 := TGLM.Vec3(0);
       tempVec3.x := mesh^.mNormals[i].x;
       tempVec3.y := mesh^.mNormals[i].y;
       tempVec3.z := mesh^.mNormals[i].z;
@@ -214,21 +229,22 @@ begin
     // texture coordinates
     if mesh^.mTextureCoords[0] <> nil then
     begin
-      tempVec2 := TGLM.Vec2(0);
-
       //一个顶点最多可以包含8个不同的纹理坐标。因此，我们假设我们不会
       //使用顶点可以有多个纹理坐标的模型，所以我们总是取第一个集合(0)。
+      tempVec2 := TGLM.Vec2(0);
       tempVec2.x := mesh^.mTextureCoords[0][i].x;
       tempVec2.y := mesh^.mTextureCoords[0][i].y;
       vertex.TexCoords := tempVec2;
 
       // tangent
+      tempVec3 := TGLM.Vec3(0);
       tempVec3.x := mesh^.mTangents[i].x;
       tempVec3.y := mesh^.mTangents[i].y;
       tempVec3.z := mesh^.mTangents[i].z;
       vertex.Tangent := tempVec3;
 
       // bitangent
+      tempVec3 := TGLM.Vec3(0);
       tempVec3.x := mesh^.mBitangents[i].x;
       tempVec3.y := mesh^.mBitangents[i].y;
       tempVec3.z := mesh^.mBitangents[i].z;
