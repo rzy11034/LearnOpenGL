@@ -147,8 +147,9 @@ var
   scene: PaiScene;
   pFlags: cuint;
   exceptionStr: String;
-  i: Integer;
+  i, f, g, j: Integer;
   p: TaiVector3D;
+  s: String;
 begin
   // read file via ASSIMP
   pFlags := aiProcessPreset_TargetRealtime_Fast;
@@ -168,20 +169,22 @@ begin
   // 递归地处理ASSIMP的根节点
   //__ProcessNode(scene^.mRootNode, scene);
 
-  pFlags := aiGetMaterialTextureCount(scene^.mMaterials^, aiTextureType_DIFFUSE);
-  pFlags := 0;
 
-  for i := 0 to scene^.mNumMeshes - 1 do
+  //s.data := scene^.mMaterials^^.mProperties^^.mType.data;
+
+  f := aiGetMaterialTextureCount(scene^.mMaterials^, aiTextureType_DIFFUSE);
+  f := scene^.mMaterials^^.mNumProperties;
+  for i := 0 to scene^.mNumMaterials - 1 do
   begin
-    pFlags += scene^.mMeshes[i]^.mNumVertices;
+    for j := 0 to scene^.mMaterials[i]^.mNumProperties - 1 do
+    begin
+      g := scene^.mMaterials[i]^.mProperties[j]^.mType;
+      s := scene^.mMaterials[i]^.mProperties[j]^.mData;
+      Continue;
+    end;
+    //Continue;
   end;
 
-  for i := 0 to scene^.mNumMeshes - 1 do
-  begin
-    p := scene^.mMeshes^^.mVertices[i];
-  end;
-
-  pFlags := scene^.mCameras;
 
   aiReleaseImport(scene);
 end;
