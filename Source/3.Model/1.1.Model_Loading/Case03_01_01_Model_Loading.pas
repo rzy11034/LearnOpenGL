@@ -53,8 +53,7 @@ procedure Main;
 const
   fs = '..\Source\3.Model\1.1.Model_Loading\1.model_loading.fs';
   vs = '..\Source\3.Model\1.1.Model_Loading\1.model_loading.vs';
-  objFile = '..\Resources\objects\backpack\backpack.obj';
-  //objFile = '..\Resources\objects\RotatingCube.3DS';
+  objFile = '..\Resources\objects\cyborg\cyborg.obj';
 var
   window: PGLFWwindow;
   ourShader: TShaderProgram;
@@ -102,7 +101,7 @@ begin
       // render the loaded model
       model := TGLM.Mat4_Identity;
       model := TGLM.Translate(model, TGLM.Vec3(0));
-      model := tglm.Scale(model, TGLM.Vec3(1.0, 1.0, 1.0));
+      model := TGLM.Scale(model, TGLM.Vec3(1.0, 1.0, 1.0));
       ourShader.SetUniformMatrix4fv('model', model);
       ourModel.Draw(ourShader);
 

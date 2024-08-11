@@ -81,3 +81,6 @@ LearnOpenGL文档学习
 
 ## 第3章 模型加载 <br>
   1. 模型加载	Model Loading <br>
+
+## 第4章 高级OpenGL <br>
+  1. 深度测试 Depth testing <br>

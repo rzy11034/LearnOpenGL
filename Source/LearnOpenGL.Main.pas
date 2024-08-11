@@ -24,7 +24,7 @@ procedure Run();
 implementation
 
 uses
-  Case03_01_01_Model_Loading;
+  Case04_01_01_Depth_Testing;
 
 procedure Test;
 begin
