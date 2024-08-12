@@ -140,13 +140,13 @@ begin
     glBindVertexArray(cubeVAO);
 
     // 位置属性
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(0));
     glEnableVertexAttribArray(0);
     // 法向量
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(3 * SIZE_F));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(3 * SIZE_OF_F));
     glEnableVertexAttribArray(1);
     // 漫反射贴图坐标
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(6 * SIZE_F));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(6 * SIZE_OF_F));
     glEnableVertexAttribArray(2);
 
     // 第二，配置灯的VAO (VBO保持不变;对于同样是3D立方体的光物体，顶点是相同的)
@@ -157,7 +157,7 @@ begin
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
     // 注意，我们更新了灯的位置属性的步幅来反映更新后的缓冲区数据
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(0));
     glEnableVertexAttribArray(0);
 
     // 加载纹理(现在使用一个实用函数来保持代码更有条理)

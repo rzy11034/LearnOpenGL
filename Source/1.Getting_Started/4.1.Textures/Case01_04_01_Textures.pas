@@ -126,13 +126,13 @@ begin
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.MemSize, @indices[0], GL_STATIC_DRAW);
 
     // position attribute ---位置属性
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SizeOf(GLfloat), Pointer(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(0));
     glEnableVertexAttribArray(0);
     // color attribute  ---颜色属性
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(3 * SIZE_F));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(3 * SIZE_OF_F));
     glEnableVertexAttribArray(1);
     // texture coord attribute ---纹理坐标属性
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SIZE_F, Pointer(6 * SIZE_F));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(6 * SIZE_OF_F));
     glEnableVertexAttribArray(2);
 
     // 新建并加载一个纹理

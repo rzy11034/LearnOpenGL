@@ -75,65 +75,67 @@ begin
   end;
 
   glEnable(GL_DEPTH_TEST);
+  //总是通过深度测试(与glDisable(GL_DEPTH_TEST)的效果相同)
   glDepthFunc(GL_ALWAYS);
 
   shader := TShaderProgram.Create;
   camera := TCamera.Create(TGLM.Vec3(0, 0, 3));
   try
     cubeVertices := TArr_GLfloat([
-       // positions       // texture Coords
-       0.5, -0.5, -0.5,   1.0, 0.0,
-       0.5,  0.5, -0.5,   1.0, 1.0,
-       0.5,  0.5, -0.5,   1.0, 1.0,
-      -0.5,  0.5, -0.5,   0.0, 1.0,
-      -0.5, -0.5, -0.5,   0.0, 0.0,
+       // positions      // texture Coords
+      -0.5, -0.5, -0.5,  0.0, 0.0,
+       0.5, -0.5, -0.5,  1.0, 0.0,
+       0.5,  0.5, -0.5,  1.0, 1.0,
+       0.5,  0.5, -0.5,  1.0, 1.0,
+      -0.5,  0.5, -0.5,  0.0, 1.0,
+      -0.5, -0.5, -0.5,  0.0, 0.0,
 
-      -0.5, -0.5,  0.5,   0.0, 0.0,
-       0.5, -0.5,  0.5,   1.0, 0.0,
-       0.5,  0.5,  0.5,   1.0, 1.0,
-       0.5,  0.5,  0.5,   1.0, 1.0,
-      -0.5,  0.5,  0.5,   0.0, 1.0,
-      -0.5, -0.5,  0.5,   0.0, 0.0,
+      -0.5, -0.5,  0.5,  0.0, 0.0,
+       0.5, -0.5,  0.5,  1.0, 0.0,
+       0.5,  0.5,  0.5,  1.0, 1.0,
+       0.5,  0.5,  0.5,  1.0, 1.0,
+      -0.5,  0.5,  0.5,  0.0, 1.0,
+      -0.5, -0.5,  0.5,  0.0, 0.0,
 
-      -0.5,  0.5,  0.5,   1.0, 0.0,
-      -0.5,  0.5, -0.5,   1.0, 1.0,
-      -0.5, -0.5, -0.5,   0.0, 1.0,
-      -0.5, -0.5, -0.5,   0.0, 1.0,
-      -0.5, -0.5,  0.5,   0.0, 0.0,
-      -0.5,  0.5,  0.5,   1.0, 0.0,
+      -0.5,  0.5,  0.5,  1.0, 0.0,
+      -0.5,  0.5, -0.5,  1.0, 1.0,
+      -0.5, -0.5, -0.5,  0.0, 1.0,
+      -0.5, -0.5, -0.5,  0.0, 1.0,
+      -0.5, -0.5,  0.5,  0.0, 0.0,
+      -0.5,  0.5,  0.5,  1.0, 0.0,
 
-       0.5,  0.5,  0.5,   1.0, 0.0,
-       0.5,  0.5, -0.5,   1.0, 1.0,
-       0.5, -0.5, -0.5,   0.0, 1.0,
-       0.5, -0.5, -0.5,   0.0, 1.0,
-       0.5, -0.5,  0.5,   0.0, 0.0,
-       0.5,  0.5,  0.5,   1.0, 0.0,
+       0.5,  0.5,  0.5,  1.0, 0.0,
+       0.5,  0.5, -0.5,  1.0, 1.0,
+       0.5, -0.5, -0.5,  0.0, 1.0,
+       0.5, -0.5, -0.5,  0.0, 1.0,
+       0.5, -0.5,  0.5,  0.0, 0.0,
+       0.5,  0.5,  0.5,  1.0, 0.0,
 
-      -0.5, -0.5, -0.5,   0.0, 1.0,
-       0.5, -0.5, -0.5,   1.0, 1.0,
-       0.5, -0.5,  0.5,   1.0, 0.0,
-       0.5, -0.5,  0.5,   1.0, 0.0,
-      -0.5, -0.5,  0.5,   0.0, 0.0,
-      -0.5, -0.5, -0.5,   0.0, 1.0,
+      -0.5, -0.5, -0.5,  0.0, 1.0,
+       0.5, -0.5, -0.5,  1.0, 1.0,
+       0.5, -0.5,  0.5,  1.0, 0.0,
+       0.5, -0.5,  0.5,  1.0, 0.0,
+      -0.5, -0.5,  0.5,  0.0, 0.0,
+      -0.5, -0.5, -0.5,  0.0, 1.0,
 
-      -0.5,  0.5, -0.5,   0.0, 1.0,
-       0.5,  0.5, -0.5,   1.0, 1.0,
-       0.5,  0.5,  0.5,   1.0, 0.0,
-       0.5,  0.5,  0.5,   1.0, 0.0,
-      -0.5,  0.5,  0.5,   0.0, 0.0,
-      -0.5,  0.5, -0.5,   0.0, 1.0]);
+      -0.5,  0.5, -0.5,  0.0, 1.0,
+       0.5,  0.5, -0.5,  1.0, 1.0,
+       0.5,  0.5,  0.5,  1.0, 0.0,
+       0.5,  0.5,  0.5,  1.0, 0.0,
+      -0.5,  0.5,  0.5,  0.0, 0.0,
+      -0.5,  0.5, -0.5,  0.0, 1.0]);
 
     // 注意我们将这些设置为大于1(连同GL_REPEAT作为纹理包裹模式)。
     // 这将导致地板纹理重复
     planeVertices := TArr_GLfloat([
       // positions        // texture Coords
-      -0.5, -0.5, -0.5,   0.0, 0.0,
-       5.0, -0.5,  5.0,   2.0, 0.0,
-      -5.0, -0.5,  5.0,   0.0, 0.0,
-      -5.0, -0.5, -5.0,   0.0, 2.0,
-       5.0, -0.5,  5.0,   2.0, 0.0,
-      -5.0, -0.5, -5.0,   0.0, 2.0,
-       5.0, -0.5, -5.0,   2.0, 2.0]);
+       5.0, -0.5,  5.0, 2.0, 0.0,
+      -5.0, -0.5,  5.0, 0.0, 0.0,
+      -5.0, -0.5, -5.0, 0.0, 2.0,
+
+       5.0, -0.5,  5.0, 2.0, 0.0,
+      -5.0, -0.5, -5.0, 0.0, 2.0,
+       5.0, -0.5, -5.0, 2.0, 2.0]);
 
     //═════════════════════════════════════════════════════════════════════════
     // cube VAO
@@ -148,9 +150,9 @@ begin
     glBufferData(GL_ARRAY_BUFFER, cubeVertices.MemSize, @cubeVertices[0], GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SIZE_F, Pointer(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(0));
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * SIZE_F, Pointer(3 * SIZE_F));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(3 * SIZE_OF_F));
     glBindVertexArray(0);
 
     //═════════════════════════════════════════════════════════════════════════
@@ -166,9 +168,9 @@ begin
     glBufferData(GL_ARRAY_BUFFER, planeVertices.MemSize, @planeVertices[0], GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SIZE_F, Pointer(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(0));
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * SIZE_F, Pointer(3 * SIZE_F));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(3 * SIZE_OF_F));
     glBindVertexArray(0);
 
     //═════════════════════════════════════════════════════════════════════════
@@ -215,11 +217,13 @@ begin
       glDrawArrays(GL_TRIANGLES, 0, 36);
 
       // floor
-      glBindVertexArray(cubeVAO);
+      glBindVertexArray(planeVAO);
       glBindTexture(GL_TEXTURE_2D, floorTexture);
       shader.SetUniformMatrix4fv('model', TGLM.Mat4_Identity);
       glDrawArrays(GL_TRIANGLES, 0, 6);
-      glBindVertexArray(0);
+      //glBindVertexArray(0);
+
+
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
       glfwSwapBuffers(window);

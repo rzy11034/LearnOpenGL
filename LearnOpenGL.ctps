@@ -10,8 +10,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="55"/>
-        <CursorPos X="3" Y="70"/>
+        <TopLine Value="59"/>
+        <CursorPos X="39" Y="65"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
@@ -32,7 +32,7 @@
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="7"/>
-        <CursorPos X="29" Y="27"/>
+        <CursorPos X="68" Y="34"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
@@ -151,8 +151,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="127"/>
-        <CursorPos X="27" Y="147"/>
+        <TopLine Value="112"/>
+        <CursorPos X="59" Y="139"/>
         <UsageCount Value="233"/>
       </Unit>
       <Unit>
@@ -223,8 +223,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="135"/>
-        <CursorPos X="30" Y="149"/>
+        <TopLine Value="111"/>
+        <CursorPos X="66" Y="131"/>
         <UsageCount Value="233"/>
       </Unit>
       <Unit>
@@ -232,8 +232,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="138"/>
-        <CursorPos X="39" Y="156"/>
+        <TopLine Value="110"/>
+        <CursorPos X="57" Y="130"/>
         <UsageCount Value="233"/>
       </Unit>
       <Unit>
@@ -241,8 +241,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="175"/>
-        <CursorPos X="37" Y="201"/>
+        <TopLine Value="150"/>
+        <CursorPos X="57" Y="170"/>
         <UsageCount Value="233"/>
       </Unit>
       <Unit>
@@ -838,8 +838,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="272"/>
-        <CursorPos X="5" Y="306"/>
+        <TopLine Value="120"/>
+        <CursorPos X="80" Y="139"/>
         <UsageCount Value="229"/>
       </Unit>
       <Unit>
@@ -847,8 +847,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="49"/>
-        <CursorPos X="82" Y="57"/>
+        <TopLine Value="116"/>
+        <CursorPos X="57" Y="136"/>
         <UsageCount Value="216"/>
       </Unit>
       <Unit>
@@ -900,8 +900,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="273"/>
-        <CursorPos X="5" Y="307"/>
+        <TopLine Value="147"/>
+        <CursorPos X="66" Y="150"/>
         <UsageCount Value="216"/>
       </Unit>
       <Unit>
@@ -953,7 +953,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <CursorPos X="5" Y="307"/>
+        <TopLine Value="137"/>
+        <CursorPos X="66" Y="150"/>
         <UsageCount Value="215"/>
       </Unit>
       <Unit>
@@ -961,8 +962,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="213"/>
-        <CursorPos X="60" Y="230"/>
+        <TopLine Value="117"/>
+        <CursorPos X="66" Y="136"/>
         <UsageCount Value="215"/>
       </Unit>
       <Unit>
@@ -1102,6 +1103,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
+        <TopLine Value="117"/>
+        <CursorPos X="4" Y="123"/>
         <UsageCount Value="212"/>
       </Unit>
       <Unit>
@@ -1109,6 +1112,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
+        <TopLine Value="120"/>
+        <CursorPos X="66" Y="140"/>
         <UsageCount Value="208"/>
       </Unit>
       <Unit>
@@ -1199,6 +1204,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
+        <TopLine Value="118"/>
+        <CursorPos X="66" Y="150"/>
         <UsageCount Value="206"/>
       </Unit>
       <Unit>
@@ -1353,8 +1360,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="280"/>
-        <CursorPos X="25" Y="300"/>
+        <TopLine Value="124"/>
+        <CursorPos X="57" Y="143"/>
         <UsageCount Value="200"/>
       </Unit>
       <Unit>
@@ -1401,8 +1408,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="283"/>
-        <CursorPos X="50" Y="297"/>
+        <TopLine Value="128"/>
+        <CursorPos X="66" Y="160"/>
         <UsageCount Value="200"/>
       </Unit>
       <Unit>
@@ -1609,8 +1616,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="304"/>
-        <CursorPos X="24" Y="324"/>
+        <TopLine Value="141"/>
+        <CursorPos X="70" Y="158"/>
         <UsageCount Value="200"/>
       </Unit>
       <Unit>
@@ -1716,8 +1723,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="270"/>
-        <CursorPos X="54" Y="287"/>
+        <TopLine Value="141"/>
+        <CursorPos X="66" Y="163"/>
         <UsageCount Value="200"/>
       </Unit>
       <Unit>
@@ -1876,7 +1883,40 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="28"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="72"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\4.Advanced_Opengl\1.1.Depth_Testing\Case04_01_01_Depth_Testing.pas"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="60"/>
+        <CursorPos X="37" Y="78"/>
+        <UsageCount Value="28"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\4.Advanced_Opengl\1.1.Depth_Testing\1.1.depth_testing.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="28"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\4.Advanced_Opengl\1.1.Depth_Testing\1.1.depth_testing.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="28"/>
+        <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
@@ -2050,12 +2090,11 @@
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.GLM.pas"/>
         <FRMtype Value="0"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="8"/>
         <CursorPos X="3" Y="38"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Vector.pas"/>
@@ -2089,9 +2128,9 @@
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="7"/>
-        <CursorPos X="87" Y="13"/>
-        <UsageCount Value="2"/>
+        <TopLine Value="79"/>
+        <CursorPos X="37" Y="95"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.GLFW.pas"/>
@@ -2799,45 +2838,12 @@
         <UsageCount Value="11"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\4.Advanced_Opengl\1.1.Depth_Testing\Case04_01_01_Depth_Testing.pas"/>
-        <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="191"/>
-        <CursorPos X="41" Y="212"/>
-        <UsageCount Value="25"/>
-        <Loaded Value="True"/>
-      </Unit>
-      <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Camera.pas"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="63"/>
         <UsageCount Value="10"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\4.Advanced_Opengl\1.1.Depth_Testing\1.1.depth_testing.fs"/>
-        <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="25"/>
-        <DefaultSyntaxHighlighter Value="None"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\4.Advanced_Opengl\1.1.Depth_Testing\1.1.depth_testing.vs"/>
-        <FRMtype Value="0"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="25"/>
-        <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Matrix.pas"/>
@@ -2849,58 +2855,10 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="12">
+    <JumpHistory>
       <Position>
-        <Filename Value="LearnOpenGL.ppr"/>
-        <Caret Line="70" Column="3" TopLine="55"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\4.Advanced_Opengl\1.1.Depth_Testing\Case04_01_01_Depth_Testing.pas"/>
-        <Caret Line="25" Column="22" TopLine="13"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\4.Advanced_Opengl\1.1.Depth_Testing\Case04_01_01_Depth_Testing.pas"/>
-        <Caret Line="3"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\4.Advanced_Opengl\1.1.Depth_Testing\Case04_01_01_Depth_Testing.pas"/>
-        <Caret Line="78" Column="17" TopLine="68"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\4.Advanced_Opengl\1.1.Depth_Testing\Case04_01_01_Depth_Testing.pas"/>
-        <Caret Line="121" Column="18" TopLine="102"/>
-      </Position>
-      <Position>
-        <Filename Value="LearnOpenGL.ppr"/>
-        <Caret Line="70" Column="3" TopLine="55"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\4.Advanced_Opengl\1.1.Depth_Testing\Case04_01_01_Depth_Testing.pas"/>
-        <Caret Line="200" Column="35" TopLine="181"/>
-      </Position>
-      <Position>
-        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.GLM.pas"/>
-        <Caret Line="38" Column="3" TopLine="8"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\4.Advanced_Opengl\1.1.Depth_Testing\Case04_01_01_Depth_Testing.pas"/>
-        <Caret Line="202" Column="21" TopLine="205"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\4.Advanced_Opengl\1.1.Depth_Testing\Case04_01_01_Depth_Testing.pas"/>
-        <Caret Line="184" Column="13" TopLine="166"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\4.Advanced_Opengl\1.1.Depth_Testing\Case04_01_01_Depth_Testing.pas"/>
-        <Caret Line="185" Column="7" TopLine="50"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\4.Advanced_Opengl\1.1.Depth_Testing\Case04_01_01_Depth_Testing.pas"/>
-        <Caret Line="211" Column="57" TopLine="197"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\4.Advanced_Opengl\1.1.Depth_Testing\Case04_01_01_Depth_Testing.pas"/>
-        <Caret Line="272" Column="3" TopLine="256"/>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="28" Column="41" TopLine="7"/>
       </Position>
     </JumpHistory>
     <RunParams>
