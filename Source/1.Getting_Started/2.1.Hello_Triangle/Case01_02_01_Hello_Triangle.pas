@@ -161,7 +161,7 @@ begin
   // 把之前定义的顶点数据复制到缓冲的内存中
   glBufferData(GL_ARRAY_BUFFER, vertices.MemSize, @vertices[0], GL_STATIC_DRAW);
   // 解析顶点数据
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SizeOf(GLfloat), Pointer(0));
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nil);
   glEnableVertexAttribArray(0);
 
   // 取消此调用的注释以绘制线框多边形。

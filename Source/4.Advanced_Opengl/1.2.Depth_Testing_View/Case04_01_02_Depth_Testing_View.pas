@@ -1,4 +1,4 @@
-﻿unit Case04_01_01_Depth_Testing;
+﻿unit Case04_01_02_Depth_Testing_View;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -54,8 +54,8 @@ var
 
 procedure Main;
 const
-  fs = '..\Source\4.Advanced_Opengl\1.1.Depth_Testing\1.1.depth_testing.fs';
-  vs = '..\Source\4.Advanced_Opengl\1.1.Depth_Testing\1.1.depth_testing.vs';
+  fs = '..\Source\4.Advanced_Opengl\1.2.Depth_Testing_View\1.2.depth_testing.fs';
+  vs = '..\Source\4.Advanced_Opengl\1.2.Depth_Testing_View\1.2.depth_testing.vs';
   imgMarble = '..\Resources\textures\marble.jpg';
   imgMetal = '..\Resources\textures\metal.png';
 var
@@ -82,7 +82,7 @@ begin
   camera := TCamera.Create(TGLM.Vec3(0, 0, 3));
   try
     cubeVertices := TArr_GLfloat([
-       // positions       // texture Coords
+       // positions      // texture Coords
       -0.5, -0.5, -0.5,   0.0, 0.0,
        0.5, -0.5, -0.5,   1.0, 0.0,
        0.5,  0.5, -0.5,   1.0, 1.0,
@@ -153,6 +153,7 @@ begin
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(0));
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(3 * SIZE_OF_F));
+    glBindVertexArray(0);
 
     //═════════════════════════════════════════════════════════════════════════
     // plane VAO
@@ -170,6 +171,7 @@ begin
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(0));
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(3 * SIZE_OF_F));
+    glBindVertexArray(0);
 
     //═════════════════════════════════════════════════════════════════════════
 
@@ -219,6 +221,7 @@ begin
       glBindTexture(GL_TEXTURE_2D, floorTexture);
       shader.SetUniformMatrix4fv('model', TGLM.Mat4_Identity);
       glDrawArrays(GL_TRIANGLES, 0, 6);
+
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
       glfwSwapBuffers(window);

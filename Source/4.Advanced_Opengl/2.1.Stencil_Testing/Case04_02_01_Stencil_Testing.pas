@@ -1,4 +1,4 @@
-﻿unit Case04_01_01_Depth_Testing;
+﻿unit Case04_02_01_Stencil_Testing;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -7,14 +7,13 @@ interface
 
 uses
   Classes,
-  SysUtils;
+  SysUtils, DeepStar.Utils;
 
 procedure Main;
 
 implementation
 
 uses
-  DeepStar.Utils,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.Utils,
   DeepStar.OpenGL.Shader,
@@ -54,8 +53,9 @@ var
 
 procedure Main;
 const
-  fs = '..\Source\4.Advanced_Opengl\1.1.Depth_Testing\1.1.depth_testing.fs';
-  vs = '..\Source\4.Advanced_Opengl\1.1.Depth_Testing\1.1.depth_testing.vs';
+  fs = '..\Source\4.Advanced_Opengl\2.1.Stencil_Testing\2.stencil_testing.fs';
+  vs = '..\Source\4.Advanced_Opengl\2.1.Stencil_Testing\2.stencil_testing.vs';
+  singleColor_fs = '..\Source\4.Advanced_Opengl\2.1.Stencil_Testing\2.stencil_single_color.fs';
   imgMarble = '..\Resources\textures\marble.jpg';
   imgMetal = '..\Resources\textures\metal.png';
 var
@@ -63,9 +63,10 @@ var
   cubeVertices, planeVertices: TArr_GLfloat;
   cubeVAO, cubeVBO, planeVAO, planeVBO: GLuint;
   cubeTexture, floorTexture: Cardinal;
-  shader: TShaderProgram;
+  shader, shaderSingleColor: TShaderProgram;
   projection, view, model: TMat4;
   currentFrame: GLfloat;
+  scale: float;
 begin
   window := InitWindows;
   if window = nil then
@@ -75,10 +76,14 @@ begin
   end;
 
   glEnable(GL_DEPTH_TEST);
-  //总是通过深度测试(与glDisable(GL_DEPTH_TEST)的效果相同)
   glDepthFunc(GL_LESS);
 
+  glEnable(GL_STENCIL_TEST);
+  glStencilFunc(GL_NOTEQUAL, 1, $FF);
+  glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+
   shader := TShaderProgram.Create;
+  shaderSingleColor := TShaderProgram.Create;
   camera := TCamera.Create(TGLM.Vec3(0, 0, 3));
   try
     cubeVertices := TArr_GLfloat([
@@ -179,6 +184,8 @@ begin
 
     // shader configuration
     shader.LoadShaderFile(vs, fs);
+    shaderSingleColor.LoadShaderFile(vs, singleColor_fs);
+
     shader.UseProgram;
     shader.SetUniformInt('texture1', [0]);
 
@@ -195,13 +202,42 @@ begin
 
       // render
       glClearColor(0.1, 0.1, 0.1, 1.0);
-      glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
+      // 不要忘记清除模板缓冲区!
+      glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT or GL_STENCIL_BUFFER_BIT);
 
-      shader.UseProgram;
+      shaderSingleColor.UseProgram;
       view := camera.GetViewMatrix;
       projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
+      shaderSingleColor.SetUniformMatrix4fv('view', view);
+      shaderSingleColor.SetUniformMatrix4fv('projection', projection);
+
+      shader.UseProgram;
       shader.SetUniformMatrix4fv('view', view);
       shader.SetUniformMatrix4fv('projection', projection);
+
+      // 像往常一样绘制地板，但不要将地板写入模板缓冲区，我们只关心容器。
+      // 我们将其掩码设置为0x00，以不写入模板缓冲区
+      glStencilMask($00);
+
+      // floor
+      glBindVertexArray(planeVAO);
+      glBindTexture(GL_TEXTURE_2D, floorTexture);
+      shader.SetUniformMatrix4fv('model', TGLM.Mat4_Identity);
+      glDrawArrays(GL_TRIANGLES, 0, 6);
+
+      // 第一。渲染通过，正常绘制对象，写入模板缓冲区
+      glStencilFunc(GL_ALWAYS, 1, $FF);
+      glStencilMask($FF);
+
+      // 第二。渲染通道:现在绘制物体的稍微缩放版本，这次禁用模板书写。
+      // 因为模板缓冲区现在填满了 1
+      // 对象的大小不同，使其看起来像边界。
+      glStencilFunc(GL_NOTEQUAL, 1, $FF);
+      glStencilMask($00);
+      glDisable(GL_DEPTH_TEST);
+
+      shaderSingleColor.UseProgram;
+      scale := float(1.1));
 
       // cubes
       glBindVertexArray(cubeVAO);
@@ -234,6 +270,7 @@ begin
   finally
     camera.Free;
     shader.Free;
+    shaderSingleColor.Free;
 
     // 释放 / 删除之前的分配的所有资源
     glfwTerminate;
