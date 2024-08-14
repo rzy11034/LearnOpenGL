@@ -24,7 +24,7 @@ procedure Run();
 implementation
 
 uses
-  Case04_01_01_Depth_Testing;
+  Case04_03_02_Blending_Sort;
 
 procedure Test;
 begin

@@ -68,7 +68,8 @@ uses
   Case02_06_02_Multiple_Lights_Exercise1,
   Case03_01_01_Model_Loading,
   Case04_01_01_Depth_Testing,
-  Case04_01_02_Depth_Testing_View, Case04_02_01_Stencil_Testing;
+  Case04_01_02_Depth_Testing_View,
+  Case04_02_01_Stencil_Testing, Case04_03_01_Blending_Discard, Case04_03_02_Blending_Sort;
 
 begin
   try

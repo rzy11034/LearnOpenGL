@@ -85,3 +85,4 @@ LearnOpenGL文档学习
 ## 第4章 高级OpenGL <br>
   1. 深度测试 Depth testing <br>
   2. 模板测试 Stencil testing <br>
+  3. 混合 Blending  <br>

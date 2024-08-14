@@ -1,4 +1,4 @@
-﻿unit Case04_02_01_Stencil_Testing;
+﻿unit Case04_03_01_Blending_Discard;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -7,15 +7,16 @@ interface
 
 uses
   Classes,
-  SysUtils, DeepStar.Utils;
+  SysUtils;
 
 procedure Main;
 
 implementation
 
 uses
-  DeepStar.OpenGL.GLAD_GL,
+  DeepStar.Utils,
   DeepStar.OpenGL.Utils,
+  DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.Shader,
   DeepStar.OpenGL.GLM,
   DeepStar.OpenGL.GLFW,
@@ -33,7 +34,7 @@ procedure ProcessInput(window: PGLFWwindow); forward;
 // glfw & glad  初始化
 function InitWindows: PGLFWwindow; forward;
 // 加载贴图
-function LoadTexture(fileName: string): cardinal; forward;
+function LoadTexture(fileName: string; inverse: boolean = true): cardinal; forward;
 
 const
   SCR_WIDTH = 800;
@@ -51,21 +52,51 @@ var
   lastX: float = SCR_WIDTH / 2.0;
   lastY: float = SCR_HEIGHT / 2.0;
 
+  function LoadTexture2(fileName: string): cardinal;
+  var
+    texture_ID: GLuint;
+    tx: TTexture;
+  begin
+    texture_ID := GLuint(0);
+    glGenTextures(1, @texture_ID);
+
+    tx := TTexture.Create();
+    try
+      tx.LoadFormFile(fileName);
+
+      glBindTexture(GL_TEXTURE_2D, texture_ID);
+      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tx.Width, tx.Height, 0, GL_RGBA,
+        GL_UNSIGNED_BYTE, tx.Pixels);
+      glGenerateMipmap(GL_TEXTURE_2D);
+
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+      Result := texture_ID;
+    finally
+      tx.Destroy;
+    end;
+  end;
+
 procedure Main;
 const
-  fs = '..\Source\4.Advanced_Opengl\2.1.Stencil_Testing\2.stencil_testing.fs';
-  vs = '..\Source\4.Advanced_Opengl\2.1.Stencil_Testing\2.stencil_testing.vs';
-  singleColor_fs = '..\Source\4.Advanced_Opengl\2.1.Stencil_Testing\2.stencil_single_color.fs';
+  fs = '..\Source\4.Advanced_Opengl\3.1.Blending_Discard\3.1.blending.fs';
+  vs = '..\Source\4.Advanced_Opengl\3.1.Blending_Discard\3.1.blending.vs';
   imgMarble = '..\Resources\textures\marble.jpg';
   imgMetal = '..\Resources\textures\metal.png';
+  imgTransparentTexture = '..\Resources\textures\grass.png';
 var
   window: PGLFWwindow;
-  cubeVertices, planeVertices: TArr_GLfloat;
-  cubeVAO, cubeVBO, planeVAO, planeVBO: GLuint;
-  cubeTexture, floorTexture: Cardinal;
-  shader, shaderSingleColor: TShaderProgram;
+  cubeVertices, planeVertices, transparentVertices: TArr_GLfloat;
+  cubeVAO, cubeVBO, planeVAO, planeVBO, transparentVAO, transparentVBO: GLuint;
+  cubeTexture, floorTexture, transparentTexture: Cardinal;
+  shader: TShaderProgram;
   projection, view, model: TMat4;
   currentFrame: GLfloat;
+  vegetation: TArr_TVec3;
+  i: integer;
 begin
   window := InitWindows;
   if window = nil then
@@ -75,14 +106,10 @@ begin
   end;
 
   glEnable(GL_DEPTH_TEST);
-  glDepthFunc(GL_LESS);
-
-  glEnable(GL_STENCIL_TEST);
-  glStencilFunc(GL_NOTEQUAL, 1, $FF);
-  glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+  //总是通过深度测试(与glDisable(GL_DEPTH_TEST)的效果相同)
+  //glDepthFunc(GL_LESS);
 
   shader := TShaderProgram.Create;
-  shaderSingleColor := TShaderProgram.Create;
   camera := TCamera.Create(TGLM.Vec3(0, 0, 3));
   try
     cubeVertices := TArr_GLfloat([
@@ -141,7 +168,36 @@ begin
       -5.0, -0.5, -5.0,   0.0, 2.0,
        5.0, -0.5, -5.0,   2.0, 2.0]);
 
+    //transparentVertices := TArr_GLfloat([
+    //  // positions       // texture Coords (swapped y coordinates because texture is lipped upside down)
+    //  0.0,  0.5,  0.0,   0.0,  0.0,
+    //  0.0, -0.5,  0.0,   0.0,  1.0,
+    //  1.0, -0.5,  0.0,   1.0,  1.0,
+    //
+    //  0.0,  0.5,  0.0,   0.0,  0.0,
+    //  1.0, -0.5,  0.0,   1.0,  1.0,
+    //  1.0,  0.5,  0.0,   1.0,  0.0]);
+
+    transparentVertices := TArr_GLfloat([
+      // positions       // texture Coords
+      0.0,  0.5,  0.0,   0.0,  1.0,
+      0.0, -0.5,  0.0,   0.0,  0.0,
+      1.0, -0.5,  0.0,   1.0,  0.0,
+
+      0.0,  0.5,  0.0,   0.0,  1.0,
+      1.0, -0.5,  0.0,   1.0,  0.0,
+      1.0,  0.5,  0.0,   1.0,  1.0]);
+
+    // transparent vegetation locations
+    vegetation := TArr_TVec3([
+      TGLM.Vec3(-1.5,  0.0, -0.48),
+      TGLM.Vec3( 1.5,  0.0,  0.51),
+      TGLM.Vec3( 0.0,  0.0,  0.7 ),
+      TGLM.Vec3(-0.3,  0.0, -2.3 ),
+      TGLM.Vec3( 0.5,  0.0, -0.6 )]);
+
     //═════════════════════════════════════════════════════════════════════════
+
     // cube VAO
     cubeVAO := GLuint(0);
     cubeVBO := GLuint(0);
@@ -160,6 +216,7 @@ begin
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(3 * SIZE_OF_F));
 
     //═════════════════════════════════════════════════════════════════════════
+
     // plane VAO
     planeVAO := GLuint(0);
     planeVBO := GLuint(0);
@@ -179,14 +236,32 @@ begin
 
     //═════════════════════════════════════════════════════════════════════════
 
+    // transparent VAO
+    transparentVAO := GLuint(0);
+    transparentVBO := GLuint(0);
+
+    glGenVertexArrays(1, @transparentVAO);
+    glGenBuffers(1, @transparentVBO);
+
+    glBindVertexArray(transparentVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, transparentVBO);
+    glBufferData(GL_ARRAY_BUFFER, transparentVertices.MemSize, @transparentVertices[0], GL_STATIC_DRAW);
+
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(0));
+
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(3 * SIZE_OF_F));
+
+    //═════════════════════════════════════════════════════════════════════════
+
     // 加载纹理
     cubeTexture := LoadTexture(imgMarble);
     floorTexture := LoadTexture(imgMetal);
+    transparentTexture := LoadTexture(imgTransparentTexture);
 
     // shader configuration
     shader.LoadShaderFile(vs, fs);
-    shaderSingleColor.LoadShaderFile(vs, singleColor_fs);
-
     shader.UseProgram;
     shader.SetUniformInt('texture1', [0]);
 
@@ -203,22 +278,24 @@ begin
 
       // render
       glClearColor(0.1, 0.1, 0.1, 1.0);
-      // 不要忘记清除模板缓冲区!
-      glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT or GL_STENCIL_BUFFER_BIT);
-
-      shaderSingleColor.UseProgram;
-      view := camera.GetViewMatrix;
-      projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
-      shaderSingleColor.SetUniformMatrix4fv('view', view);
-      shaderSingleColor.SetUniformMatrix4fv('projection', projection);
+      glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
 
       shader.UseProgram;
+      view := camera.GetViewMatrix;
+      projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
       shader.SetUniformMatrix4fv('view', view);
       shader.SetUniformMatrix4fv('projection', projection);
 
-      // 像往常一样绘制地板，但不要将地板写入模板缓冲区，我们只关心容器。
-      // 我们将其掩码设置为0x00，以不写入模板缓冲区
-      glStencilMask($00);
+      // cubes
+      glBindVertexArray(cubeVAO);
+      glActiveTexture(GL_TEXTURE0);
+      glBindTexture(GL_TEXTURE_2D, cubeTexture);
+      model := TGLM.Translate(TGLM.Mat4_Identity, TGLM.Vec3(-1, 0, -1));
+      shader.SetUniformMatrix4fv('model', model);
+      glDrawArrays(GL_TRIANGLES, 0, 36);
+      model := TGLM.Translate(TGLM.Mat4_Identity, TGLM.Vec3(2, 0, 0));
+      shader.SetUniformMatrix4fv('model', model);
+      glDrawArrays(GL_TRIANGLES, 0, 36);
 
       // floor
       glBindVertexArray(planeVAO);
@@ -226,44 +303,15 @@ begin
       shader.SetUniformMatrix4fv('model', TGLM.Mat4_Identity);
       glDrawArrays(GL_TRIANGLES, 0, 6);
 
-      // 第一。渲染通过，正常绘制对象，写入模板缓冲区
-      glStencilFunc(GL_ALWAYS, 1, $FF);
-      glStencilMask($FF);
-      // cubes
-      glBindVertexArray(cubeVAO);
-      glActiveTexture(GL_TEXTURE0);
-      glBindTexture(GL_TEXTURE_2D, cubeTexture);
-      model := TGLM.Translate(TGLM.Mat4_Identity, TGLM.Vec3(-1, 0, -1));
-      shader.SetUniformMatrix4fv('model', model);
-      glDrawArrays(GL_TRIANGLES, 0, 36);
-      model := TGLM.Translate(TGLM.Mat4_Identity, TGLM.Vec3(2, 0, 0));
-      shader.SetUniformMatrix4fv('model', model);
-      glDrawArrays(GL_TRIANGLES, 0, 36);
-
-      // 第二。渲染通道:现在绘制物体的稍微缩放版本，这次禁用模板书写。
-      // 因为模板缓冲区现在填满了 1
-      // 对象的大小不同，使其看起来像边界。
-      glStencilFunc(GL_NOTEQUAL, 1, $FF);
-      glStencilMask($00);
-      glDisable(GL_DEPTH_TEST);
-
-      shaderSingleColor.UseProgram;
-      // cubes
-      glBindVertexArray(cubeVAO);
-      glActiveTexture(GL_TEXTURE0);
-      glBindTexture(GL_TEXTURE_2D, cubeTexture);
-      model := TGLM.Translate(TGLM.Mat4_Identity, TGLM.Vec3(-1, 0, -1));
-      model := TGLM.Scale(model, TGLM.Vec3(1.1));
-      shaderSingleColor.SetUniformMatrix4fv('model', model);
-      glDrawArrays(GL_TRIANGLES, 0, 36);
-      model := TGLM.Translate(TGLM.Mat4_Identity, TGLM.Vec3(2, 0, 0));
-      model := TGLM.Scale(model, TGLM.Vec3(1.1));
-      shaderSingleColor.SetUniformMatrix4fv('model', model);
-      glDrawArrays(GL_TRIANGLES, 0, 36);
-
-      glStencilMask($FF);
-      glStencilFunc(GL_ALWAYS, 0, $FF);
-      glEnable(GL_DEPTH_TEST);
+      // vegetation
+      glBindVertexArray(transparentVAO);
+      glBindTexture(GL_TEXTURE_2D, transparentTexture);
+      for i := 0 to High(vegetation) do
+      begin
+        model := TGLM.Translate(TGLM.Mat4_Identity, vegetation[i]);
+        shader.SetUniformMatrix4fv('model', model);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+      end;
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
       glfwSwapBuffers(window);
@@ -276,10 +324,10 @@ begin
     glDeleteBuffers(1, @planeVBO);
     glDeleteTextures(1, @cubeTexture);
     glDeleteTextures(1, @floorTexture);
+    glDeleteTextures(1, @transparentTexture);
   finally
     camera.Free;
     shader.Free;
-    shaderSingleColor.Free;
 
     // 释放 / 删除之前的分配的所有资源
     glfwTerminate;
@@ -327,7 +375,7 @@ begin
   Result := window;
 end;
 
-function LoadTexture(fileName: string): cardinal;
+function LoadTexture(fileName: string; inverse: boolean): cardinal;
 var
   texture_ID: GLuint;
   tx: TTexture;
@@ -337,19 +385,29 @@ begin
 
   tx := TTexture.Create();
   try
-    tx.LoadFormFile(fileName);
+    tx.LoadFormFile(fileName, inverse);
 
     glBindTexture(GL_TEXTURE_2D, texture_ID);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tx.Width, tx.Height, 0, GL_RGBA,
       GL_UNSIGNED_BYTE, tx.Pixels);
     glGenerateMipmap(GL_TEXTURE_2D);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    if tx.UseAlpha then
+    begin
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    end
+    else
+    begin
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    end;
+
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     Result := texture_ID;
+
   finally
     tx.Destroy;
   end;
