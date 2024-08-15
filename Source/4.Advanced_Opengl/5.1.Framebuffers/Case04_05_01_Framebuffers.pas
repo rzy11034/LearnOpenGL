@@ -1,4 +1,4 @@
-﻿unit Case04_03_01_Blending_Discard;
+﻿unit Case04_05_01_Framebuffers;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -7,7 +7,7 @@ interface
 
 uses
   Classes,
-  SysUtils;
+  SysUtils, DeepStar.OpenGL.Utils, DeepStar.OpenGL.GLAD_GL;
 
 procedure Main;
 
@@ -15,8 +15,6 @@ implementation
 
 uses
   DeepStar.Utils,
-  DeepStar.OpenGL.Utils,
-  DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.Shader,
   DeepStar.OpenGL.GLM,
   DeepStar.OpenGL.GLFW,
@@ -82,21 +80,21 @@ var
 
 procedure Main;
 const
-  fs = '..\Source\4.Advanced_Opengl\3.1.Blending_Discard\3.1.blending.fs';
-  vs = '..\Source\4.Advanced_Opengl\3.1.Blending_Discard\3.1.blending.vs';
-  imgMarble = '..\Resources\textures\marble.jpg';
+  fs = '..\Source\4.Advanced_Opengl\5.1.Framebuffers\5.1.framebuffers.fs';
+  vs = '..\Source\4.Advanced_Opengl\5.1.Framebuffers\5.1.framebuffers.vs';
+  screen_fs = '..\Source\4.Advanced_Opengl\5.1.Framebuffers\5.1.framebuffers_screen.fs';
+  screen_vs = '..\Source\4.Advanced_Opengl\5.1.Framebuffers\5.1.framebuffers_screen.fs';
+  imgContainer = '..\Resources\textures\container.jpg';
   imgMetal = '..\Resources\textures\metal.png';
-  imgTransparentTexture = '..\Resources\textures\grass.png';
 var
   window: PGLFWwindow;
-  cubeVertices, planeVertices, transparentVertices: TArr_GLfloat;
-  cubeVAO, cubeVBO, planeVAO, planeVBO, transparentVAO, transparentVBO: GLuint;
-  cubeTexture, floorTexture, transparentTexture: Cardinal;
-  shader: TShaderProgram;
+  cubeVertices, planeVertices, quadVertices: TArr_GLfloat;
+  cubeVAO, cubeVBO, planeVAO, planeVBO, quadVAO, quadVBO: GLuint;
+  framebuffer, textureColorbuffer, rbo: GLuint;
+  cubeTexture, floorTexture: Cardinal;
+  shader, shaderScreen: TShaderProgram;
   projection, view, model: TMat4;
   currentFrame: GLfloat;
-  vegetation: TArr_TVec3;
-  i: integer;
 begin
   window := InitWindows;
   if window = nil then
@@ -106,11 +104,13 @@ begin
   end;
 
   glEnable(GL_DEPTH_TEST);
-  //总是通过深度测试(与glDisable(GL_DEPTH_TEST)的效果相同)
-  //glDepthFunc(GL_LESS);
+
+  //═════════════════════════════════════════════════════════════════════════
 
   shader := TShaderProgram.Create;
+  shaderScreen := TShaderProgram.Create;
   camera := TCamera.Create(TGLM.Vec3(0, 0, 3));
+
   try
     cubeVertices := TArr_GLfloat([
        // positions       // texture Coords
@@ -156,8 +156,6 @@ begin
       -0.5,  0.5,  0.5,   0.0, 0.0,
       -0.5,  0.5, -0.5,   0.0, 1.0]);
 
-    // 注意我们将这些设置为大于1(连同GL_REPEAT作为纹理包裹模式)。
-    // 这将导致地板纹理重复
     planeVertices := TArr_GLfloat([
       // positions        // texture Coords
        5.0, -0.5,  5.0,   2.0, 0.0,
@@ -168,23 +166,15 @@ begin
       -5.0, -0.5, -5.0,   0.0, 2.0,
        5.0, -0.5, -5.0,   2.0, 2.0]);
 
-    transparentVertices := TArr_GLfloat([
-      // positions       // texture Coords
-      0.0,  0.5,  0.0,   0.0,  1.0,
-      0.0, -0.5,  0.0,   0.0,  0.0,
-      1.0, -0.5,  0.0,   1.0,  0.0,
+    quadVertices := TArr_GLfloat([
+      // positions    // texture Coords
+      -1.0,  1.0,     0.0, 1.0,
+      -1.0, -1.0,     0.0, 0.0,
+       1.0, -1.0,     1.0, 0.0,
 
-      0.0,  0.5,  0.0,   0.0,  1.0,
-      1.0, -0.5,  0.0,   1.0,  0.0,
-      1.0,  0.5,  0.0,   1.0,  1.0]);
-
-    // transparent vegetation locations
-    vegetation := TArr_TVec3([
-      TGLM.Vec3(-1.5,  0.0, -0.48),
-      TGLM.Vec3( 1.5,  0.0,  0.51),
-      TGLM.Vec3( 0.0,  0.0,  0.7 ),
-      TGLM.Vec3(-0.3,  0.0, -2.3 ),
-      TGLM.Vec3( 0.5,  0.0, -0.6 )]);
+      -1.0,  1.0,     0.0, 1.0,
+       1.0, -1.0,     1.0, 0.0,
+       1.0,  1.0,     1.0, 1.0]);
 
     //═════════════════════════════════════════════════════════════════════════
 
@@ -226,34 +216,68 @@ begin
 
     //═════════════════════════════════════════════════════════════════════════
 
-    // transparent VAO
-    transparentVAO := GLuint(0);
-    transparentVBO := GLuint(0);
+    // screen quad VAO
+    quadVAO := GLuint(0);
+    quadVBO := GLuint(0);
 
-    glGenVertexArrays(1, @transparentVAO);
-    glGenBuffers(1, @transparentVBO);
+    glGenVertexArrays(1, @quadVAO);
+    glGenBuffers(1, @quadVBO);
 
-    glBindVertexArray(transparentVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, transparentVBO);
-    glBufferData(GL_ARRAY_BUFFER, transparentVertices.MemSize, @transparentVertices[0], GL_STATIC_DRAW);
+    glBindVertexArray(quadVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+    glBufferData(GL_ARRAY_BUFFER, quadVertices.MemSize, @quadVertices[0], GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(0));
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * SIZE_OF_F, Pointer(0));
 
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(3 * SIZE_OF_F));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * SIZE_OF_F, Pointer(2 * SIZE_OF_F));
 
     //═════════════════════════════════════════════════════════════════════════
 
     // 加载纹理
-    cubeTexture := LoadTexture(imgMarble);
-    floorTexture := LoadTexture(imgMetal);
-    transparentTexture := LoadTexture(imgTransparentTexture);
+    cubeTexture := LoadTexture(imgContainer);
+    floorTexture := LoadTexture(imgMetal );
 
     // shader configuration
     shader.LoadShaderFile(vs, fs);
     shader.UseProgram;
     shader.SetUniformInt('texture1', [0]);
+
+    shaderScreen.LoadShaderFile(screen_vs, screen_fs);
+    shaderScreen.UseProgram;
+    shaderScreen.SetUniformInt('screenTexture', [0]);
+
+    //═════════════════════════════════════════════════════════════════════════
+
+    // framebuffer configuration
+    framebuffer := GLuint(0);
+    glGenFramebuffers(1, @framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+
+    // create a color attachment texture
+    textureColorbuffer := GLuint(0);
+    glGenTextures(1, @textureColorbuffer);
+    glBindTexture(GL_TEXTURE_2D, textureColorbuffer);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, SCR_WIDTH, SCR_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, nil);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureColorbuffer, 0);
+
+    // create a renderbuffer object for depth and stencil attachment (we won't be sampling these)
+    rbo := GLuint(0);
+    glGenRenderbuffers(1, @rbo);
+    glBindRenderbuffer(GL_RENDERBUFFER, rbo);
+    // 使用一个renderbuffer对象作为深度缓冲和模板缓冲。
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, SCR_WIDTH, SCR_HEIGHT);
+    // 现在实际添加它
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
+    // 现在我们实际上创建了framebuffer并添加了所有附件，我们想要检查它是否实际上已经完成
+    if glCheckFramebufferStatus(GL_FRAMEBUFFER) <> GL_FRAMEBUFFER_COMPLETE) then
+        WriteLn('ERROR::FRAMEBUFFER:: Framebuffer is not complete!';
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    //═════════════════════════════════════════════════════════════════════════
 
     // 渲染循环
     while not glfwWindowShouldClose(window).ToBoolean do
@@ -265,6 +289,8 @@ begin
 
       // 输入
       ProcessInput(window);
+
+      bind to framebuffer and draw scene as we normally would to color texture
 
       // render
       glClearColor(0.1, 0.1, 0.1, 1.0);
@@ -293,15 +319,7 @@ begin
       shader.SetUniformMatrix4fv('model', TGLM.Mat4_Identity);
       glDrawArrays(GL_TRIANGLES, 0, 6);
 
-      // vegetation
-      glBindVertexArray(transparentVAO);
-      glBindTexture(GL_TEXTURE_2D, transparentTexture);
-      for i := 0 to High(vegetation) do
-      begin
-        model := TGLM.Translate(TGLM.Mat4_Identity, vegetation[i]);
-        shader.SetUniformMatrix4fv('model', model);
-        glDrawArrays(GL_TRIANGLES, 0, 6);
-      end;
+
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
       glfwSwapBuffers(window);
@@ -310,11 +328,14 @@ begin
 
     glDeleteVertexArrays(1, @cubeVAO);
     glDeleteVertexArrays(1, @planeVAO);
+    glDeleteVertexArrays(1, @quadVAO);
+
     glDeleteBuffers(1, @cubeVBO);
     glDeleteBuffers(1, @planeVBO);
+    glDeleteBuffers(1, @quadVBO);
+
     glDeleteTextures(1, @cubeTexture);
     glDeleteTextures(1, @floorTexture);
-    glDeleteTextures(1, @transparentTexture);
   finally
     camera.Free;
     shader.Free;
@@ -339,7 +360,7 @@ begin
   window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, string('LearnOpenGL'), nil, nil);
   if window = nil then
   begin
-    WriteLn(' Failed to create GLFW window');
+    WriteLn('Failed to create GLFW window');
     Exit(nil);
   end;
 

@@ -24,7 +24,7 @@ procedure Run();
 implementation
 
 uses
-  Case04_04_01_Face_Culling_Exercise1;
+  Case04_03_01_Blending_Discard;
 
 procedure Test;
 begin

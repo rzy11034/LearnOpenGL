@@ -65,8 +65,8 @@ var
 
 procedure Main;
 const
-  fs = '..\Source\4.Advanced_Opengl\3.2.Blending_Sort\3.2.blending.fs';
-  vs = '..\Source\4.Advanced_Opengl\3.2.Blending_Sort\3.2.blending.vs';
+  fs = '..\Source\4.Advanced_Opengl\4.1.Face_Culling_Exercise1\4.1.Face_Culling.fs';
+  vs = '..\Source\4.Advanced_Opengl\4.1.Face_Culling_Exercise1\4.1.Face_Culling.vs';
   imgMarble = '..\Resources\textures\marble.jpg';
   imgMetal = '..\Resources\textures\metal.png';
   imgTransparentTexture = '..\Resources\textures\window.png';
