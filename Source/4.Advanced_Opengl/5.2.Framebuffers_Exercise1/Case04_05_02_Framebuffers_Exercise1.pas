@@ -7,7 +7,7 @@ interface
 
 uses
   Classes,
-  SysUtils, DeepStar.OpenGL.Utils, DeepStar.OpenGL.GLAD_GL;
+  SysUtils;
 
 procedure Main;
 
@@ -15,6 +15,8 @@ implementation
 
 uses
   DeepStar.Utils,
+  DeepStar.OpenGL.Utils,
+  DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.Shader,
   DeepStar.OpenGL.GLM,
   DeepStar.OpenGL.GLFW,
