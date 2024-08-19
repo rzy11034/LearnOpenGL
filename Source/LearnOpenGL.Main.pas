@@ -24,7 +24,7 @@ procedure Run();
 implementation
 
 uses
-  Case04_03_01_Blending_Discard;
+  Case04_05_02_Framebuffers_Exercise1;
 
 procedure Test;
 begin

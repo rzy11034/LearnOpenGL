@@ -72,7 +72,7 @@ uses
   Case04_02_01_Stencil_Testing,
   Case04_03_01_Blending_Discard,
   Case04_03_02_Blending_Sort,
-  Case04_04_01_Face_Culling_Exercise1, Case04_05_01_Framebuffers;
+  Case04_04_01_Face_Culling_Exercise1, Case04_05_01_Framebuffers, Case04_05_02_Framebuffers_Exercise1;
 
 begin
   try

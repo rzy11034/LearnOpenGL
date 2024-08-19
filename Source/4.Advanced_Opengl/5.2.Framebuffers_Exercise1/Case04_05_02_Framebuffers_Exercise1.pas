@@ -1,4 +1,4 @@
-﻿unit Case04_05_01_Framebuffers;
+﻿unit Case04_05_02_Framebuffers_Exercise1;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -80,10 +80,10 @@ var
 
 procedure Main;
 const
-  fs = '..\Source\4.Advanced_Opengl\5.1.Framebuffers\5.1.framebuffers.fs';
-  vs = '..\Source\4.Advanced_Opengl\5.1.Framebuffers\5.1.framebuffers.vs';
-  screen_fs = '..\Source\4.Advanced_Opengl\5.1.Framebuffers\5.1.framebuffers_screen.fs';
-  screen_vs = '..\Source\4.Advanced_Opengl\5.1.Framebuffers\5.1.framebuffers_screen.vs';
+  fs = '..\Source\4.Advanced_Opengl\5.2.Framebuffers_Exercise1\5.2.framebuffers.fs';
+  vs = '..\Source\4.Advanced_Opengl\5.2.Framebuffers_Exercise1\5.2.framebuffers.vs';
+  screen_fs = '..\Source\4.Advanced_Opengl\5.2.Framebuffers_Exercise1\5.2.framebuffers_screen.fs';
+  screen_vs = '..\Source\4.Advanced_Opengl\5.2.Framebuffers_Exercise1\5.2.framebuffers_screen.vs';
   imgContainer = '..\Resources\textures\container.jpg';
   imgMetal = '..\Resources\textures\metal.png';
 var
@@ -170,13 +170,13 @@ begin
 
     quadVertices := TArr_GLfloat([
       // positions    // texture Coords
-      -1.0,  1.0,     0.0, 1.0,
-      -1.0, -1.0,     0.0, 0.0,
-       1.0, -1.0,     1.0, 0.0,
+      -0.3,  1.0,  0.0, 1.0,
+      -0.3,  0.7,  0.0, 0.0,
+       0.3,  0.7,  1.0, 0.0,
 
-      -1.0,  1.0,     0.0, 1.0,
-       1.0, -1.0,     1.0, 0.0,
-       1.0,  1.0,     1.0, 1.0]);
+      -0.3,  1.0,  0.0, 1.0,
+       0.3,  0.7,  1.0, 0.0,
+       0.3,  1.0,  1.0, 1.0]);
 
     //═════════════════════════════════════════════════════════════════════════
 
@@ -292,7 +292,10 @@ begin
       // 输入
       ProcessInput(window);
 
-      // 绑定到 FrameBuffer 并绘制场景，就像我们通常为颜色纹理所做的那样
+      // 首次渲染通过：镜像纹理。
+      // 绑定到帧缓冲并以正常方式绘制到颜色纹理，
+      // 但视图相机是反向的。
+      // 绑定到帧缓冲并按正常方式绘制场景到颜色纹理
       glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
       // 启用深度测试（在渲染屏幕空间四边形时禁用）
       glEnable(GL_DEPTH_TEST);
@@ -302,7 +305,15 @@ begin
       glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
 
       shader.UseProgram;
+      // 将相机的偏航旋转 180 度
+      camera.Yaw := camera.Yaw + 180;
+      // 调用此函数以确保它更新其相机矢量，请注意，
+      // 我们禁用了此特定情况下的倾斜度约束（否则我们无法反转相机的倾斜度值）
+      camera.ProcessMouseMovement(0, 0, GL_FALSE);
       view := camera.GetViewMatrix;
+      //将其重置为初始方向
+      camera.Yaw := camera.Yaw - 180;
+      camera.ProcessMouseMovement(0, 0, GL_TRUE);
       projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
       shader.SetUniformMatrix4fv('view', view);
       shader.SetUniformMatrix4fv('projection', projection);
@@ -325,24 +336,49 @@ begin
       glDrawArrays(GL_TRIANGLES, 0, 6);
       glBindVertexArray(0);
 
-      // 现在绑定回默认的 FrameBuffer
-      // 并使用附加的 FrameBuffer 颜色纹理绘制一个四边形平面
+      //═════════════════════════════════════════════════════════════════════════
+
+      // 第二个渲染通道:正常绘制
       glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+      glClearColor(0.1, 0.1, 0.1, 1.0);
+      glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
+
+      model := TGLM.Mat4_Identity;
+      view := camera.GetViewMatrix;
+      shader.SetUniformMatrix4fv('view', view);
+
+      // cubes
+      glBindVertexArray(cubeVAO);
+      glActiveTexture(GL_TEXTURE0);
+      glBindTexture(GL_TEXTURE_2D, cubeTexture);
+      model := TGLM.Translate(model, TGLM.Vec3(-1.0, 0.0, -1.0));
+      shader.SetUniformMatrix4fv('model', model);
+      glDrawArrays(GL_TRIANGLES, 0, 36);
+      model := TGLM.Mat4(1.0);
+      model := TGLM.Translate(model, TGLM.Vec3(2.0, 0.0, 0.0));
+      shader.SetUniformMatrix4fv('model', model);
+      glDrawArrays(GL_TRIANGLES, 0, 36);
+      // floor
+      glBindVertexArray(planeVAO);
+      glBindTexture(GL_TEXTURE_2D, floorTexture);
+      shader.SetUniformMatrix4fv('model', TGLM.Mat4_Identity);
+      glDrawArrays(GL_TRIANGLES, 0, 6);
+
+      //═════════════════════════════════════════════════════════════════════════
+
+      // 现在用屏幕纹理绘制镜面四边形
       // 禁用深度测试，以便不会因深度测试而丢弃屏幕空间四边形。
       glDisable(GL_DEPTH_TEST);
 
       // 清除所有相关缓冲区
       // 将透明色设置为白色（实际上并不是真的必要，
       // 因为我们无论如何都无法看到四边形后面
-      glClearColor(1.0, 1.0, 1.0, 1.0);
-      glClear(GL_COLOR_BUFFER_BIT);
-
       shaderScreen.UseProgram();
       glBindVertexArray(quadVAO);
       // 使用颜色附件纹理作为四边形平面的纹理
       glBindTexture(GL_TEXTURE_2D, textureColorbuffer);
       glDrawArrays(GL_TRIANGLES, 0, 6);
-
 
       // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
       glfwSwapBuffers(window);
