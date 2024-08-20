@@ -24,7 +24,7 @@ procedure Run();
 implementation
 
 uses
-  Case04_06_02_Cubemaps_Environment_Mapping;
+  Case04_08_01_Advanced_GLSL_UBO;
 
 procedure Test;
 begin
