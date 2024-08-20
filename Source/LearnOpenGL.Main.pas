@@ -24,7 +24,7 @@ procedure Run();
 implementation
 
 uses
-  Case04_05_02_Framebuffers_Exercise1;
+  Case04_06_02_Cubemaps_Environment_Mapping;
 
 procedure Test;
 begin

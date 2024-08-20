@@ -94,3 +94,5 @@ LearnOpenGL文档学习
         一次将相机旋转180度，另一次将相机正常旋转。试着在屏幕顶部创建一个小的四
         边形来应用镜像纹理 <br>
   6. 立方体贴图 Cubemaps <br>
+  7. 高级数据 Advanced Data <br>
+  8. 高级GLSL Advanced GLSL <br>

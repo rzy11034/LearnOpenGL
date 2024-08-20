@@ -1,4 +1,4 @@
-﻿unit Case04_06_01_cubemaps_skybox;
+﻿unit Case04_08_01_Advanced_GLSL_UBO;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -61,10 +61,10 @@ var
 
 procedure Main;
 const
-  fs = '..\Source\4.Advanced_Opengl\6.1.Cubemaps_Skybox\6.1.cubemaps.fs';
-  vs = '..\Source\4.Advanced_Opengl\6.1.Cubemaps_Skybox\6.1.cubemaps.vs';
-  skybox_fs = '..\Source\4.Advanced_Opengl\6.1.Cubemaps_Skybox\6.1.skybox.fs';
-  skybox_vs = '..\Source\4.Advanced_Opengl\6.1.Cubemaps_Skybox\6.1.skybox.vs';
+  fs = '..\Source\4.Advanced_Opengl\6.2.Cubemaps_Environment_Mapping\6.2.cubemaps.fs';
+  vs = '..\Source\4.Advanced_Opengl\6.2.Cubemaps_Environment_Mapping\6.2.cubemaps.vs';
+  skybox_fs = '..\Source\4.Advanced_Opengl\6.2.Cubemaps_Environment_Mapping\6.2.skybox.fs';
+  skybox_vs = '..\Source\4.Advanced_Opengl\6.2.Cubemaps_Environment_Mapping\6.2.skybox.vs';
   imgContainer = '..\Resources\textures\container.jpg';
   imgFaces: TArr_str = (
     '..\Resources/textures/skybox/right.jpg',
@@ -101,48 +101,48 @@ begin
 
   try
     cubeVertices := TArr_GLfloat([
-       // positions      // texture Coords
-      -0.5, -0.5, -0.5,  0.0, 0.0,
-       0.5, -0.5, -0.5,  1.0, 0.0,
-       0.5,  0.5, -0.5,  1.0, 1.0,
-       0.5,  0.5, -0.5,  1.0, 1.0,
-      -0.5,  0.5, -0.5,  0.0, 1.0,
-      -0.5, -0.5, -0.5,  0.0, 0.0,
+       // positions       // normals
+      -0.5, -0.5, -0.5,   0.0,  0.0, -1.0,
+       0.5, -0.5, -0.5,   0.0,  0.0, -1.0,
+       0.5,  0.5, -0.5,   0.0,  0.0, -1.0,
+       0.5,  0.5, -0.5,   0.0,  0.0, -1.0,
+      -0.5,  0.5, -0.5,   0.0,  0.0, -1.0,
+      -0.5, -0.5, -0.5,   0.0,  0.0, -1.0,
 
-      -0.5, -0.5,  0.5,  0.0, 0.0,
-       0.5, -0.5,  0.5,  1.0, 0.0,
-       0.5,  0.5,  0.5,  1.0, 1.0,
-       0.5,  0.5,  0.5,  1.0, 1.0,
-      -0.5,  0.5,  0.5,  0.0, 1.0,
-      -0.5, -0.5,  0.5,  0.0, 0.0,
+      -0.5, -0.5,  0.5,   0.0,  0.0,  1.0,
+       0.5, -0.5,  0.5,   0.0,  0.0,  1.0,
+       0.5,  0.5,  0.5,   0.0,  0.0,  1.0,
+       0.5,  0.5,  0.5,   0.0,  0.0,  1.0,
+      -0.5,  0.5,  0.5,   0.0,  0.0,  1.0,
+      -0.5, -0.5,  0.5,   0.0,  0.0,  1.0,
 
-      -0.5,  0.5,  0.5,  1.0, 0.0,
-      -0.5,  0.5, -0.5,  1.0, 1.0,
-      -0.5, -0.5, -0.5,  0.0, 1.0,
-      -0.5, -0.5, -0.5,  0.0, 1.0,
-      -0.5, -0.5,  0.5,  0.0, 0.0,
-      -0.5,  0.5,  0.5,  1.0, 0.0,
+      -0.5,  0.5,  0.5, - 1.0,  0.0,  0.0,
+      -0.5,  0.5, -0.5, - 1.0,  0.0,  0.0,
+      -0.5, -0.5, -0.5, - 1.0,  0.0,  0.0,
+      -0.5, -0.5, -0.5, - 1.0,  0.0,  0.0,
+      -0.5, -0.5,  0.5, - 1.0,  0.0,  0.0,
+      -0.5,  0.5,  0.5, - 1.0,  0.0,  0.0,
 
-       0.5,  0.5,  0.5,  1.0, 0.0,
-       0.5,  0.5, -0.5,  1.0, 1.0,
-       0.5, -0.5, -0.5,  0.0, 1.0,
-       0.5, -0.5, -0.5,  0.0, 1.0,
-       0.5, -0.5,  0.5,  0.0, 0.0,
-       0.5,  0.5,  0.5,  1.0, 0.0,
+       0.5,  0.5,  0.5,   1.0,  0.0,  0.0,
+       0.5,  0.5, -0.5,   1.0,  0.0,  0.0,
+       0.5, -0.5, -0.5,   1.0,  0.0,  0.0,
+       0.5, -0.5, -0.5,   1.0,  0.0,  0.0,
+       0.5, -0.5,  0.5,   1.0,  0.0,  0.0,
+       0.5,  0.5,  0.5,   1.0,  0.0,  0.0,
 
-      -0.5, -0.5, -0.5,  0.0, 1.0,
-       0.5, -0.5, -0.5,  1.0, 1.0,
-       0.5, -0.5,  0.5,  1.0, 0.0,
-       0.5, -0.5,  0.5,  1.0, 0.0,
-      -0.5, -0.5,  0.5,  0.0, 0.0,
-      -0.5, -0.5, -0.5,  0.0, 1.0,
+      -0.5, -0.5, -0.5,   0.0, -1.0,  0.0,
+       0.5, -0.5, -0.5,   0.0, -1.0,  0.0,
+       0.5, -0.5,  0.5,   0.0, -1.0,  0.0,
+       0.5, -0.5,  0.5,   0.0, -1.0,  0.0,
+      -0.5, -0.5,  0.5,   0.0, -1.0,  0.0,
+      -0.5, -0.5, -0.5,   0.0, -1.0,  0.0,
 
-      -0.5,  0.5, -0.5,  0.0, 1.0,
-       0.5,  0.5, -0.5,  1.0, 1.0,
-       0.5,  0.5,  0.5,  1.0, 0.0,
-       0.5,  0.5,  0.5,  1.0, 0.0,
-      -0.5,  0.5,  0.5,  0.0, 0.0,
-      -0.5,  0.5, -0.5,  0.0, 1.0]);
+      -0.5,  0.5, -0.5,   0.0,  1.0,  0.0,
+       0.5,  0.5, -0.5,   0.0,  1.0,  0.0,
+       0.5,  0.5,  0.5,   0.0,  1.0,  0.0,
+       0.5,  0.5,  0.5,   0.0,  1.0,  0.0,
+      -0.5,  0.5,  0.5,   0.0,  1.0,  0.0,
+      -0.5,  0.5, -0.5,   0.0,  1.0,  0.0]);
 
     skyboxVertices := TArr_GLfloat([
       // positions
@@ -202,10 +202,10 @@ begin
     glBufferData(GL_ARRAY_BUFFER, cubeVertices.MemSize, @cubeVertices[0], GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * SIZE_OF_F, Pointer(0));
 
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(3 * SIZE_OF_F));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * SIZE_OF_F, Pointer(3 * SIZE_OF_F));
 
     //═════════════════════════════════════════════════════════════════════════
 
@@ -232,7 +232,7 @@ begin
     // shader configuration
     shader.LoadShaderFile(vs, fs);
     shader.UseProgram;
-    shader.SetUniformInt('texture1', [0]);
+    shader.SetUniformInt('skybox', [0]);
 
     skyboxShader.LoadShaderFile(skybox_vs, skybox_fs);
     skyboxShader.UseProgram;
@@ -263,11 +263,12 @@ begin
       shader.SetUniformMatrix4fv('model', model);
       shader.SetUniformMatrix4fv('view', view);
       shader.SetUniformMatrix4fv('projection', projection);
+      shader.SetUniformFloat('cameraPos', camera.Position);
 
       // cubes
       glBindVertexArray(cubeVAO);
       glActiveTexture(GL_TEXTURE0);
-      glBindTexture(GL_TEXTURE_2D, cubeTexture);
+      glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
       glDrawArrays(GL_TRIANGLES, 0, 36);
 
       // 最后绘制 skybox
