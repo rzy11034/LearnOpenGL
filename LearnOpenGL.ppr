@@ -77,7 +77,10 @@ uses
   Case04_05_02_Framebuffers_Exercise1,
   Case04_06_01_cubemaps_skybox,
   Case04_06_02_Cubemaps_Environment_Mapping,
-  Case04_08_01_Advanced_GLSL_UBO, Case04_09_01_Geometry_Shader_Houses;
+  Case04_08_01_Advanced_GLSL_UBO,
+  Case04_09_01_Geometry_Shader_Houses,
+  Case04_09_02_Geometry_Shader_Exploding,
+  Case04_09_03_Geometry_Shader_Normals;
 
 begin
   try

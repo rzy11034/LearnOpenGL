@@ -24,7 +24,7 @@ procedure Run();
 implementation
 
 uses
-  Case04_08_01_Advanced_GLSL_UBO;
+  Case04_09_03_Geometry_Shader_Normals;
 
 procedure Test;
 begin

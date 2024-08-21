@@ -53,7 +53,8 @@ procedure Main;
 const
   fs = '..\Source\3.Model\1.1.Model_Loading\1.model_loading.fs';
   vs = '..\Source\3.Model\1.1.Model_Loading\1.model_loading.vs';
-  objFile = '..\Resources\objects\cyborg\cyborg.obj';
+  //objFile = '..\Resources\objects\cyborg\cyborg.obj';
+  objFile = '..\Resources\objects\backpack\backpack.obj';
 var
   window: PGLFWwindow;
   ourShader: TShaderProgram;
