@@ -1,4 +1,4 @@
-﻿unit Case04_09_03_Geometry_Shader_Normals;
+﻿unit Case04_10_02_Asteroids;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -9,6 +9,7 @@ uses
   Classes,
   SysUtils,
   DeepStar.Utils,
+  DeepStar.OpenGL.Utils,
   DeepStar.OpenGL.Texture,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.Shader,
@@ -61,18 +62,20 @@ var
 
 procedure Main;
 const
-  vs = '..\Source\4.Advanced_Opengl\9.3.Geometry_Shader_Normals\9.3.default.vs';
-  fs = '..\Source\4.Advanced_Opengl\9.3.Geometry_Shader_Normals\9.3.default.fs';
-  normal_vs = '..\Source\4.Advanced_Opengl\9.3.Geometry_Shader_Normals\9.3.normal_visualization.vs';
-  normal_fs = '..\Source\4.Advanced_Opengl\9.3.Geometry_Shader_Normals\9.3.normal_visualization.fs';
-  normal_gs = '..\Source\4.Advanced_Opengl\9.3.Geometry_Shader_Normals\9.3.normal_visualization.gs';
-  model_backpack = '..\Resources\objects\backpack\backpack.obj';
+  vs = '..\Source\4.Advanced_Opengl\10.2.Asteroids\10.2.instancing.vs';
+  fs = '..\Source\4.Advanced_Opengl\10.2.Asteroids\10.2.instancing.fs';
+  rock_model = '..\Resources\objects\rock\rock.obj';
+  planet_model = '..\Resources\objects\planet\planet.obj';
 var
   window: PGLFWwindow;
-  projection, view, model: TMat4;
-  currentFrame: GLfloat;
-  shader, normalShader: TShaderProgram;
-  backpack: TModel;
+  currentFrame, offset: GLfloat;
+  shader: TShaderProgram;
+  quadVAO, quadVBO, amount: Cardinal;
+  rock, planet: TModel;
+  modelMatrices: TArr_TMat4;
+  radius, angle, displacement, x, y, z, scale, rotAngle: float;
+  model, projection, view: TMat4;
+  i: Integer;
 begin
   window := InitWindows;
   if window = nil then
@@ -88,14 +91,54 @@ begin
   //═════════════════════════════════════════════════════════════════════════
 
   shader := TShaderProgram.Create;
-  normalShader := TShaderProgram.Create;
-  backpack := TModel.Create(model_backpack);
 
-  camera := TCamera.Create(TGLM.Vec3(0, 0, 10));
+  camera := TCamera.Create(TGLM.Vec3(0, 0, 55));
+
+  rock := TModel.Create(rock_model);
+  planet := TModel.Create(planet_model);
 
   try
     shader.LoadShaderFile(vs, fs);
-    normalShader.LoadShaderFile(normal_vs, normal_fs, normal_gs);
+
+    //═════════════════════════════════════════════════════════════════════════
+
+    Randomize;
+
+    // 生成一个大的半随机模型转换矩阵列表
+    amount := cardinal(1000);
+    modelMatrices := TArr_TMat4(nil);
+    SetLength(modelMatrices, amount);
+
+    radius := float(50.0);
+    offset := float(2.5);
+
+    for i := 0 to amount-1 do
+    begin
+      model := TGLM.Mat4_Identity;
+
+      // 1.Translate: 在[-offset, offset]的范围内，沿半径圆移动
+      angle := float(i / amount * 360.0);
+      displacement := float(Random(Trunc(2 * 2.5 * 100)) /100 - offset);
+
+      //保持小行星场的高度小于x和z的宽度
+      x := float(Sin(angle) * radius + displacement);
+      displacement := Random(Trunc(2 * 2.5 * 100)) / 100 - offset;
+      y := float(displacement * 0.4);
+      displacement := Random(Trunc(2 * 2.5 * 100)) / 100 - offset;
+      z := float(Cos(angle) * radius + displacement);
+      model := TGLM.Translate(model, TGLM.Vec3(x, y, z));
+
+      // 2. scale: 在0.05到0.25f之间缩放
+      scale := float(Random(20) / 100 + 0.05);
+      model := TGLM.Scale(model, TGLM.Vec3(scale));
+
+      // 3. 旋转:围绕(半)随机选择的旋转轴矢量添加随机旋转
+      rotAngle := float(Random(360));
+      model := TGLM.Rotate(model, rotAngle, TGLM.Vec3(0.4, 0.6, 0.8));
+
+      // 4. 现在添加到矩阵列表中
+      modelMatrices[i] := model;
+    end;
 
     //═════════════════════════════════════════════════════════════════════════
 
@@ -114,26 +157,26 @@ begin
       glClearColor(0.1, 0.1, 0.1, 1.0);
       glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
 
-      // 配置变换矩阵
-      projection := TGLM.Perspective(TGLM.Radians(45.0), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
+      projection := TGLM.Perspective(TGLM.Radians(45), SCR_WIDTH / SCR_HEIGHT, 0.1, 1000);
       view := camera.GetViewMatrix;
-      model := TGLM.Mat4_Identity;
 
       shader.UseProgram;
       shader.SetUniformMatrix4fv('projection', projection);
       shader.SetUniformMatrix4fv('view', view);
+
+      // 绘制行星
+      model := TGLM.Mat4_Identity;
+      model := TGLM.translate(model, TGLM.Vec3(0.0, -3.0, 0.0));
+      model := TGLM.scale(model, TGLM.Vec3(4.0, 4.0, 4.0));
       shader.SetUniformMatrix4fv('model', model);
+      planet.Draw(shader);
 
-      // draw model as usual
-      backpack.Draw(shader);
-
-      // then draw model with normal visualizing geometry shader
-      normalShader.UseProgram();
-      normalShader.SetUniformMatrix4fv('projection', projection);
-      normalShader.SetUniformMatrix4fv('view', view);
-      normalShader.SetUniformMatrix4fv('model', model);
-
-      backpack.Draw(normalShader);
+      // 绘制陨石
+      for i := 0 to amount - 1 do
+      begin
+        shader.SetUniformMatrix4fv('model', modelMatrices[i]);
+        rock.Draw(shader);
+      end;
 
       //═════════════════════════════════════════════════════════════════════════
 
@@ -142,11 +185,14 @@ begin
       glfwPollEvents;
     end;
 
+    glDeleteVertexArrays(1, @quadVAO);
+    glDeleteBuffers(1, @quadVBO);
   finally
+    planet.Free;
+    rock.Free;
+
     camera.Free;
     shader.Free;
-    normalShader.Free;
-    backpack.Free;
 
     // 释放 / 删除之前的分配的所有资源
     glfwTerminate;
@@ -186,6 +232,7 @@ begin
   glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
 
   glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
   // 注册一个回调函数(Callback Function)，它会在每次窗口大小被调整的时候被调用
   glfwSetFramebufferSizeCallback(window, @Framebuffer_size_callback);
   glfwSetCursorPosCallback(window, @Mouse_callback);

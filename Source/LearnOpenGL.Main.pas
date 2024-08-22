@@ -24,7 +24,7 @@ procedure Run();
 implementation
 
 uses
-  Case04_09_03_Geometry_Shader_Normals;
+  Case04_10_02_Asteroids;
 
 procedure Test;
 begin

@@ -80,7 +80,9 @@ uses
   Case04_08_01_Advanced_GLSL_UBO,
   Case04_09_01_Geometry_Shader_Houses,
   Case04_09_02_Geometry_Shader_Exploding,
-  Case04_09_03_Geometry_Shader_Normals;
+  Case04_09_03_Geometry_Shader_Normals,
+  Case04_10_01_Instancing_Quads,
+  Case04_10_02_Asteroids;
 
 begin
   try

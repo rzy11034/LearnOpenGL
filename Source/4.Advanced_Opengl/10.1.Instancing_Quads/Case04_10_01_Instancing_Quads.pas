@@ -1,4 +1,4 @@
-﻿unit Case04_09_03_Geometry_Shader_Normals;
+﻿unit Case04_10_01_Instancing_Quads;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -9,6 +9,7 @@ uses
   Classes,
   SysUtils,
   DeepStar.Utils,
+  DeepStar.OpenGL.Utils,
   DeepStar.OpenGL.Texture,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.Shader,
@@ -51,8 +52,6 @@ var
   camera: TCamera;
 
   deltaTime: float = 0.0;  // time between current frame and last frame
-  lastFrame: float = 0.0;
-
   firstMouse: boolean = true;
   //偏航被初始化为-90.0度，因为0.0的偏航导致一个指向右的方向矢量，所以我们最初
   //向左旋转一点。
@@ -61,18 +60,17 @@ var
 
 procedure Main;
 const
-  vs = '..\Source\4.Advanced_Opengl\9.3.Geometry_Shader_Normals\9.3.default.vs';
-  fs = '..\Source\4.Advanced_Opengl\9.3.Geometry_Shader_Normals\9.3.default.fs';
-  normal_vs = '..\Source\4.Advanced_Opengl\9.3.Geometry_Shader_Normals\9.3.normal_visualization.vs';
-  normal_fs = '..\Source\4.Advanced_Opengl\9.3.Geometry_Shader_Normals\9.3.normal_visualization.fs';
-  normal_gs = '..\Source\4.Advanced_Opengl\9.3.Geometry_Shader_Normals\9.3.normal_visualization.gs';
-  model_backpack = '..\Resources\objects\backpack\backpack.obj';
+  vs = '..\Source\4.Advanced_Opengl\10.1.Instancing_Quads\10.1.instancing.vs';
+  fs = '..\Source\4.Advanced_Opengl\10.1.Instancing_Quads\10.1.instancing.fs';
 var
   window: PGLFWwindow;
-  projection, view, model: TMat4;
-  currentFrame: GLfloat;
-  shader, normalShader: TShaderProgram;
-  backpack: TModel;
+  offset: GLfloat;
+  shader: TShaderProgram;
+  index, x, y: Integer;
+  translations: TArr_TVec2;
+  tempTranslation: TVec2;
+  instanceVBO, quadVAO, quadVBO: Cardinal;
+  quadVertices: TArr_GLfloat;
 begin
   window := InitWindows;
   if window = nil then
@@ -88,14 +86,80 @@ begin
   //═════════════════════════════════════════════════════════════════════════
 
   shader := TShaderProgram.Create;
-  normalShader := TShaderProgram.Create;
-  backpack := TModel.Create(model_backpack);
 
   camera := TCamera.Create(TGLM.Vec3(0, 0, 10));
 
   try
     shader.LoadShaderFile(vs, fs);
-    normalShader.LoadShaderFile(normal_vs, normal_fs, normal_gs);
+
+    //═════════════════════════════════════════════════════════════════════════
+
+    translations := TArr_TVec2(nil);
+    SetLength(translations, 100);
+
+    index := 0;
+    offset := GLfloat(0.1);
+
+    y := -10;
+    while y < 10 do
+    begin
+      x := -10;
+
+      while x < 10 do
+      begin
+        tempTranslation := TGLM.Vec2(0);
+        tempTranslation.x := x / 10 + offset;
+        tempTranslation.y := y / 10 + offset;
+        translations[index] := tempTranslation;
+
+        x += 2;
+        index += 1;
+      end;
+
+      y += 2;
+    end;
+
+    index := SizeOf(TVec2);
+
+    instanceVBO := cardinal(0);
+    glGenBuffers(1, @instanceVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
+    glBufferData(GL_ARRAY_BUFFER, SizeOf(TVec2) * 100, @translations[0], GL_STATIC_DRAW);
+    //glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    //═════════════════════════════════════════════════════════════════════════
+
+    quadVertices := TArr_GLfloat([
+      // positions   // colors
+      -0.05,  0.05,  1.0, 0.0, 0.0,
+       0.05, -0.05,  0.0, 1.0, 0.0,
+      -0.05, -0.05,  0.0, 0.0, 1.0,
+
+      -0.05,  0.05,  1.0, 0.0, 0.0,
+       0.05, -0.05,  0.0, 1.0, 0.0,
+       0.05,  0.05,  0.0, 1.0, 1.0]);
+
+    quadVAO := cardinal(0);
+    quadVBO := cardinal(0);
+
+    glGenVertexArrays(1, @quadVAO);
+    glGenBuffers(1, @quadVBO);
+
+    glBindVertexArray(quadVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+    glBufferData(GL_ARRAY_BUFFER, quadVertices.MemSize, @quadVertices[0], GL_STATIC_DRAW);
+
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(0));
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(2 * SIZE_OF_F));
+
+    // also set instance data
+    glEnableVertexAttribArray(2);
+    glBindBuffer(GL_ARRAY_BUFFER, instanceVBO); // this attribute comes from a different vertex buffer
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * SIZE_OF_F, Pointer(0));
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glVertexAttribDivisor(2, 1); // tell OpenGL this is an instanced vertex attribute.
 
     //═════════════════════════════════════════════════════════════════════════
 
@@ -103,37 +167,23 @@ begin
     while not glfwWindowShouldClose(window).ToBoolean do
     begin
       // 每帧时时逻辑
-      currentFrame := GLfloat(glfwGetTime);
-      deltaTime := currentFrame - lastFrame;
-      lastFrame := currentFrame;
-
-      // 输入
-      ProcessInput(window);
+      //currentFrame := GLfloat(glfwGetTime);
+      //deltaTime := currentFrame - lastFrame;
+      //lastFrame := currentFrame;
+      //
+      //// 输入
+      //ProcessInput(window);
 
       // render
       glClearColor(0.1, 0.1, 0.1, 1.0);
       glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
 
-      // 配置变换矩阵
-      projection := TGLM.Perspective(TGLM.Radians(45.0), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
-      view := camera.GetViewMatrix;
-      model := TGLM.Mat4_Identity;
-
+      // draw 100 instanced quads
       shader.UseProgram;
-      shader.SetUniformMatrix4fv('projection', projection);
-      shader.SetUniformMatrix4fv('view', view);
-      shader.SetUniformMatrix4fv('model', model);
-
-      // draw model as usual
-      backpack.Draw(shader);
-
-      // then draw model with normal visualizing geometry shader
-      normalShader.UseProgram();
-      normalShader.SetUniformMatrix4fv('projection', projection);
-      normalShader.SetUniformMatrix4fv('view', view);
-      normalShader.SetUniformMatrix4fv('model', model);
-
-      backpack.Draw(normalShader);
+      glBindVertexArray(quadVAO);
+      // 100 triangles of 6 vertices each
+      glDrawArraysInstanced(GL_TRIANGLES, 0, 6, 100);
+      glBindVertexArray(0);
 
       //═════════════════════════════════════════════════════════════════════════
 
@@ -142,11 +192,11 @@ begin
       glfwPollEvents;
     end;
 
+    glDeleteVertexArrays(1, @quadVAO);
+    glDeleteBuffers(1, @quadVBO);
   finally
     camera.Free;
     shader.Free;
-    normalShader.Free;
-    backpack.Free;
 
     // 释放 / 删除之前的分配的所有资源
     glfwTerminate;
@@ -183,13 +233,14 @@ begin
   end;
 
   // 设置窗口的维度(Dimension)
-  glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
+  //glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
 
-  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+  //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
   // 注册一个回调函数(Callback Function)，它会在每次窗口大小被调整的时候被调用
   glfwSetFramebufferSizeCallback(window, @Framebuffer_size_callback);
-  glfwSetCursorPosCallback(window, @Mouse_callback);
-  glfwSetScrollCallback(window, @Scroll_callback);
+  //glfwSetCursorPosCallback(window, @Mouse_callback);
+  //glfwSetScrollCallback(window, @Scroll_callback);
 
   Result := window;
 end;
