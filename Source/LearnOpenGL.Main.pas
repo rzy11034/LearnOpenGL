@@ -24,7 +24,7 @@ procedure Run();
 implementation
 
 uses
-  Case04_10_02_Asteroids;
+  Case04_11_01_Anti_Aliasing_Msaa;
 
 procedure Test;
 begin

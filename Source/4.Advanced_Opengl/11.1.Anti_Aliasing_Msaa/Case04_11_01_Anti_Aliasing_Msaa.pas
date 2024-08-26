@@ -1,4 +1,4 @@
-﻿unit Case04_10_02_Asteroids;
+﻿unit Case04_11_01_Anti_Aliasing_Msaa;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -62,20 +62,16 @@ var
 
 procedure Main;
 const
-  vs = '..\Source\4.Advanced_Opengl\10.2.Asteroids\10.2.instancing.vs';
-  fs = '..\Source\4.Advanced_Opengl\10.2.Asteroids\10.2.instancing.fs';
-  rock_model = '..\Resources\objects\rock\rock.obj';
-  planet_model = '..\Resources\objects\planet\planet.obj';
+  dir_path = '..\Source\4.Advanced_Opengl\11.1.Anti_Aliasing_Msaa\';
+  vs = dir_path + '11.1.anti_aliasing.vs';
+  fs = dir_path + '11.1.anti_aliasing.fs';
 var
   window: PGLFWwindow;
-  currentFrame, offset: GLfloat;
+  currentFrame: GLfloat;
   shader: TShaderProgram;
-  quadVAO, quadVBO, amount: Cardinal;
-  rock, planet: TModel;
-  modelMatrices: TArr_TMat4;
-  radius, angle, displacement, x, y, z, scale, rotAngle: float;
-  model, projection, view: TMat4;
-  i: Integer;
+  cubeVertices: TArr_GLfloat;
+  cubeVAO, cubeVBO: GLuint;
+  projection, view, model: TMat4;
 begin
   window := InitWindows;
   if window = nil then
@@ -86,59 +82,75 @@ begin
 
   //═════════════════════════════════════════════════════════════════════════
 
-  glEnable(GL_DEPTH_TEST);
+   glEnable(GL_MULTISAMPLE);
+   glEnable(GL_DEPTH_TEST);
 
   //═════════════════════════════════════════════════════════════════════════
 
   shader := TShaderProgram.Create;
 
-  camera := TCamera.Create(TGLM.Vec3(0, 0, 55));
-
-  rock := TModel.Create(rock_model);
-  planet := TModel.Create(planet_model);
+  camera := TCamera.Create(TGLM.Vec3(0, 0, 3));
 
   try
     shader.LoadShaderFile(vs, fs);
 
     //═════════════════════════════════════════════════════════════════════════
 
-    Randomize;
+    cubeVertices := TArr_GLfloat([
+    // Positions
+    -0.5, -0.5, -0.5,
+     0.5, -0.5, -0.5,
+     0.5,  0.5, -0.5,
+     0.5,  0.5, -0.5,
+    -0.5,  0.5, -0.5,
+    -0.5, -0.5, -0.5,
 
-    // 生成一个大的半随机模型转换矩阵列表
-    amount := cardinal(10000);
-    modelMatrices := TArr_TMat4(nil);
-    SetLength(modelMatrices, amount);
+    -0.5, -0.5,  0.5,
+     0.5, -0.5,  0.5,
+     0.5,  0.5,  0.5,
+     0.5,  0.5,  0.5,
+    -0.5,  0.5,  0.5,
+    -0.5, -0.5,  0.5,
 
-    radius := float(50.0);
-    offset := float(2.5);
+    -0.5,  0.5,  0.5,
+    -0.5,  0.5, -0.5,
+    -0.5, -0.5, -0.5,
+    -0.5, -0.5, -0.5,
+    -0.5, -0.5,  0.5,
+    -0.5,  0.5,  0.5,
 
-    for i := 0 to amount-1 do
-    begin
-      model := TGLM.Mat4_Identity;
+     0.5,  0.5,  0.5,
+     0.5,  0.5, -0.5,
+     0.5, -0.5, -0.5,
+     0.5, -0.5, -0.5,
+     0.5, -0.5,  0.5,
+     0.5,  0.5,  0.5,
 
-      // 1.Translate: 在[-offset, offset]的范围内，沿半径圆移动
-      angle := float(i / amount * 360.0);
-      displacement := float(Random(Trunc(2 * 2.5 * 100)) /100 - offset);
+    -0.5, -0.5, -0.5,
+     0.5, -0.5, -0.5,
+     0.5, -0.5,  0.5,
+     0.5, -0.5,  0.5,
+    -0.5, -0.5,  0.5,
+    -0.5, -0.5, -0.5,
 
-      //保持小行星场的高度小于x和z的宽度
-      x := float(Sin(angle) * radius + displacement);
-      displacement := Random(Trunc(2 * 2.5 * 100)) / 100 - offset;
-      y := float(displacement * 0.4);
-      displacement := Random(Trunc(2 * 2.5 * 100)) / 100 - offset;
-      z := float(Cos(angle) * radius + displacement);
-      model := TGLM.Translate(model, TGLM.Vec3(x, y, z));
+    -0.5,  0.5, -0.5,
+     0.5,  0.5, -0.5,
+     0.5,  0.5,  0.5,
+     0.5,  0.5,  0.5,
+    -0.5,  0.5,  0.5,
+    -0.5,  0.5, -0.5]);
 
-      // 2. scale: 在0.05到0.25f之间缩放
-      scale := float(Random(20) / 100 + 0.05);
-      model := TGLM.Scale(model, TGLM.Vec3(scale));
+    cubeVAO := GLuint(0);
+    cubeVBO := GLuint(0);
 
-      // 3. 旋转:围绕(半)随机选择的旋转轴矢量添加随机旋转
-      rotAngle := float(Random(360));
-      model := TGLM.Rotate(model, rotAngle, TGLM.Vec3(0.4, 0.6, 0.8));
-
-      // 4. 现在添加到矩阵列表中
-      modelMatrices[i] := model;
-    end;
+    glGenVertexArrays(1, @cubeVAO);
+    glGenBuffers(1, @cubeVBO);
+    glBindVertexArray(cubeVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
+    glBufferData(GL_ARRAY_BUFFER, cubeVertices.MemSize, @cubeVertices[0], GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SIZE_OF_F, Pointer(0));
+    glBindVertexArray(0);
 
     //═════════════════════════════════════════════════════════════════════════
 
@@ -159,24 +171,16 @@ begin
 
       projection := TGLM.Perspective(TGLM.Radians(45), SCR_WIDTH / SCR_HEIGHT, 0.1, 1000);
       view := camera.GetViewMatrix;
+      model := TGLM.Mat4_Identity;
 
       shader.UseProgram;
       shader.SetUniformMatrix4fv('projection', projection);
       shader.SetUniformMatrix4fv('view', view);
-
-      // 绘制行星
-      model := TGLM.Mat4_Identity;
-      model := TGLM.translate(model, TGLM.Vec3(0.0, -3.0, 0.0));
-      model := TGLM.scale(model, TGLM.Vec3(4.0, 4.0, 4.0));
       shader.SetUniformMatrix4fv('model', model);
-      planet.Draw(shader);
 
-      // 绘制陨石
-      for i := 0 to amount - 1 do
-      begin
-        shader.SetUniformMatrix4fv('model', modelMatrices[i]);
-        rock.Draw(shader);
-      end;
+      glBindVertexArray(cubeVAO);
+      glDrawArrays(GL_TRIANGLES, 0, 36);
+      glBindVertexArray(0);
 
       //═════════════════════════════════════════════════════════════════════════
 
@@ -185,12 +189,9 @@ begin
       glfwPollEvents;
     end;
 
-    glDeleteVertexArrays(1, @quadVAO);
-    glDeleteBuffers(1, @quadVBO);
+    glDeleteVertexArrays(1, @cubeVAO);
+    glDeleteBuffers(1, @cubeVBO);
   finally
-    planet.Free;
-    rock.Free;
-
     camera.Free;
     shader.Free;
 

@@ -1,4 +1,4 @@
-﻿unit Case04_10_02_Asteroids;
+﻿unit Case04_10_03_Asteroids_Instanced;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -62,15 +62,18 @@ var
 
 procedure Main;
 const
-  vs = '..\Source\4.Advanced_Opengl\10.2.Asteroids\10.2.instancing.vs';
-  fs = '..\Source\4.Advanced_Opengl\10.2.Asteroids\10.2.instancing.fs';
+  dir_path = '..\Source\4.Advanced_Opengl\10.3.Asteroids_Instanced\';
+  asteroids_vs = dir_path + '10.3.asteroids.vs';
+  asteroids_fs = dir_path + '10.3.asteroids.fs';
+  planet_vs = dir_path + '10.3.planet.vs';
+  planet_fs = dir_path + '10.3.planet.fs';
   rock_model = '..\Resources\objects\rock\rock.obj';
   planet_model = '..\Resources\objects\planet\planet.obj';
 var
   window: PGLFWwindow;
   currentFrame, offset: GLfloat;
-  shader: TShaderProgram;
-  quadVAO, quadVBO, amount: Cardinal;
+  asteroidShader, planetShader: TShaderProgram;
+  quadVAO, quadVBO, amount, buffer, VAO: Cardinal;
   rock, planet: TModel;
   modelMatrices: TArr_TMat4;
   radius, angle, displacement, x, y, z, scale, rotAngle: float;
@@ -90,7 +93,8 @@ begin
 
   //═════════════════════════════════════════════════════════════════════════
 
-  shader := TShaderProgram.Create;
+  asteroidShader := TShaderProgram.Create;
+  planetShader := TShaderProgram.Create;
 
   camera := TCamera.Create(TGLM.Vec3(0, 0, 55));
 
@@ -98,19 +102,20 @@ begin
   planet := TModel.Create(planet_model);
 
   try
-    shader.LoadShaderFile(vs, fs);
+    asteroidShader.LoadShaderFile(asteroids_vs, asteroids_fs);
+    planetShader.LoadShaderFile(planet_vs, planet_fs);
 
     //═════════════════════════════════════════════════════════════════════════
 
     Randomize;
 
     // 生成一个大的半随机模型转换矩阵列表
-    amount := cardinal(10000);
+    amount := cardinal(100000);
     modelMatrices := TArr_TMat4(nil);
     SetLength(modelMatrices, amount);
 
-    radius := float(50.0);
-    offset := float(2.5);
+    radius := float(150.0);
+    offset := float(25);
 
     for i := 0 to amount-1 do
     begin
@@ -142,6 +147,40 @@ begin
 
     //═════════════════════════════════════════════════════════════════════════
 
+    // 配置实例数组
+    buffer := cardinal(0);
+    glGenBuffers(1, @buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, buffer);
+    glBufferData(GL_ARRAY_BUFFER, amount * SizeOf(TMat4), @modelMatrices[0], GL_STATIC_DRAW);
+
+    // 把变换矩阵设置为实例顶点属性（带有除数1）
+    // 注意：我们稍微作弊了一下，通过获取模型网格的现在已公开声明的VAO，并添加新的vertexAttribPointers
+    // 通常情况下，你会想以更有组织的方式来做这件事，但是为了学习目的，这样做就可以了。
+    for i := 0 to rock.Meshes.Count - 1 do
+    begin
+      VAO := rock.Meshes[i].VAO;
+      glBindVertexArray(VAO);
+
+      // set attribute pointers for matrix (4 times vec4)
+      glEnableVertexAttribArray(3);
+      glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, SizeOf(TMat4), Pointer(0));
+      glEnableVertexAttribArray(4);
+      glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, SizeOf(TMat4), Pointer(SizeOf(TVec4)));
+      glEnableVertexAttribArray(5);
+      glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, SizeOf(TMat4), Pointer(2 * SizeOf(TVec4)));
+      glEnableVertexAttribArray(6);
+      glVertexAttribPointer(6, 4, GL_FLOAT, GL_FALSE, SizeOf(TMat4), Pointer(3 * SizeOf(TVec4)));
+
+      glVertexAttribDivisor(3, 1);
+      glVertexAttribDivisor(4, 1);
+      glVertexAttribDivisor(5, 1);
+      glVertexAttribDivisor(6, 1);
+
+      glBindVertexArray(0);
+    end;
+
+    //═════════════════════════════════════════════════════════════════════════
+
     // 渲染循环
     while not glfwWindowShouldClose(window).ToBoolean do
     begin
@@ -160,22 +199,33 @@ begin
       projection := TGLM.Perspective(TGLM.Radians(45), SCR_WIDTH / SCR_HEIGHT, 0.1, 1000);
       view := camera.GetViewMatrix;
 
-      shader.UseProgram;
-      shader.SetUniformMatrix4fv('projection', projection);
-      shader.SetUniformMatrix4fv('view', view);
+      asteroidShader.UseProgram;
+      asteroidShader.SetUniformMatrix4fv('projection', projection);
+      asteroidShader.SetUniformMatrix4fv('view', view);
 
-      // 绘制行星
+      planetShader.UseProgram;
+      planetShader.SetUniformMatrix4fv('projection', projection);
+      planetShader.SetUniformMatrix4fv('view', view);
+
+      // draw planet
       model := TGLM.Mat4_Identity;
-      model := TGLM.translate(model, TGLM.Vec3(0.0, -3.0, 0.0));
-      model := TGLM.scale(model, TGLM.Vec3(4.0, 4.0, 4.0));
-      shader.SetUniformMatrix4fv('model', model);
-      planet.Draw(shader);
+      model := TGLM.Translate(model, TGLM.Vec3(0.0, -3.0, 0.0));
+      model := TGLM.Scale(model, TGLM.Vec3(4.0, 4.0, 4.0));
+      planetShader.SetUniformMatrix4fv('model', model);
+      planet.Draw(planetShader);
 
-      // 绘制陨石
-      for i := 0 to amount - 1 do
+      // draw meteorites
+      asteroidShader.UseProgram;
+      asteroidShader.SetUniformInt('texture_diffuse1', [0]);
+      glActiveTexture(GL_TEXTURE0);
+      glBindTexture(GL_TEXTURE_2D, rock.textures_loaded[0].ID);
+
+      for i := 0 to rock.Meshes.Count - 1 do
       begin
-        shader.SetUniformMatrix4fv('model', modelMatrices[i]);
-        rock.Draw(shader);
+        glBindVertexArray(rock.Meshes[i].VAO);
+        glDrawElementsInstanced(GL_TRIANGLES, rock.Meshes[i].Indices.Count,
+          GL_UNSIGNED_INT, nil, amount);
+        glBindVertexArray(0);
       end;
 
       //═════════════════════════════════════════════════════════════════════════
@@ -192,7 +242,8 @@ begin
     rock.Free;
 
     camera.Free;
-    shader.Free;
+    asteroidShader.Free;
+    planetShader.Free;
 
     // 释放 / 删除之前的分配的所有资源
     glfwTerminate;
