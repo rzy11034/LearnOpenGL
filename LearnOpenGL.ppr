@@ -82,7 +82,7 @@ uses
   Case04_09_02_Geometry_Shader_Exploding,
   Case04_09_03_Geometry_Shader_Normals,
   Case04_10_01_Instancing_Quads,
-  Case04_10_02_Asteroids, Case04_10_03_Asteroids_Instanced, Case04_11_01_Anti_Aliasing_Msaa;
+  Case04_10_02_Asteroids, Case04_10_03_Asteroids_Instanced, Case04_11_01_Anti_Aliasing_Msaa, Case04_11_02_Anti_Aliasing_Offscreen;
 
 begin
   try

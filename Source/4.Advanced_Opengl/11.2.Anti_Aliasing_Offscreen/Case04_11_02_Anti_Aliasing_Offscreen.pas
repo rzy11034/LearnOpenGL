@@ -1,4 +1,4 @@
-﻿unit Case04_11_01_Anti_Aliasing_Msaa;
+﻿unit Case04_11_02_Anti_Aliasing_Offscreen;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -62,15 +62,18 @@ var
 
 procedure Main;
 const
-  dir_path = '..\Source\4.Advanced_Opengl\11.1.Anti_Aliasing_Msaa\';
-  vs = dir_path + '11.1.anti_aliasing.vs';
-  fs = dir_path + '11.1.anti_aliasing.fs';
+  dir_path = '..\Source\4.Advanced_Opengl\11.2.Anti_Aliasing_Offscreen\';
+  vs = dir_path + '11.2.anti_aliasing.vs';
+  fs = dir_path + '11.2.anti_aliasing.fs';
+  screen_vs = dir_path + '11.2.aa_post.vs';
+  screen_fs = dir_path + '11.2.aa_post.fs';
 var
   window: PGLFWwindow;
   currentFrame: GLfloat;
-  shader: TShaderProgram;
-  cubeVertices: TArr_GLfloat;
-  cubeVAO, cubeVBO: GLuint;
+  shader, screenShader: TShaderProgram;
+  cubeVertices, quadVertices: TArr_GLfloat;
+  cubeVAO, cubeVBO, quadVBO, quadVAO, framebuffer: GLuint;
+  textureColorBufferMultiSampled, RBO, intermediateFBO, screenTexture: GLuint;
   projection, view, model: TMat4;
 begin
   window := InitWindows;
@@ -82,17 +85,18 @@ begin
 
   //═════════════════════════════════════════════════════════════════════════
 
-   glEnable(GL_MULTISAMPLE);
    glEnable(GL_DEPTH_TEST);
 
   //═════════════════════════════════════════════════════════════════════════
 
   shader := TShaderProgram.Create;
+  screenShader := TShaderProgram.Create;
 
   camera := TCamera.Create(TGLM.Vec3(0, 0, 3));
 
   try
     shader.LoadShaderFile(vs, fs);
+    screenShader.LoadShaderFile(screen_vs, screen_fs);
 
     //═════════════════════════════════════════════════════════════════════════
 
@@ -150,7 +154,91 @@ begin
     glBufferData(GL_ARRAY_BUFFER, cubeVertices.MemSize, @cubeVertices[0], GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * SIZE_OF_F, Pointer(0));
-    glBindVertexArray(0);
+
+    //═════════════════════════════════════════════════════════════════════════
+
+    // 在标准化设备坐标中填充整个屏幕的四边形的顶点属性。
+    quadVertices := TArr_GLfloat([
+       1.0,  1.0,  0.0, 1.0,
+      -1.0, -1.0,  0.0, 0.0,
+       1.0, -1.0,  1.0, 0.0,
+
+      -1.0,  1.0,  0.0, 1.0,
+       1.0, -1.0,  1.0, 0.0,
+       1.0,  1.0,  1.0, 1.0]);
+
+    quadVAO := GLuint(0);
+    quadVBO := GLuint(0);
+
+    glGenVertexArrays(1, @quadVAO);
+    glGenBuffers(1, @quadVBO);
+    glBindVertexArray(quadVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+    glBufferData(GL_ARRAY_BUFFER, quadVertices.MemSize, @quadVertices[0], GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * SIZE_OF_F, Pointer(0));
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * SIZE_OF_F, Pointer(2 * SIZE_OF_F));
+
+    //═════════════════════════════════════════════════════════════════════════
+
+    //配置MSAA帧缓冲区
+    framebuffer := GLuint(0);
+    glGenFramebuffers(1, @framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+
+    // 创建一个多采样颜色附件纹理
+    textureColorBufferMultiSampled := GLuint(0);
+    glGenTextures(1, @textureColorBufferMultiSampled);
+    glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, textureColorBufferMultiSampled);
+    glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, 4, GL_RGB, SCR_WIDTH, SCR_HEIGHT, GL_TRUE);
+    glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D_MULTISAMPLE,
+      textureColorBufferMultiSampled, 0);
+
+    //═════════════════════════════════════════════════════════════════════════
+
+    // 为深度和模板附件创建一个(也是多采样)renderbuffer对象
+    RBO := GLuint(0);
+    glGenRenderbuffers(1, @RBO);
+    glBindRenderbuffer(GL_RENDERBUFFER, RBO);
+    glRenderbufferStorageMultisample(GL_RENDERBUFFER, 4, GL_DEPTH24_STENCIL8, SCR_WIDTH, SCR_HEIGHT);
+    glBindRenderbuffer(GL_RENDERBUFFER, 0);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, RBO);
+
+    if glCheckFramebufferStatus(GL_FRAMEBUFFER) <> GL_FRAMEBUFFER_COMPLETE then
+    begin
+      WriteLn('ERROR::FRAMEBUFFER:: Framebuffer is not complete!');
+    end;
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    //═════════════════════════════════════════════════════════════════════════
+
+    // 配置第二个后处理帧缓冲区
+    intermediateFBO := GLuint(0);
+    glGenFramebuffers(1, @intermediateFBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, intermediateFBO);
+
+    // 创建一个颜色附件纹理
+    screenTexture := GLuint(0);
+    glGenTextures(1, @screenTexture);
+    glBindTexture(GL_TEXTURE_2D, screenTexture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, SCR_WIDTH, SCR_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, nil);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    //我们只需要一个颜色缓冲
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, screenTexture, 0);
+
+    if glCheckFramebufferStatus(GL_FRAMEBUFFER) <> GL_FRAMEBUFFER_COMPLETE then
+    begin
+      WriteLn('ERROR::FRAMEBUFFER:: Intermediate framebuffer is not complete!');
+    end;
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    //═════════════════════════════════════════════════════════════════════════
+
+    screenShader.UseProgram;
+    screenShader.SetUniformInt('screenTexture', [0]);
 
     //═════════════════════════════════════════════════════════════════════════
 
@@ -169,18 +257,43 @@ begin
       glClearColor(0.1, 0.1, 0.1, 1.0);
       glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
 
-      projection := TGLM.Perspective(TGLM.Radians(45), SCR_WIDTH / SCR_HEIGHT, 0.1, 1000);
+      // 1. 在多采样缓冲区中正常绘制场景
+      glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+      glClearColor(0.1, 0.1, 0.1, 1.0);
+      glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
+      glEnable(GL_DEPTH_TEST);
+
+      // 设置变换矩阵
+      shader.UseProgram;
+      projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 1000);
       view := camera.GetViewMatrix;
       model := TGLM.Mat4_Identity;
-
-      shader.UseProgram;
       shader.SetUniformMatrix4fv('projection', projection);
       shader.SetUniformMatrix4fv('view', view);
       shader.SetUniformMatrix4fv('model', model);
 
       glBindVertexArray(cubeVAO);
       glDrawArrays(GL_TRIANGLES, 0, 36);
-      glBindVertexArray(0);
+
+      // 2. 现在blit多采样缓冲(s)到正常的彩色缓冲的中间FBO。图像存储在屏幕纹理中
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, framebuffer);
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, intermediateFBO);
+      glBlitFramebuffer(0, 0, SCR_WIDTH, SCR_HEIGHT, 0, 0, SCR_WIDTH, SCR_HEIGHT,
+        GL_COLOR_BUFFER_BIT, GL_NEAREST);
+
+      // 3. 现在用场景的视觉效果作为它的纹理图像来渲染quad
+      glBindFramebuffer(GL_FRAMEBUFFER, 0);
+      glClearColor(1.0, 1.0, 1.0, 1.0);
+      glClear(GL_COLOR_BUFFER_BIT);
+      glDisable(GL_DEPTH_TEST);
+
+      // 绘制屏幕四边形
+      screenShader.UseProgram;
+      glBindVertexArray(quadVAO);
+      glActiveTexture(GL_TEXTURE0);
+      // 使用现在解决的颜色附件作为四边形的纹理
+      glBindTexture(GL_TEXTURE_2D, screenTexture);
+      glDrawArrays(GL_TRIANGLES, 0, 6);
 
       //═════════════════════════════════════════════════════════════════════════
 
@@ -194,6 +307,7 @@ begin
   finally
     camera.Free;
     shader.Free;
+    screenShader.Free;
 
     // 释放 / 删除之前的分配的所有资源
     glfwTerminate;
