@@ -99,3 +99,7 @@ LearnOpenGL文档学习
   9. 几何着色器 Geometry Shader <br>
   10. 实例化 Instancing <br>
   11. 抗锯齿 Anti Aliasing <br>
+
+## 第4章 高级光照 <br>
+  1. 高级光照	Advanced Lighting <br>
+  2. Gamma校正 Gamma Correction <br>
