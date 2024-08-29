@@ -183,9 +183,15 @@ begin
 
       //═════════════════════════════════════════════════════════════════════════
 
+      // floor
       glBindVertexArray(planeVAO);
       glActiveTexture(GL_TEXTURE0);
-      glBindTexture(GL_TEXTURE_2D, floorTexture);
+
+      if gammaEnabled then
+        glBindTexture(GL_TEXTURE_2D, floorTextureGammaCorrected)
+      else
+        glBindTexture(GL_TEXTURE_2D, floorTexture);
+
       glDrawArrays(GL_TRIANGLES, 0, 6);
 
       if gammaEnabled then
@@ -205,6 +211,7 @@ begin
     glDeleteBuffers(1, @planeVBO);
 
     glDeleteTextures(1, @floorTexture);
+    glDeleteTextures(1, @floorTextureGammaCorrected);
   finally
     camera.Free;
     shader.Free;
@@ -271,7 +278,7 @@ begin
     tx.LoadFormFile(fileName, inverse);
 
     if gammaCorrection then
-      internalFormat := GL_SRGB_ALPHA
+      internalFormat := GL_SRGB
     else
       internalFormat := GL_RGBA;
 

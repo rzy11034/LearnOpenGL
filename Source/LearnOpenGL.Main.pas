@@ -23,9 +23,6 @@ procedure Run();
 
 implementation
 
-uses
-  Case05_02_01_Gamma_Correction;
-
 procedure Test;
 begin
   Exit;
@@ -34,7 +31,8 @@ end;
 procedure Run();
 begin
   Test;
-  Main;
+  //ReadLn;
+  //Main;
 end;
 
 end.
