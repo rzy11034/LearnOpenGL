@@ -100,6 +100,8 @@ LearnOpenGL文档学习
   10. 实例化 Instancing <br>
   11. 抗锯齿 Anti Aliasing <br>
 
-## 第4章 高级光照 <br>
+## 第5章 高级光照 <br>
   1. 高级光照	Advanced Lighting <br>
   2. Gamma校正 Gamma Correction <br>
+  3. 阴影 Shadow <br>
+    - 阴影映射 Shadow Mapping <br>

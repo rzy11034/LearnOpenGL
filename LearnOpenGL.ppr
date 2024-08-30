@@ -86,7 +86,9 @@ uses
   Case04_10_03_Asteroids_Instanced,
   Case04_11_01_Anti_Aliasing_Msaa,
   Case04_11_02_Anti_Aliasing_Offscreen,
-  Case05_01_01_Advanced_Lighting;
+  Case05_01_01_Advanced_Lighting,
+  Case05_02_01_Gamma_Correction,
+  Case05_03_01_Shadow_Mapping_Depth;
 
 begin
   try

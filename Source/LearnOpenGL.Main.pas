@@ -23,6 +23,9 @@ procedure Run();
 
 implementation
 
+uses
+  Case05_03_01_Shadow_Mapping_Depth;
+
 procedure Test;
 begin
   Exit;
@@ -31,8 +34,7 @@ end;
 procedure Run();
 begin
   Test;
-  //ReadLn;
-  //Main;
+  Main;
 end;
 
 end.
