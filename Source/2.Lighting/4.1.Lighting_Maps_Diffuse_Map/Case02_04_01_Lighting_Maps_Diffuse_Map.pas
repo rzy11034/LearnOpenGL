@@ -163,7 +163,7 @@ begin
     diffuseMap := LoadDiffuseMap(txName);
 
     lightingShader.UseProgram;
-    lightingShader.SetUniformInt('material.diffuse', [0]);
+    lightingShader.SetUniformInt('material.diffuse', 0);
 
     // 渲染循环
     while not glfwWindowShouldClose(window).ToBoolean do
@@ -182,16 +182,16 @@ begin
 
       // 在设置uniforms/绘制对象时，请确保激活着色器
       lightingShader.UseProgram;
-      lightingShader.SetUniformFloat('light.position', lightPos);
-      lightingShader.SetUniformFloat('viewPos', camera.Position);
+      lightingShader.SetUniformVec3('light.position', lightPos);
+      lightingShader.SetUniformVec3('viewPos', camera.Position);
 
-      lightingShader.SetUniformFloat('light.ambient', [0.2, 0.2, 0.2]);
-      lightingShader.SetUniformFloat('light.diffuse', [0.5, 0.5, 0.5]);
-      lightingShader.SetUniformFloat('light.specular', [1.0, 1.0, 1.0]);
+      lightingShader.SetUniformFloat('light.ambient', 0.2, 0.2, 0.2);
+      lightingShader.SetUniformFloat('light.diffuse', 0.5, 0.5, 0.5);
+      lightingShader.SetUniformFloat('light.specular', 1.0, 1.0, 1.0);
 
       // material properties
-      lightingShader.SetUniformFloat('material.specular', [0.5, 0.5, 0.5]);
-      lightingShader.SetUniformFloat('material.shininess', [64.0]);
+      lightingShader.SetUniformFloat('material.specular', 0.5, 0.5, 0.5);
+      lightingShader.SetUniformFloat('material.shininess', 64.0);
 
       // 视图/投影转换
       projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);

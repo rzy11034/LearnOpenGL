@@ -188,7 +188,7 @@ begin
     shaderSingleColor.LoadShaderFile(vs, singleColor_fs);
 
     shader.UseProgram;
-    shader.SetUniformInt('texture1', [0]);
+    shader.SetUniformInt('texture1', 0);
 
     // 渲染循环
     while not glfwWindowShouldClose(window).ToBoolean do

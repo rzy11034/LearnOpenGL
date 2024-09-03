@@ -232,11 +232,11 @@ begin
     // shader configuration
     shader.LoadShaderFile(vs, fs);
     shader.UseProgram;
-    shader.SetUniformInt('texture1', [0]);
+    shader.SetUniformInt('texture1', 0);
 
     skyboxShader.LoadShaderFile(skybox_vs, skybox_fs);
     skyboxShader.UseProgram;
-    skyboxShader.SetUniformInt('skybox', [0]);
+    skyboxShader.SetUniformInt('skybox', 0);
 
     //═════════════════════════════════════════════════════════════════════════
 

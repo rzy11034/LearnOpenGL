@@ -155,9 +155,9 @@ begin
       shader.SetUniformMatrix4fv('view', view);
 
       // set light uniforms
-      shader.SetUniformFloat('viewPos', camera.Position);
-      shader.SetUniformFloat('lightPos', lightPos);
-      shader.SetUniformInt('blinn', [blinn.ToInteger]);
+      shader.SetUniformVec3('viewPos', camera.Position);
+      shader.SetUniformVec3('lightPos', lightPos);
+      shader.SetUniformInt('blinn', blinn.ToInteger);
 
       glBindVertexArray(planeVAO);
       glActiveTexture(GL_TEXTURE0);

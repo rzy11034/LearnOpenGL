@@ -238,7 +238,7 @@ begin
     //═════════════════════════════════════════════════════════════════════════
 
     screenShader.UseProgram;
-    screenShader.SetUniformInt('screenTexture', [0]);
+    screenShader.SetUniformInt('screenTexture', 0);
 
     //═════════════════════════════════════════════════════════════════════════
 

@@ -88,7 +88,10 @@ uses
   Case04_11_02_Anti_Aliasing_Offscreen,
   Case05_01_01_Advanced_Lighting,
   Case05_02_01_Gamma_Correction,
-  Case05_03_01_Shadow_Mapping_Depth;
+  Case05_03_01_01_Shadow_Mapping_Depth,
+  Case05_03_01_02_Shadow_Mapping_Base,
+  Case05_03_01_03_Shadow_Mapping,
+  Case05_03_02_01_Point_Shadows;
 
 begin
   try

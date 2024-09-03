@@ -183,8 +183,8 @@ begin
     specularMap := LoadTexture(specularTexture);
 
     lightingShader.UseProgram;
-    lightingShader.SetUniformInt('material.diffuse', [0]);
-    lightingShader.SetUniformInt('material.specular', [1]);
+    lightingShader.SetUniformInt('material.diffuse', 0);
+    lightingShader.SetUniformInt('material.specular', 1);
 
     // 渲染循环
     while not glfwWindowShouldClose(window).ToBoolean do
@@ -203,55 +203,55 @@ begin
 
       // 在设置uniforms/绘制对象时，请确保激活着色器
       lightingShader.UseProgram;
-      lightingShader.SetUniformFloat('viewPos', camera.Position);
-      lightingShader.SetUniformFloat('material.shininess', [32.0]);
+      lightingShader.SetUniformVec3('viewPos', camera.Position);
+      lightingShader.SetUniformFloat('material.shininess', 32.0);
 
       // 在这里，我们为我们拥有的 5/6 种类型的灯设置了所有制服。我们必须手动设置它们并编制索引
       // 数组中的正确 PointLight 结构，用于设置每个统一变量。这可以更直观地完成代码操作
       // 通过将光源类型定义为类并在其中设置其值，或使用更有效的统一方法
       // 通过使用“统一缓冲区对象”，但这是我们将在“高级 GLSL”教程中讨论的内容
       // directional light
-      lightingShader.SetUniformFloat('dirLight.direction', [-0.2, -1.0, -0.3]);
-      lightingShader.SetUniformFloat('dirLight.ambient', [0.05, 0.05, 0.05]);
-      lightingShader.SetUniformFloat('dirLight.diffuse', [0.4, 0.4, 0.4]);
-      lightingShader.SetUniformFloat('dirLight.specular', [0.5, 0.5, 0.5]);
+      lightingShader.SetUniformFloat('dirLight.direction', -0.2, -1.0, -0.3);
+      lightingShader.SetUniformFloat('dirLight.ambient', 0.05, 0.05, 0.05);
+      lightingShader.SetUniformFloat('dirLight.diffuse', 0.4, 0.4, 0.4);
+      lightingShader.SetUniformFloat('dirLight.specular', 0.5, 0.5, 0.5);
 
       // point light
       for i := 0 to 3 do
       begin
         uniformStr := UnicodeFormat('pointLights[%d].position', [i]);
-        lightingShader.SetUniformFloat(uniformStr, pointLightPositions[i]);
+        lightingShader.SetUniformVec3(uniformStr, pointLightPositions[i]);
 
         uniformStr := UnicodeFormat('pointLights[%d].ambient', [i]);
-        lightingShader.SetUniformFloat(uniformStr, [0.05, 0.05, 0.05]);
+        lightingShader.SetUniformFloat(uniformStr, 0.05, 0.05, 0.05);
 
         uniformStr := UnicodeFormat('pointLights[%d].diffuse', [i]);
-        lightingShader.SetUniformFloat(uniformStr, [0.8, 0.8, 0.8]);
+        lightingShader.SetUniformFloat(uniformStr, 0.8, 0.8, 0.8);
 
         uniformStr := UnicodeFormat('pointLights[%d].specular', [i]);
-        lightingShader.SetUniformFloat(uniformStr, [1.0, 1.0, 1.0]);
+        lightingShader.SetUniformFloat(uniformStr, 1.0, 1.0, 1.0);
 
         uniformStr := UnicodeFormat('pointLights[%d].constant', [i]);
-        lightingShader.SetUniformFloat(uniformStr, [1.0]);
+        lightingShader.SetUniformFloat(uniformStr, 1.0);
 
         uniformStr := UnicodeFormat('pointLights[%d].linear', [i]);
-        lightingShader.SetUniformFloat(uniformStr, [0.09]);
+        lightingShader.SetUniformFloat(uniformStr, 0.09);
 
         uniformStr := UnicodeFormat('pointLights[%d].quadratic', [i]);
-        lightingShader.SetUniformFloat(uniformStr, [0.032]);
+        lightingShader.SetUniformFloat(uniformStr, 0.032);
       end;
 
       // spotLight
-      lightingShader.SetUniformFloat('spotLight.position', camera.Position);
-      lightingShader.SetUniformFloat('spotLight.direction', camera.Front);
-      lightingShader.SetUniformFloat('spotLight.ambient', [0.0, 0.0, 0.0]);
-      lightingShader.SetUniformFloat('spotLight.diffuse', [1.0, 1.0, 1.0]);
-      lightingShader.SetUniformFloat('spotLight.specular', [1.0, 1.0, 1.0]);
-      lightingShader.SetUniformFloat('spotLight.constant', [1.0]);
-      lightingShader.SetUniformFloat('spotLight.linear', [0.09]);
-      lightingShader.SetUniformFloat('spotLight.quadratic', [0.032]);
-      lightingShader.SetUniformFloat('spotLight.cutOff', [Cos(TGLM.Radians(12.5))]);
-      lightingShader.SetUniformFloat('spotLight.outerCutOff', [Cos(TGLM.Radians(15.0))]);
+      lightingShader.SetUniformVec3('spotLight.position', camera.Position);
+      lightingShader.SetUniformVec3('spotLight.direction', camera.Front);
+      lightingShader.SetUniformFloat('spotLight.ambient', 0.0, 0.0, 0.0);
+      lightingShader.SetUniformFloat('spotLight.diffuse', 1.0, 1.0, 1.0);
+      lightingShader.SetUniformFloat('spotLight.specular', 1.0, 1.0, 1.0);
+      lightingShader.SetUniformFloat('spotLight.constant', 1.0);
+      lightingShader.SetUniformFloat('spotLight.linear', 0.09);
+      lightingShader.SetUniformFloat('spotLight.quadratic', 0.032);
+      lightingShader.SetUniformFloat('spotLight.cutOff', Cos(TGLM.Radians(12.5)));
+      lightingShader.SetUniformFloat('spotLight.outerCutOff', Cos(TGLM.Radians(15.0)));
 
       // 视图/投影转换
       projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);

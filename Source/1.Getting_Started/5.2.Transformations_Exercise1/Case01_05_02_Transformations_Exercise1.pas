@@ -178,8 +178,8 @@ begin
     end;
 
     shader.UseProgram;
-    shader.SetUniformInt('texture1', [0]);
-    shader.SetUniformInt('texture2', [1]);
+    shader.SetUniformInt('texture1', 0);
+    shader.SetUniformInt('texture2', 1);
 
     // 取消此调用的注释以绘制线框多边形。
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);

@@ -1,7 +1,11 @@
-﻿unit Case05_03_01_Shadow_Mapping_Depth;
+﻿unit Case05_03_01_01_Shadow_Mapping_Depth;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
+{$ModeSwitch advancedrecords}
+{$ModeSwitch implicitfunctionspecialization}
+{$ModeSwitch anonymousfunctions}
+{$ModeSwitch functionreferences}
 
 interface
 
@@ -67,11 +71,11 @@ var
 
 procedure Main;
 const
-  dir_path = '..\Source\5.Advanced_Lighting\3.1.Shadow_Mapping_Depth\';
-  debug_quad_vs = dir_path + '3.1.debug_quad.vs';
-  debug_quad_depth_fs = dir_path + '3.1.debug_quad_depth.fs';
-  shadow_mapping_depth_vs = dir_path + '3.1.shadow_mapping_depth.vs';
-  shadow_mapping_depth_fs = dir_path + '3.1.shadow_mapping_depth.fs';
+  dir_path = '..\Source\5.Advanced_Lighting\3.1.1.Shadow_Mapping_Depth\';
+  debug_quad_vs = dir_path + '3.1.1.debug_quad.vs';
+  debug_quad_depth_fs = dir_path + '3.1.1.debug_quad_depth.fs';
+  shadow_mapping_depth_vs = dir_path + '3.1.1.shadow_mapping_depth.vs';
+  shadow_mapping_depth_fs = dir_path + '3.1.1.shadow_mapping_depth.fs';
   img_wood = '..\Resources\textures\wood.png';
 var
   window: PGLFWwindow;
@@ -83,7 +87,9 @@ var
   simpleDepthShader, debugDepthQuad: TShaderProgram;
   lightPos: TVec3;
   far_plane, near_plane: float;
-  {%H-}simpleDepthShader_managed, {%H-}debugDepthQuad_managed, {%H-}camera__managed: IInterface;
+  {%H-}simpleDepthShader_managed: IInterface;
+  {%H-}debugDepthQuad_managed: IInterface;
+  {%H-}camera__managed: IInterface;
 begin
   window := InitWindows;
   if window = nil then
@@ -172,7 +178,7 @@ begin
 
   // shader configuration
   debugDepthQuad.UseProgram;
-  debugDepthQuad.SetUniformInt('depthMap', [0]);
+  debugDepthQuad.SetUniformInt('depthMap', 0);
 
   //═════════════════════════════════════════════════════════════════════════
 
@@ -221,8 +227,8 @@ begin
 
     // 渲染深度图到 quad 进行可视化调试
     debugDepthQuad.UseProgram;
-    debugDepthQuad.SetUniformFloat('near_plane', [near_plane]);
-    debugDepthQuad.SetUniformFloat('far_plane', [far_plane]);
+    debugDepthQuad.SetUniformFloat('near_plane', near_plane);
+    debugDepthQuad.SetUniformFloat('far_plane', far_plane);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, depthMap);
     RenderQuad;
@@ -410,7 +416,8 @@ begin
        1.0,  1.0, -1.0,  0.0,  1.0,  0.0, 1.0, 1.0, // top-right
        1.0,  1.0,  1.0,  0.0,  1.0,  0.0, 1.0, 0.0, // bottom-right
       -1.0,  1.0, -1.0,  0.0,  1.0,  0.0, 0.0, 1.0, // top-left
-      -1.0,  1.0,  1.0,  0.0,  1.0,  0.0, 0.0, 0.0]);// bottom-left
+      -1.0,  1.0,  1.0,  0.0,  1.0,  0.0, 0.0, 0.0  // bottom-left
+     ]);
 
     glGenVertexArrays(1, @cubeVAO);
     glGenBuffers(1, @cubeVBO);

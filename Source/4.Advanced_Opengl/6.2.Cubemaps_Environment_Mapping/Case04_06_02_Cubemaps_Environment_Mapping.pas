@@ -232,11 +232,11 @@ begin
     // shader configuration
     shader.LoadShaderFile(vs, fs);
     shader.UseProgram;
-    shader.SetUniformInt('skybox', [0]);
+    shader.SetUniformInt('skybox', 0);
 
     skyboxShader.LoadShaderFile(skybox_vs, skybox_fs);
     skyboxShader.UseProgram;
-    skyboxShader.SetUniformInt('skybox', [0]);
+    skyboxShader.SetUniformInt('skybox', 0);
 
     //═════════════════════════════════════════════════════════════════════════
 
@@ -263,7 +263,7 @@ begin
       shader.SetUniformMatrix4fv('model', model);
       shader.SetUniformMatrix4fv('view', view);
       shader.SetUniformMatrix4fv('projection', projection);
-      shader.SetUniformFloat('cameraPos', camera.Position);
+      shader.SetUniformVec3('cameraPos', camera.Position);
 
       // cubes
       glBindVertexArray(cubeVAO);

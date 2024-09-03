@@ -246,11 +246,11 @@ begin
     // shader configuration
     shader.LoadShaderFile(vs, fs);
     shader.UseProgram;
-    shader.SetUniformInt('texture1', [0]);
+    shader.SetUniformInt('texture1', 0);
 
     shaderScreen.LoadShaderFile(screen_vs, screen_fs);
     shaderScreen.UseProgram;
-    shaderScreen.SetUniformInt('screenTexture', [0]);
+    shaderScreen.SetUniformInt('screenTexture', 0);
 
     //═════════════════════════════════════════════════════════════════════════
 

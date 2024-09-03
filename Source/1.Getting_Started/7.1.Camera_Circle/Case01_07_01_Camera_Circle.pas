@@ -220,8 +220,8 @@ begin
     end;
 
     shader.UseProgram;
-    shader.SetUniformInt('texture1', [0]);
-    shader.SetUniformInt('texture2', [1]);
+    shader.SetUniformInt('texture1', 0);
+    shader.SetUniformInt('texture2', 1);
 
     projection := TGLM.Mat4_Identity;
     projection := TGLM.Perspective(TGLM.Radians(45), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);

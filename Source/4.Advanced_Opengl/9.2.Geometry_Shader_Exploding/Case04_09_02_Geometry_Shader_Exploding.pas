@@ -122,7 +122,7 @@ begin
       shader.SetUniformMatrix4fv('model', model);
 
       // 将时间组件以统一的形式添加到几何着色器中
-      shader.SetUniformFloat('time', [glfwGetTime()]);
+      shader.SetUniformFloat('time', glfwGetTime());
 
       // draw model
       nanosuit.Draw(shader);

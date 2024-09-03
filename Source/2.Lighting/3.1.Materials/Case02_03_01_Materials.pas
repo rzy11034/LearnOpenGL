@@ -168,8 +168,8 @@ begin
 
       // 在设置uniforms/绘制对象时，请确保激活着色器
       lightingShader.UseProgram;
-      lightingShader.SetUniformFloat('light.position', lightPos);
-      lightingShader.SetUniformFloat('viewPos', camera.Position);
+      lightingShader.SetUniformVec3('light.position', lightPos);
+      lightingShader.SetUniformVec3('viewPos', camera.Position);
 
       // light properties
       lightColor := TGLM.Vec3(0);
@@ -178,15 +178,15 @@ begin
       lightColor.z := sin(glfwGetTime * 1.3);
       diffuseColor := lightColor * TGLM.Vec3(0.5); // 减少影响
       ambientColor := diffuseColor * TGLM.Vec3(0.2); // 极低辐照度反应
-      lightingShader.SetUniformFloat('light.ambient', ambientColor);
-      lightingShader.SetUniformFloat('light.diffuse', diffuseColor);
-      lightingShader.SetUniformFloat('light.specular', [1.0, 1.0, 1.0]);
+      lightingShader.SetUniformVec3('light.ambient', ambientColor);
+      lightingShader.SetUniformVec3('light.diffuse', diffuseColor);
+      lightingShader.SetUniformFloat('light.specular', 1.0, 1.0, 1.0);
 
       // material properties
-      lightingShader.SetUniformFloat('material.ambient', [1.0, 0.5, 0.31]);
-      lightingShader.SetUniformFloat('material.duffuse', [1.0, 0.5, 0.31]);
-      lightingShader.SetUniformFloat('material.specular', [0.5, 0.5, 0.5]); // specular lighting doesn't have full effect on this object's material
-      lightingShader.SetUniformFloat('material.shininess', [32.0]);
+      lightingShader.SetUniformFloat('material.ambient', 1.0, 0.5, 0.31);
+      lightingShader.SetUniformFloat('material.duffuse', 1.0, 0.5, 0.31);
+      lightingShader.SetUniformFloat('material.specular', 0.5, 0.5, 0.5); // specular lighting doesn't have full effect on this object's material
+      lightingShader.SetUniformFloat('material.shininess', 32.0);
 
       // 视图/投影转换
       projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);

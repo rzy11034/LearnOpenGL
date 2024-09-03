@@ -132,7 +132,7 @@ begin
 
       //// 激活这个程序对象
       shader.UseProgram;
-      shader.SetUniformFloat('xOffset', [0.5]);
+      shader.SetUniformFloat('xOffset', 0.5);
       // 画出第一个三角形
       glBindVertexArray(VAO);
       glDrawArrays(GL_TRIANGLES, 0, 3);

@@ -216,7 +216,7 @@ begin
 
       // draw meteorites
       asteroidShader.UseProgram;
-      asteroidShader.SetUniformInt('texture_diffuse1', [0]);
+      asteroidShader.SetUniformInt('texture_diffuse1', 0);
       glActiveTexture(GL_TEXTURE0);
       glBindTexture(GL_TEXTURE_2D, rock.textures_loaded[0].ID);
 

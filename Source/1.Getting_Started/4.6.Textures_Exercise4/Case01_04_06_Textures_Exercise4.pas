@@ -187,9 +187,9 @@ begin
     end;
 
     shader.UseProgram;
-    shader.SetUniformInt('texture1', [0]);
-    shader.SetUniformInt('texture2', [1]);
-    shader.SetUniformFloat('mixValue', [mixValue]);
+    shader.SetUniformInt('texture1', 0);
+    shader.SetUniformInt('texture2', 1);
+    shader.SetUniformFloat('mixValue', mixValue);
 
     // 取消此调用的注释以绘制线框多边形。
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -211,7 +211,7 @@ begin
 
       // 激活这个程序对象
       shader.UseProgram;
-      shader.SetUniformFloat('mixValue', [mixValue]);
+      shader.SetUniformFloat('mixValue', mixValue);
 
       // 画出第一个三角形
       glBindVertexArray(VAO);

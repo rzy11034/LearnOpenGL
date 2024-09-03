@@ -167,16 +167,16 @@ begin
 
       // 在设置uniforms/绘制对象时，请确保激活着色器
       lightingShader.UseProgram;
-      lightingShader.SetUniformFloat('objectColor', [1.0, 0.5, 0.31]);
-      lightingShader.SetUniformFloat('lightColor',  [1.0, 1.0, 1.0]);
+      lightingShader.SetUniformFloat('objectColor', 1.0, 0.5, 0.31);
+      lightingShader.SetUniformFloat('lightColor',  1.0, 1.0, 1.0);
 
       // 随时间改变光源的位置值（实际上可以在渲染循环的任何地方完成，
       // 但至少在使用光源位置之前尝试这样做
       lightPos.x := 1 + sin(glfwGetTime) * 2;
       lightPos.y := sin(glfwGetTime / 2);
 
-      lightingShader.SetUniformFloat('lightPos', lightPos);
-      lightingShader.SetUniformFloat('viewPos', camera.Position);
+      lightingShader.SetUniformVec3('lightPos', lightPos);
+      lightingShader.SetUniformVec3('viewPos', camera.Position);
 
       // 视图/投影转换
       projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
