@@ -41,7 +41,6 @@ function LoadTexture(fileName: string; inverse: boolean = true): cardinal; forwa
 
 procedure RenderScene(const shader: TShaderProgram); forward;
 procedure RenderCube; forward;
-procedure RenderQuad; forward;
 
 const
   SCR_WIDTH = 800;
@@ -67,7 +66,7 @@ var
   quadVAO: GLuint = 0;
   quadVBO: GLuint = 0;
 
-  shadows: Boolean = true;
+  shadows: Boolean = false;
   shadowsKeyPressed: Boolean = false;
 
   planeVAO, planeVBO: GLuint;
@@ -84,15 +83,16 @@ const
 var
   window: PGLFWwindow;
   currentFrame: GLfloat;
-  planeVertices: TArr_GLfloat;
   cubeVAO, cubeVBO: GLuint;
-  lightProjection, lightView, lightSpaceMatrix, projection, view, shadowProj: TMat4;
+  projection, view, shadowProj: TMat4;
   woodTexture, depthMapFBO, depthMap, depthCubemap: Cardinal;
-  simpleDepthShader, debugDepthQuad, shader: TShaderProgram;
+  simpleDepthShader, shader: TShaderProgram;
   lightPos, center, up: TVec3;
   far_plane, near_plane: float;
   shader_managed, simpleDepthShader_managed, camera_managed, shadowTransforms_managed: IInterface;
   shadowTransforms: TArrayList_TMat4;
+  i: Integer;
+  indexStr: string;
 begin
   window := InitWindows;
   if window = nil then
@@ -103,60 +103,30 @@ begin
 
   //═════════════════════════════════════════════════════════════════════════
 
+  // configure global opengl state
    glEnable(GL_DEPTH_TEST);
+   glEnable(GL_CULL_FACE);
 
   //═════════════════════════════════════════════════════════════════════════
 
-  shader_managed := IInterface(TShaderProgram.Create());
+  shader_managed := IInterface(TShaderProgram.Create);
   shader := shader_managed as TShaderProgram;
   shader.LoadShaderFile(point_shadows_vs, point_shadows_fs);
 
-  simpleDepthShader_managed := IInterface(TShaderProgram.Create());
+  simpleDepthShader_managed := IInterface(TShaderProgram.Create);
   simpleDepthShader := simpleDepthShader_managed as TShaderProgram;
-  simpleDepthShader.LoadShaderFile(
-                                  point_shadows_depth_vs,
-                                  point_shadows_depth_fs,
-                                  point_shadows_depth_gs
-                                  );
+  simpleDepthShader.LoadShaderFile(point_shadows_depth_vs, point_shadows_depth_fs,
+    point_shadows_depth_gs);
 
   camera_managed := IInterface(TCamera.Create(TGLM.Vec3(0, 0, 3)));
   camera := camera_managed as TCamera;
 
   //═════════════════════════════════════════════════════════════════════════
 
-  planeVertices := TArr_GLfloat([
-    // positions         // normals      // texcoords
-     25.0, -0.5,  25.0,  0.0, 1.0, 0.0,  25.0,  0.0,
-    -25.0, -0.5,  25.0,  0.0, 1.0, 0.0,   0.0,  0.0,
-    -25.0, -0.5, -25.0,  0.0, 1.0, 0.0,   0.0, 25.0,
-
-     25.0, -0.5,  25.0,  0.0, 1.0, 0.0,  25.0,  0.0,
-    -25.0, -0.5, -25.0,  0.0, 1.0, 0.0,   0.0, 25.0,
-     25.0, -0.5, -25.0,  0.0, 1.0, 0.0,  25.0, 25.0]);
-
-  planeVAO := GLuint(0);
-  planeVBO := GLuint(0);
-
-  glGenVertexArrays(1, @planeVAO);
-  glGenBuffers(1, @planeVBO);
-  glBindVertexArray(planeVAO);
-  glBindBuffer(GL_ARRAY_BUFFER, planeVBO);
-  glBufferData(GL_ARRAY_BUFFER, planeVertices.MemSize, @planeVertices[0], GL_STATIC_DRAW);
-  glEnableVertexAttribArray(0);
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(0));
-  glEnableVertexAttribArray(1);
-  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(3 * SIZE_OF_F));
-  glEnableVertexAttribArray(2);
-  glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(6 * SIZE_OF_F));
-  glBindVertexArray(0);
-
-  //═════════════════════════════════════════════════════════════════════════
-
   // load textures
   woodTexture := LoadTexture(img_wood);
 
-  //═════════════════════════════════════════════════════════════════════════
-
+  //(*═══════════════════════════════════════════════════════════════════════
   // configure depth map FBO
   depthMapFBO := cardinal(0);
   glGenFramebuffers(1, @depthMapFBO);
@@ -189,7 +159,7 @@ begin
   glReadBuffer(GL_NONE);
   glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-  //═════════════════════════════════════════════════════════════════════════
+  //═══════════════════════════════════════════════════════════════════════*)
 
   // shader configuration
   shader.UseProgram;
@@ -215,7 +185,7 @@ begin
     ProcessInput(window);
 
     // move light position over time
-    lightPos.z := Sin(glfwGetTime() * 0.5) * 3.0;
+    lightPos.z := Sin(glfwGetTime * 0.5) * 3.0;
 
     // render
     glClearColor(0.1, 0.1, 0.1, 1.0);
@@ -260,9 +230,11 @@ begin
     glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
         glClear(GL_DEPTH_BUFFER_BIT);
         simpleDepthShader.UseProgram;
-        for i = 0 to 5 do
+        for i := 0 to 5 do
         begin
-          simpleDepthShader.SetUniformMatrix4fv('shadowMatrices[' + IntToStr(i) + ']',
+          indexStr := string(i.ToString);
+
+          simpleDepthShader.SetUniformMatrix4fv('shadowMatrices[' + indexStr + ']',
             shadowTransforms[i]);
         end;
         simpleDepthShader.SetUniformFloat('far_plane', far_plane);
@@ -273,23 +245,27 @@ begin
     // 2. 正常渲染场景
     glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
     glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
+
     shader.UseProgram;
-    projection = TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100.0);
-    view = camera.GetViewMatrix;
+
+    projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100.0);
+    view := camera.GetViewMatrix;
     shader.SetUniformMatrix4fv('projection', projection);
     shader.SetUniformMatrix4fv('view', view);
 
     // set lighting uniforms
-    shader.SetUniformVec3("lightPos", lightPos);
-    shader.SetUniformVec3("viewPos", camera.Position);
+    shader.SetUniformVec3('lightPos', lightPos);
+    shader.SetUniformVec3('viewPos', camera.Position);
+
     //按空格键启用/禁用阴影
-    shader.SetUniformInt('shadows', shadows);
-    shader.setFloat('far_plane', far_plane);
+    shader.SetUniformInt('shadows', shadows.ToInteger);
+    shader.SetUniformFloat('far_plane', far_plane);
+
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, woodTexture);
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_CUBE_MAP, depthCubemap);
-    renderScene(shader);
+    RenderScene(shader);
 
     //═════════════════════════════════════════════════════════════════════════
 
@@ -398,7 +374,50 @@ procedure RenderScene(const shader: TShaderProgram);
 var
   model: TMat4;
 begin
+  // room cube
+  model := TGLM.Mat4(1.0);
+  model := TGLM.Scale(model, TGLM.Vec3(5.0));
+  shader.SetUniformMatrix4fv('model', model);
+  // 注意，我们在这里禁用了剔除，因为我们渲染立方体的“内部”而不是通常的“外部”，
+  // 这会抛出正常的剔除方法。
+  glDisable(GL_CULL_FACE);
+  // 当从内部绘制立方体时，一个小技巧来反转法线，这样照明仍然可以工作。
+  shader.SetUniformInt('reverse_normals', 1);
+  RenderCube;
+  shader.SetUniformInt('reverse_normals', 0);
+  glEnable(GL_CULL_FACE);
 
+  // cubes
+  model := TGLM.Mat4(1.0);
+  model := TGLM.Translate(model, TGLM.Vec3(4.0, -3.5, 0.0));
+  model := TGLM.Scale(model, TGLM.Vec3(0.5));
+  shader.SetUniformMatrix4fv('model', model);
+  RenderCube;
+
+  model := TGLM.Mat4(1.0);
+  model := TGLM.Translate(model, TGLM.Vec3(2.0, 3.0, 1.0));
+  model := TGLM.Scale(model, TGLM.Vec3(0.75));
+  shader.SetUniformMatrix4fv('model', model);
+  RenderCube;
+
+  model := TGLM.Mat4(1.0);
+  model := TGLM.Translate(model, TGLM.Vec3(-3.0, -1.0, 0.0));
+  model := TGLM.Scale(model, TGLM.Vec3(0.5));
+  shader.SetUniformMatrix4fv('model', model);
+  RenderCube;
+
+  model := TGLM.Mat4(1.0);
+  model := TGLM.Translate(model, TGLM.Vec3(-1.5, 1.0, 1.5));
+  model := TGLM.Scale(model, TGLM.Vec3(0.5));
+  shader.SetUniformMatrix4fv('model', model);
+  RenderCube;
+
+  model := TGLM.Mat4(1.0);
+  model := TGLM.Translate(model, TGLM.Vec3(-1.5, 2.0, -3.0));
+  model := TGLM.Rotate(model, TGLM.Radians(60), TGLM.Normalize(TGLM.Vec3(1.0, 0.0, 1.0)));
+  model := TGLM.Scale(model, TGLM.Vec3(0.75));
+  shader.SetUniformMatrix4fv('model', model);
+  RenderCube;
 end;
 
 procedure RenderCube;
@@ -408,6 +427,7 @@ begin
   if cubeVAO = 0 then
   begin
     vertices := TArr_GLfloat([
+      // back face
       -1.0, -1.0, -1.0,  0.0,  0.0, -1.0, 0.0, 0.0, // bottom-left
        1.0,  1.0, -1.0,  0.0,  0.0, -1.0, 1.0, 1.0, // top-right
        1.0, -1.0, -1.0,  0.0,  0.0, -1.0, 1.0, 0.0, // bottom-right
@@ -476,36 +496,6 @@ begin
   glBindVertexArray(0);
 end;
 
-procedure RenderQuad;
-var
-  quadVertices: TArr_GLfloat;
-begin
-  if quadVAO = 0 then
-  begin
-    quadVertices := TArr_GLfloat([
-      // positions        // texture Coords
-      -1.0,  1.0, 0.0,    0.0, 1.0,
-      -1.0, -1.0, 0.0,    0.0, 0.0,
-       1.0,  1.0, 0.0,    1.0, 1.0,
-       1.0, -1.0, 0.0,    1.0, 0.0]);
-
-    // setup plane VAO
-    glGenVertexArrays(1, @quadVAO);
-    glGenBuffers(1, @quadVBO);
-    glBindVertexArray(quadVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
-    glBufferData(GL_ARRAY_BUFFER, quadVertices.MemSize, @quadVertices[0], GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(0));
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * SIZE_OF_F, Pointer(3 * SIZE_OF_F));
-  end;
-
-    glBindVertexArray(quadVAO);
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-    glBindVertexArray(0);
-end;
-
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl;
 begin
   //确保视口匹配新的窗口尺寸;注意宽度和
@@ -527,7 +517,7 @@ begin
   if (glfwGetKey(window, GLFW_KEY_D) = GLFW_PRESS) then
     camera.ProcessKeyboard(TCamera_Movement.RIGHT, deltaTime);
 
-  if (glfwGetKey(window, GLFW_KEY_SPACE) = GLFW_PRESS) and (not shadowsKeyPressed then
+  if (glfwGetKey(window, GLFW_KEY_SPACE) = GLFW_PRESS) and (not shadowsKeyPressed) then
   begin
     shadows := not shadows;
     shadowsKeyPressed := true;

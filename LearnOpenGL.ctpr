@@ -1302,6 +1302,61 @@
         <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="Source\5.Advanced_Lighting\3.1.3.Shadow_Mapping\3.1.3.debug_quad.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\5.Advanced_Lighting\3.1.3.Shadow_Mapping\3.1.3.debug_quad_depth.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\5.Advanced_Lighting\3.1.3.Shadow_Mapping\3.1.3.shadow_mapping.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\5.Advanced_Lighting\3.1.3.Shadow_Mapping\3.1.3.shadow_mapping.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\5.Advanced_Lighting\3.1.3.Shadow_Mapping\3.1.3.shadow_mapping_depth.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\5.Advanced_Lighting\3.1.3.Shadow_Mapping\3.1.3.shadow_mapping_depth.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\3.2.1.point_shadows.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\3.2.1.point_shadows.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\3.2.1.point_shadows_depth.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\3.2.1.point_shadows_depth.gs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\3.2.1.point_shadows_depth.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

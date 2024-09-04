@@ -20,8 +20,7 @@ uses
   {%H-}DeepStar.OpenGL.Shader,
   {%H-}DeepStar.OpenGL.Texture,
   {%H-}DeepStar.OpenGL.Mesh,
-  {%H-}DeepStar.OpenGL.Model,
-  DeepStar.DSA.Linear.ArrayList;
+  {%H-}DeepStar.OpenGL.Model;
 
 procedure Run();
 
@@ -32,9 +31,6 @@ uses
 
 procedure Test;
 begin
- shadowTransforms_managed := IInterface(specialize TArrayList<TMat4>.Create);
- shadowTransforms := shadowTransforms_managed as specialize TArrayList<TMat4>;
-
   Exit;
 end;
 
