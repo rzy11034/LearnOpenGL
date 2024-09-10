@@ -27,7 +27,7 @@ procedure Run();
 implementation
 
 uses
-  Case05_03_01_03_Shadow_Mapping;
+  Case05_03_02_02_Point_Shadows_Soft;
 
 procedure Test;
 begin

@@ -91,7 +91,8 @@ uses
   Case05_03_01_01_Shadow_Mapping_Depth,
   Case05_03_01_02_Shadow_Mapping_Base,
   Case05_03_01_03_Shadow_Mapping,
-  Case05_03_02_01_Point_Shadows;
+  Case05_03_02_01_Point_Shadows,
+  Case05_03_02_02_Point_Shadows_Soft, Case05_03_03.CSM;
 
 begin
   try

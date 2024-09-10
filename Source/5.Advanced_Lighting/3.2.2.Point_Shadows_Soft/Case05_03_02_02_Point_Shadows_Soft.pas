@@ -1,4 +1,4 @@
-﻿unit Case05_03_02_01_Point_Shadows;
+﻿unit Case05_03_02_02_Point_Shadows_Soft;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -73,12 +73,12 @@ var
 
 procedure Main;
 const
-  dir_path = '..\Source\5.Advanced_Lighting\3.2.1.Point_Shadows\';
-  point_shadows_vs = dir_path + '3.2.1.point_shadows.vs';
-  point_shadows_fs = dir_path + '3.2.1.point_shadows.fs';
-  point_shadows_depth_vs = dir_path + '3.2.1.point_shadows_depth.vs';
-  point_shadows_depth_fs = dir_path + '3.2.1.point_shadows_depth.fs';
-  point_shadows_depth_gs = dir_path + '3.2.1.point_shadows_depth.gs';
+  dir_path = '..\Source\5.Advanced_Lighting\3.2.2.Point_Shadows_Soft\';
+  point_shadows_vs = dir_path + '3.2.2.point_shadows.vs';
+  point_shadows_fs = dir_path + '3.2.2.point_shadows.fs';
+  point_shadows_depth_vs = dir_path + '3.2.2.point_shadows_depth.vs';
+  point_shadows_depth_fs = dir_path + '3.2.2.point_shadows_depth.fs';
+  point_shadows_depth_gs = dir_path + '3.2.2.point_shadows_depth.gs';
   img_wood = '..\Resources\textures\wood.png';
 var
   window: PGLFWwindow;
