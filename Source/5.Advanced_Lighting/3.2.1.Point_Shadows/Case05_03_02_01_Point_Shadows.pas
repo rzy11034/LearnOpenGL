@@ -84,8 +84,8 @@ var
   window: PGLFWwindow;
   currentFrame: GLfloat;
   cubeVAO, cubeVBO: GLuint;
-  projection, view, shadowProj: TMat4;
-  woodTexture, depthMapFBO, depthMap, depthCubemap: Cardinal;
+  projection, view, shadowProj, tempMat4: TMat4;
+  woodTexture, depthMapFBO, depthCubeMap: Cardinal;
   simpleDepthShader, shader: TShaderProgram;
   lightPos, center, up: TVec3;
   far_plane, near_plane: float;
@@ -128,17 +128,13 @@ begin
 
   //(*═══════════════════════════════════════════════════════════════════════
   // configure depth map FBO
-  depthMapFBO := cardinal(0);
+  depthMapFBO := Cardinal(0);
   glGenFramebuffers(1, @depthMapFBO);
 
-  // create depth texture
-  depthMap := cardinal(0);
-  glGenTextures(1, @depthMap);
-
   // create depth cubemap texture
-  depthCubemap := Cardinal(0);
-  glGenTextures(1, @depthCubemap);
-  glBindTexture(GL_TEXTURE_CUBE_MAP, depthCubemap);
+  depthCubeMap := Cardinal(0);
+  glGenTextures(1, @depthCubeMap);
+  glBindTexture(GL_TEXTURE_CUBE_MAP, depthCubeMap);
 
   for i := 0 to 5 do
   begin
@@ -154,7 +150,7 @@ begin
 
   // attach depth texture as FBO's depth buffer
   glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
-  glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap, 0);
+  glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthCubeMap, 0);
   glDrawBuffer(GL_NONE);
   glReadBuffer(GL_NONE);
   glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -225,6 +221,8 @@ begin
     up := TGLM.Vec3(0.0, -1.0,  0.0);
     shadowTransforms.AddLast(shadowProj * TGLM.LookAt(lightPos, center, up));
 
+    //═════════════════════════════════════════════════════════════════════════
+
     // 1. 渲染场景到深度立方体贴图
     glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
     glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
@@ -232,10 +230,9 @@ begin
         simpleDepthShader.UseProgram;
         for i := 0 to 5 do
         begin
-          indexStr := string(i.ToString);
-
-          simpleDepthShader.SetUniformMatrix4fv('shadowMatrices[' + indexStr + ']',
-            shadowTransforms[i]);
+          indexStr := 'shadowMatrices[' + i.ToString + ']';
+          tempMat4 := shadowTransforms[i];
+          simpleDepthShader.SetUniformMatrix4fv(indexStr, tempMat4);
         end;
         simpleDepthShader.SetUniformFloat('far_plane', far_plane);
         simpleDepthShader.SetUniformVec3('lightPos', lightPos);
@@ -256,15 +253,13 @@ begin
     // set lighting uniforms
     shader.SetUniformVec3('lightPos', lightPos);
     shader.SetUniformVec3('viewPos', camera.Position);
-
-    //按空格键启用/禁用阴影
-    shader.SetUniformInt('shadows', shadows.ToInteger);
+    shader.SetUniformInt('shadows', shadows.ToInteger); //按空格键启用/禁用阴影
     shader.SetUniformFloat('far_plane', far_plane);
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, woodTexture);
     glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_CUBE_MAP, depthCubemap);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, depthCubeMap);
     RenderScene(shader);
 
     //═════════════════════════════════════════════════════════════════════════
@@ -285,7 +280,7 @@ begin
 
   glDeleteFramebuffers(1, @depthMapFBO);
 
-  glDeleteTextures(1, @depthMap);
+  glDeleteTextures(1, @depthCubeMap);
   glDeleteTextures(1, @woodTexture);
 
   // 释放 / 删除之前的分配的所有资源

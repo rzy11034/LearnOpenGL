@@ -27,7 +27,7 @@ procedure Run();
 implementation
 
 uses
-  Case05_03_02_01_Point_Shadows;
+  Case05_03_01_03_Shadow_Mapping;
 
 procedure Test;
 begin
@@ -38,7 +38,7 @@ procedure Run();
 begin
   //Test;
   //WriteLn(END_OF_PROGRAM_CH);
-  //ReadLn
+  //ReadLn;
   Main;
 end;
 

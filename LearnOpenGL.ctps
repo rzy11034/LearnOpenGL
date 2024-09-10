@@ -11,7 +11,7 @@
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="74"/>
-        <CursorPos X="25" Y="93"/>
+        <CursorPos X="29" Y="92"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
@@ -31,8 +31,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="19"/>
-        <CursorPos X="16" Y="32"/>
+        <TopLine Value="28"/>
+        <CursorPos X="38" Y="41"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
@@ -1758,7 +1758,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="163"/>
         <CursorPos X="39" Y="183"/>
-        <UsageCount Value="190"/>
+        <UsageCount Value="198"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\1.1.Depth_Testing\1.1.depth_testing.fs"/>
@@ -1767,7 +1767,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="190"/>
+        <UsageCount Value="198"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1777,7 +1777,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="190"/>
+        <UsageCount Value="198"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1787,7 +1787,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="166"/>
         <CursorPos X="39" Y="185"/>
-        <UsageCount Value="182"/>
+        <UsageCount Value="190"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\1.2.Depth_Testing_View\1.2.depth_testing.fs"/>
@@ -1796,7 +1796,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="45" Y="16"/>
-        <UsageCount Value="181"/>
+        <UsageCount Value="189"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1805,7 +1805,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="181"/>
+        <UsageCount Value="189"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1815,7 +1815,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="172"/>
         <CursorPos X="39" Y="191"/>
-        <UsageCount Value="180"/>
+        <UsageCount Value="188"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\2.1.Stencil_Testing\2.stencil_single_color.fs"/>
@@ -1823,7 +1823,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="180"/>
+        <UsageCount Value="188"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1832,7 +1832,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="180"/>
+        <UsageCount Value="188"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1842,7 +1842,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="94" Y="11"/>
-        <UsageCount Value="180"/>
+        <UsageCount Value="188"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1853,7 +1853,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="175"/>
+        <UsageCount Value="183"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1864,7 +1864,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="175"/>
+        <UsageCount Value="183"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1874,7 +1874,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="237"/>
         <CursorPos X="39" Y="256"/>
-        <UsageCount Value="174"/>
+        <UsageCount Value="182"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\3.1.Blending_Discard\3.1.blending.fs"/>
@@ -1883,7 +1883,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="41" Y="14"/>
-        <UsageCount Value="174"/>
+        <UsageCount Value="182"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1892,7 +1892,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="174"/>
+        <UsageCount Value="182"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1902,7 +1902,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="226"/>
         <CursorPos X="39" Y="246"/>
-        <UsageCount Value="162"/>
+        <UsageCount Value="170"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\3.2.Blending_Sort\3.2.blending.fs"/>
@@ -1911,7 +1911,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="19" Y="11"/>
-        <UsageCount Value="161"/>
+        <UsageCount Value="169"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1922,7 +1922,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="161"/>
+        <UsageCount Value="169"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1932,7 +1932,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="226"/>
         <CursorPos X="39" Y="246"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="162"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\5.1.Framebuffers\Case04_05_01_Framebuffers.pas"/>
@@ -1941,7 +1941,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="229"/>
         <CursorPos X="50" Y="253"/>
-        <UsageCount Value="149"/>
+        <UsageCount Value="157"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\5.1.Framebuffers\5.1.framebuffers.fs"/>
@@ -1950,7 +1950,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="20" Y="11"/>
-        <UsageCount Value="149"/>
+        <UsageCount Value="157"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1961,7 +1961,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="149"/>
+        <UsageCount Value="157"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1972,7 +1972,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="122"/>
         <CursorPos X="53" Y="127"/>
-        <UsageCount Value="149"/>
+        <UsageCount Value="157"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1982,7 +1982,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="37" Y="3"/>
-        <UsageCount Value="149"/>
+        <UsageCount Value="157"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -1993,7 +1993,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="148"/>
+        <UsageCount Value="156"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2004,7 +2004,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="148"/>
+        <UsageCount Value="156"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2014,7 +2014,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="229"/>
         <CursorPos X="50" Y="253"/>
-        <UsageCount Value="135"/>
+        <UsageCount Value="143"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\5.2.Framebuffers_Exercise1\5.2.framebuffers.fs"/>
@@ -2023,7 +2023,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="67" Y="11"/>
-        <UsageCount Value="135"/>
+        <UsageCount Value="143"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2033,7 +2033,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="23" Y="15"/>
-        <UsageCount Value="135"/>
+        <UsageCount Value="143"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2042,7 +2042,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="135"/>
+        <UsageCount Value="143"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2051,7 +2051,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="135"/>
+        <UsageCount Value="143"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2061,7 +2061,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="216"/>
         <CursorPos X="43" Y="239"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="141"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\6.1.Cubemaps_Skybox\6.1.cubemaps.fs"/>
@@ -2069,7 +2069,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="141"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2080,7 +2080,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="141"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2091,7 +2091,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="141"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2102,7 +2102,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="133"/>
+        <UsageCount Value="141"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2112,7 +2112,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="216"/>
         <CursorPos X="43" Y="239"/>
-        <UsageCount Value="121"/>
+        <UsageCount Value="129"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\6.2.Cubemaps_Environment_Mapping\6.2.cubemaps.fs"/>
@@ -2120,7 +2120,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="121"/>
+        <UsageCount Value="129"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2129,7 +2129,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="121"/>
+        <UsageCount Value="129"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2138,7 +2138,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="121"/>
+        <UsageCount Value="129"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2147,7 +2147,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="121"/>
+        <UsageCount Value="129"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2157,7 +2157,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="395"/>
         <CursorPos Y="435"/>
-        <UsageCount Value="120"/>
+        <UsageCount Value="128"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\8.1.Advanced_GLSL_UBO\8.advanced_glsl.vs"/>
@@ -2166,7 +2166,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="47" Y="8"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="125"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2177,7 +2177,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="125"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2188,7 +2188,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="125"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2199,7 +2199,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="125"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2210,7 +2210,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="125"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2220,7 +2220,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="110"/>
         <CursorPos Y="150"/>
-        <UsageCount Value="109"/>
+        <UsageCount Value="117"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\9.1.Geometry_Shader_Houses\9.1.geometry_shader.fs"/>
@@ -2230,7 +2230,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="106"/>
+        <UsageCount Value="114"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2241,7 +2241,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="106"/>
+        <UsageCount Value="114"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2252,7 +2252,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="106"/>
+        <UsageCount Value="114"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2262,7 +2262,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="106"/>
         <CursorPos X="29" Y="125"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="113"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\9.3.Geometry_Shader_Normals\Case04_09_03_Geometry_Shader_Normals.pas"/>
@@ -2271,7 +2271,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="261"/>
         <CursorPos X="30" Y="283"/>
-        <UsageCount Value="104"/>
+        <UsageCount Value="112"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\10.1.Instancing_Quads\Case04_10_01_Instancing_Quads.pas"/>
@@ -2280,7 +2280,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="324"/>
         <CursorPos X="83" Y="348"/>
-        <UsageCount Value="98"/>
+        <UsageCount Value="106"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\10.1.Instancing_Quads\10.1.instancing.fs"/>
@@ -2288,7 +2288,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="104"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2297,7 +2297,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="104"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2308,7 +2308,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="104"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2319,7 +2319,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="104"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2330,7 +2330,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="104"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2341,7 +2341,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="104"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2352,7 +2352,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="104"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2363,7 +2363,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="104"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2374,7 +2374,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="104"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2385,7 +2385,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="96"/>
+        <UsageCount Value="104"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2395,7 +2395,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="95"/>
         <CursorPos X="40" Y="111"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="103"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\10.3.Asteroids_Instanced\Case04_10_03_Asteroids_Instanced.pas"/>
@@ -2404,7 +2404,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="200"/>
         <CursorPos X="57" Y="219"/>
-        <UsageCount Value="91"/>
+        <UsageCount Value="99"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\10.2.Asteroids\10.2.instancing.fs"/>
@@ -2414,7 +2414,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="86"/>
+        <UsageCount Value="94"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2425,7 +2425,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="86"/>
+        <UsageCount Value="94"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2435,7 +2435,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="9"/>
-        <UsageCount Value="86"/>
+        <UsageCount Value="94"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2444,7 +2444,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="86"/>
+        <UsageCount Value="94"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2455,7 +2455,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="86"/>
+        <UsageCount Value="94"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2466,7 +2466,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="86"/>
+        <UsageCount Value="94"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2476,7 +2476,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="325"/>
         <CursorPos Y="364"/>
-        <UsageCount Value="81"/>
+        <UsageCount Value="89"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\11.1.Anti_Aliasing_Msaa\11.1.anti_aliasing.fs"/>
@@ -2484,7 +2484,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="81"/>
+        <UsageCount Value="89"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2493,7 +2493,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="81"/>
+        <UsageCount Value="89"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2503,7 +2503,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="222"/>
         <CursorPos X="50" Y="241"/>
-        <UsageCount Value="79"/>
+        <UsageCount Value="87"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\11.2.Anti_Aliasing_Offscreen\11.2.aa_post.fs"/>
@@ -2512,7 +2512,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="26" Y="6"/>
-        <UsageCount Value="79"/>
+        <UsageCount Value="87"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2522,7 +2522,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="4" Y="11"/>
-        <UsageCount Value="79"/>
+        <UsageCount Value="87"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2531,7 +2531,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="79"/>
+        <UsageCount Value="87"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2542,7 +2542,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="79"/>
+        <UsageCount Value="87"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2552,7 +2552,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="137"/>
         <CursorPos X="52" Y="160"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="74"/>
       </Unit>
       <Unit>
         <Filename Value="Source\5.Advanced_Lighting\1.1.Advanced_Lighting\1.advanced_lighting.fs"/>
@@ -2561,7 +2561,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="7"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="74"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2572,7 +2572,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="74"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2582,7 +2582,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="358"/>
         <CursorPos Y="398"/>
-        <UsageCount Value="63"/>
+        <UsageCount Value="71"/>
       </Unit>
       <Unit>
         <Filename Value="Source\5.Advanced_Lighting\2.1.Gamma_Correction\2.gamma_correction.fs"/>
@@ -2592,7 +2592,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="63"/>
+        <UsageCount Value="71"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2603,7 +2603,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="63"/>
+        <UsageCount Value="71"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2614,7 +2614,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="41"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2625,7 +2625,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="41"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2636,7 +2636,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="41"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2647,7 +2647,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="41"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2657,7 +2657,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="337"/>
         <CursorPos X="17" Y="369"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="41"/>
       </Unit>
       <Unit>
         <Filename Value="Source\5.Advanced_Lighting\3.1.2.Shadow_Mapping_Base\Case05_03_01_02_Shadow_Mapping_Base.pas"/>
@@ -2666,7 +2666,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="514"/>
         <CursorPos X="5" Y="553"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="40"/>
       </Unit>
       <Unit>
         <Filename Value="Source\5.Advanced_Lighting\3.1.2.Shadow_Mapping_Base\3.1.2.debug_quad.vs"/>
@@ -2676,7 +2676,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="40"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2687,7 +2687,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="40"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2698,7 +2698,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="40"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2709,7 +2709,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="40"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2720,7 +2720,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="40"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2731,7 +2731,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="40"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2741,16 +2741,16 @@
         <WindowIndex Value="0"/>
         <TopLine Value="372"/>
         <CursorPos X="16" Y="391"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="37"/>
       </Unit>
       <Unit>
         <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="101"/>
-        <CursorPos X="52" Y="262"/>
-        <UsageCount Value="29"/>
+        <TopLine Value="231"/>
+        <CursorPos X="18" Y="251"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -2761,17 +2761,16 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="31"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
         <Filename Value="Source\5.Advanced_Lighting\3.1.3.Shadow_Mapping\3.1.3.debug_quad_depth.fs"/>
         <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="23"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="31"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2782,7 +2781,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="31"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2793,7 +2792,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="31"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2804,7 +2803,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="31"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -2815,50 +2814,47 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="31"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
         <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\3.2.1.point_shadows.fs"/>
         <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="33"/>
-        <CursorPos X="28" Y="57"/>
-        <UsageCount Value="23"/>
-        <Loaded Value="True"/>
+        <TopLine Value="11"/>
+        <CursorPos X="20" Y="17"/>
+        <UsageCount Value="31"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
         <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\3.2.1.point_shadows.vs"/>
         <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="23"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="31"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
         <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\3.2.1.point_shadows_depth.fs"/>
         <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="23"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="31"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
         <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\3.2.1.point_shadows_depth.gs"/>
         <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <CursorPos X="50" Y="20"/>
-        <UsageCount Value="23"/>
+        <CursorPos X="20" Y="6"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
@@ -2866,10 +2862,9 @@
         <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\3.2.1.point_shadows_depth.vs"/>
         <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="23"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="31"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3081,8 +3076,9 @@
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\DeepStar.Utils.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <CursorPos X="59" Y="4"/>
-        <UsageCount Value="14"/>
+        <TopLine Value="61"/>
+        <CursorPos Y="71"/>
+        <UsageCount Value="15"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.GLM.pas"/>
@@ -3120,8 +3116,7 @@
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Utils.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="16"/>
-        <CursorPos X="52" Y="44"/>
+        <TopLine Value="10"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
@@ -3137,18 +3132,18 @@
         <UnitName Value="SysUtils"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="29"/>
-        <CursorPos X="4" Y="49"/>
-        <UsageCount Value="9"/>
+        <TopLine Value="1344"/>
+        <CursorPos X="3" Y="1354"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\win64\system.pp"/>
         <UnitName Value="System"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="521"/>
-        <CursorPos X="6" Y="522"/>
-        <UsageCount Value="8"/>
+        <TopLine Value="99"/>
+        <CursorPos X="3" Y="119"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGLADV\source\oglvector.pas"/>
@@ -3329,9 +3324,9 @@
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\syshelph.inc"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="477"/>
-        <CursorPos X="14" Y="493"/>
-        <UsageCount Value="5"/>
+        <TopLine Value="58"/>
+        <CursorPos X="19" Y="196"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Assimp.pas"/>
@@ -3360,9 +3355,9 @@
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\Utils_inc\Utils.StringHelper.inc"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="26"/>
-        <CursorPos X="3" Y="46"/>
-        <UsageCount Value="9"/>
+        <TopLine Value="25"/>
+        <CursorPos X="51" Y="29"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_OpenGLADV\source\ogllinesvao.pas"/>
@@ -3596,9 +3591,9 @@
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\syshelps.inc"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1340"/>
-        <CursorPos X="3" Y="1342"/>
-        <UsageCount Value="5"/>
+        <TopLine Value="1358"/>
+        <CursorPos X="3" Y="1354"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\Assimp_inc\Assimp.aivector3.inc"/>
@@ -3695,8 +3690,9 @@
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Camera.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <CursorPos X="36" Y="18"/>
-        <UsageCount Value="8"/>
+        <TopLine Value="52"/>
+        <CursorPos X="14" Y="65"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Matrix.pas"/>
@@ -3970,7 +3966,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="29"/>
         <CursorPos X="4" Y="49"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\classes\stringl.inc"/>
@@ -3989,127 +3985,162 @@
         <CursorPos X="-1" Y="-1"/>
         <UsageCount Value="19"/>
       </Unit>
+      <Unit>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\Utils_inc\Utils.SysHelper.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="203"/>
+        <CursorPos X="3" Y="205"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\syshelpb.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="29"/>
+        <CursorPos X="3" Y="41"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\sysstr.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="49" Y="20"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\systemh.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="99"/>
+        <CursorPos X="20" Y="119"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="392" TopLine="376"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="393" TopLine="377"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="394" TopLine="378"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="396" TopLine="380"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="397" TopLine="381"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="398" TopLine="382"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="399" TopLine="383"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="400" TopLine="384"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="402" TopLine="386"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="403" TopLine="387"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="404" TopLine="388"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="405" TopLine="389"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="406" TopLine="390"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="408" TopLine="392"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="409" TopLine="393"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="410" TopLine="394"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="411" TopLine="395"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="412" TopLine="396"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="413" TopLine="397"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="414" TopLine="398"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="187" Column="34" TopLine="177"/>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="40" TopLine="28"/>
       </Position>
       <Position>
         <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="39" Column="61" TopLine="16"/>
+        <Caret Line="41" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="40" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="38" Column="15" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="40" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="38" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="39" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="40" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="38" TopLine="22"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="39" TopLine="23"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="38" TopLine="24"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="38" TopLine="24"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="38" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="36" Column="9" TopLine="19"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="38" Column="34" TopLine="24"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="37" TopLine="24"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="36" Column="15" TopLine="18"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="38" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="39" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="40" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="42" Column="10" TopLine="19"/>
       </Position>
       <Position>
         <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="197" TopLine="192"/>
+        <Caret Line="158" Column="49" TopLine="138"/>
       </Position>
       <Position>
         <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="198" TopLine="192"/>
+        <Caret Line="122" Column="2" TopLine="114"/>
       </Position>
       <Position>
         <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="197" TopLine="192"/>
+        <Caret Line="293" TopLine="284"/>
       </Position>
       <Position>
         <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="204" TopLine="192"/>
+        <Caret Line="153" Column="31" TopLine="142"/>
       </Position>
       <Position>
         <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="205" TopLine="192"/>
+        <Caret Line="88" Column="41" TopLine="68"/>
       </Position>
       <Position>
         <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="207" TopLine="192"/>
+        <Caret Line="135" Column="15" TopLine="126"/>
       </Position>
       <Position>
         <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="208" TopLine="192"/>
+        <Caret Line="136" TopLine="126"/>
       </Position>
       <Position>
         <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
-        <Caret Line="264" Column="5" TopLine="239"/>
+        <Caret Line="235" TopLine="223"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\5.Advanced_Lighting\3.2.1.Point_Shadows\Case05_03_02_01_Point_Shadows.pas"/>
+        <Caret Line="236" Column="67" TopLine="220"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -4137,10 +4168,13 @@
   <Debugging>
     <Watches>
       <Item ClassAutoCast="True">
-        <Expression Value="shader"/>
+        <Expression Value="camera"/>
       </Item>
       <Item ClassAutoCast="True">
-        <Expression Value="model.m"/>
+        <Expression Value="depthCubeMap"/>
+      </Item>
+      <Item ClassAutoCast="True">
+        <Expression Value="shadowTransforms[i]"/>
       </Item>
     </Watches>
   </Debugging>
