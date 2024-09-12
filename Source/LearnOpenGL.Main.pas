@@ -27,7 +27,7 @@ procedure Run();
 implementation
 
 uses
-  Case05_03_02_02_Point_Shadows_Soft;
+  Case05_05_03_Parallax_Occlusion_Mapping;
 
 procedure Test;
 begin
