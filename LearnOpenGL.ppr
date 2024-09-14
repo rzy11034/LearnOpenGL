@@ -97,7 +97,8 @@ uses
   Case05_05_01_Parallax_Mapping,
   Case05_05_02_Steep_Parallax_Mapping,
   Case05_05_03_Parallax_Occlusion_Mapping,
-  Case05_06_01_HDR;
+  Case05_06_01_HDR,
+  Case05_07_01_Bloom;
 
 begin
   try

@@ -1,4 +1,4 @@
-﻿unit Case05_06_01_HDR;
+﻿unit Case05_07_01_Bloom;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -37,7 +37,7 @@ procedure ProcessInput(window: PGLFWwindow); forward;
 // glfw & glad  初始化
 function InitWindows: PGLFWwindow; forward;
 // 加载贴图
-function LoadTexture(fileName: string; gammaCorrection: boolean;
+function LoadTexture(fileName: string; gammaCorrection: boolean = false;
   inverse: boolean = true): cardinal; forward;
 
 procedure RenderQuad; forward;
@@ -60,8 +60,8 @@ var
   lastX: float = SCR_WIDTH / 2.0;
   lastY: float = SCR_HEIGHT / 2.0;
 
-  hdr: Boolean = true;
-  hdrKeyPressed: Boolean = false;
+  bloom: Boolean = true;
+  bloomKeyPressed: Boolean = false;
   exposure: float = 1.0;
 
   cubeVAO: Cardinal = 0;
@@ -72,22 +72,33 @@ var
 
 procedure Main;
 const
-  dir_path = '..\Source\5.Advanced_Lighting\6.1.HDR\';
-  hdr_vs = dir_path + '6.hdr.vs';
-  hdr_fs = dir_path + '6.hdr.fs';
-  lighting_vs = dir_path + '6.lighting.vs';
-  lighting_fs = dir_path + '6.lighting.fs';
+  dir_path = '..\Source\5.Advanced_Lighting\7.1.Bloom\';
+
+  bloom_vs = dir_path + '7.bloom.vs';
+  bloom_fs = dir_path + '7.bloom.fs';
+
+  blur_vs = dir_path + '7.blur.vs';
+  blur_fs = dir_path + '7.blur.fs';
+
+  light_box_fs = dir_path + '7.light_box.fs';
+
+  bloom_final_vs = dir_path + '7.bloom_final.vs';
+  bloom_final_fs = dir_path + '7.bloom_final.fs';
+
   img_wood = '..\Resources\textures\wood.png';
+  img_containerTexture = '..\Resources\textures\container2.png';
 var
   window: PGLFWwindow;
   currentFrame: GLfloat;
   projection, view, model: TMat4;
-  diffuseMap, normalMap, hdrFBO, colorBuffer, rboDepth, woodTexture: Cardinal;
-  shader, hdrShader: TShaderProgram;
+  diffuseMap, normalMap, hdrFBO, colorBuffer, rboDepth, woodTexture, containerTexture, amount: Cardinal;
+  shader, hdrShader, shaderLight, shaderBlur, shaderBloomFinal: TShaderProgram;
   shader_managed, camera_managed, hdrShader_managed: IInterface;
-  lightPosition_managed, lightColors_managed: IInterface;
+  lightPosition_managed, lightColors_managed, shaderLight_managed, shaderBlur_managed, shaderBloomFinal_managed: IInterface;
   lightPositions, lightColors: TArrayList_TVec3;
   i: Integer;
+  colorBuffers, attachments, pingpongFBO, pingpongColorbuffers: TArr_GLuint;
+  first_iteration, horizontal: Boolean;
 begin
   window := InitWindows;
   if window = nil then
@@ -105,11 +116,22 @@ begin
 
   shader_managed := IInterface(TShaderProgram.Create);
   shader := shader_managed as TShaderProgram;
-  shader.LoadShaderFile(lighting_vs, lighting_fs);
+  shader.LoadShaderFile(bloom_vs, bloom_fs);
 
-  hdrShader_managed := IInterface(TShaderProgram.Create);
-  hdrShader := hdrShader_managed as TShaderProgram;
-  hdrShader.LoadShaderFile(hdr_vs, hdr_fs);
+  shaderLight_managed := IInterface(TShaderProgram.Create);
+  shaderLight := shaderLight_managed as TShaderProgram;
+  shader.LoadShaderFile(bloom_vs, light_box_fs);
+
+  shaderBlur_managed := IInterface(TShaderProgram.Create);
+  shaderBlur := shaderBlur_managed as TShaderProgram;
+  shaderBlur.LoadShaderFile(blur_vs, blur_fs);
+
+  shaderBloomFinal_managed := IInterface(TShaderProgram.Create);
+  shaderBloomFinal := shaderBloomFinal_managed as TShaderProgram;
+  shaderBloomFinal.LoadShaderFile(bloom_final_vs, bloom_final_fs);
+
+
+  //═════════════════════════════════════════════════════════════════════════
 
   camera_managed := IInterface(TCamera.Create(TGLM.Vec3(0, 0, 5)));
   camera := camera_managed as TCamera;
@@ -117,35 +139,87 @@ begin
   //═════════════════════════════════════════════════════════════════════════
 
   // load textures
+  // 请注意，我们将纹理加载为SRGB纹理
   woodTexture := LoadTexture(img_wood, true);
+  containerTexture := LoadTexture(img_containerTexture, true);
 
   //═════════════════════════════════════════════════════════════════════════
 
   // 配置浮点帧缓冲区
   hdrFBO := Cardinal(0);
   glGenFramebuffers(1, @hdrFBO);
+  glBindFramebuffer(GL_FRAMEBUFFER, hdrFBO);
 
-  // 创建浮点颜色缓冲
-  colorBuffer := Cardinal(0);
-  glGenTextures(1, @colorBuffer);
-  glBindTexture(GL_TEXTURE_2D, colorBuffer);
-  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, SCR_WIDTH, SCR_HEIGHT, 0, GL_RGBA, GL_FLOAT, nil);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+  //═════════════════════════════════════════════════════════════════════════
 
-  // 创建深度缓冲(renderbuffer)
+  // 创建2个浮点颜色缓冲区(一个用于正常渲染，另一个用于亮度阈值)
+  colorBuffers := TArr_GLuint([0, 0]);
+  glGenTextures(2, @colorBuffers[0]);
+
+  for i := 0 to 1 do
+  begin
+    glBindTexture(GL_TEXTURE_2D, colorBuffers[i]);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, SCR_WIDTH, SCR_HEIGHT, 0, GL_RGBA, GL_FLOAT, nil);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    // 我们钳住边缘，否则模糊滤镜会采样重复的纹理值!
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    // 将纹理附加到framebuffer
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_TEXTURE_2D, colorBuffers[i], 0);
+  end;
+
+  //═════════════════════════════════════════════════════════════════════════
+
+  //创建并附加深度缓冲区(renderbuffer)
   rboDepth := Cardinal(0);
   glGenRenderbuffers(1, @rboDepth);
   glBindRenderbuffer(GL_RENDERBUFFER, rboDepth);
   glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, SCR_WIDTH, SCR_HEIGHT);
-
-  // 附加缓冲
-  glBindFramebuffer(GL_FRAMEBUFFER, hdrFBO);
-  glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorBuffer, 0);
   glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, rboDepth);
+
+  //═════════════════════════════════════════════════════════════════════════
+
+  //告诉OpenGL我们将使用(这个framebuffer的)哪个颜色附件进行渲染
+  attachments := TArr_GLuint([GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1]);
+  glDrawBuffers(2, @attachments[0]);
+
+  // finally check if framebuffer is complete
   if glCheckFramebufferStatus(GL_FRAMEBUFFER) <> GL_FRAMEBUFFER_COMPLETE then
-    WriteLn('Framebuffer not complete!');
+      WriteLn('Framebuffer not complete!');
+
   glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+  //═════════════════════════════════════════════════════════════════════════
+
+  // ping-pong-framebuffer for blurring
+  pingpongFBO := TArr_GLuint([0, 0]);
+  pingpongColorbuffers := TArr_GLuint([0, 0]);
+
+  glGenFramebuffers(2, @pingpongFBO[0]);
+  glGenTextures(2, @pingpongColorbuffers[0]);
+
+  for i := 0 to 1 do
+  begin
+    glBindFramebuffer(GL_FRAMEBUFFER, @pingpongFBO[i]);
+    glBindTexture(GL_TEXTURE_2D, @pingpongColorbuffers[i]);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, SCR_WIDTH, SCR_HEIGHT, 0, GL_RGBA, GL_FLOAT, nil);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    //我们钳住边缘，否则模糊滤镜会采样重复的纹理值!
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
+      @pingpongColorbuffers[i], 0);
+
+    // 还要检查framebuffers是否完成(不需要深度缓冲区)
+    if glCheckFramebufferStatus(GL_FRAMEBUFFER) <> GL_FRAMEBUFFER_COMPLETE then
+        WriteLn('Framebuffer not complete!');
+  end;
 
   //═════════════════════════════════════════════════════════════════════════
   // lighting info
@@ -153,18 +227,18 @@ begin
   // position
   lightPosition_managed := IInterface(TArrayList_TVec3.Create);
   lightPositions := lightPosition_managed as TArrayList_TVec3;
-  lightPositions.AddLast(TGLM.Vec3( 0.0,  0.0, 49.5));
-  lightPositions.AddLast(TGLM.Vec3(-1.4, -1.9,  9.0));
-  lightPositions.AddLast(TGLM.Vec3( 0.0, -1.8,  4.0));
-  lightPositions.AddLast(TGLM.Vec3( 0.8, -1.7,  6.0));
+  lightPositions.AddLast(TGLM.Vec3( 0.0, 0.5,  1.5));
+  lightPositions.AddLast(TGLM.Vec3(-4.0, 0.5, -3.0));
+  lightPositions.AddLast(TGLM.Vec3( 3.0, 0.5,  1.0));
+  lightPositions.AddLast(TGLM.Vec3(-0.8, 2.4, -1.0));
 
   // colors
   lightColors_managed := IInterface(TArrayList_TVec3.Create);
   lightColors := lightColors_managed as TArrayList_TVec3;
-  lightColors.AddFirst(TGLM.Vec3(200.0, 200.0, 200.0));
-  lightColors.AddFirst(TGLM.Vec3(  0.1,   0.0,   0.0));
-  lightColors.AddFirst(TGLM.Vec3(  0.0,   0.0,   0.2));
-  lightColors.AddFirst(TGLM.Vec3(  0.0,   0.1,   0.0));
+  lightColors.AddFirst(TGLM.Vec3( 5.0, 5.0,  5.0));
+  lightColors.AddFirst(TGLM.Vec3(10.0, 0.0,  0.0));
+  lightColors.AddFirst(TGLM.Vec3( 0.0, 0.0, 15.0));
+  lightColors.AddFirst(TGLM.Vec3( 0.0, 5.0,  0.0));
 
   //═════════════════════════════════════════════════════════════════════════
 
@@ -172,8 +246,12 @@ begin
   shader.UseProgram;
   shader.SetUniformInt('diffuseTexture', 0);
 
-  hdrShader.UseProgram;
-  hdrShader.SetUniformInt('hdrBuffer', 0);
+  shaderBlur.UseProgram;
+  shaderBlur.SetUniformInt('image', 0);
+
+  shaderBloomFinal.use();
+  shaderBloomFinal.setInt("scene", 0);
+  shaderBloomFinal.setInt("bloomBlur", 1);
 
   //═════════════════════════════════════════════════════════════════════════
 
@@ -194,32 +272,111 @@ begin
 
     // 1. 渲染场景到浮点帧缓冲区
     glBindFramebuffer(GL_FRAMEBUFFER, hdrFBO);
-      glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
-      projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT,
-        0.1, 100.0);
-      view := camera.GetViewMatrix;
-      shader.UseProgram;
-      shader.SetUniformMatrix4fv('projection', projection);
-      shader.SetUniformMatrix4fv('view', view);
-      glActiveTexture(GL_TEXTURE0);
-      glBindTexture(GL_TEXTURE_2D, woodTexture);
+    glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
+    projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT,
+      0.1, 100.0);
+    view := camera.GetViewMatrix;
 
-      // 设置 lighting uniforms
-      for i := 0 to lightPositions.Count - 1 do
-      begin
-        shader.SetUniformVec3('lights[' + i.ToString + '].Position', lightPositions[i]);
-        shader.SetUniformVec3('lights[' + i.ToString + '].Color', lightColors[i]);
-      end;
-      shader.SetUniformVec3('viewPos', camera.Position);
+    shader.UseProgram;
+    shader.SetUniformMatrix4fv('projection', projection);
+    shader.SetUniformMatrix4fv('view', view);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, woodTexture);
 
-      //渲染隧道
+    // 设置 lighting uniforms
+    for i := 0 to lightPositions.Count - 1 do
+    begin
+      shader.SetUniformVec3('lights[' + i.ToString + '].Position', lightPositions[i]);
+      shader.SetUniformVec3('lights[' + i.ToString + '].Color', lightColors[i]);
+    end;
+    shader.SetUniformVec3('viewPos', camera.Position);
+
+    // 创建一个大的立方体作为地板
+    model := TGLM.mat4(1.0);
+    model := TGLM.Translate(model, TGLM.Vec3(0.0, -1.0, 0.0));
+    model := TGLM.Scale(model, TGLM.Vec3(12.5, 0.5, 12.5));
+    shader.SetUniformMatrix4fv('model', model);
+    RenderCube();
+
+    // 然后创建多个立方体作为场景，然后创建多个立方体作为场景
+    glBindTexture(GL_TEXTURE_2D, containerTexture);
+    model := TGLM.mat4(1.0);
+    model := TGLM.Translate(model, TGLM.Vec3(0.0, 1.5, 0.0));
+    model := TGLM.Scale(model, TGLM.Vec3(0.5));
+    shader.setMat4('model', model);
+    RenderCube;
+
+    model := TGLM.mat4(1.0);
+    model := TGLM.Translate(model, TGLM.Vec3(2.0, 0.0, 1.0));
+    model := TGLM.Scale(model, TGLM.Vec3(0.5));
+    shader.SetUniformMatrix4fv('model', model);
+    RenderCube;
+
+    model := TGLM.mat4(1.0);
+    model := TGLM.Translate(model, TGLM.Vec3(-1.0, -1.0, 2.0));
+    model := TGLM.Rotate(model, TGLM.Radians(60.0), TGLM.Normalize(TGLM.Vec3(1.0, 0.0, 1.0)));
+    shader.SetUniformMatrix4fv('model', model);
+    RenderCube;
+
+    model := TGLM.mat4(1.0);
+    model := TGLM.Translate(model, TGLM.Vec3(0.0, 2.7, 4.0));
+    model := TGLM.Rotate(model, TGLM.Radians(23.0), TGLM.Normalize(TGLM.Vec3(1.0, 0.0, 1.0)));
+    model := TGLM.Scale(model, TGLM.Vec3(1.25));
+    shader.SetUniformMatrix4fv('model', model);
+    RenderCube;
+
+    model := TGLM.mat4(1.0);
+    model := TGLM.Translate(model, TGLM.Vec3(-2.0, 1.0, -3.0));
+    model := TGLM.Rotate(model, TGLM.Radians(124.0), TGLM.Normalize(TGLM.Vec3(1.0, 0.0, 1.0)));
+    shader.SetUniformMatrix4fv('model', model);
+    RenderCube;
+
+    model := TGLM.mat4(1.0);
+    model := TGLM.Translate(model, TGLM.Vec3(-3.0, 0.0, 0.0));
+    model := TGLM.Scale(model, TGLM.Vec3(0.5));
+    shader.SetUniformMatrix4fv('model', model);
+    RenderCube;
+
+    // 最后将所有光源显示为明亮的立方体
+    shaderLight.UseProgram;
+    shaderLight.SetUniformMatrix4fv('projection', projection);
+    shaderLight.SetUniformMatrix4fv('view', view);
+
+    for i := 0 to lightPositions.Count - 1 do
+    begin
       model := TGLM.Mat4(1.0);
-      model := TGLM.Translate(model, TGLM.Vec3(0.0, 0.0, 25));
-      model := TGLM.Scale(model, TGLM.Vec3(2.5, 2.5, 27.5));
-      shader.SetUniformMatrix4fv('model', model);
-      shader.SetUniformInt('inverse_normals', true.ToInteger);
+      model := TGLM.Translate(model, TGLM.Vec3(lightPositions[i]));
+      model := TGLM.Scale(model, TGLM.Vec3(0.25));
+      shaderLight.SetUniformMatrix4fv('model', model);
+      shaderLight.SetUniformVec3('lightColor', lightColors[i]);
       RenderCube;
+    end;
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    // 2 模糊明亮的碎片与两次高斯模糊
+    horizontal := true;
+    first_iteration := true;
+
+    amount := Cardinal(10);
+    shaderBlur.UseProgram;
+
+    for i := 0 to amount - 1 do
+    begin
+      glBindFramebuffer(GL_FRAMEBUFFER, pingpongFBO[horizontal]);
+        shaderBlur.setInt("horizontal", horizontal);
+        glBindTexture(GL_TEXTURE_2D, first_iteration ? colorBuffers[1] : pingpongColorbuffers[!horizontal]);  // bind texture of other framebuffer (or scene if first iteration)
+        renderQuad();
+        horizontal := not horizontal;
+        if (first_iteration)
+            first_iteration = false;
+    end;
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+
+
+
+
+
 
     // 2. 现在将浮点颜色缓冲区渲染为2D四边形，
     // 并将色调映射HDR颜色渲染为默认framebuffer的(固定)颜色范围

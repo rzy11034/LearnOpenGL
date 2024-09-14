@@ -268,44 +268,42 @@ var
   texture_ID: GLuint;
   tx: TTexture;
   internalFormat: GLenum;
+  tx_managed: IInterface;
 begin
   texture_ID := GLuint(0);
   glGenTextures(1, @texture_ID);
   internalFormat := GLenum(0);
 
-  tx := TTexture.Create();
-  try
-    tx.LoadFormFile(fileName, inverse);
+  tx_managed := IInterface(TTexture.Create);
+  tx := tx_managed as TTexture;
 
-    if gammaCorrection then
-      internalFormat := GL_SRGB
-    else
-      internalFormat := GL_RGBA;
+  tx.LoadFormFile(fileName, inverse);
 
-    glBindTexture(GL_TEXTURE_2D, texture_ID);
-    glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, tx.Width, tx.Height, 0, GL_RGBA,
-      GL_UNSIGNED_BYTE, tx.Pixels);
-    glGenerateMipmap(GL_TEXTURE_2D);
+  if gammaCorrection then
+    internalFormat := GL_SRGB
+  else
+    internalFormat := GL_RGBA;
 
-    if tx.UseAlpha then
-    begin
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    end
-    else
-    begin
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    end;
+  glBindTexture(GL_TEXTURE_2D, texture_ID);
+  glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, tx.Width, tx.Height, 0, GL_RGBA,
+    GL_UNSIGNED_BYTE, tx.Pixels);
+  glGenerateMipmap(GL_TEXTURE_2D);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    Result := texture_ID;
-
-  finally
-    tx.Destroy;
+  if tx.UseAlpha then
+  begin
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+  end
+  else
+  begin
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
   end;
+
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+  Result := texture_ID;
 end;
 
 function LoadCubemap(faces: TArr_str; inverse: boolean): cardinal;

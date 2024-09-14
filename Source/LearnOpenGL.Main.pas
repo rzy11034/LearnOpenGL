@@ -27,7 +27,7 @@ procedure Run();
 implementation
 
 uses
-  Case05_05_03_Parallax_Occlusion_Mapping;
+  Case05_06_01_HDR;
 
 procedure Test;
 begin

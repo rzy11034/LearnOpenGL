@@ -109,3 +109,4 @@ LearnOpenGL文档学习
   4. 法线贴图	Normal Mapping <br>
   5. 视差贴图 Parallax Mapping <br>
   6. 高动态范围 HDR <br>
+  7. 泛光	Bloom <br>
