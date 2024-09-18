@@ -110,3 +110,4 @@ LearnOpenGL文档学习
   5. 视差贴图 Parallax Mapping <br>
   6. 高动态范围 HDR <br>
   7. 泛光	Bloom <br>
+  8. 延迟着色法	Deferred Shading <br>

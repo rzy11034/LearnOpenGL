@@ -27,7 +27,7 @@ procedure Run();
 implementation
 
 uses
-  Case05_06_01_HDR;
+  Case05_08_01_Deferred_Shading;
 
 procedure Test;
 begin
@@ -36,7 +36,7 @@ end;
 
 procedure Run();
 begin
-  //Test;
+  Test;
   //WriteLn(END_OF_PROGRAM_CH);
   //ReadLn;
   Main;

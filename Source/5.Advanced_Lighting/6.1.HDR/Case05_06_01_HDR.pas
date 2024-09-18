@@ -82,7 +82,7 @@ var
   window: PGLFWwindow;
   currentFrame: GLfloat;
   projection, view, model: TMat4;
-  diffuseMap, normalMap, hdrFBO, colorBuffer, rboDepth, woodTexture: Cardinal;
+  hdrFBO, colorBuffer, rboDepth, woodTexture: Cardinal;
   shader, hdrShader: TShaderProgram;
   shader_managed, camera_managed, hdrShader_managed: IInterface;
   lightPosition_managed, lightColors_managed: IInterface;
