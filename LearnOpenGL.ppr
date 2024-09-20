@@ -98,7 +98,9 @@ uses
   Case05_05_02_Steep_Parallax_Mapping,
   Case05_05_03_Parallax_Occlusion_Mapping,
   Case05_06_01_HDR,
-  Case05_07_01_Bloom, Case05_08_01_Deferred_Shading;
+  Case05_07_01_Bloom,
+  Case05_08_01_Deferred_Shading,
+  Case05_08_02_Deferred_Shading_Volumes;
 
 begin
   try

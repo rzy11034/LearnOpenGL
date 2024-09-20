@@ -1,4 +1,4 @@
-﻿unit Case05_08_01_Deferred_Shading;
+﻿unit Case05_08_02_Deferred_Shading_Volumes;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -12,6 +12,7 @@ interface
 uses
   Classes,
   SysUtils,
+  Math,
   DeepStar.Utils,
   DeepStar.OpenGL.Utils,
   DeepStar.OpenGL.Texture,
@@ -68,16 +69,16 @@ var
 
 procedure Main;
 const
-  dir_path = '..\Source\5.Advanced_Lighting\8.1.Deferred_Shading\';
+  dir_path = '..\Source\5.Advanced_Lighting\8.2.Deferred_Shading_Volumes\';
 
-  deferred_shading_vs = dir_path + '8.1.deferred_shading.vs';
-  deferred_shading_fs = dir_path + '8.1.deferred_shading.fs';
+  deferred_shading_vs = dir_path + '8.2.deferred_shading.vs';
+  deferred_shading_fs = dir_path + '8.2.deferred_shading.fs';
 
-  deferred_light_box_vs = dir_path + '8.1.deferred_light_box.vs';
-  deferred_light_box_fs = dir_path + '8.1.deferred_light_box.fs';
+  deferred_light_box_vs = dir_path + '8.2.deferred_light_box.vs';
+  deferred_light_box_fs = dir_path + '8.2.deferred_light_box.fs';
 
-  g_buffer_vs = dir_path + '8.1.g_buffer.vs';
-  g_buffer_fs = dir_path + '8.1.g_buffer.fs';
+  g_buffer_vs = dir_path + '8.2.g_buffer.vs';
+  g_buffer_fs = dir_path + '8.2.g_buffer.fs';
 
   ObjBackpack = '..\Resources\objects\backpack\backpack.obj';
 var
@@ -91,9 +92,9 @@ var
   gBuffer, gPosition, gNormal, gAlbedoSpec, rboDepth, NR_LIGHTS: Cardinal;
   attachments: TArr_GLuint;
   i: Integer;
-  xPos, yPos, zPos, rColor, gColor, bColor: Single;
+  xPos, yPos, zPos, rColor, gColor, bColor, maxBrightness, radius: Single;
   projection, view, model: TMat4;
-  linear, quadratic: float;
+  linear, quadratic, constant: float;
   currentFrame: GLfloat;
 begin
   window := InitWindows;
@@ -266,7 +267,7 @@ begin
       begin
         model := TGLM.Mat4(1.0);
         model := TGLM.Translate(model, objectPositions[i]);
-        model := TGLM.Scale(model, TGLM.Vec3(0.5));
+        model := TGLM.Scale(model, TGLM.Vec3(0.25));
         shaderGeometryPass.SetUniformMatrix4fv('model', model);
         backpack.Draw(shaderGeometryPass);
       end;
@@ -287,11 +288,18 @@ begin
       shaderLightingPass.SetUniformVec3('lights[' + i.ToString + '].Position', lightPositions[i]);
       shaderLightingPass.SetUniformVec3('lights[' + i.ToString + '].Color', lightColors[i]);
       // 更新衰减参数并计算半径
+      // 注意，我们没有将其发送到着色器，我们假设它总是1.0(在我们的情况下)。
+      constant := float(1.0);
       linear := float(0.7);
       quadratic := float(1.8);
       shaderLightingPass.SetUniformFloat('lights[' + i.ToString + '].Linear', linear);
       shaderLightingPass.SetUniformFloat('lights[' + i.ToString + '].Quadratic', quadratic);
 
+      // then calculate radius of light volume/sphere
+      maxBrightness := Max(Max(lightColors[i].r, lightColors[i].g), lightColors[i].b);
+      radius := (-linear + Sqrt(linear * linear - 4 * quadratic *
+        (constant - (256.0 / 5.0) * maxBrightness))) / (2.0 * quadratic);
+      shaderLightingPass.SetUniformFloat('lights[' + i.ToString + '].Radius', radius);
     end;
     shaderLightingPass.SetUniformVec3('viewPos', camera.Position);
     RenderQuad;

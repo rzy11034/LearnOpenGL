@@ -27,7 +27,7 @@ procedure Run();
 implementation
 
 uses
-  Case05_08_01_Deferred_Shading;
+  Case05_08_02_Deferred_Shading_Volumes;
 
 procedure Test;
 begin
