@@ -12,6 +12,7 @@ interface
 uses
   Classes,
   SysUtils,
+  {%H-}Math,
   {%H-}DeepStar.Utils,
   {%H-}DeepStar.OpenGL.GLAD_GL,
   {%H-}DeepStar.OpenGL.GLFW,
@@ -27,7 +28,7 @@ procedure Run();
 implementation
 
 uses
-  Case05_08_02_Deferred_Shading_Volumes;
+  Case06_01_01_Lighting;
 
 procedure Test;
 begin
@@ -36,7 +37,7 @@ end;
 
 procedure Run();
 begin
-  Test;
+  //Test;
   //WriteLn(END_OF_PROGRAM_CH);
   //ReadLn;
   Main;

@@ -111,3 +111,7 @@ LearnOpenGL文档学习
   6. 高动态范围 HDR <br>
   7. 泛光	Bloom <br>
   8. 延迟着色法	Deferred Shading <br>
+  9. 屏幕空间环境光遮蔽 SSAO <br>
+
+## 第5章 基于物理的渲染 PBR <br>
+  1. 光照	Lighting <br>

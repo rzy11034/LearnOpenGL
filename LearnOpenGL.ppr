@@ -100,7 +100,8 @@ uses
   Case05_06_01_HDR,
   Case05_07_01_Bloom,
   Case05_08_01_Deferred_Shading,
-  Case05_08_02_Deferred_Shading_Volumes;
+  Case05_08_02_Deferred_Shading_Volumes,
+  Case05_09_01_SSAO, Case06_01_01_Lighting;
 
 begin
   try
