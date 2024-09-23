@@ -65,9 +65,9 @@ var
 
 procedure Main;
 const
-  dir_path = '..\Source\5.Advanced_Lighting\5.2.Steep_Parallax_Mapping\';
-  normal_mapping_vs = dir_path + '5.2.parallax_mapping.vs';
-  normal_mapping_fs = dir_path + '5.2.parallax_mapping.fs';
+  shader_path = '..\Source\5.Advanced_Lighting\5.2.Steep_Parallax_Mapping\';
+  normal_mapping_vs = shader_path + '5.2.parallax_mapping.vs';
+  normal_mapping_fs = shader_path + '5.2.parallax_mapping.fs';
   {%H-}img_bricks2 = '..\Resources\textures\bricks2.jpg';
   {%H-}img_bricks2_normal = '..\Resources\textures\bricks2_normal.jpg';
   {%H-}img_bricks2_disp = '..\Resources\textures\bricks2_disp.jpg';

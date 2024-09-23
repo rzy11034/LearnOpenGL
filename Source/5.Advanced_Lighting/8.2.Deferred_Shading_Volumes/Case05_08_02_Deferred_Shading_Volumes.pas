@@ -69,16 +69,16 @@ var
 
 procedure Main;
 const
-  dir_path = '..\Source\5.Advanced_Lighting\8.2.Deferred_Shading_Volumes\';
+  shader_path = '..\Source\5.Advanced_Lighting\8.2.Deferred_Shading_Volumes\';
 
-  deferred_shading_vs = dir_path + '8.2.deferred_shading.vs';
-  deferred_shading_fs = dir_path + '8.2.deferred_shading.fs';
+  deferred_shading_vs = shader_path + '8.2.deferred_shading.vs';
+  deferred_shading_fs = shader_path + '8.2.deferred_shading.fs';
 
-  deferred_light_box_vs = dir_path + '8.2.deferred_light_box.vs';
-  deferred_light_box_fs = dir_path + '8.2.deferred_light_box.fs';
+  deferred_light_box_vs = shader_path + '8.2.deferred_light_box.vs';
+  deferred_light_box_fs = shader_path + '8.2.deferred_light_box.fs';
 
-  g_buffer_vs = dir_path + '8.2.g_buffer.vs';
-  g_buffer_fs = dir_path + '8.2.g_buffer.fs';
+  g_buffer_vs = shader_path + '8.2.g_buffer.vs';
+  g_buffer_fs = shader_path + '8.2.g_buffer.fs';
 
   ObjBackpack = '..\Resources\objects\backpack\backpack.obj';
 var

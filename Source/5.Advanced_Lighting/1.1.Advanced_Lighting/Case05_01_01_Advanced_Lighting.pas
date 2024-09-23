@@ -65,9 +65,9 @@ var
 
 procedure Main;
 const
-  dir_path = '..\Source\5.Advanced_Lighting\1.1.Advanced_Lighting\';
-  vs = dir_path + '1.advanced_lighting.vs';
-  fs = dir_path + '1.advanced_lighting.fs';
+  shader_path = '..\Source\5.Advanced_Lighting\1.1.Advanced_Lighting\';
+  vs = shader_path + '1.advanced_lighting.vs';
+  fs = shader_path + '1.advanced_lighting.fs';
   imgFloor = '..\Resources\textures\wood.png';
 var
   window: PGLFWwindow;

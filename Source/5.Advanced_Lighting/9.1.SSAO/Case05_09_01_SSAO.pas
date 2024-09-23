@@ -73,16 +73,16 @@ end;
 
 procedure Main;
 const
-  dir_path = '..\Source\5.Advanced_Lighting\9.1.SSAO\';
+  shader_path = '..\Source\5.Advanced_Lighting\9.1.SSAO\';
 
-  ssao_vs = dir_path + '9.ssao.vs';
-  ssao_fs = dir_path + '9.ssao.fs';
+  ssao_vs = shader_path + '9.ssao.vs';
+  ssao_fs = shader_path + '9.ssao.fs';
 
-  ssao_blur_fs = dir_path + '9.ssao_blur.fs';
-  ssao_lighting_fs = dir_path + '9.ssao_lighting.fs';
+  ssao_blur_fs = shader_path + '9.ssao_blur.fs';
+  ssao_lighting_fs = shader_path + '9.ssao_lighting.fs';
 
-  ssao_geometry_vs = dir_path + '9.ssao_geometry.vs';
-  ssao_geometry_fs = dir_path + '9.ssao_geometry.fs';
+  ssao_geometry_vs = shader_path + '9.ssao_geometry.vs';
+  ssao_geometry_fs = shader_path + '9.ssao_geometry.fs';
 
   ObjBackpack = '..\Resources\objects\backpack\backpack.obj';
 var

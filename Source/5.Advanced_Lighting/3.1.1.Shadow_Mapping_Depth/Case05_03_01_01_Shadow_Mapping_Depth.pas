@@ -71,11 +71,11 @@ var
 
 procedure Main;
 const
-  dir_path = '..\Source\5.Advanced_Lighting\3.1.1.Shadow_Mapping_Depth\';
-  debug_quad_vs = dir_path + '3.1.1.debug_quad.vs';
-  debug_quad_depth_fs = dir_path + '3.1.1.debug_quad_depth.fs';
-  shadow_mapping_depth_vs = dir_path + '3.1.1.shadow_mapping_depth.vs';
-  shadow_mapping_depth_fs = dir_path + '3.1.1.shadow_mapping_depth.fs';
+  shader_path = '..\Source\5.Advanced_Lighting\3.1.1.Shadow_Mapping_Depth\';
+  debug_quad_vs = shader_path + '3.1.1.debug_quad.vs';
+  debug_quad_depth_fs = shader_path + '3.1.1.debug_quad_depth.fs';
+  shadow_mapping_depth_vs = shader_path + '3.1.1.shadow_mapping_depth.vs';
+  shadow_mapping_depth_fs = shader_path + '3.1.1.shadow_mapping_depth.fs';
   img_wood = '..\Resources\textures\wood.png';
 var
   window: PGLFWwindow;

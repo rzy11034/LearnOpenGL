@@ -63,9 +63,9 @@ var
 
 procedure Main;
 const
-  dir_path = '..\Source\5.Advanced_Lighting\4.1.Normal_Mapping\';
-  normal_mapping_vs = dir_path + '4.1.normal_mapping.vs';
-  normal_mapping_fs = dir_path + '4.1.normal_mapping.fs';
+  shader_path = '..\Source\5.Advanced_Lighting\4.1.Normal_Mapping\';
+  normal_mapping_vs = shader_path + '4.1.normal_mapping.vs';
+  normal_mapping_fs = shader_path + '4.1.normal_mapping.fs';
   img_brickwall = '..\Resources\textures\brickwall.jpg';
   img_brickwall_normal = '..\Resources\textures\brickwall_normal.jpg';
 var

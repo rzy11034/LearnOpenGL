@@ -65,9 +65,9 @@ var
 
 procedure Main;
 const
-  dir_path = '..\Source\5.Advanced_Lighting\2.1.Gamma_Correction\';
-  vs = dir_path + '2.gamma_correction.vs';
-  fs = dir_path + '2.gamma_correction.fs';
+  shader_path = '..\Source\5.Advanced_Lighting\2.1.Gamma_Correction\';
+  vs = shader_path + '2.gamma_correction.vs';
+  fs = shader_path + '2.gamma_correction.fs';
   imgFloor = '..\Resources\textures\wood.png';
 var
   window: PGLFWwindow;

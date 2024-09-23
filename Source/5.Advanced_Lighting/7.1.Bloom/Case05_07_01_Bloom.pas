@@ -72,18 +72,18 @@ var
 
 procedure Main;
 const
-  dir_path = '..\Source\5.Advanced_Lighting\7.1.Bloom\';
+  shader_path = '..\Source\5.Advanced_Lighting\7.1.Bloom\';
 
-  bloom_vs = dir_path + '7.bloom.vs';
-  bloom_fs = dir_path + '7.bloom.fs';
+  bloom_vs = shader_path + '7.bloom.vs';
+  bloom_fs = shader_path + '7.bloom.fs';
 
-  blur_vs = dir_path + '7.blur.vs';
-  blur_fs = dir_path + '7.blur.fs';
+  blur_vs = shader_path + '7.blur.vs';
+  blur_fs = shader_path + '7.blur.fs';
 
-  light_box_fs = dir_path + '7.light_box.fs';
+  light_box_fs = shader_path + '7.light_box.fs';
 
-  bloom_final_vs = dir_path + '7.bloom_final.vs';
-  bloom_final_fs = dir_path + '7.bloom_final.fs';
+  bloom_final_vs = shader_path + '7.bloom_final.vs';
+  bloom_final_fs = shader_path + '7.bloom_final.fs';
 
   img_wood = '..\Resources\textures\wood.png';
   img_containerTexture = '..\Resources\textures\container2.png';

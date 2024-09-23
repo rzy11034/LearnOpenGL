@@ -72,11 +72,11 @@ var
 
 procedure Main;
 const
-  dir_path = '..\Source\5.Advanced_Lighting\6.1.HDR\';
-  hdr_vs = dir_path + '6.hdr.vs';
-  hdr_fs = dir_path + '6.hdr.fs';
-  lighting_vs = dir_path + '6.lighting.vs';
-  lighting_fs = dir_path + '6.lighting.fs';
+  shader_path = '..\Source\5.Advanced_Lighting\6.1.HDR\';
+  hdr_vs = shader_path + '6.hdr.vs';
+  hdr_fs = shader_path + '6.hdr.fs';
+  lighting_vs = shader_path + '6.lighting.vs';
+  lighting_fs = shader_path + '6.lighting.fs';
   img_wood = '..\Resources\textures\wood.png';
 var
   window: PGLFWwindow;

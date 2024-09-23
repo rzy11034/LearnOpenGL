@@ -1,4 +1,4 @@
-﻿unit Case06_01_01_Lighting;
+﻿unit Case06_01_02_Lighting_Textured;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -64,19 +64,25 @@ var
 
 procedure Main;
 const
-  shader_path = '..\Source\6.PBR\1.1.lighting\';
-  pbr_vs = shader_path + '1.1.pbr.vs';
-  pbr_fs = shader_path + '1.1.pbr.fs';
+  shader_path = '..\Source\6.PBR\1.2.Lighting_Textured\';
+  pbr_vs = shader_path + '1.2.pbr.vs';
+  pbr_fs = shader_path + '1.2.pbr.fs';
+
+  img_path      = '..\Resources\textures\pbr\rusted_iron\';
+  img_albedo    = img_path + 'albedo.png';
+  img_normal    = img_path + 'normal.png';
+  img_metallic  = img_path + 'metallic.png';
+  img_roughness = img_path + 'roughness.png';
+  img_ao        = img_path + 'ao.png';
 var
   window: PGLFWwindow;
-  camera_managed, shader_managed: IInterface;
-  shader: TShaderProgram;
   lightPositions, lightColors: TArr_TVec3;
-  nrRows, nrColumns, row, col, i: Integer;
+  nrRows, nrColumns, row, col: Integer;
   spacing: float;
+  shader_managed: IInterface;
+  shader: TShaderProgram;
+  projection, view, model: TMat4;
   currentFrame: GLfloat;
-  view, model, projection: TMat4;
-  newPos: TVec3;
 begin
   window := InitWindows;
   if window = nil then
@@ -101,34 +107,22 @@ begin
   shader := shader_managed as TShaderProgram;
   shader.LoadShaderFile(pbr_vs, pbr_fs);
 
-  shader_managed := IInterface(TShaderProgram.Create);
-  shader := shader_managed as TShaderProgram;
-  shader.LoadShaderFile(pbr_vs, pbr_fs);
-
-  shader.UseProgram;
-  shader.SetUniformVec3('albedo', TGLM.Vec3(0.5, 0.0, 0.0));
-  shader.SetUniformFloat('ao', 1.0);
+  shader.SetUniformInt('albedoMap', 0);
+  shader.SetUniformInt('normalMap', 1);
+  shader.SetUniformInt('metallicMap', 2);
+  shader.SetUniformInt('roughnessMap', 3);
+  shader.SetUniformInt('aoMap', 4);
 
   //═════════════════════════════════════════════════════════════════════════
 
   // lights
-    lightPositions := TArr_TVec3([
-      TGLM.Vec3(-10.0,  10.0, 10.0),
-      TGLM.Vec3( 10.0,  10.0, 10.0),
-      TGLM.Vec3(-10.0, -10.0, 10.0),
-      TGLM.Vec3( 10.0, -10.0, 10.0)
-      ]);
+  lightPositions := TArr_TVec3([TGLM.Vec3(0.0,  0.0, 10.0)]);
 
-    lightColors := TArr_TVec3([
-      TGLM.Vec3(300.0, 300.0, 300.0),
-      TGLM.Vec3(300.0, 300.0, 300.0),
-      TGLM.Vec3(300.0, 300.0, 300.0),
-      TGLM.Vec3(300.0, 300.0, 300.0)
-      ]);
+  lightColors := TArr_TVec3([TGLM.Vec3(150.0, 150.0, 150.0)]);
 
-    nrRows    := integer(7);
-    nrColumns := integer(7);
-    spacing   := float(2.5);
+  nrRows    := integer(7);
+  nrColumns := integer(7);
+  spacing   := float(2.5);
 
   //═════════════════════════════════════════════════════════════════════════
 
@@ -160,43 +154,18 @@ begin
     shader.SetUniformMatrix4fv('view', view);
     shader.SetUniformVec3('camPos', camera.Position);
 
-    // 渲染 rows*column 行和列分别缩放具有不同金属/粗糙度值的球体的列数
-    model := TGLM.Mat4(1.0);
-    for row := 0 to nrRows - 1 do
-    begin
-      shader.SetUniformFloat('metallic', row / nrRows);
-      for col := 0 to nrColumns - 1 do
-      begin
-        // 我们将粗糙度值固定在 0.05 - 1.0 之间，
-        // 因为完美光滑的表面(0.0的粗糙度值)看起来有点偏离, 直接照明。
-        shader.SetUniformFloat('roughness', TGLM.Clamp(col / nrColumns, 0.05, 1.0));
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, albedo);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, normal);
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, metallic);
+    glActiveTexture(GL_TEXTURE3);
+    glBindTexture(GL_TEXTURE_2D, roughness);
+    glActiveTexture(GL_TEXTURE4);
+    glBindTexture(GL_TEXTURE_2D, ao);
 
-        model := TGLM.Mat4(1.0);
-        model := TGLM.Translate(model, TGLM.Vec3(
-          (col - (nrColumns / 2)) * spacing,
-          (row - (nrRows / 2)) * spacing,
-          0.0));
-        shader.SetUniformMatrix4fv('model', model);
-        RenderSphere;
-      end;
-    end;
 
-    // 渲染光源(简单地在光源位置重新渲染球体)
-    // 由于我们使用了相同的着色器，这看起来有点不一致，但它会让它们的位置很明显
-    // 保持代码打印的体积小
-    for i := 0 to High(lightPositions) do
-    begin
-      newPos := lightPositions[i] + TGLM.Vec3(Sin(glfwGetTime * 5.0) * 5.0, 0.0, 0.0);
-      newPos := lightPositions[i];
-      shader.SetUniformVec3('lightPositions[' + i.ToString + ']', newPos);
-      shader.SetUniformVec3('lightColors[' + i.ToString + ']', lightColors[i]);
-
-      model := TGLM.Mat4(1.0);
-      model := TGLM.translate(model, newPos);
-      model := TGLM.scale(model, TGLM.Vec3(0.5));
-      shader.SetUniformMatrix4fv('model', model);
-      RenderSphere;
-    end;
 
 
     // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
@@ -407,7 +376,7 @@ begin
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, tempIndices.MemSize, @tempIndices[0], GL_STATIC_DRAW);
 
-    stride := Cardinal((3 + 2 + 3) * SizeOf(float));
+    stride := Cardinal((3 + 2 + 3) * SIZE_OF_F);
 
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride, Pointer(0));

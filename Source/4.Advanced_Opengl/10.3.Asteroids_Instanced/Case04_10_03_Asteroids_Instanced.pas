@@ -62,11 +62,11 @@ var
 
 procedure Main;
 const
-  dir_path = '..\Source\4.Advanced_Opengl\10.3.Asteroids_Instanced\';
-  asteroids_vs = dir_path + '10.3.asteroids.vs';
-  asteroids_fs = dir_path + '10.3.asteroids.fs';
-  planet_vs = dir_path + '10.3.planet.vs';
-  planet_fs = dir_path + '10.3.planet.fs';
+  shader_path = '..\Source\4.Advanced_Opengl\10.3.Asteroids_Instanced\';
+  asteroids_vs = shader_path + '10.3.asteroids.vs';
+  asteroids_fs = shader_path + '10.3.asteroids.fs';
+  planet_vs = shader_path + '10.3.planet.vs';
+  planet_fs = shader_path + '10.3.planet.fs';
   rock_model = '..\Resources\objects\rock\rock.obj';
   planet_model = '..\Resources\objects\planet\planet.obj';
 var

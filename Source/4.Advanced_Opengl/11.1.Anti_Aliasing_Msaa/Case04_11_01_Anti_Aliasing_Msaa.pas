@@ -62,9 +62,9 @@ var
 
 procedure Main;
 const
-  dir_path = '..\Source\4.Advanced_Opengl\11.1.Anti_Aliasing_Msaa\';
-  vs = dir_path + '11.1.anti_aliasing.vs';
-  fs = dir_path + '11.1.anti_aliasing.fs';
+  shader_path = '..\Source\4.Advanced_Opengl\11.1.Anti_Aliasing_Msaa\';
+  vs = shader_path + '11.1.anti_aliasing.vs';
+  fs = shader_path + '11.1.anti_aliasing.fs';
 var
   window: PGLFWwindow;
   currentFrame: GLfloat;

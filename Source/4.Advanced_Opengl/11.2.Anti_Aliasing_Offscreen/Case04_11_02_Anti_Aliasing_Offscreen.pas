@@ -62,11 +62,11 @@ var
 
 procedure Main;
 const
-  dir_path = '..\Source\4.Advanced_Opengl\11.2.Anti_Aliasing_Offscreen\';
-  vs = dir_path + '11.2.anti_aliasing.vs';
-  fs = dir_path + '11.2.anti_aliasing.fs';
-  screen_vs = dir_path + '11.2.aa_post.vs';
-  screen_fs = dir_path + '11.2.aa_post.fs';
+  shader_path = '..\Source\4.Advanced_Opengl\11.2.Anti_Aliasing_Offscreen\';
+  vs = shader_path + '11.2.anti_aliasing.vs';
+  fs = shader_path + '11.2.anti_aliasing.fs';
+  screen_vs = shader_path + '11.2.aa_post.vs';
+  screen_fs = shader_path + '11.2.aa_post.fs';
 var
   window: PGLFWwindow;
   currentFrame: GLfloat;
