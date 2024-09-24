@@ -1,4 +1,4 @@
-﻿unit Case06_01_02_Lighting_Textured;
+﻿unit Case06_02_01_01_IBL_Irradiance_Conversion;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -41,6 +41,7 @@ function LoadTexture(fileName: string; gammaCorrection: boolean = false;
   inverse: boolean = true): cardinal; forward;
 
 procedure RenderSphere; forward;
+procedure RenderCube; forward;
 
 const
   SCR_WIDTH  = 1280;
@@ -56,17 +57,21 @@ var
 
   //偏航被初始化为-90.0度，因为0.0的偏航导致一个指向右的方向矢量，所以我们最初
   //向左旋转一点。
-  lastX: float = SCR_WIDTH / 2.0;
-  lastY: float = SCR_HEIGHT / 2.0;
+  lastX: float = 800 / 2.0;
+  lastY: float = 600 / 2.0;
 
   sphereVAO: Cardinal = 0;
   indexCount: Cardinal;
 
 procedure Main;
 const
-  shader_path = '..\Source\6.PBR\1.2.Lighting_Textured\';
-  pbr_vs = shader_path + '1.2.pbr.vs';
-  pbr_fs = shader_path + '1.2.pbr.fs';
+  shader_path = '..\Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\';
+  pbr_vs = shader_path + '2.1.1.pbr.vs';
+  pbr_fs = shader_path + '2.1.1.pbr.fs';
+  background_vs = shader_path +'2.1.1.background.vs';
+  background_fs = shader_path + '2.1.1.background.fs';
+  cubemap_vs = shader_path + '2.1.1.cubemap.vs';
+  equirectangular_to_cubemap_fs = shader_path + '2.1.1.equirectangular_to_cubemap.fs';
 
   img_path      = '..\Resources\textures\pbr\rusted_iron\';
   img_albedo    = img_path + 'albedo.png';
@@ -76,16 +81,12 @@ const
   img_ao        = img_path + 'ao.png';
 var
   window: PGLFWwindow;
-  lightPositions, lightColors: TArr_TVec3;
-  nrRows, nrColumns, row, col, i: Integer;
+  camera_managed, pbrShader_managed, equirectangularToCubemapShader_managed, backgroundShader_managed: IInterface;
+  pbrShader, equirectangularToCubemapShader, backgroundShader: TShaderProgram;
+  lightColors, lightPositions: TArr_TVec3;
+  nrRows, nrColumns: Integer;
   spacing: float;
-  shader_managed, camera_managed: IInterface;
-  shader: TShaderProgram;
-  projection, view, model: TMat4;
-  currentFrame: GLfloat;
-  newPos: TVec3;
-  albedo, normal, metallic, roughness, ao: Cardinal;
-  tempMat3: TMat3;
+  captureFBO, captureRBO: Cardinal;
 begin
   window := InitWindows;
   if window = nil then
@@ -96,7 +97,7 @@ begin
 
   //═════════════════════════════════════════════════════════════════════════'
 
-  camera_managed := IInterface(TCamera.Create(TGLM.Vec3(0, 0, 10)));
+  camera_managed := IInterface(TCamera.Create(TGLM.Vec3(0, 0, 3)));
   camera := camera_managed as TCamera;
 
   //═════════════════════════════════════════════════════════════════════════
@@ -104,37 +105,77 @@ begin
   // configure global opengl state
   glEnable(GL_DEPTH_TEST);
 
+  // 设置深度函数小于等于天空盒的深度技巧。
+  glDepthFunc(GL_LEQUAL);
+
   //═════════════════════════════════════════════════════════════════════════
 
-  shader_managed := IInterface(TShaderProgram.Create);
-  shader := shader_managed as TShaderProgram;
-  shader.LoadShaderFile(pbr_vs, pbr_fs);
+  pbrShader_managed := IInterface(TShaderProgram.Create);
+  pbrShader := pbrShader_managed as TShaderProgram;
+  pbrShader.LoadShaderFile(pbr_vs, pbr_fs);
 
-  shader.SetUniformInt('albedoMap', 0);
-  shader.SetUniformInt('normalMap', 1);
-  shader.SetUniformInt('metallicMap', 2);
-  shader.SetUniformInt('roughnessMap', 3);
-  shader.SetUniformInt('aoMap', 4);
+  equirectangularToCubemapShader_managed := IInterface(TShaderProgram.Create);
+  equirectangularToCubemapShader := equirectangularToCubemapShader_managed as TShaderProgram;
+  equirectangularToCubemapShader.LoadShaderFile(cubemap_vs, equirectangular_to_cubemap_fs);
 
-  //═════════════════════════════════════════════════════════════════════════4
+  backgroundShader_managed := IInterface(TShaderProgram.Create);
+  backgroundShader := backgroundShader_managed as TShaderProgram;
 
-  albedo    := LoadTexture(img_albedo);
-  normal    := LoadTexture(img_normal);
-  metallic  := LoadTexture(img_metallic);
-  roughness := LoadTexture(img_roughness);
-  ao        := LoadTexture(img_ao);
+
+  pbrShader.UseProgram;
+  pbrShader.SetUniformVec3('albedo', 0.5, 0.0, 0.0);
+  pbrShader.setFloat('ao', 1.0);
+
+  backgroundShader.UseProgram;
+  backgroundShader.SetUniformInt('environmentMap', 0);
 
   //═════════════════════════════════════════════════════════════════════════
 
   // lights
-  lightPositions := TArr_TVec3([TGLM.Vec3(0.0,  0.0, 10.0)]);
-  lightColors := TArr_TVec3([TGLM.Vec3(150.0, 150.0, 150.0)]);
+  lightPositions := TArr_TVec3([
+    TGLM.Vec3(-10.0,  10.0, 10.0),
+    TGLM.Vec3( 10.0,  10.0, 10.0),
+    TGLM.Vec3(-10.0, -10.0, 10.0),
+    TGLM.Vec3( 10.0, -10.0, 10.0)]);
+
+
+  lightColors := TArr_TVec3([
+    TGLM.Vec3(300.0, 300.0, 300.0),
+    TGLM.Vec3(300.0, 300.0, 300.0),
+    TGLM.Vec3(300.0, 300.0, 300.0),
+    TGLM.Vec3(300.0, 300.0, 300.0)]);
 
   nrRows    := integer(7);
   nrColumns := integer(7);
   spacing   := float(2.5);
 
   //═════════════════════════════════════════════════════════════════════════
+
+  // pbr: setup framebuffer
+  captureFBO := Cardinal(0);
+  captureRBO := Cardinal(0);
+  glGenFramebuffers(1, @captureFBO);
+  glGenRenderbuffers(1, @captureRBO);
+
+  glBindFramebuffer(GL_FRAMEBUFFER, captureFBO);
+  glBindRenderbuffer(GL_RENDERBUFFER, captureRBO);
+  glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, 512, 512);
+  glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, captureRBO);
+
+  //═════════════════════════════════════════════════════════════════════════
+
+  // pbr: load the HDR environment map
+
+
+
+
+
+
+
+
+
+
+
 
   // 渲染前初始化静态着色器
   projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT,

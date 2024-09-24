@@ -23,21 +23,23 @@ uses
   {%H-}DeepStar.OpenGL.Mesh,
   {%H-}DeepStar.OpenGL.Model;
 
+type
+  TObjNameB = class;
+
+  TObjNameA = class
+    a: TObjNameB;
+  end;
+
+type
+  TObjNameB = class
+  end;
+
 procedure Run();
 
 implementation
 
 uses
   Case06_01_02_Lighting_Textured;
-
-type
-  TObjNameB = type  object;
-
-  TObjNameA = object(TObj_Base)
-  end;
-
-  TObjNameB = object(TObj_Base)
-  end;
 
 procedure Test;
 begin

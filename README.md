@@ -115,3 +115,5 @@ LearnOpenGL文档学习
 
 ## 第5章 基于物理的渲染 PBR <br>
   1. 光照	Lighting <br>
+  2. 基于图像的光照 IBL(Image based lighting) <br>
+    - 1) 漫反射辐照度	Diffuse irradiance <br>

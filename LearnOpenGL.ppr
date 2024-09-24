@@ -103,7 +103,8 @@ uses
   Case05_08_02_Deferred_Shading_Volumes,
   Case05_09_01_SSAO,
   Case06_01_01_Lighting,
-  Case06_01_02_Lighting_Textured;
+  Case06_01_02_Lighting_Textured,
+  Case06_02_01_01_IBL_Irradiance_Conversion;
 
 begin
   try
