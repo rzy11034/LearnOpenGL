@@ -28,7 +28,16 @@ procedure Run();
 implementation
 
 uses
-  Case06_01_01_Lighting;
+  Case06_01_02_Lighting_Textured;
+
+type
+  TObjNameB = type  object;
+
+  TObjNameA = object(TObj_Base)
+  end;
+
+  TObjNameB = object(TObj_Base)
+  end;
 
 procedure Test;
 begin
@@ -37,9 +46,9 @@ end;
 
 procedure Run();
 begin
-  //Test;
-  //WriteLn(END_OF_PROGRAM_CH);
-  //ReadLn;
+  Test;
+  WriteLn(END_OF_PROGRAM_CH);
+  ReadLn;
   Main;
 end;
 

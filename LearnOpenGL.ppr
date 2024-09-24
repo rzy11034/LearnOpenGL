@@ -102,8 +102,8 @@ uses
   Case05_08_01_Deferred_Shading,
   Case05_08_02_Deferred_Shading_Volumes,
   Case05_09_01_SSAO,
-  Case06_01_01_Lighting;
-  //Case06_01_02_Lighting_Textured;
+  Case06_01_01_Lighting,
+  Case06_01_02_Lighting_Textured;
 
 begin
   try

@@ -77,12 +77,14 @@ const
 var
   window: PGLFWwindow;
   lightPositions, lightColors: TArr_TVec3;
-  nrRows, nrColumns, row, col: Integer;
+  nrRows, nrColumns, row, col, i: Integer;
   spacing: float;
-  shader_managed: IInterface;
+  shader_managed, camera_managed: IInterface;
   shader: TShaderProgram;
   projection, view, model: TMat4;
   currentFrame: GLfloat;
+  newPos: TVec3;
+  albedo, normal, metallic, roughness, ao: Cardinal;
 begin
   window := InitWindows;
   if window = nil then
@@ -113,11 +115,18 @@ begin
   shader.SetUniformInt('roughnessMap', 3);
   shader.SetUniformInt('aoMap', 4);
 
+  //═════════════════════════════════════════════════════════════════════════4
+
+  albedo    := LoadTexture(img_albedo);
+  normal    := LoadTexture(img_normal);
+  metallic  := LoadTexture(img_metallic);
+  roughness := LoadTexture(img_roughness);
+  ao        := LoadTexture(img_ao);
+
   //═════════════════════════════════════════════════════════════════════════
 
   // lights
   lightPositions := TArr_TVec3([TGLM.Vec3(0.0,  0.0, 10.0)]);
-
   lightColors := TArr_TVec3([TGLM.Vec3(150.0, 150.0, 150.0)]);
 
   nrRows    := integer(7);
@@ -165,8 +174,40 @@ begin
     glActiveTexture(GL_TEXTURE4);
     glBindTexture(GL_TEXTURE_2D, ao);
 
+    // 渲染 行*列 数球体的材质属性由纹理定义(他们都有相同的材质属性)
+    model := TGLM.Mat4(1.0);
+    for row := 0 to nrRows - 1 do
+    begin
+      for col := 0 to nrColumns - 1 do
+      begin
+          model := TGLM.Mat4(1.0);
+          model := TGLM.Translate(model, TGLM.Vec3(
+            (col - (nrColumns / 2)) * spacing,
+            (row - (nrRows    / 2)) * spacing,
+            0.0
+            ));
+          shader.SetUniformMatrix4fv('model', model);
+          RenderSphere;
+      end;
+    end;
 
+    // 渲染光源(简单地在光源位置重新渲染球体)
+    // 这看起来有点偏离，因为我们使用相同的着色器，但它会使他们的位置明显和
+    // 保持代码小。
+    for i := 0 to High(lightPositions) do
+    begin
+        newPos := lightPositions[i] + TGLM.Vec3(Sin(glfwGetTime * 5.0) * 5.0, 0.0, 0.0);
+        newPos := lightPositions[i];
+        shader.SetUniformVec3('lightPositions[' + i.ToString + ']', newPos);
+        shader.SetUniformVec3('lightColors[' + i.ToString + ']', lightColors[i]);
 
+        model := TGLM.Mat4(1.0);
+        model := TGLM.translate(model, newPos);
+        model := TGLM.scale(model, TGLM.Vec3(0.5));
+        shader.SetUniformMatrix4fv('model', model);
+        //shader.setMat3("normalMatrix", TGLM.transpose(glm::inverse(glm::mat3(model))));
+        renderSphere;
+    end;
 
     // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
     glfwSwapBuffers(window);

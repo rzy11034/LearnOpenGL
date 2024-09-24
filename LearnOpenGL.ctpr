@@ -1635,6 +1635,16 @@
         <Filename Value="Source\6.PBR\1.2.Lighting_Textured\Case06_01_02_Lighting_Textured.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="Source\6.PBR\1.2.Lighting_Textured\1.2.pbr.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\6.PBR\1.2.Lighting_Textured\1.2.pbr.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
