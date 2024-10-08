@@ -20,7 +20,10 @@ uses
   DeepStar.OpenGL.GLM,
   DeepStar.OpenGL.GLFW,
   DeepStar.OpenGL.Camera,
-  DeepStar.OpenGL.Model;
+  DeepStar.OpenGL.Model,
+
+  Imaging,
+  ImagingTypes;
 
 procedure Main;
 
@@ -63,30 +66,32 @@ var
   sphereVAO: Cardinal = 0;
   indexCount: Cardinal;
 
+  cubeVAO: Cardinal = 0;
+  cubeVBO: Cardinal = 0;
+
 procedure Main;
 const
   shader_path = '..\Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\';
   pbr_vs = shader_path + '2.1.1.pbr.vs';
   pbr_fs = shader_path + '2.1.1.pbr.fs';
-  background_vs = shader_path +'2.1.1.background.vs';
-  background_fs = shader_path + '2.1.1.background.fs';
   cubemap_vs = shader_path + '2.1.1.cubemap.vs';
   equirectangular_to_cubemap_fs = shader_path + '2.1.1.equirectangular_to_cubemap.fs';
 
-  img_path      = '..\Resources\textures\pbr\rusted_iron\';
-  img_albedo    = img_path + 'albedo.png';
-  img_normal    = img_path + 'normal.png';
-  img_metallic  = img_path + 'metallic.png';
-  img_roughness = img_path + 'roughness.png';
-  img_ao        = img_path + 'ao.png';
+  img_path      = '..\Resources\textures\hdr\';
+  img_newport_loft = img_path + 'newport_loft.hdr';
 var
   window: PGLFWwindow;
   camera_managed, pbrShader_managed, equirectangularToCubemapShader_managed, backgroundShader_managed: IInterface;
   pbrShader, equirectangularToCubemapShader, backgroundShader: TShaderProgram;
   lightColors, lightPositions: TArr_TVec3;
-  nrRows, nrColumns: Integer;
+  nrRows, nrColumns, scrWidth, scrHeight, row, col, i: Integer;
   spacing: float;
-  captureFBO, captureRBO: Cardinal;
+  captureFBO, captureRBO, hdrTexture, envCubemap: Cardinal;
+  hdrData: TImageData;
+  captureProjection, model, view, projection: TMat4;
+  currentFrame: GLfloat;
+  newPos: TVec3;
+  captureViews: TArr_TMat4;
 begin
   window := InitWindows;
   if window = nil then
@@ -121,10 +126,9 @@ begin
   backgroundShader_managed := IInterface(TShaderProgram.Create);
   backgroundShader := backgroundShader_managed as TShaderProgram;
 
-
   pbrShader.UseProgram;
-  pbrShader.SetUniformVec3('albedo', 0.5, 0.0, 0.0);
-  pbrShader.setFloat('ao', 1.0);
+  pbrShader.SetUniformVec3('albedo', TGLM.Vec3(0.5, 0.0, 0.0));
+  pbrShader.SetUniformFloat('ao', 1.0);
 
   backgroundShader.UseProgram;
   backgroundShader.SetUniformInt('environmentMap', 0);
@@ -165,23 +169,96 @@ begin
   //═════════════════════════════════════════════════════════════════════════
 
   // pbr: load the HDR environment map
+  if Imaging.LoadImageFromFile(img_newport_loft, hdrData) then
+  begin
+    hdrTexture := Cardinal(0);
+    glGenTextures(1, @hdrTexture);
 
+    glBindTexture(GL_TEXTURE_2D, hdrTexture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_BGR, hdrData.width, hdrData.height,
+      0, GL_BGRA, GL_FLOAT, hdrData.Bits); // 注意我们是如何将纹理的数据值指定为float的
 
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
+    FreeImage(hdrData);
+  end
+  else
+  begin
+    WriteLn('Failed to load HDR image.');
+  end;
 
+  //═════════════════════════════════════════════════════════════════════════
 
+  // Pbr:设置立方体映射以渲染和附加到framebuffer
+  envCubemap := Cardinal(0);
+  glGenTextures(1, @envCubemap);
+  glBindTexture(GL_TEXTURE_CUBE_MAP, envCubemap);
 
+  for i := 0 to 5 do
+  begin
+    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB16F, 512, 512,
+      0, GL_BGR, GL_FLOAT, nil);
+  end;
 
+  glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+  glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+  glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+  glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
+  //═════════════════════════════════════════════════════════════════════════
 
+  // Pbr:设置投影矩阵和视图矩阵，用于将数据捕获到6个立方体图面方向上
+  captureProjection := TGLM.perspective(TGLM.Radians(90.0), 1.0, 0.1, 10.0);
+  captureViews := TArr_TMat4([
+    TGLM.LookAt(TGLM.Vec3(0.0, 0.0, 0.0), TGLM.Vec3( 1.0,  0.0,  0.0), TGLM.Vec3(0.0, -1.0,  0.0)),
+    TGLM.LookAt(TGLM.Vec3(0.0, 0.0, 0.0), TGLM.Vec3(-1.0,  0.0,  0.0), TGLM.Vec3(0.0, -1.0,  0.0)),
+    TGLM.LookAt(TGLM.Vec3(0.0, 0.0, 0.0), TGLM.Vec3( 0.0,  1.0,  0.0), TGLM.Vec3(0.0,  0.0,  1.0)),
+    TGLM.LookAt(TGLM.Vec3(0.0, 0.0, 0.0), TGLM.Vec3( 0.0, -1.0,  0.0), TGLM.Vec3(0.0,  0.0, -1.0)),
+    TGLM.LookAt(TGLM.Vec3(0.0, 0.0, 0.0), TGLM.Vec3( 0.0,  0.0,  1.0), TGLM.Vec3(0.0, -1.0,  0.0)),
+    TGLM.LookAt(TGLM.Vec3(0.0, 0.0, 0.0), TGLM.Vec3( 0.0,  0.0, -1.0), TGLM.Vec3(0.0, -1.0,  0.0))
+    ]);
 
+  //═════════════════════════════════════════════════════════════════════════
 
+  // 将HDR等矩形环境映射转换为等量立方体映射
+  equirectangularToCubemapShader.UseProgram;
+  equirectangularToCubemapShader.SetUniformInt('equirectangularMap', 0);
+  equirectangularToCubemapShader.SetUniformMatrix4fv('projection', captureProjection);
+  glActiveTexture(GL_TEXTURE0);
+  glBindTexture(GL_TEXTURE_2D, hdrTexture);
 
-  // 渲染前初始化静态着色器
-  projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT,
-    0.1, 100.0);
-  shader.UseProgram;
-  shader.SetUniformMatrix4fv('projection', projection);
+  glViewport(0, 0, 512, 512); // 不要忘记将视口配置为捕获维度。
+  glBindFramebuffer(GL_FRAMEBUFFER, captureFBO);
+  for i := 0 to 5 do
+  begin
+    equirectangularToCubemapShader.SetUniformMatrix4fv('view', captureViews[i]);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+      GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, envCubemap, 0);
+    glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
+
+    RenderCube;
+  end;
+
+  glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+  //═════════════════════════════════════════════════════════════════════════
+
+  // 在渲染前初始化静态着色器制服
+  projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100.0);
+  pbrShader.UseProgram;
+  pbrShader.SetUniformMatrix4fv('projection', projection);
+  backgroundShader.UseProgram;
+  backgroundShader.SetUniformMatrix4fv('projection', projection);
+
+  // 然后在呈现之前，将视口配置为原始framebuffer的屏幕尺寸
+  scrWidth := Integer(0);
+  scrHeight := Integer(0);
+  glfwGetFramebufferSize(window, scrWidth, scrHeight);
+  glViewport(0, 0, scrWidth, scrHeight);
 
   //═════════════════════════════════════════════════════════════════════════
 
@@ -197,39 +274,33 @@ begin
     ProcessInput(window);
 
     // render
-    glClearColor(0.1, 0.1, 0.1, 1.0);
+    glClearColor(0.2, 0.3, 0.3, 1.0);
     glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
 
-    shader.UseProgram;
-    view := camera.GetViewMatrix;
-    shader.SetUniformMatrix4fv('view', view);
-    shader.SetUniformVec3('camPos', camera.Position);
+    // 渲染场景，为最终的着色器提供复杂的光照贴图。
+    pbrShader.UseProgram;
+    view := camera.GetViewMatrix();
+    pbrShader.SetUniformMatrix4fv('view', view);
+    pbrShader.SetUniformVec3('camPos', camera.Position);
 
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, albedo);
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, normal);
-    glActiveTexture(GL_TEXTURE2);
-    glBindTexture(GL_TEXTURE_2D, metallic);
-    glActiveTexture(GL_TEXTURE3);
-    glBindTexture(GL_TEXTURE_2D, roughness);
-    glActiveTexture(GL_TEXTURE4);
-    glBindTexture(GL_TEXTURE_2D, ao);
-
-    // 渲染 行*列 数球体的材质属性由纹理定义(他们都有相同的材质属性)
-    model := TGLM.Mat4(1.0);
+    // 渲染 行*列 数的球体，不同的金属/粗糙度值分别按行和列缩放
+    model := TGLM.mat4(1.0);
     for row := 0 to nrRows - 1 do
     begin
+      pbrShader.SetUniformFloat('metallic', row / nrRows);
       for col := 0 to nrColumns - 1 do
       begin
-          model := TGLM.Mat4(1.0);
-          model := TGLM.Translate(model, TGLM.Vec3(
-            (col - (nrColumns / 2)) * spacing,
-            (row - (nrRows    / 2)) * spacing,
-            0.0
-            ));
-          shader.SetUniformMatrix4fv('model', model);
-          RenderSphere;
+        // we clamp the roughness to 0.025 - 1.0 as perfectly smooth surfaces (roughness of 0.0) tend to look a bit off
+        // on direct lighting.
+        pbrShader.SetUniformFloat('roughness', TGLM.Clamp(col / nrColumns, 0.05, 1.0));
+
+        model := TGLM.mat4(1.0);
+        model := TGLM.translate(model, TGLM.Vec3((col - (nrColumns / 2)) * spacing,
+          (row - (nrRows / 2)) * spacing, -2.0));
+        pbrShader.SetUniformMatrix4fv('model', model);
+        pbrShader.SetUniformMatrix3fv('normalMatrix',
+          TGLM.TransposeMat3(TGLM.InverseMat3(TGLM.Mat3(model))));
+        RenderSphere;
       end;
     end;
 
@@ -238,20 +309,26 @@ begin
     // 保持代码小。
     for i := 0 to High(lightPositions) do
     begin
-        newPos := lightPositions[i] + TGLM.Vec3(Sin(glfwGetTime * 5.0) * 5.0, 0.0, 0.0);
-        newPos := lightPositions[i];
-        shader.SetUniformVec3('lightPositions[' + i.ToString + ']', newPos);
-        shader.SetUniformVec3('lightColors[' + i.ToString + ']', lightColors[i]);
+      newPos := lightPositions[i] + TGLM.Vec3(Sin(glfwGetTime * 5.0) * 5.0, 0.0, 0.0);
+      newPos := lightPositions[i];
+      pbrShader.SetUniformVec3('lightPositions[' + i.ToString + ']', newPos);
+      pbrShader.SetUniformVec3('lightColors[' + i.ToString + ']', lightColors[i]);
 
-        model := TGLM.Mat4(1.0);
-        model := TGLM.translate(model, newPos);
-        model := TGLM.scale(model, TGLM.Vec3(0.5));
-        shader.SetUniformMatrix4fv('model', model);
-
-        tempMat3 := TGLM.TransposeMat3(TGLM.InverseMat3(TGLM.Mat3(model)));
-        shader.SetUniformMatrix3fv('normalMatrix', tempMat3);
-        renderSphere;
+      model := TGLM.mat4(1.0);
+      model := TGLM.Translate(model, newPos);
+      model := TGLM.Scale(model, TGLM.Vec3(0.5));
+      pbrShader.SetUniformMatrix4fv('model', model);
+      pbrShader.SetUniformMatrix3fv('normalMatrix',
+        TGLM.TransposeMat3(TGLM.InverseMat3(TGLM.Mat3(model))));
+      RenderSphere;
     end;
+
+    // render skybox (render as last to prevent overdraw)
+    backgroundShader.UseProgram;
+    backgroundShader.SetUniformMatrix4fv('view', view);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, envCubemap);
+    RenderCube;
 
     // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
     glfwSwapBuffers(window);
@@ -473,6 +550,83 @@ begin
 
   glBindVertexArray(sphereVAO);
   glDrawElements(GL_TRIANGLE_STRIP, indexCount, GL_UNSIGNED_INT, nil);
+end;
+
+procedure RenderCube;
+var
+  vertices: TArr_GLfloat;
+begin
+  // initialize (if necessary)
+    if cubeVAO = 0 then
+    begin
+      vertices := TArr_GLfloat([
+        // back face
+        -1.0, -1.0, -1.0,  0.0,  0.0, -1.0, 0.0, 0.0, // bottom-left
+         1.0,  1.0, -1.0,  0.0,  0.0, -1.0, 1.0, 1.0, // top-right
+         1.0, -1.0, -1.0,  0.0,  0.0, -1.0, 1.0, 0.0, // bottom-right
+         1.0,  1.0, -1.0,  0.0,  0.0, -1.0, 1.0, 1.0, // top-right
+        -1.0, -1.0, -1.0,  0.0,  0.0, -1.0, 0.0, 0.0, // bottom-left
+        -1.0,  1.0, -1.0,  0.0,  0.0, -1.0, 0.0, 1.0, // top-left
+        // front face
+        -1.0, -1.0,  1.0,  0.0,  0.0,  1.0, 0.0, 0.0, // bottom-left
+         1.0, -1.0,  1.0,  0.0,  0.0,  1.0, 1.0, 0.0, // bottom-right
+         1.0,  1.0,  1.0,  0.0,  0.0,  1.0, 1.0, 1.0, // top-right
+         1.0,  1.0,  1.0,  0.0,  0.0,  1.0, 1.0, 1.0, // top-right
+        -1.0,  1.0,  1.0,  0.0,  0.0,  1.0, 0.0, 1.0, // top-left
+        -1.0, -1.0,  1.0,  0.0,  0.0,  1.0, 0.0, 0.0, // bottom-left
+        // left face
+        -1.0,  1.0,  1.0, -1.0,  0.0,  0.0, 1.0, 0.0, // top-right
+        -1.0,  1.0, -1.0, -1.0,  0.0,  0.0, 1.0, 1.0, // top-left
+        -1.0, -1.0, -1.0, -1.0,  0.0,  0.0, 0.0, 1.0, // bottom-left
+        -1.0, -1.0, -1.0, -1.0,  0.0,  0.0, 0.0, 1.0, // bottom-left
+        -1.0, -1.0,  1.0, -1.0,  0.0,  0.0, 0.0, 0.0, // bottom-right
+        -1.0,  1.0,  1.0, -1.0,  0.0,  0.0, 1.0, 0.0, // top-right
+        // right face
+         1.0,  1.0,  1.0,  1.0,  0.0,  0.0, 1.0, 0.0, // top-left
+         1.0, -1.0, -1.0,  1.0,  0.0,  0.0, 0.0, 1.0, // bottom-right
+         1.0,  1.0, -1.0,  1.0,  0.0,  0.0, 1.0, 1.0, // top-right
+         1.0, -1.0, -1.0,  1.0,  0.0,  0.0, 0.0, 1.0, // bottom-right
+         1.0,  1.0,  1.0,  1.0,  0.0,  0.0, 1.0, 0.0, // top-left
+         1.0, -1.0,  1.0,  1.0,  0.0,  0.0, 0.0, 0.0, // bottom-left
+        // bottom face
+        -1.0, -1.0, -1.0,  0.0, -1.0,  0.0, 0.0, 1.0, // top-right
+         1.0, -1.0, -1.0,  0.0, -1.0,  0.0, 1.0, 1.0, // top-left
+         1.0, -1.0,  1.0,  0.0, -1.0,  0.0, 1.0, 0.0, // bottom-left
+         1.0, -1.0,  1.0,  0.0, -1.0,  0.0, 1.0, 0.0, // bottom-left
+        -1.0, -1.0,  1.0,  0.0, -1.0,  0.0, 0.0, 0.0, // bottom-right
+        -1.0, -1.0, -1.0,  0.0, -1.0,  0.0, 0.0, 1.0, // top-right
+        // top face
+        -1.0,  1.0, -1.0,  0.0,  1.0,  0.0, 0.0, 1.0, // top-left
+         1.0,  1.0 , 1.0,  0.0,  1.0,  0.0, 1.0, 0.0, // bottom-right
+         1.0,  1.0, -1.0,  0.0,  1.0,  0.0, 1.0, 1.0, // top-right
+         1.0,  1.0,  1.0,  0.0,  1.0,  0.0, 1.0, 0.0, // bottom-right
+        -1.0,  1.0, -1.0,  0.0,  1.0,  0.0, 0.0, 1.0, // top-left
+        -1.0,  1.0,  1.0,  0.0,  1.0,  0.0, 0.0, 0.0  // bottom-left
+      ]);
+
+      glGenVertexArrays(1, @cubeVAO);
+      glGenBuffers(1, @cubeVBO);
+
+      // fill buffer
+      glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
+      glBufferData(GL_ARRAY_BUFFER, vertices.MemSize, @vertices[0], GL_STATIC_DRAW);
+
+      // link vertex attributes
+      glBindVertexArray(cubeVAO);
+      glEnableVertexAttribArray(0);
+      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(0));
+      glEnableVertexAttribArray(1);
+      glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(3 * SIZE_OF_F));
+      glEnableVertexAttribArray(2);
+      glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(6 * SIZE_OF_F));
+      glBindBuffer(GL_ARRAY_BUFFER, 0);
+      glBindVertexArray(0);
+    end;
+
+    // render Cube
+    glBindVertexArray(cubeVAO);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
+    glBindVertexArray(0);
 end;
 
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl;
