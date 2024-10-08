@@ -30,8 +30,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="10"/>
-        <CursorPos X="44" Y="31"/>
+        <TopLine Value="28"/>
+        <CursorPos X="14" Y="31"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
@@ -156,11 +156,13 @@
       <Unit>
         <Filename Value="Source\1.Getting_Started\4.2.Textures_Combined\Case01_04_02_Textures_Combined.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="160"/>
-        <CursorPos X="39" Y="180"/>
+        <TopLine Value="154"/>
+        <CursorPos X="20" Y="176"/>
         <UsageCount Value="233"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Source\1.Getting_Started\4.3.Textures_Exercise1\Case01_04_03_Textures_Exercise1.pas"/>
@@ -3194,7 +3196,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="51"/>
         <CursorPos X="28" Y="80"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="180"/>
       </Unit>
       <Unit>
         <Filename Value="Source\5.Advanced_Lighting\8.1.Deferred_Shading\8.1.deferred_light_box.fs"/>
@@ -3202,7 +3204,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="180"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3211,7 +3213,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="180"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3221,7 +3223,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="25"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="180"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3230,7 +3232,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="180"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3239,7 +3241,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="180"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3248,7 +3250,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="180"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3257,7 +3259,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="180"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3267,7 +3269,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="53" Y="7"/>
-        <UsageCount Value="178"/>
+        <UsageCount Value="180"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3277,7 +3279,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="52"/>
         <CursorPos X="28" Y="81"/>
-        <UsageCount Value="173"/>
+        <UsageCount Value="175"/>
       </Unit>
       <Unit>
         <Filename Value="Source\5.Advanced_Lighting\9.1.SSAO\Case05_09_01_SSAO.pas"/>
@@ -3286,7 +3288,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="56"/>
         <CursorPos X="33" Y="85"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="156"/>
       </Unit>
       <Unit>
         <Filename Value="Source\5.Advanced_Lighting\8.2.Deferred_Shading_Volumes\8.2.deferred_light_box.fs"/>
@@ -3296,7 +3298,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="156"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3307,7 +3309,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="156"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3318,7 +3320,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="156"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3329,7 +3331,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="156"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3340,7 +3342,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="156"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3351,7 +3353,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="156"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3362,7 +3364,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="156"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3373,7 +3375,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="156"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3384,7 +3386,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="156"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3395,7 +3397,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="156"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3406,7 +3408,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="156"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3417,7 +3419,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="156"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3427,7 +3429,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="160"/>
         <CursorPos X="22" Y="164"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="79"/>
       </Unit>
       <Unit>
         <Filename Value="Source\6.PBR\1.1.Lighting\1.1.pbr.fs"/>
@@ -3437,7 +3439,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="79"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3448,7 +3450,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="79"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3458,7 +3460,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="377"/>
         <CursorPos X="5" Y="483"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="71"/>
       </Unit>
       <Unit>
         <Filename Value="Source\6.PBR\1.2.Lighting_Textured\1.2.pbr.fs"/>
@@ -3468,7 +3470,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="57"/>
+        <UsageCount Value="59"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3479,18 +3481,17 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="57"/>
+        <UsageCount Value="59"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
         <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="303"/>
-        <CursorPos X="7" Y="313"/>
-        <UsageCount Value="27"/>
+        <TopLine Value="163"/>
+        <CursorPos Y="170"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -3501,7 +3502,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="29"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3512,7 +3513,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="29"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3523,7 +3524,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="29"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3534,7 +3535,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="29"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3545,7 +3546,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="29"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3556,7 +3557,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="29"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3721,11 +3722,12 @@
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.GLAD_GL.pas"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="3272"/>
-        <CursorPos X="54" Y="3289"/>
-        <UsageCount Value="4"/>
+        <TopLine Value="1535"/>
+        <CursorPos X="3" Y="1552"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\DeepStar.Utils.pas"/>
@@ -3948,78 +3950,6 @@
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="42" Column="12" TopLine="10"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
-        <Caret Line="187" Column="22" TopLine="169"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
-        <Caret Line="297" Column="65" TopLine="277"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
-        <Caret Line="324" Column="9" TopLine="292"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
-        <Caret Line="312" Column="38" TopLine="292"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
-        <Caret Line="613" Column="30" TopLine="616"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
-        <Caret Line="173" TopLine="169"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
-        <Caret Line="175" TopLine="169"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
-        <Caret Line="176" TopLine="169"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
-        <Caret Line="177" TopLine="169"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
-        <Caret Line="178" TopLine="169"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
-        <Caret Line="181" TopLine="169"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
-        <Caret Line="182" TopLine="169"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
-        <Caret Line="183" TopLine="169"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
-        <Caret Line="184" TopLine="169"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
-        <Caret Line="186" TopLine="170"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
-        <Caret Line="196" TopLine="187"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
-        <Caret Line="197" TopLine="187"/>
-      </Position>
-      <Position>
         <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
         <Caret Line="198" TopLine="187"/>
       </Position>
@@ -4067,6 +3997,78 @@
         <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
         <Caret Line="266" TopLine="257"/>
       </Position>
+      <Position>
+        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
+        <Caret Line="312" Column="3" TopLine="303"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
+        <Caret Line="313" TopLine="303"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
+        <Caret Line="314" TopLine="303"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
+        <Caret Line="312" TopLine="303"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
+        <Caret Line="313" TopLine="303"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
+        <Caret Line="314" TopLine="303"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
+        <Caret Line="312" TopLine="303"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
+        <Caret Line="313" TopLine="303"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
+        <Caret Line="314" TopLine="303"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
+        <Caret Line="312" TopLine="303"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
+        <Caret Line="313" TopLine="303"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
+        <Caret Line="72" Column="11" TopLine="55"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
+        <Caret Line="386" Column="6" TopLine="138"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
+        <Caret Line="584" Column="27" TopLine="24"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
+        <Caret Line="200" Column="60" TopLine="184"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
+        <Caret Line="201" Column="17" TopLine="184"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\Case06_02_01_01_IBL_Irradiance_Conversion.pas"/>
+        <Caret Line="177" Column="13" TopLine="163"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="31" Column="14" TopLine="28"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
@@ -4092,9 +4094,6 @@
   </ProjectSession>
   <Debugging>
     <Watches>
-      <Item ClassAutoCast="True">
-        <Expression Value="sample"/>
-      </Item>
       <Item ClassAutoCast="True">
         <Expression Value="newPos"/>
       </Item>

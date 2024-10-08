@@ -14,7 +14,6 @@ uses
   SysUtils,
   DeepStar.Utils,
   DeepStar.OpenGL.Utils,
-  DeepStar.OpenGL.Texture,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.Shader,
   DeepStar.OpenGL.GLM,
@@ -39,9 +38,6 @@ procedure Mouse_callback(window: PGLFWwindow; xpos, ypos: double); cdecl; forwar
 procedure ProcessInput(window: PGLFWwindow); forward;
 // glfw & glad  初始化
 function InitWindows: PGLFWwindow; forward;
-// 加载贴图
-function LoadTexture(fileName: string; gammaCorrection: boolean = false;
-  inverse: boolean = true): cardinal; forward;
 
 procedure RenderSphere; forward;
 procedure RenderCube; forward;
@@ -171,12 +167,14 @@ begin
   // pbr: load the HDR environment map
   if Imaging.LoadImageFromFile(img_newport_loft, hdrData) then
   begin
+    Imaging.FlipImage(hdrData);
+
     hdrTexture := Cardinal(0);
     glGenTextures(1, @hdrTexture);
 
     glBindTexture(GL_TEXTURE_2D, hdrTexture);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_BGR, hdrData.width, hdrData.height,
-      0, GL_BGRA, GL_FLOAT, hdrData.Bits); // 注意我们是如何将纹理的数据值指定为float的
+      0, GL_RGB, GL_FLOAT, hdrData.Bits); // 注意我们是如何将纹理的数据值指定为float的
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
@@ -228,6 +226,7 @@ begin
   equirectangularToCubemapShader.UseProgram;
   equirectangularToCubemapShader.SetUniformInt('equirectangularMap', 0);
   equirectangularToCubemapShader.SetUniformMatrix4fv('projection', captureProjection);
+
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, hdrTexture);
 
@@ -247,7 +246,7 @@ begin
 
   //═════════════════════════════════════════════════════════════════════════
 
-  // 在渲染前初始化静态着色器制服
+  // 在渲染前初始化静态着色器 uniforms
   projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100.0);
   pbrShader.UseProgram;
   pbrShader.SetUniformMatrix4fv('projection', projection);
@@ -382,49 +381,6 @@ begin
   Result := window;
 end;
 
-function LoadTexture(fileName: string; gammaCorrection: boolean; inverse: boolean): cardinal;
-var
-  texture_ID: GLuint;
-  tx: TTexture;
-  tx_managed: IInterface;
-  internalFormat: GLenum;
-begin
-  texture_ID := GLuint(0);
-  glGenTextures(1, @texture_ID);
-  internalFormat := GLenum(0);
-
-  tx_managed := IInterface(TTexture.Create);
-  tx := tx_managed as TTexture;
-
-  tx.LoadFormFile(fileName, inverse);
-
-  if gammaCorrection then
-    internalFormat := GL_SRGB
-  else
-    internalFormat := GL_RGBA;
-
-  glBindTexture(GL_TEXTURE_2D, texture_ID);
-  glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, tx.Width, tx.Height, 0, GL_RGBA,
-    GL_UNSIGNED_BYTE, tx.Pixels);
-  glGenerateMipmap(GL_TEXTURE_2D);
-
-  if tx.UseAlpha then
-  begin
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-  end
-  else
-  begin
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-  end;
-
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-  Result := texture_ID;
-end;
-
 procedure RenderSphere;
 var
   vbo, ebo, X_SEGMENTS, Y_SEGMENTS, stride: Cardinal;
@@ -557,76 +513,76 @@ var
   vertices: TArr_GLfloat;
 begin
   // initialize (if necessary)
-    if cubeVAO = 0 then
-    begin
-      vertices := TArr_GLfloat([
-        // back face
-        -1.0, -1.0, -1.0,  0.0,  0.0, -1.0, 0.0, 0.0, // bottom-left
-         1.0,  1.0, -1.0,  0.0,  0.0, -1.0, 1.0, 1.0, // top-right
-         1.0, -1.0, -1.0,  0.0,  0.0, -1.0, 1.0, 0.0, // bottom-right
-         1.0,  1.0, -1.0,  0.0,  0.0, -1.0, 1.0, 1.0, // top-right
-        -1.0, -1.0, -1.0,  0.0,  0.0, -1.0, 0.0, 0.0, // bottom-left
-        -1.0,  1.0, -1.0,  0.0,  0.0, -1.0, 0.0, 1.0, // top-left
-        // front face
-        -1.0, -1.0,  1.0,  0.0,  0.0,  1.0, 0.0, 0.0, // bottom-left
-         1.0, -1.0,  1.0,  0.0,  0.0,  1.0, 1.0, 0.0, // bottom-right
-         1.0,  1.0,  1.0,  0.0,  0.0,  1.0, 1.0, 1.0, // top-right
-         1.0,  1.0,  1.0,  0.0,  0.0,  1.0, 1.0, 1.0, // top-right
-        -1.0,  1.0,  1.0,  0.0,  0.0,  1.0, 0.0, 1.0, // top-left
-        -1.0, -1.0,  1.0,  0.0,  0.0,  1.0, 0.0, 0.0, // bottom-left
-        // left face
-        -1.0,  1.0,  1.0, -1.0,  0.0,  0.0, 1.0, 0.0, // top-right
-        -1.0,  1.0, -1.0, -1.0,  0.0,  0.0, 1.0, 1.0, // top-left
-        -1.0, -1.0, -1.0, -1.0,  0.0,  0.0, 0.0, 1.0, // bottom-left
-        -1.0, -1.0, -1.0, -1.0,  0.0,  0.0, 0.0, 1.0, // bottom-left
-        -1.0, -1.0,  1.0, -1.0,  0.0,  0.0, 0.0, 0.0, // bottom-right
-        -1.0,  1.0,  1.0, -1.0,  0.0,  0.0, 1.0, 0.0, // top-right
-        // right face
-         1.0,  1.0,  1.0,  1.0,  0.0,  0.0, 1.0, 0.0, // top-left
-         1.0, -1.0, -1.0,  1.0,  0.0,  0.0, 0.0, 1.0, // bottom-right
-         1.0,  1.0, -1.0,  1.0,  0.0,  0.0, 1.0, 1.0, // top-right
-         1.0, -1.0, -1.0,  1.0,  0.0,  0.0, 0.0, 1.0, // bottom-right
-         1.0,  1.0,  1.0,  1.0,  0.0,  0.0, 1.0, 0.0, // top-left
-         1.0, -1.0,  1.0,  1.0,  0.0,  0.0, 0.0, 0.0, // bottom-left
-        // bottom face
-        -1.0, -1.0, -1.0,  0.0, -1.0,  0.0, 0.0, 1.0, // top-right
-         1.0, -1.0, -1.0,  0.0, -1.0,  0.0, 1.0, 1.0, // top-left
-         1.0, -1.0,  1.0,  0.0, -1.0,  0.0, 1.0, 0.0, // bottom-left
-         1.0, -1.0,  1.0,  0.0, -1.0,  0.0, 1.0, 0.0, // bottom-left
-        -1.0, -1.0,  1.0,  0.0, -1.0,  0.0, 0.0, 0.0, // bottom-right
-        -1.0, -1.0, -1.0,  0.0, -1.0,  0.0, 0.0, 1.0, // top-right
-        // top face
-        -1.0,  1.0, -1.0,  0.0,  1.0,  0.0, 0.0, 1.0, // top-left
-         1.0,  1.0 , 1.0,  0.0,  1.0,  0.0, 1.0, 0.0, // bottom-right
-         1.0,  1.0, -1.0,  0.0,  1.0,  0.0, 1.0, 1.0, // top-right
-         1.0,  1.0,  1.0,  0.0,  1.0,  0.0, 1.0, 0.0, // bottom-right
-        -1.0,  1.0, -1.0,  0.0,  1.0,  0.0, 0.0, 1.0, // top-left
-        -1.0,  1.0,  1.0,  0.0,  1.0,  0.0, 0.0, 0.0  // bottom-left
-      ]);
+  if cubeVAO = 0 then
+  begin
+    vertices := TArr_GLfloat([
+      // back face
+      -1.0, -1.0, -1.0,  0.0,  0.0, -1.0, 0.0, 0.0, // bottom-left
+       1.0,  1.0, -1.0,  0.0,  0.0, -1.0, 1.0, 1.0, // top-right
+       1.0, -1.0, -1.0,  0.0,  0.0, -1.0, 1.0, 0.0, // bottom-right
+       1.0,  1.0, -1.0,  0.0,  0.0, -1.0, 1.0, 1.0, // top-right
+      -1.0, -1.0, -1.0,  0.0,  0.0, -1.0, 0.0, 0.0, // bottom-left
+      -1.0,  1.0, -1.0,  0.0,  0.0, -1.0, 0.0, 1.0, // top-left
+      // front face
+      -1.0, -1.0,  1.0,  0.0,  0.0,  1.0, 0.0, 0.0, // bottom-left
+       1.0, -1.0,  1.0,  0.0,  0.0,  1.0, 1.0, 0.0, // bottom-right
+       1.0,  1.0,  1.0,  0.0,  0.0,  1.0, 1.0, 1.0, // top-right
+       1.0,  1.0,  1.0,  0.0,  0.0,  1.0, 1.0, 1.0, // top-right
+      -1.0,  1.0,  1.0,  0.0,  0.0,  1.0, 0.0, 1.0, // top-left
+      -1.0, -1.0,  1.0,  0.0,  0.0,  1.0, 0.0, 0.0, // bottom-left
+      // left face
+      -1.0,  1.0,  1.0, -1.0,  0.0,  0.0, 1.0, 0.0, // top-right
+      -1.0,  1.0, -1.0, -1.0,  0.0,  0.0, 1.0, 1.0, // top-left
+      -1.0, -1.0, -1.0, -1.0,  0.0,  0.0, 0.0, 1.0, // bottom-left
+      -1.0, -1.0, -1.0, -1.0,  0.0,  0.0, 0.0, 1.0, // bottom-left
+      -1.0, -1.0,  1.0, -1.0,  0.0,  0.0, 0.0, 0.0, // bottom-right
+      -1.0,  1.0,  1.0, -1.0,  0.0,  0.0, 1.0, 0.0, // top-right
+      // right face
+       1.0,  1.0,  1.0,  1.0,  0.0,  0.0, 1.0, 0.0, // top-left
+       1.0, -1.0, -1.0,  1.0,  0.0,  0.0, 0.0, 1.0, // bottom-right
+       1.0,  1.0, -1.0,  1.0,  0.0,  0.0, 1.0, 1.0, // top-right
+       1.0, -1.0, -1.0,  1.0,  0.0,  0.0, 0.0, 1.0, // bottom-right
+       1.0,  1.0,  1.0,  1.0,  0.0,  0.0, 1.0, 0.0, // top-left
+       1.0, -1.0,  1.0,  1.0,  0.0,  0.0, 0.0, 0.0, // bottom-left
+      // bottom face
+      -1.0, -1.0, -1.0,  0.0, -1.0,  0.0, 0.0, 1.0, // top-right
+       1.0, -1.0, -1.0,  0.0, -1.0,  0.0, 1.0, 1.0, // top-left
+       1.0, -1.0,  1.0,  0.0, -1.0,  0.0, 1.0, 0.0, // bottom-left
+       1.0, -1.0,  1.0,  0.0, -1.0,  0.0, 1.0, 0.0, // bottom-left
+      -1.0, -1.0,  1.0,  0.0, -1.0,  0.0, 0.0, 0.0, // bottom-right
+      -1.0, -1.0, -1.0,  0.0, -1.0,  0.0, 0.0, 1.0, // top-right
+      // top face
+      -1.0,  1.0, -1.0,  0.0,  1.0,  0.0, 0.0, 1.0, // top-left
+       1.0,  1.0 , 1.0,  0.0,  1.0,  0.0, 1.0, 0.0, // bottom-right
+       1.0,  1.0, -1.0,  0.0,  1.0,  0.0, 1.0, 1.0, // top-right
+       1.0,  1.0,  1.0,  0.0,  1.0,  0.0, 1.0, 0.0, // bottom-right
+      -1.0,  1.0, -1.0,  0.0,  1.0,  0.0, 0.0, 1.0, // top-left
+      -1.0,  1.0,  1.0,  0.0,  1.0,  0.0, 0.0, 0.0  // bottom-left
+    ]);
 
-      glGenVertexArrays(1, @cubeVAO);
-      glGenBuffers(1, @cubeVBO);
+    glGenVertexArrays(1, @cubeVAO);
+    glGenBuffers(1, @cubeVBO);
 
-      // fill buffer
-      glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
-      glBufferData(GL_ARRAY_BUFFER, vertices.MemSize, @vertices[0], GL_STATIC_DRAW);
+    // fill buffer
+    glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
+    glBufferData(GL_ARRAY_BUFFER, vertices.MemSize, @vertices[0], GL_STATIC_DRAW);
 
-      // link vertex attributes
-      glBindVertexArray(cubeVAO);
-      glEnableVertexAttribArray(0);
-      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(0));
-      glEnableVertexAttribArray(1);
-      glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(3 * SIZE_OF_F));
-      glEnableVertexAttribArray(2);
-      glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(6 * SIZE_OF_F));
-      glBindBuffer(GL_ARRAY_BUFFER, 0);
-      glBindVertexArray(0);
-    end;
-
-    // render Cube
+    // link vertex attributes
     glBindVertexArray(cubeVAO);
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(0));
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(3 * SIZE_OF_F));
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * SIZE_OF_F, Pointer(6 * SIZE_OF_F));
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+  end;
+
+  // render Cube
+  glBindVertexArray(cubeVAO);
+  glDrawArrays(GL_TRIANGLES, 0, 36);
+  glBindVertexArray(0);
 end;
 
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl;

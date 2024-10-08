@@ -28,7 +28,7 @@ procedure Run();
 implementation
 
 uses
-  Case06_02_01_01_IBL_Irradiance_Conversion;
+  Case01_04_02_Textures_Combined;
 
 procedure Test;
 begin
