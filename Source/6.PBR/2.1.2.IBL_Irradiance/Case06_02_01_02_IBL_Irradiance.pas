@@ -1,4 +1,4 @@
-﻿unit Case06_02_01_01_IBL_Irradiance_Conversion;
+﻿unit Case06_02_01_02_IBL_Irradiance;
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
@@ -67,24 +67,26 @@ var
 
 procedure Main;
 const
-  shader_path = '..\Source\6.PBR\2.1.1.IBL_Irradiance_Conversion\';
-  pbr_vs = shader_path + '2.1.1.pbr.vs';
-  pbr_fs = shader_path + '2.1.1.pbr.fs';
-  cubemap_vs = shader_path + '2.1.1.cubemap.vs';
-  equirectangular_to_cubemap_fs = shader_path + '2.1.1.equirectangular_to_cubemap.fs';
-  background_vs = shader_path + '2.1.1.background.vs';
-  background_fs = shader_path + '2.1.1.background.fs';
+  shader_path = '..\Source\6.PBR\2.1.2.IBL_Irradiance\';
+  pbr_vs = shader_path + '2.1.2.pbr.vs';
+  pbr_fs = shader_path + '2.1.2.pbr.fs';
+  cubemap_vs = shader_path + '2.1.2.cubemap.vs';
+  equirectangular_to_cubemap_fs = shader_path + '2.1.2.equirectangular_to_cubemap.fs';
+  irradiance_convolution_fs = shader_path + '2.1.2.irradiance_convolution.fs';
+  background_vs = shader_path + '2.1.2.background.vs';
+  background_fs = shader_path + '2.1.2.background.fs';
 
   img_path = '..\Resources\textures\hdr\';
   img_newport_loft = img_path + 'newport_loft.hdr';
 var
   window: PGLFWwindow;
-  camera_managed, pbrShader_managed, equirectangularToCubemapShader_managed, backgroundShader_managed: IInterface;
-  pbrShader, equirectangularToCubemapShader, backgroundShader: TShaderProgram;
+  camera_managed, pbrShader_managed, equirectangularToCubemapShader_managed,
+    backgroundShader_managed, irradianceShader_managed: IInterface;
+  pbrShader, equirectangularToCubemapShader, backgroundShader, irradianceShader: TShaderProgram;
   lightColors, lightPositions: TArr_TVec3;
   nrRows, nrColumns, scrWidth, scrHeight, row, col, i: Integer;
   spacing: float;
-  captureFBO, captureRBO, hdrTexture, envCubemap: Cardinal;
+  captureFBO, captureRBO, hdrTexture, envCubemap, irradianceMap: Cardinal;
   hdrData: TImageData;
   captureProjection, model, view, projection: TMat4;
   currentFrame: GLfloat;
@@ -121,11 +123,16 @@ begin
   equirectangularToCubemapShader := equirectangularToCubemapShader_managed as TShaderProgram;
   equirectangularToCubemapShader.LoadShaderFile(cubemap_vs, equirectangular_to_cubemap_fs);
 
+  irradianceShader_managed := IInterface(TShaderProgram.Create);
+  irradianceShader := irradianceShader_managed as TShaderProgram;
+  irradianceShader.LoadShaderFile(cubemap_vs, irradiance_convolution_fs);
+
   backgroundShader_managed := IInterface(TShaderProgram.Create);
   backgroundShader := backgroundShader_managed as TShaderProgram;
   backgroundShader.LoadShaderFile(background_vs, background_fs);
 
   pbrShader.UseProgram;
+  pbrShader.SetUniformInt('irradianceMap', 0);
   pbrShader.SetUniformVec3('albedo', TGLM.Vec3(0.5, 0.0, 0.0));
   pbrShader.SetUniformFloat('ao', 1.0);
 
@@ -251,6 +258,52 @@ begin
 
   //═════════════════════════════════════════════════════════════════════════
 
+  // pbr: 创建一个辐照度立方体图，并重新缩放捕获FBO到辐照度尺度。
+  irradianceMap := Cardinal(0);
+  glGenTextures(1, @irradianceMap);
+  glBindTexture(GL_TEXTURE_CUBE_MAP, irradianceMap);
+
+  for i := 0 to 5 do
+  begin
+    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB16F, 32, 32, 0,
+      GL_RGB, GL_FLOAT, nil);
+  end;
+
+  glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+  glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+  glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+  glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+  glBindFramebuffer(GL_FRAMEBUFFER, captureFBO);
+  glBindRenderbuffer(GL_RENDERBUFFER, captureRBO);
+  glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, 32, 32);
+
+  //═════════════════════════════════════════════════════════════════════════
+
+  // Pbr:通过卷积求解漫射积分来创建一个辐照度(立方体)图
+  irradianceShader.UseProgram;
+  irradianceShader.SetUniformInt('environmentMap', 0);
+  irradianceShader.SetUniformMatrix4fv('projection', captureProjection);
+  glActiveTexture(GL_TEXTURE0);
+  glBindTexture(GL_TEXTURE_CUBE_MAP, envCubemap);
+
+  glViewport(0, 0, 32, 32); // don't forget to configure the viewport to the capture dimensions.
+  glBindFramebuffer(GL_FRAMEBUFFER, captureFBO);
+  for i := 0 to 5 do
+  begin
+    irradianceShader.SetUniformMatrix4fv('view', captureViews[i]);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+      GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, irradianceMap, 0);
+    glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
+
+    RenderCube;
+  end;
+
+  glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+  //═════════════════════════════════════════════════════════════════════════
+
   // 在渲染前初始化静态着色器 uniforms
   projection := TGLM.Perspective(TGLM.Radians(camera.Zoom), SCR_WIDTH / SCR_HEIGHT, 0.1, 100.0);
   pbrShader.UseProgram;
@@ -286,6 +339,10 @@ begin
     view := camera.GetViewMatrix();
     pbrShader.SetUniformMatrix4fv('view', view);
     pbrShader.SetUniformVec3('camPos', camera.Position);
+
+    //绑定预先计算的IBL数据
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, irradianceMap);
 
     // 渲染 行*列 数的球体，不同的金属/粗糙度值分别按行和列缩放
     model := TGLM.mat4(1.0);

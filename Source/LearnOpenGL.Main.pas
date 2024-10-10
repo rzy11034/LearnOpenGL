@@ -28,7 +28,7 @@ procedure Run();
 implementation
 
 uses
-  Case01_04_02_Textures_Combined;
+  Case06_02_02_02_IBL_Specular_Textured;
 
 procedure Test;
 begin

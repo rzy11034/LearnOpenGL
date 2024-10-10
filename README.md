@@ -117,3 +117,4 @@ LearnOpenGL文档学习
   1. 光照	Lighting <br>
   2. 基于图像的光照 IBL(Image based lighting) <br>
     - 1) 漫反射辐照度	Diffuse irradiance <br>
+    - 2) 镜面反射 IBL <br>

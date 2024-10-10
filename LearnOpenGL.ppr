@@ -104,7 +104,10 @@ uses
   Case05_09_01_SSAO,
   Case06_01_01_Lighting,
   Case06_01_02_Lighting_Textured,
-  Case06_02_01_01_IBL_Irradiance_Conversion;
+  Case06_02_01_01_IBL_Irradiance_Conversion,
+  Case06_02_01_02_IBL_Irradiance,
+  Case06_02_02_01_IBL_Specular,
+  Case06_02_02_02_IBL_Specular_Textured;
 
 begin
   try
