@@ -113,8 +113,11 @@ LearnOpenGL文档学习
   8. 延迟着色法	Deferred Shading <br>
   9. 屏幕空间环境光遮蔽 SSAO <br>
 
-## 第5章 基于物理的渲染 PBR <br>
+## 第6章 基于物理的渲染 PBR <br>
   1. 光照	Lighting <br>
   2. 基于图像的光照 IBL(Image based lighting) <br>
     - 1) 漫反射辐照度	Diffuse irradiance <br>
     - 2) 镜面反射 IBL <br>
+
+## 第7章 实战 <br>
+  1. 调试	Debugging <br>
