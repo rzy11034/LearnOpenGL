@@ -28,7 +28,7 @@ procedure Run();
 implementation
 
 uses
-  Case07_01_Debugging;
+  Case07_02_Text_Rendering;
 
 procedure Test;
 begin

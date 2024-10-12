@@ -1850,6 +1850,16 @@
         <Filename Value="Source\7.In_Practice\2.Text_Rendering\Case07_02_Text_Rendering.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="Source\7.In_Practice\2.Text_Rendering\text.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\7.In_Practice\2.Text_Rendering\text.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
