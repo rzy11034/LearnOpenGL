@@ -127,8 +127,8 @@ var
   pbrShader, equirectangularToCubemapShader, backgroundShader,
     irradianceShader, prefilterShader, brdfShader: TShaderProgram;
   lightColors, lightPositions: TArr_TVec3;
-  nrRows, nrColumns, scrWidth, scrHeight, row, col, i, mip: Integer;
-  spacing, roughness: float;
+  scrWidth, scrHeight, i, mip: Integer;
+  roughness: float;
   captureFBO, captureRBO, hdrTexture, envCubemap, irradianceMap, prefilterMap,
     mipWidth, mipHeight, brdfLUTTexture, maxMipLevels, ironAlbedoMap, ironNormalMap,
     ironRoughnessMap, ironAOMap, goldAlbedoMap, goldNormalMap, goldMetallicMap,

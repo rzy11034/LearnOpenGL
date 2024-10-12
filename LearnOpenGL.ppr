@@ -107,7 +107,9 @@ uses
   Case06_02_01_01_IBL_Irradiance_Conversion,
   Case06_02_01_02_IBL_Irradiance,
   Case06_02_02_01_IBL_Specular,
-  Case06_02_02_02_IBL_Specular_Textured, Case07_01_Debugging;
+  Case06_02_02_02_IBL_Specular_Textured,
+  Case07_01_Debugging,
+  Case07_02_Text_Rendering;
 
 begin
   try

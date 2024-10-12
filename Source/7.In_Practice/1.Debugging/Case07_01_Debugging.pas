@@ -12,14 +12,12 @@ interface
 uses
   Classes,
   SysUtils,
-  Math,
   DeepStar.Utils,
   DeepStar.OpenGL.Utils,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.Shader,
   DeepStar.OpenGL.GLM,
   DeepStar.OpenGL.GLFW,
-  DeepStar.OpenGL.Camera,
   DeepStar.OpenGL.Model,
 
   Imaging,
@@ -46,7 +44,7 @@ procedure glDebugOutput(source: GLenum;
     severity: GLenum;
     length: GLsizei;
     message: PGLchar;
-    userParam: pointer); forward;
+    userParam: pointer); stdcall; forward;
 
 const
   SCR_WIDTH  = 800;
@@ -68,7 +66,7 @@ var
   window: PGLFWwindow;
   shader_managed: IInterface;
   shader: TShaderProgram;
-  cubeVAO, cubeVBO: Cardinal;
+  cubeVAO, cubeVBO, texture: Cardinal;
   vertices: TArr_GLfloat;
   imgData: TImageData;
   projection, model: TMat4;
@@ -241,8 +239,10 @@ begin
   // 设置主要版本和次要版本
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-  glfwWindowHint(GLFW_SAMPLES, 4);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+  // 在发布版本中注释这一行!
+  glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, True.ToInteger);
 
   // 创建一个窗口对象
   window := glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, string('LearnOpenGL'), nil, nil);
@@ -298,8 +298,7 @@ begin
       -1.0,  1.0, 0.0, 0.0, 1.0,
       -1.0, -1.0, 0.0, 0.0, 0.0,
        1.0,  1.0, 0.0, 1.0, 1.0,
-       1.0, -1.0, 0.0, 1.0, 0.0,
-      ]);
+       1.0, -1.0, 0.0, 1.0, 0.0]);
 
     // setup plane VAO
     glGenVertexArrays(1, @quadVAO);
@@ -322,6 +321,7 @@ end;
 function glCheckError(const fileName: string; line: integer): GLenum;
 var
   errorCode: GLenum;
+  error: String;
 begin
   errorCode := GLenum(0);
   errorCode := glGetError();
@@ -346,9 +346,48 @@ begin
   Result := errorCode;
 end;
 
-procedure glDebugOutput(source, type_: GLenum; id: Cardinal; severity: GLenum; length_: integer; message: string; userParam: Pointer);
+procedure glDebugOutput(source: GLenum; typ: GLenum; id: GLuint; severity: GLenum;
+    length: GLsizei; message: PGLchar; userParam: pointer); stdcall;
 begin
+  // 忽略这些不重要的错误代码
+  if (id = 131169) or (id = 131185) or (id = 131218) or (id = 131204) then
+    Exit;
 
+  WriteLn('---------------');
+  WriteLn('Debug message (', id, '): ', message);
+
+  case source of
+    GL_DEBUG_SOURCE_API:             WriteLn('Source: API');
+    GL_DEBUG_SOURCE_WINDOW_SYSTEM:   WriteLn('Source: Window System');
+    GL_DEBUG_SOURCE_SHADER_COMPILER: WriteLn('Source: Shader Compiler');
+    GL_DEBUG_SOURCE_THIRD_PARTY:     WriteLn('Source: Third Party');
+    GL_DEBUG_SOURCE_APPLICATION:     WriteLn('Source: Application');
+    GL_DEBUG_SOURCE_OTHER:           WriteLn('Source: Other');
+  end;
+  WriteLn;
+
+  case typ of
+    GL_DEBUG_TYPE_ERROR:               WriteLn('Type: Error');
+    GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR: WriteLn('Type: Deprecated Behaviour');
+    GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:  WriteLn('Type: Undefined Behaviour');
+    GL_DEBUG_TYPE_PORTABILITY:         WriteLn('Type: Portability');
+    GL_DEBUG_TYPE_PERFORMANCE:         WriteLn('Type: Performance');
+    GL_DEBUG_TYPE_MARKER:              WriteLn('Type: Marker');
+    GL_DEBUG_TYPE_PUSH_GROUP:          WriteLn('Type: Push Group');
+    GL_DEBUG_TYPE_POP_GROUP:           WriteLn('Type: Pop Group');
+    GL_DEBUG_TYPE_OTHER:               WriteLn('Type: Other');
+  end;
+  WriteLn;
+
+  case severity of
+    GL_DEBUG_SEVERITY_HIGH:         WriteLn('Severity: high');
+    GL_DEBUG_SEVERITY_MEDIUM:       WriteLn('Severity: medium');
+    GL_DEBUG_SEVERITY_LOW:          WriteLn('Severity: low');
+    GL_DEBUG_SEVERITY_NOTIFICATION: WriteLn('Severity: notification');
+  end;
+  WriteLn;
+
+  WriteLn;
 end;
 
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl;
