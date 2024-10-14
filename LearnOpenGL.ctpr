@@ -53,9 +53,6 @@
     </RunParams>
     <RequiredPackages>
       <Item>
-        <PackageName Value="pl_freeimage"/>
-      </Item>
-      <Item>
         <PackageName Value="pl_vampyreimaging"/>
       </Item>
       <Item>

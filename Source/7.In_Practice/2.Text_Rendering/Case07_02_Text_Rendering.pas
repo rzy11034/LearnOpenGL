@@ -12,7 +12,9 @@ interface
 uses
   Classes,
   SysUtils,
-  ftfont,
+
+  freetype, freetypeh,
+
   DeepStar.Utils,
   DeepStar.DSA.Tree.TreeMap,
   DeepStar.OpenGL.Utils,
@@ -53,17 +55,28 @@ const
 
 var
   VAO, VBO: Cardinal;
+  characters_managed: IInterface;
+  characters: TMap_Glchar_TCharacter;
 
 procedure Main;
 const
   shader_path = '..\Source\7.In_Practice\2.Text_Rendering\';
   text_vs = shader_path + 'text.vs';
   text_fs = shader_path + 'text.fs';
+
+  font_name = '..\Resources\fonts\Antonio-Bold.ttf';
 var
   window: PGLFWwindow;
   shader_managed: IInterface;
   shader: TShaderProgram;
   projection: TMat4;
+  face: TFontManager;
+  Sbm: TUnicodeStringBitMaps;
+  fontID, c, i: Integer;
+  texture: Cardinal;
+  character: TCharacter;
+  fb: TFontBitmap;
+  albrary: PFT_Library;
 begin
   window := InitWindows;
   if window = nil then
@@ -91,7 +104,75 @@ begin
 
   //═════════════════════════════════════════════════════════════════════════
 
+  characters_managed := IInterface(TMap_Glchar_TCharacter.Create);
+  characters := characters_managed as TMap_Glchar_TCharacter;
 
+  FT_Init_FreeType(albrary);
+
+  (*═══════════════════════════════════════════════════════════════════════
+
+  // FreeType
+  face := TFontManager.Create;
+
+  fontID := face.RequestFont(font_name);
+  //glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+  for c := 0 to Pred(128) do
+  begin
+    sbm := face.GetString(fontId, Chr(c), 48);
+    if sbm = nil then
+    begin
+      WriteLn('ERROR::FREETYTPE: Failed to load Glyph');
+      Continue;
+    end;
+
+    i := sbm.Count;
+    fb := sbm.Bitmaps[0]^;
+
+    // generate texture
+    texture := Cardinal(0);
+    glGenTextures(1, @texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_, sbm.Bitmaps[0]^.width, sbm.Bitmaps[0]^.height,
+      0, GL_RGB, GL_UNSIGNED_BYTE, sbm.Bitmaps[0]^.data);
+
+    // set texture options
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    character := Default(TCharacter);
+    with character do begin
+      TextureID := texture;
+      Bearing := TGLM.Vec2(sbm.Bitmaps[0]^.bearingX, sbm.Bitmaps[0]^.bearingY);
+      Size := TGLM.Vec2(sbm.Bitmaps[0]^.width, sbm.Bitmaps[0]^.height);
+      Advance := sbm.Bitmaps[0]^.advanceX;
+    end;
+
+    characters.Add(Chr(c), character);
+
+    Sbm.Free;
+  end;
+
+  face.Free;
+  //═══════════════════════════════════════════════════════════════════════*)
+
+
+
+  //═════════════════════════════════════════════════════════════════════════
+
+  // configure VAO/VBO for texture quads
+  glGenVertexArrays(1, @VAO);
+  glGenBuffers(1, @VBO);
+  glBindVertexArray(VAO);
+  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  glBufferData(GL_ARRAY_BUFFER, SIZE_OF_F * 6 * 4, nil, GL_DYNAMIC_DRAW);
+  glEnableVertexAttribArray(0);
+  glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * SIZE_OF_F, Pointer(0));
+  glBindBuffer(GL_ARRAY_BUFFER, 0);
+  glBindVertexArray(0);
 
   //═════════════════════════════════════════════════════════════════════════
 
@@ -104,6 +185,9 @@ begin
     // render
     glClearColor(0.2, 0.3, 0.3, 1.0);
     glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT);
+
+    RenderText(shader, 'This is sample text', 25, 25, 1, TGLM.Vec3(0.5, 0.8, 0.2));
+    RenderText(shader, '(C) LearnOpenGL.com', 540, 570, 0.5, TGLM.Vec3(0.3, 0.7, 0.9));
 
     // 交换缓冲区和轮询IO事件(键按/释放，鼠标移动等)。
     glfwSwapBuffers(window);
@@ -156,8 +240,59 @@ begin
 end;
 
 procedure RenderText(shader: TShaderProgram; Text: string; x, y, scale: float; color: TVec3);
+var
+  i: Integer;
+  ch: TCharacter;
+  xpos, ypos, w, h: Single;
+  c: Char;
+  vertices: array[0..5, 0..3] of GLfloat;
 begin
+  // 激活相应的呈现状态
+  shader.UseProgram;
+  shader.SetUniformVec3('textColor', color);
+  glActiveTexture(GL_TEXTURE0);
+  glBindVertexArray(VAO);
 
+  for i := 0 to Length(text) - 1 do
+  begin
+    c := Text.Chars[i];
+    ch := characters[c];
+
+    xpos := x + ch.Bearing.x * scale;
+    ypos := y - (ch.Size.y - ch.Bearing.y) * scale;
+
+    w := ch.Size.x * scale;
+    h := ch.Size.y * scale;
+
+    // update VBO for each character
+    vertices := [
+      [ xpos,     ypos + h,   0.0, 0.0 ],
+      [ xpos,     ypos,       0.0, 1.0 ],
+      [ xpos + w, ypos,       1.0, 1.0 ],
+
+      [ xpos,     ypos + h,   0.0, 0.0 ],
+      [ xpos + w, ypos,       1.0, 1.0 ],
+      [ xpos + w, ypos + h,   1.0, 0.0 ]];
+
+    // render glyph texture over quad
+    glBindTexture(GL_TEXTURE_2D, ch.TextureID);
+
+    // update content of VBO memory
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), @vertices); // be sure to use glBufferSubData and not glBufferData
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    // render quad
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+
+    // 现在为下一个字形移动光标（注意，移动是1/64像素）
+    // 位移6得到像素值（2^6 = 64（1/64像素的数量除以64得到像素的数量））
+    x += (ch.Advance >> 6) * scale;
+  end;
+
+  glBindVertexArray(0);
+  glBindTexture(GL_TEXTURE_2D, 0);
 end;
 
 procedure Framebuffer_size_callback(window: PGLFWwindow; witdth, Height: integer); cdecl;
