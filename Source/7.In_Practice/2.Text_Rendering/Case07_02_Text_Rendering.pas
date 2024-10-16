@@ -76,7 +76,8 @@ var
   texture: Cardinal;
   character: TCharacter;
   fb: TFontBitmap;
-  albrary: PFT_Library;
+  ft: PFT_Library;
+  face_: TFT_Face;
 begin
   window := InitWindows;
   if window = nil then
@@ -107,19 +108,95 @@ begin
   characters_managed := IInterface(TMap_Glchar_TCharacter.Create);
   characters := characters_managed as TMap_Glchar_TCharacter;
 
-  FT_Init_FreeType(albrary);
+  //═════════════════════════════════════════════════════════════════════════
+
+  // All functions return a value different than 0 whenever an error occurred
+  if FT_Init_FreeType(ft).ToBoolean then
+  begin
+    WriteLn('ERROR::FREETYPE: Could not init FreeType Library');
+    Exit;
+  end;
+
+  // find path to font
+  if FileExists(font_name) = false then
+  begin
+    WriteLn('ERROR::FREETYPE: Failed to load font_name');
+    Exit;
+  end;
+
+  // load font as face_
+  face_ := Default(TFT_Face);
+  if FT_New_Face(ft, font_name.ToPAnsiChar, 0, (@face_)^).ToBoolean then
+  begin
+    WriteLn('ERROR::FREETYPE: Failed to load font');
+    Exit;
+  end
+  else
+  begin
+    // set size to load glyphs as
+    FT_Set_Pixel_Sizes(@face_, 0, 48);
+
+    // disable byte-alignment restriction
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+    // load first 128 characters of ASCII set
+    for c := 0 to Pred(128) do
+    begin
+      // Load character glyph
+      if FT_Load_Char(@face_, c, FT_LOAD_RENDER).ToBoolean then
+      begin
+        WriteLn('ERROR::FREETYTPE: Failed to load Glyph');
+        Continue;
+      end;
+
+      // generate texture
+      texture := Cardinal(0);
+      glGenTextures(1, @texture);
+      glBindTexture(GL_TEXTURE_2D, texture);
+      glTexImage2D(
+          GL_TEXTURE_2D,
+          0,
+          GL_RED,
+          face_.glyph^.bitmap.width,
+          face_.glyph^.bitmap.rows,
+          0,
+          GL_RED,
+          GL_UNSIGNED_BYTE,
+          face_.glyph^.bitmap.buffer
+      );
+
+      // set texture options
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+      character := Default(TCharacter);
+      with character do begin
+        TextureID := texture;
+        Bearing := TGLM.Vec2(face_.glyph^.bitmap_left, face_.glyph^.bitmap_top);
+        Size := TGLM.Vec2(face_.glyph^.bitmap.width, face_.glyph^.bitmap.rows);
+        Advance := face_.glyph^.advance.x;
+      end;
+    end;
+    glBindTexture(GL_TEXTURE_2D, 0);
+  end;
+
+  // destroy FreeType once we're finished
+  FT_Done_Face(@face_);
+  FT_Done_FreeType(ft);
 
   (*═══════════════════════════════════════════════════════════════════════
 
   // FreeType
-  face := TFontManager.Create;
+  face_ := TFontManager.Create;
 
-  fontID := face.RequestFont(font_name);
+  fontID := face_.RequestFont(font_name);
   //glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
   for c := 0 to Pred(128) do
   begin
-    sbm := face.GetString(fontId, Chr(c), 48);
+    sbm := face_.GetString(fontId, Chr(c), 48);
     if sbm = nil then
     begin
       WriteLn('ERROR::FREETYTPE: Failed to load Glyph');
@@ -156,7 +233,7 @@ begin
     Sbm.Free;
   end;
 
-  face.Free;
+  face_.Free;
   //═══════════════════════════════════════════════════════════════════════*)
 
 
