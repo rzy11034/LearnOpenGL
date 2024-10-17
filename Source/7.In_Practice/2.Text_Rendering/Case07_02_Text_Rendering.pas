@@ -70,14 +70,11 @@ var
   shader_managed: IInterface;
   shader: TShaderProgram;
   projection: TMat4;
-  face: TFontManager;
-  Sbm: TUnicodeStringBitMaps;
-  fontID, c, i: Integer;
+  c: Integer;
   texture: Cardinal;
   character: TCharacter;
-  fb: TFontBitmap;
   ft: PFT_Library;
-  face_: TFT_Face;
+  face: PFT_Face;
 begin
   window := InitWindows;
   if window = nil then
@@ -125,8 +122,8 @@ begin
   end;
 
   // load font as face_
-  face_ := Default(TFT_Face);
-  if FT_New_Face(ft, font_name.ToPAnsiChar, 0, (@face_)^).ToBoolean then
+  face := PFT_Face(nil);
+  if FT_New_Face(ft, font_name.ToPAnsiChar, 0, face).ToBoolean then
   begin
     WriteLn('ERROR::FREETYPE: Failed to load font');
     Exit;
@@ -134,7 +131,7 @@ begin
   else
   begin
     // set size to load glyphs as
-    FT_Set_Pixel_Sizes(@face_, 0, 48);
+    FT_Set_Pixel_Sizes(face, 0, 48);
 
     // disable byte-alignment restriction
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -143,7 +140,7 @@ begin
     for c := 0 to Pred(128) do
     begin
       // Load character glyph
-      if FT_Load_Char(@face_, c, FT_LOAD_RENDER).ToBoolean then
+      if FT_Load_Char(face, c, FT_LOAD_RENDER).ToBoolean then
       begin
         WriteLn('ERROR::FREETYTPE: Failed to load Glyph');
         Continue;
@@ -157,12 +154,12 @@ begin
           GL_TEXTURE_2D,
           0,
           GL_RED,
-          face_.glyph^.bitmap.width,
-          face_.glyph^.bitmap.rows,
+          face^.glyph^.bitmap.width,
+          face^.glyph^.bitmap.rows,
           0,
           GL_RED,
           GL_UNSIGNED_BYTE,
-          face_.glyph^.bitmap.buffer
+          face^.glyph^.bitmap.buffer
       );
 
       // set texture options
@@ -172,71 +169,23 @@ begin
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
       character := Default(TCharacter);
-      with character do begin
+      with character do
+      begin
         TextureID := texture;
-        Bearing := TGLM.Vec2(face_.glyph^.bitmap_left, face_.glyph^.bitmap_top);
-        Size := TGLM.Vec2(face_.glyph^.bitmap.width, face_.glyph^.bitmap.rows);
-        Advance := face_.glyph^.advance.x;
+        Bearing := TGLM.Vec2(face^.glyph^.bitmap_left, face^.glyph^.bitmap_top);
+        Size := TGLM.Vec2(face^.glyph^.bitmap.Width, face^.glyph^.bitmap.rows);
+        Advance := face^.glyph^.advance.x;
       end;
+
+      characters.Add(Chr(c), character);
     end;
+
     glBindTexture(GL_TEXTURE_2D, 0);
   end;
 
   // destroy FreeType once we're finished
-  FT_Done_Face(@face_);
+  FT_Done_Face(face);
   FT_Done_FreeType(ft);
-
-  (*═══════════════════════════════════════════════════════════════════════
-
-  // FreeType
-  face_ := TFontManager.Create;
-
-  fontID := face_.RequestFont(font_name);
-  //glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-
-  for c := 0 to Pred(128) do
-  begin
-    sbm := face_.GetString(fontId, Chr(c), 48);
-    if sbm = nil then
-    begin
-      WriteLn('ERROR::FREETYTPE: Failed to load Glyph');
-      Continue;
-    end;
-
-    i := sbm.Count;
-    fb := sbm.Bitmaps[0]^;
-
-    // generate texture
-    texture := Cardinal(0);
-    glGenTextures(1, @texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
-
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_, sbm.Bitmaps[0]^.width, sbm.Bitmaps[0]^.height,
-      0, GL_RGB, GL_UNSIGNED_BYTE, sbm.Bitmaps[0]^.data);
-
-    // set texture options
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    character := Default(TCharacter);
-    with character do begin
-      TextureID := texture;
-      Bearing := TGLM.Vec2(sbm.Bitmaps[0]^.bearingX, sbm.Bitmaps[0]^.bearingY);
-      Size := TGLM.Vec2(sbm.Bitmaps[0]^.width, sbm.Bitmaps[0]^.height);
-      Advance := sbm.Bitmaps[0]^.advanceX;
-    end;
-
-    characters.Add(Chr(c), character);
-
-    Sbm.Free;
-  end;
-
-  face_.Free;
-  //═══════════════════════════════════════════════════════════════════════*)
-
-
 
   //═════════════════════════════════════════════════════════════════════════
 

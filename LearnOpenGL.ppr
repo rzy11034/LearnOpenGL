@@ -109,7 +109,9 @@ uses
   Case06_02_02_01_IBL_Specular,
   Case06_02_02_02_IBL_Specular_Textured,
   Case07_01_Debugging,
-  Case07_02_Text_Rendering;
+  Case07_02_Text_Rendering,
+  Case07_03_2D_Game_Main,
+  Case07_03_2D_Game_Consts, Case07_03_2D_Game_ResourceManager, Case07_03_2D_Game_Shader, Case07_03_2D_Game_Texture2D;
 
 begin
   try
