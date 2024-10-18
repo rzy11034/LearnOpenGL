@@ -1858,7 +1858,7 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Main.pas"/>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
@@ -1875,6 +1875,54 @@
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Texture2D.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Program.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\particle.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\particle.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\post_processing.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\post_processing.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\sprite.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\sprite.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\text_2d.fs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\text_2d.vs"/>
+        <FRMtype Value="0"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_SpriteRenderer.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
     </Units>

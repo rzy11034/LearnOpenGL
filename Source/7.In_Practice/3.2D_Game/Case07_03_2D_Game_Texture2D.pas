@@ -7,15 +7,11 @@ interface
 uses
   Classes,
   SysUtils,
-  DeepStar.OpenGL.GLAD_GL,
-  DeepStar.OpenGL.Texture;
+  DeepStar.OpenGL.GLAD_GL;
 
 type
-  TTexture2D = class(TTexture)
-  private
-
+  TTexture2D = class(TInterfacedObject)
   public
-
 
     // 保存纹理对象的ID，用于所有纹理操作来引用这个特定的纹理
     ID: Cardinal;
@@ -37,7 +33,7 @@ type
     destructor Destroy; override;
 
     // 从图像数据生成纹理
-    procedure Generate(width, height: GLuint; data: PByte);
+    procedure Generate(aWidth, aHeight: GLuint; data: PByte);
 
     // 将纹理绑定为当前活动的GL_TEXTURE_2D纹理对象
     procedure Bind;
@@ -57,11 +53,40 @@ begin
   Wrap_T := GL_REPEAT;
   Filter_Min := GL_LINEAR;
   Filter_Max := GL_LINEAR;
+
+  glGenTextures(1, @Self.ID);
+end;
+
+procedure TTexture2D.Bind;
+begin
+  glBindTexture(GL_TEXTURE_2D, Self.ID);
 end;
 
 destructor TTexture2D.Destroy;
 begin
+  glDeleteTextures(1, @Self.ID);
+
   inherited Destroy;
+end;
+
+procedure TTexture2D.Generate(aWidth, aHeight: GLuint; data: PByte);
+begin
+  Self.Width := aWidth;
+  Self.Height := aHeight;
+
+  // Create Texture
+  glBindTexture(GL_TEXTURE_2D, Self.ID);
+  glTexImage2D(GL_TEXTURE_2D, 0, Self.Internal_Format, Self.Width, Self.Height,
+    0, Self.Image_Format, GL_UNSIGNED_BYTE, data);
+
+  // Set Texture wrap and filter modes
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, Self.Wrap_S);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, Self.Wrap_T);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, Self.Filter_Min);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, Self.Filter_Max);
+
+  // Unbind texture
+  glBindTexture(GL_TEXTURE_2D, 0);
 end;
 
 end.

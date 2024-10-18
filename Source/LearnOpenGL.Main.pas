@@ -28,7 +28,7 @@ procedure Run();
 implementation
 
 uses
-  Case07_02_Text_Rendering;
+  Case07_03_2D_Game_Program;
 
 procedure Test;
 begin

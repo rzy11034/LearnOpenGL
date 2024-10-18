@@ -1,6 +1,11 @@
 ﻿unit Case07_03_2D_Game_Shader;
 
 {$mode ObjFPC}{$H+}
+{$ModeSwitch unicodestrings}{$J-}
+{$ModeSwitch advancedrecords}
+{$ModeSwitch implicitfunctionspecialization}
+{$ModeSwitch anonymousfunctions}
+{$ModeSwitch functionreferences}
 
 interface
 

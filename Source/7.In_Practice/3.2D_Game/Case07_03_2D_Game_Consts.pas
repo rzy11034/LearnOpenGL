@@ -28,6 +28,12 @@ const
   TEXT_2D_VS = SHADER_PATH + 'text_2d.vs';
   TEXT_2D_FS = SHADER_PATH + 'text_2d.fs';
 
+  //═════════════════════════════════════════════════════════════════════════
+
+  IMG_PATH = '..\Resources\textures\';
+
+  IMG_AWESOMEFACE = IMG_PATH + 'awesomeface.png'
+
 implementation
 
 end.
