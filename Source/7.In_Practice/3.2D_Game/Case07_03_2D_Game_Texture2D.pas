@@ -6,7 +6,7 @@ interface
 
 uses
   Classes,
-  SysUtils,
+  SysUtils,gl,
   DeepStar.OpenGL.GLAD_GL;
 
 type

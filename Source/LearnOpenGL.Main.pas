@@ -37,7 +37,7 @@ end;
 
 procedure Run();
 begin
-  Test;
+  //Test;
   //WriteLn(END_OF_PROGRAM_CH);
   //ReadLn;
   Main;

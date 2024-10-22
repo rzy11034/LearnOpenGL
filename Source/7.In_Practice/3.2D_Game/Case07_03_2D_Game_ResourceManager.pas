@@ -20,54 +20,72 @@ uses
   Case07_03_2D_Game_Texture2D;
 
 type
-  TResourceManager = class(TInterfacedObject)
-  public type
-    TTreeMap_str_TShader = specialize TTreeMap<string, TShader>;
-    TTreeMap_str_TTexture2D = specialize TTreeMap<string, TTexture2D>;
+  TTreeMap_str_TShader = specialize TTreeMap<string, TShader>;
+  TTreeMap_str_TTexture2D = specialize TTreeMap<string, TTexture2D>;
 
+  TResourceManager = class(TInterfacedObject)
   private
     // 从文件加载并生成一个着色器
-    function __loadShaderFromFile(vFile, fFile: string; gFile:string = ''):TShader;
+    class function __LoadShaderFromFile(vFile, fFile: string; gFile:string = ''):TShader;
 
     //从文件中加载单个纹理
-    function __loadTextureFromFile(aFile: string; alpha: Boolean): TTexture2D;
+    class function __LoadTextureFromFile(aFile: string; alpha: Boolean): TTexture2D;
 
   public
     // Resource storage
-    Shaders: TTreeMap_str_TShader;
-    Textures: TTreeMap_str_TTexture2D;
+    class var Shaders: TTreeMap_str_TShader;
+    class var Textures: TTreeMap_str_TTexture2D;
 
-    constructor Create;
-    destructor Destroy; override;
+    class constructor Create;
+    class destructor Destroy;
 
     // 加载（并生成）一个着色器程序从文件加载顶点，片段（和几何）着色器的源代码。
     // 如果gShaderFile不是nullptr，它也会加载一个几何着色器
-    function LoadShader(name, vFile, fFile: string; gFile:string = ''): TShader;
+    class function LoadShader(name, vFile, fFile: string; gFile:string = ''): TShader;
 
     // 检索存储的 shader
-    function GetShader(name: string): TShader;
+    class function GetShader(name: string): TShader;
 
     // 从文件中加载（并生成）纹理
-    function LoadTexture(name, fileName: string; alpha: Boolean): TTexture2D;
+    class function LoadTexture(name, fileName: string; alpha: Boolean): TTexture2D;
 
     // 检索存储的 texture
-    function GetTexture(name: string): TTexture2D;
+    class function GetTexture(name: string): TTexture2D;
 
     // 正确地重新分配所有已加载的资源
-    procedure Clear;
+    class procedure Clear;
   end;
 
 implementation
 
 { TResourceManager }
 
-constructor TResourceManager.Create;
+class destructor TResourceManager.Destroy;
+var
+  shader_value: TTreeMap_str_TShader.TImpl_V.TArr;
+  texture_value: TTreeMap_str_TTexture2D.TImpl_V.TArr;
+  i: Integer;
+begin
+  Clear;
+
+  shader_value := Shaders.Values;
+  for i := 0 to High(shader_value) do
+    FreeAndNil(shader_value[i]);
+  FreeAndNil(Shaders);
+
+  texture_value := Textures.Values;
+  for i := 0 to High(texture_value) do
+    FreeAndNil(texture_value[i]);
+  FreeAndNil(Textures);
+end;
+
+class constructor TResourceManager.Create;
 begin
   Shaders := TTreeMap_str_TShader.Create;
   Textures := TTreeMap_str_TTexture2D.Create;
 end;
 
-procedure TResourceManager.Clear;
+class procedure TResourceManager.Clear;
 var
   shader_keys: TTreeMap_str_TShader.TImpl_K.TArr;
   texture_keys: TTreeMap_str_TTexture2D.TImpl_K.TArr;
@@ -90,50 +108,30 @@ begin
   end;
 end;
 
-destructor TResourceManager.Destroy;
-var
-  shader_value: TTreeMap_str_TShader.TImpl_V.TArr;
-  texture_value: TTreeMap_str_TTexture2D.TImpl_V.TArr;
-  i: Integer;
-begin
-  Self.Clear;
-
-  shader_value := Shaders.Values;
-  for i := 0 to High(shader_value) do
-    shader_value[i].Free;
-  Shaders.Free;
-
-  texture_value := Textures.Values;
-  for i := 0 to High(texture_value) do
-    texture_value[i].Free;
-  Textures.Free;
-
-  inherited Destroy;
-end;
-
-function TResourceManager.GetShader(name: string): TShader;
+class function TResourceManager.GetShader(name: string): TShader;
 begin
   Result := Shaders[name];
 end;
 
-function TResourceManager.GetTexture(name: string): TTexture2D;
+class function TResourceManager.GetTexture(name: string): TTexture2D;
 begin
   Result := Textures[name];
 end;
 
-function TResourceManager.LoadShader(name, vFile, fFile: string; gFile: string): TShader;
+class function TResourceManager.LoadShader(name, vFile, fFile: string; gFile: string): TShader;
 begin
-  Shaders.Add(name, __loadShaderFromFile(vFile, fFile, gFile));
+  Shaders.Add(name, __LoadShaderFromFile(vFile, fFile, gFile));
   Result := Shaders[name];
 end;
 
-function TResourceManager.LoadTexture(name, fileName: string; alpha: Boolean): TTexture2D;
+class function TResourceManager.LoadTexture(name, fileName: string; alpha: Boolean): TTexture2D;
 begin
-  Textures.Add(name, __loadTextureFromFile(fileName, alpha));
+  Textures.Add(name, __LoadTextureFromFile(fileName, alpha));
   Result := Textures[name];
 end;
 
-function TResourceManager.__loadShaderFromFile(vFile, fFile: string; gFile: string): TShader;
+class function TResourceManager.__LoadShaderFromFile
+  (vFile, fFile: string; gFile: string): TShader;
 var
   sd: TShader;
 begin
@@ -142,7 +140,8 @@ begin
   Result := sd;
 end;
 
-function TResourceManager.__loadTextureFromFile(aFile: string; alpha: Boolean): TTexture2D;
+class function TResourceManager.__LoadTextureFromFile
+  (aFile: string; alpha: Boolean): TTexture2D;
 var
   tx2D: TTexture2D;
   data: TTexture;

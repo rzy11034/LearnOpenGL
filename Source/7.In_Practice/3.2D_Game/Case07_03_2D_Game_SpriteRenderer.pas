@@ -34,7 +34,7 @@ type
     destructor Destroy; override;
 
     // 用给定的精灵渲染一个定义的四边形纹理
-    procedure DrawSprite(aTexture: TTexture2D; aPosition: TVec2; aSize: PVec2 = nil;
+    procedure DrawSprite(aTexture: TTexture2D; aPosition: PVec2; aSize: PVec2 = nil;
       aRotate: GLfloat = 0.0; aColor: PVec3 = nil);
   end;
 
@@ -55,23 +55,26 @@ begin
   inherited Destroy;
 end;
 
-procedure TSpriteRenderer.DrawSprite(aTexture: TTexture2D; aPosition: TVec2;
+procedure TSpriteRenderer.DrawSprite(aTexture: TTexture2D; aPosition: PVec2;
   aSize: PVec2; aRotate: GLfloat; aColor: PVec3);
 var
-  size: TVec2;
+  size, position: TVec2;
   color: TVec3;
   model: TMat4;
   texture: TTexture2D;
+  rotate: GLfloat;
 begin
   texture := aTexture;
   size := IfThen(aSize = nil, TGLM.Vec2(10), aSize^);
   color := IfThen(aColor = nil, TGLM.Vec3(1.0), aColor^);
+  position := aPosition^;
+  rotate := aRotate;
 
   // Prepare transformations
   _shader.Use;
 
   // 首先是平移(变换是：首先发生缩放，然后是旋转，最后发生平移；颠倒顺序)
-  model := TGLM.Translate(model, TGLM.Vec3(position, 0.0));
+  model := TGLM.Translate(model, TGLM.Vec3(position.x, position.y, 0.0));
   // 将旋转原点移动到四边形中心
   model := TGLM.Translate(model, TGLM.Vec3(0.5 * size.x, 0.5 * size.y, 0.0));
   // 然后旋转
@@ -79,7 +82,7 @@ begin
   // 移动原点
   model := TGLM.Translate(model, TGLM.Vec3(-0.5 * size.x, -0.5 * size.y, 0.0));
   // 最后缩放
-  model := TGLM.Scale(model, TGLM.Vec3(size, 1.0));
+  model := TGLM.Scale(model, TGLM.Vec3(size.x, size.y, 1.0));
 
   _shader.SetMatrix4('model', model);
 

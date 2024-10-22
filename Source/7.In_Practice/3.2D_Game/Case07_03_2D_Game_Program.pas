@@ -2,10 +2,6 @@
 
 {$mode objfpc}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
-{$ModeSwitch advancedrecords}
-{$ModeSwitch implicitfunctionspecialization}
-{$ModeSwitch anonymousfunctions}
-{$ModeSwitch functionreferences}
 
 interface
 
@@ -22,8 +18,7 @@ procedure Main;
 implementation
 
 uses
-  Case07_03_2D_Game_Game,
-  Case07_03_2D_Game_ResourceManager;
+  Case07_03_2D_Game_Game;
 
 // glfw & glad  初始化
 function InitWindows: PGLFWwindow; forward;
@@ -40,10 +35,9 @@ var
 procedure Main;
 var
   window: PGLFWwindow;
-  breakout_managed, resourceManager_managed: IInterface;
+  breakout_managed: IInterface;
   breakout: TGame;
   currentFrame: float;
-  resourceManager: TResourceManager;
 begin
   window := InitWindows;
   if window = nil then
@@ -60,14 +54,8 @@ begin
 
   //═════════════════════════════════════════════════════════════════════════
 
-  resourceManager_managed := IInterface(TResourceManager.Create);
-  resourceManager := resourceManager_managed as TResourceManager;
-
-  //═════════════════════════════════════════════════════════════════════════
-
   breakout_managed := IInterface(TGame.Create(SCREEN_WIDTH, SCREEN_HEIGHT));
-  breakout := Breakout_managed as TGame;
-
+  breakout := breakout_managed as TGame;
   breakout.Init;
   breakout.State := GAME_ACTIVE;
 
@@ -81,7 +69,7 @@ begin
     lastFrame := currentFrame;
     glfwPollEvents;
 
-    // deltaTime = 0.001f;
+    deltaTime := 0.001;
     // Manage user input
     breakout.ProcessInput(deltaTime);
 
@@ -91,13 +79,12 @@ begin
     // render
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
+
     breakout.Render;
 
     // 交换缓冲区
     glfwSwapBuffers(window);
   end;
-
-  resourceManager.Clear;
 
   // 释放 / 删除之前的分配的所有资源
   glfwTerminate;

@@ -22,7 +22,7 @@ type
     constructor Create;
     destructor Destroy; override;
 
-    procedure Use;
+    function Use: TShader;
 
     procedure SetFloat    (const name: string; value: GLfloat; useShader:Boolean = false);
     procedure SetInteger  (const name: string; value: GLint; useShader:Boolean = false);
@@ -121,9 +121,10 @@ begin
   inherited SetUniformVec4(name, value);
 end;
 
-procedure TShader.Use;
+function TShader.Use: TShader;
 begin
   inherited UseProgram;
+  Result := Self;
 end;
 
 end.

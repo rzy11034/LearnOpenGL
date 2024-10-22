@@ -9,6 +9,8 @@ uses
   SysUtils,
   DeepStar.Utils,
   DeepStar.OpenGL.GLAD_GL,
+  DeepStar.OpenGL.GLM,
+  Case07_03_2D_Game_Consts,
   Case07_03_2D_Game_SpriteRenderer,
   Case07_03_2D_Game_ResourceManager;
 
@@ -16,14 +18,14 @@ type
   TGameState = (GAME_ACTIVE, GAME_MENU, GAME_WIN);
 
   TGame = class(TInterfacedObject)
-  private
-    _Renderer: TSpriteRenderer;
-
   public
+    Height: GLuint;
+    Width: GLuint;
     Keys: array of GLboolean;
     State: TGameState;
+    Renderer: TSpriteRenderer;
 
-    constructor Create(width, height: GLuint);
+    constructor Create(aWidth, aHeight: GLuint);
     destructor Destroy; override;
 
     // Initialize game state (load all shaders/textures/levels)
@@ -39,30 +41,41 @@ implementation
 
 { TGame }
 
-constructor TGame.Create(width, height: GLuint);
+constructor TGame.Create(aWidth, aHeight: GLuint);
 begin
-  inherited Create;
+  //inherited Create;
 
-  Init;
+  Width := aWidth;
+  Height := aHeight;
+
+  SetLength(Keys, 1024);
+  State := TGameState.GAME_ACTIVE;
+
+  //Init;
 end;
 
 destructor TGame.Destroy;
 begin
+  if Renderer <> nil then
+    FreeAndNil(Renderer);
+
   inherited Destroy;
 end;
 
 procedure TGame.Init;
 var
-  resourceManager_managed: IInterface;
-  resourceManager: TResourceManager;
+  projection: TMat4;
 begin
-  SetLength(Keys, 1024);
-  State := TGameState.GAME_ACTIVE;
+  TResourceManager.LoadShader(SPRITE_NAME, SPRITE_VS, SPRITE_FS, '');
 
-  resourceManager_managed := IInterface(TResourceManager.Create);
-  resourceManager := resourceManager_managed as TResourceManager;
+  projection := TGLM.Ortho(0.0, Width, Height, 0.0, -1.0, 1.0);
+  TResourceManager.GetShader(SPRITE_NAME).Use.SetInteger('image', 0);
+  TResourceManager.GetShader(SPRITE_NAME).SetMatrix4('projection', projection);
 
-
+  // 设置专用于渲染的控制
+  Renderer := TSpriteRenderer.Create(TResourceManager.GetShader(SPRITE_NAME));
+  // 加载纹理
+  TResourceManager.LoadTexture(IMG_AWESOMEFACE_NAME, IMG_AWESOMEFACE, true);
 
 end;
 
@@ -72,8 +85,17 @@ begin
 end;
 
 procedure TGame.Render;
+var
+  position, size: TVec2;
+  rotate: Single;
+  color: TVec3;
 begin
-
+  position := TGLM.Vec2(200, 200);
+  size := TGLM.Vec2(300, 400);
+  rotate := 45.0;
+  color := TGLM.Vec3(0.0, 1.0, 0.0);
+  Renderer.DrawSprite(TResourceManager.GetTexture(IMG_AWESOMEFACE_NAME),
+    @position, @size, rotate, @color);
 end;
 
 procedure TGame.Update(dt: GLfloat);
