@@ -35,7 +35,7 @@ type
 
     // 用给定的精灵渲染一个定义的四边形纹理
     procedure DrawSprite(aTexture: TTexture2D; aPosition: PVec2; aSize: PVec2 = nil;
-      aRotate: GLfloat = 0.0; aColor: PVec3 = nil);
+      aRotate: PGLfloat = nil; aColor: PVec3 = nil);
   end;
 
 implementation
@@ -56,7 +56,7 @@ begin
 end;
 
 procedure TSpriteRenderer.DrawSprite(aTexture: TTexture2D; aPosition: PVec2;
-  aSize: PVec2; aRotate: GLfloat; aColor: PVec3);
+  aSize: PVec2; aRotate: PGLfloat; aColor: PVec3);
 var
   size, position: TVec2;
   color: TVec3;
@@ -68,11 +68,12 @@ begin
   size := IfThen(aSize = nil, TGLM.Vec2(10), aSize^);
   color := IfThen(aColor = nil, TGLM.Vec3(1.0), aColor^);
   position := aPosition^;
-  rotate := aRotate;
+  rotate := IfThen(aRotate = nil, 0.0, aRotate^);
 
   // Prepare transformations
-  _shader.Use;
+  _Shader.Use;
 
+  model := TGLM.Mat4_Identity;
   // 首先是平移(变换是：首先发生缩放，然后是旋转，最后发生平移；颠倒顺序)
   model := TGLM.Translate(model, TGLM.Vec3(position.x, position.y, 0.0));
   // 将旋转原点移动到四边形中心
@@ -84,10 +85,10 @@ begin
   // 最后缩放
   model := TGLM.Scale(model, TGLM.Vec3(size.x, size.y, 1.0));
 
-  _shader.SetMatrix4('model', model);
+  _Shader.SetMatrix4('model', model);
 
   // Render textured quad
-  _shader.SetVector3f('spriteColor', color);
+  _Shader.SetVector3f('spriteColor', color);
 
   glActiveTexture(GL_TEXTURE0);
   texture.Bind;
@@ -114,7 +115,6 @@ begin
       1.0, 1.0,   1.0, 1.0,
       1.0, 0.0,   1.0, 0.0]);
 
-
   glGenVertexArrays(1, @_QuadVAO);
   glGenBuffers(1, @VBO);
 
@@ -123,7 +123,7 @@ begin
 
   glBindVertexArray(_QuadVAO);
   glEnableVertexAttribArray(0);
-  glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * SIZE_OF_F, nil);
+  glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * SIZE_OF_F, Pointer(0));
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindVertexArray(0);
 end;

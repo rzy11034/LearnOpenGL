@@ -150,7 +150,7 @@ begin
   data := TTexture.Create;
 
   try
-    data.LoadFormFile(aFile);
+    data.LoadFormFile(aFile, false);
 
     if alpha then
     begin

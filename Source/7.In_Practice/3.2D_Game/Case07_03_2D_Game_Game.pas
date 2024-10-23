@@ -1,6 +1,11 @@
 ﻿unit Case07_03_2D_Game_Game;
 
 {$mode ObjFPC}{$H+}
+{$ModeSwitch unicodestrings}{$J-}
+{$ModeSwitch advancedrecords}
+{$ModeSwitch implicitfunctionspecialization}
+{$ModeSwitch anonymousfunctions}
+{$ModeSwitch functionreferences}
 
 interface
 
@@ -50,8 +55,6 @@ begin
 
   SetLength(Keys, 1024);
   State := TGameState.GAME_ACTIVE;
-
-  //Init;
 end;
 
 destructor TGame.Destroy;
@@ -66,7 +69,8 @@ procedure TGame.Init;
 var
   projection: TMat4;
 begin
-  TResourceManager.LoadShader(SPRITE_NAME, SPRITE_VS, SPRITE_FS, '');
+  if not TResourceManager.Shaders.ContainsKey(SPRITE_NAME) then
+    TResourceManager.LoadShader(SPRITE_NAME, SPRITE_VS, SPRITE_FS, '');
 
   projection := TGLM.Ortho(0.0, Width, Height, 0.0, -1.0, 1.0);
   TResourceManager.GetShader(SPRITE_NAME).Use.SetInteger('image', 0);
@@ -75,7 +79,9 @@ begin
   // 设置专用于渲染的控制
   Renderer := TSpriteRenderer.Create(TResourceManager.GetShader(SPRITE_NAME));
   // 加载纹理
-  TResourceManager.LoadTexture(IMG_AWESOMEFACE_NAME, IMG_AWESOMEFACE, true);
+
+  if not TResourceManager.Textures.ContainsKey(IMG_AWESOMEFACE_NAME) then
+    TResourceManager.LoadTexture(IMG_AWESOMEFACE_NAME, IMG_AWESOMEFACE, true);
 
 end;
 
@@ -95,7 +101,7 @@ begin
   rotate := 45.0;
   color := TGLM.Vec3(0.0, 1.0, 0.0);
   Renderer.DrawSprite(TResourceManager.GetTexture(IMG_AWESOMEFACE_NAME),
-    @position, @size, rotate, @color);
+    @position, @size, @rotate, @color);
 end;
 
 procedure TGame.Update(dt: GLfloat);
