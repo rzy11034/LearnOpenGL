@@ -32,15 +32,18 @@ uses
 
 procedure Test;
 begin
-
   Exit;
 end;
 
 procedure Run();
 begin
-  //Test;
-  //WriteLn(END_OF_PROGRAM_CH);
-  //ReadLn;
+  (*═══════════════════════════════════════════════════════════════════════
+  Test;
+  WriteLn(END_OF_PROGRAM_CH);
+  ReadLn;
+  //═══════════════════════════════════════════════════════════════════════*)
+
+
   Main;
 end;
 

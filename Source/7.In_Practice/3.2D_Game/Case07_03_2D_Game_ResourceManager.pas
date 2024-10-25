@@ -70,12 +70,12 @@ begin
 
   shader_value := Shaders.Values;
   for i := 0 to High(shader_value) do
-    FreeAndNil(shader_value[i]);
+    shader_value[i].Free;
   FreeAndNil(Shaders);
 
   texture_value := Textures.Values;
   for i := 0 to High(texture_value) do
-    FreeAndNil(texture_value[i]);
+    texture_value[i].Free;
   FreeAndNil(Textures);
 end;
 

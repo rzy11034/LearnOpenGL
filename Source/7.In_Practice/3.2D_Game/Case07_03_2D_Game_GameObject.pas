@@ -31,7 +31,7 @@ type
     Sprite: TTexture2D;
 
     // constructor(s)
-    constructor Create();
+    constructor Create;
     constructor Create(aPos: TVec2; aSize: TVec2; aSprite: TTexture2D;
       aColor: PVec3 = nil; aVelocity: PVec2 = nil);
 

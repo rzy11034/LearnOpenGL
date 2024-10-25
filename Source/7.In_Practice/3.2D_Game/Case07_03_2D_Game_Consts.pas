@@ -32,13 +32,31 @@ const
   TEXT_2D_VS = SHADER_PATH + 'text_2d.vs';
   TEXT_2D_FS = SHADER_PATH + 'text_2d.fs';
 
-  //═════════════════════════════════════════════════════════════════════════
-
 const
   IMG_PATH = '..\Resources\textures\';
 
   IMG_AWESOMEFACE_NAME = 'awesomeface';
   IMG_AWESOMEFACE = IMG_PATH + 'awesomeface.png';
+
+  IMG_BLOCK_NAME = 'block';
+  IMG_BLOCK = IMG_PATH + 'block.png';
+
+  IMG_BLOCK_SOLID_NAME = 'block_solid';
+  IMG_BLOCK_SOLID = IMG_PATH + 'block_solid.png';
+
+  IMG_BACKGROUND_NAME = 'background';
+  IMG_BACKGROUND = IMG_PATH + 'background.jpg';
+
+  IMG_PADDLE_NAME ='paddle';
+  IMG_PADDLE =  IMG_PATH + 'paddle.png';
+
+const
+  LEVELS_PATH = '..\Source\7.In_Practice\3.2D_Game\levels\';
+
+  LEVEL_1 = LEVELS_PATH + 'one.lvl';
+  LEVEL_2 = LEVELS_PATH + 'two.lvl';
+  LEVEL_3 = LEVELS_PATH + 'three.lvl';
+  LEVEL_4 = LEVELS_PATH + 'four.lvl';
 
 implementation
 
