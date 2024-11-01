@@ -36,11 +36,12 @@ var
   deltaTime: GLfloat = 0.0;
   lastFrame: GLfloat = 0.0;
 
+  breakout: TGame;
+
 procedure Main;
 var
   window: PGLFWwindow;
   breakout_managed: IInterface;
-  breakout: TGame;
   currentFrame: float;
 begin
   window := InitWindows;
@@ -61,7 +62,7 @@ begin
   breakout_managed := IInterface(TGame.Create(SCREEN_WIDTH, SCREEN_HEIGHT));
   breakout := breakout_managed as TGame;
   breakout.Init;
-  breakout.State := GAME_ACTIVE;
+  breakout.State :=  TGameState.GAME_ACTIVE;
 
   //═════════════════════════════════════════════════════════════════════════
 
@@ -137,6 +138,14 @@ procedure key_callback(p: PGLFWwindow; key, scancode, action, mode: longint); cd
 begin
   if (key = GLFW_KEY_ESCAPE) and (action =  GLFW_PRESS) then
     glfwSetWindowShouldClose(p, GL_TRUE);
+
+  if (key >= 0) and (key < 1024) then
+  begin
+    if action = GLFW_PRESS then
+      Breakout.Keys[key] := true
+    else if action = GLFW_RELEASE then
+      Breakout.Keys[key] := false;
+  end;
 end;
 
 end.

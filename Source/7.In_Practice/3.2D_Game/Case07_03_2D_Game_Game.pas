@@ -6,6 +6,7 @@
 {$ModeSwitch implicitfunctionspecialization}
 {$ModeSwitch anonymousfunctions}
 {$ModeSwitch functionreferences}
+{$ModeSwitch duplicatelocals}
 
 interface
 
@@ -22,10 +23,12 @@ uses
   Case07_03_2D_Game_ResourceManager,
   Case07_03_2D_Game_GameObject,
   Case07_03_2D_Game_GameLevel,
-  Case07_03_2D_Game_Texture2D;
+  Case07_03_2D_Game_Texture2D,
+  Case07_03_2D_Game_BallObject;
 
 type
   TGameState = (GAME_ACTIVE, GAME_MENU, GAME_WIN);
+  TDirection = (UP, RIGHT, DOWN, LEFT);
 
   TGame = class(TInterfacedObject)
   public type
@@ -33,22 +36,27 @@ type
 
   private const
     // 初始化挡板的大小
-    PLAYER_SIZE: TVec2 = (x:100; y: 20);
+    PLAYER_SIZE: TVec2 = (x: 100; y: 20);
     // 初始化当班的速率
     PLAYER_VELOCITY: GLfloat = (500.0);
+    // 初始化球的速度
+    INITIAL_BALL_VELOCITY: TVec2 = (x: 100.0; y: -350.0);
+    // 球的半径
+    BALL_RADIUS: GLfloat = 12.5;
 
   public
     Height: GLuint;
     Width: GLuint;
-    Keys: array of GLboolean;
+    Keys: array[0..1023] of Boolean;
     State: TGameState;
     Renderer: TSpriteRenderer;
     Player: TGameObject;
+    Ball: TBallObject;
 
     Levels: TArrayList_TGameLevel;
     Level: GLuint;
 
-    constructor Create(aWidth, aHeight: GLuint);
+    constructor Create(width, height: GLuint);
     destructor Destroy; override;
 
     // Initialize game state (load all shaders/textures/levels)
@@ -64,12 +72,11 @@ implementation
 
 { TGame }
 
-constructor TGame.Create(aWidth, aHeight: GLuint);
+constructor TGame.Create(width, height: GLuint);
 begin
-  Width := aWidth;
-  Height := aHeight;
+  Self.Width := width;
+  Self.Height := height;
 
-  SetLength(Keys, 1024);
   State := TGameState.GAME_ACTIVE;
 
   Levels := TArrayList_TGameLevel.Create;
@@ -85,10 +92,15 @@ begin
   if Player <> nil then
     FreeAndNil(Player);
 
+  if Ball <> nil then
+    FreeAndNil(Ball);
+
   if not Levels.IsEmpty then
   begin
     for i := 0 to Levels.Count - 1 do
+    begin
       Levels[i].Free;
+    end;
 
     FreeAndNil(Levels);
   end;
@@ -100,7 +112,7 @@ procedure TGame.Init;
 var
   projection: TMat4;
   one, tow, three, four: TGameLevel;
-  playerPos: TVec2;
+  playerPos, ballPos: TVec2;
   tx: TTexture2D;
 begin
   TResourceManager.LoadShader(SPRITE_NAME, SPRITE_VS, SPRITE_FS, '');
@@ -111,8 +123,8 @@ begin
 
   // 设置专用于渲染的控制
   Renderer := TSpriteRenderer.Create(TResourceManager.GetShader(SPRITE_NAME));
-  // 加载纹理
 
+  // 加载纹理
   TResourceManager.LoadTexture(IMG_BACKGROUND_NAME, IMG_BACKGROUND, true);
   TResourceManager.LoadTexture(IMG_AWESOMEFACE_NAME, IMG_AWESOMEFACE, true);
   TResourceManager.LoadTexture(IMG_BLOCK_NAME, IMG_BLOCK, true);
@@ -139,6 +151,10 @@ begin
   playerPos := TGLM.Vec2(Width / 2 - PLAYER_SIZE.x / 2, Height - PLAYER_SIZE.y);
   tx := TResourceManager.GetTexture(IMG_PADDLE_NAME);
   Player := TGameObject.Create(playerPos, PLAYER_SIZE, tx);
+
+  ballPos := playerPos + TGLM.Vec2(PLAYER_SIZE.x / 2 - BALL_RADIUS, -BALL_RADIUS * 2);
+  Ball := TBallObject.Create(ballPos, BALL_RADIUS, INITIAL_BALL_VELOCITY,
+    TResourceManager.GetTexture(IMG_AWESOMEFACE_NAME));
 end;
 
 procedure TGame.ProcessInput(dt: GLfloat);
@@ -150,17 +166,34 @@ begin
     velocity := GLfloat(PLAYER_VELOCITY * dt);
 
     // 移动挡板
-    if Self.Keys[GLFW_KEY_A] = GL_TRUE then
+    if Self.Keys[GLFW_KEY_A] then
     begin
       if Player.Position.x >= 0 then
+      begin
         Player.Position.x -= velocity;
+
+        if Ball.Stuck then
+        begin
+          Ball.Position.x -= velocity;
+        end;
+      end;
     end;
 
-    if Self.Keys[GLFW_KEY_D]  = GL_TRUE then
+    if Self.Keys[GLFW_KEY_D] then
     begin
       if Player.Position.x <= Self.Width - Player.Size.x then
+      begin
         Player.Position.x += velocity;
+
+        if Ball.Stuck then
+        begin
+          Ball.Position.x += velocity;
+        end;
+      end;
     end;
+
+    if Self.Keys[GLFW_KEY_SPACE] then
+      Ball.Stuck := false;
   end;
 end;
 
@@ -181,12 +214,13 @@ begin
     Self.Levels[Self.Level].Draw(Renderer);
 
     Player.Draw(Renderer);
+    Ball.Draw(Renderer);
   end;
 end;
 
 procedure TGame.Update(dt: GLfloat);
 begin
-
+  Ball.Move(dt, Self.Width);
 end;
 
 end.

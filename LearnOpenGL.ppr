@@ -116,7 +116,10 @@ uses
   Case07_03_2D_Game_Shader,
   Case07_03_2D_Game_Texture2D,
   Case07_03_2D_Game_Program,
-  Case07_03_2D_Game_SpriteRenderer, Case07_03_2D_Game_GameObject, Case07_03_2D_Game_GameLevel;
+  Case07_03_2D_Game_SpriteRenderer,
+  Case07_03_2D_Game_GameObject,
+  Case07_03_2D_Game_GameLevel,
+  Case07_03_2D_Game_BallObject;
 
 begin
   try

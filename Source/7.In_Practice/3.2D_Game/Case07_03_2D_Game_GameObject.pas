@@ -6,6 +6,7 @@
 {$ModeSwitch implicitfunctionspecialization}
 {$ModeSwitch anonymousfunctions}
 {$ModeSwitch functionreferences}
+{$ModeSwitch duplicatelocals}
 
 interface
 
@@ -32,8 +33,8 @@ type
 
     // constructor(s)
     constructor Create;
-    constructor Create(aPos: TVec2; aSize: TVec2; aSprite: TTexture2D;
-      aColor: PVec3 = nil; aVelocity: PVec2 = nil);
+    constructor Create(pos: TVec2; size: TVec2; sprite: TTexture2D;
+      color: PVec3 = nil; velocity: PVec2 = nil);
 
     // draw sprite
     procedure Draw(renderer: TSpriteRenderer);
@@ -43,29 +44,29 @@ implementation
 
 { TGameObject }
 
-constructor TGameObject.Create(aPos: TVec2; aSize: TVec2; aSprite: TTexture2D;
-  aColor: PVec3; aVelocity: PVec2);
+constructor TGameObject.Create(pos: TVec2; size: TVec2; sprite: TTexture2D;
+  color: PVec3; velocity: PVec2);
 begin
-  Position := aPos;
-  Size := aSize;
-  Velocity := IfThen(aVelocity = nil, TGLM.Vec2(0.0), aVelocity^);
-  Color := IfThen(aColor = nil, TGLM.Vec3(1.0), aColor^);
-  Rotation := 0.0;
-  Sprite := aSprite;
-  IsSolid := false;
-  Destroyed := false;
+  Self.Position := pos;
+  Self.Size := size;
+  Self.Velocity := IfThen(velocity = nil, TGLM.Vec2(0.0), velocity^);
+  Self.Color := IfThen(color = nil, TGLM.Vec3(1.0), color^);
+  Self.Rotation := 0.0;
+  Self.Sprite := sprite;
+  Self.IsSolid := false;
+  Self.Destroyed := false;
 end;
 
 constructor TGameObject.Create();
 begin
-  Position := TGLM.Vec2(0.0, 0.0);
-  Size := TGLM.Vec2(1.0, 1.0);
-  Velocity := TGLM.Vec2(0.0);
-  Color := TGLM.Vec3(1.0);
-  Rotation := 0.0;
-  Sprite := nil;
-  IsSolid := false;
-  Destroyed := false;
+  Self.Position := TGLM.Vec2(0.0, 0.0);
+  Self.Size := TGLM.Vec2(1.0, 1.0);
+  Self.Velocity := TGLM.Vec2(0.0);
+  Self.Color := TGLM.Vec3(1.0);
+  Self.Rotation := 0.0;
+  Self.Sprite := nil;
+  Self.IsSolid := false;
+  Self.Destroyed := false;
 end;
 
 procedure TGameObject.Draw(renderer: TSpriteRenderer);

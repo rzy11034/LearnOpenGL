@@ -1,6 +1,12 @@
 ﻿unit Case07_03_2D_Game_Texture2D;
 
 {$mode ObjFPC}{$H+}
+{$ModeSwitch unicodestrings}{$J-}
+{$ModeSwitch advancedrecords}
+{$ModeSwitch implicitfunctionspecialization}
+{$ModeSwitch anonymousfunctions}
+{$ModeSwitch functionreferences}
+{$ModeSwitch duplicatelocals}
 
 interface
 
@@ -33,7 +39,7 @@ type
     destructor Destroy; override;
 
     // 从图像数据生成纹理
-    procedure Generate(aWidth, aHeight: GLuint; data: PByte);
+    procedure Generate(width, height: GLuint; data: PByte);
 
     // 将纹理绑定为当前活动的GL_TEXTURE_2D纹理对象
     procedure Bind;
@@ -69,10 +75,10 @@ begin
   inherited Destroy;
 end;
 
-procedure TTexture2D.Generate(aWidth, aHeight: GLuint; data: PByte);
+procedure TTexture2D.Generate(width, height: GLuint; data: PByte);
 begin
-  Self.Width := aWidth;
-  Self.Height := aHeight;
+  Self.Width := width;
+  Self.Height := height;
 
   // Create Texture
   glBindTexture(GL_TEXTURE_2D, Self.ID);
