@@ -38,9 +38,9 @@ type
     // 初始化挡板的大小
     PLAYER_SIZE: TVec2 = (x: 100; y: 20);
     // 初始化当班的速率
-    PLAYER_VELOCITY: GLfloat = (500.0);
+    PLAYER_VELOCITY: GLfloat = (5000.0);
     // 初始化球的速度
-    INITIAL_BALL_VELOCITY: TVec2 = (x: 100.0; y: -350.0);
+    INITIAL_BALL_VELOCITY: TVec2 = (x: 2000.0; y: -2000.0);
     // 球的半径
     BALL_RADIUS: GLfloat = 12.5;
 
@@ -66,6 +66,10 @@ type
     procedure ProcessInput(dt: GLfloat);
     procedure Update(dt: GLfloat);
     procedure Render;
+
+    procedure DoCollisions;
+    function CheckCollision(one, two: TGameObject): Boolean;
+    function CheckCollision(one: TBallObject; two: TGameObject): Boolean;
   end;
 
 implementation
@@ -80,6 +84,51 @@ begin
   State := TGameState.GAME_ACTIVE;
 
   Levels := TArrayList_TGameLevel.Create;
+end;
+
+function TGame.CheckCollision(one, two: TGameObject): Boolean;
+var
+  collisionX, collisionY: Boolean;
+begin
+  collisionX := false;
+  collisionY := false;
+
+  // x轴方向碰撞？
+  collisionX := (one.Position.x + one.Size.x >= two.Position.x)
+    and (two.Position.x + two.Size.x >= one.Position.x);
+
+  // y轴方向碰撞？
+  collisionY := (one.Position.y + one.Size.y >= two.Position.y)
+    and (two.Position.y + two.Size.y >= one.Position.y);
+
+  // 只有两个轴向都有碰撞时才碰撞
+  Result := collisionX and collisionY;
+end;
+
+function TGame.CheckCollision(one: TBallObject; two: TGameObject): Boolean;
+var
+  center, aabb_half_extents, aabb_center, difference, clamped, closest: TVec2;
+begin
+  // 获取圆的中心
+  center := one.Position + one.Radius;
+
+  // 计算AABB的信息（中心、半边长）
+  aabb_half_extents := TGLM.Vec2(two.Size.x / 2, two.Size.y / 2);
+  aabb_center := TGLM.Vec2(
+    two.Position.x + aabb_half_extents.x,
+    two.Position.y + aabb_half_extents.y);
+
+  // 获取两个中心的差矢量
+  difference := center - aabb_center;
+  clamped := TGLM.Clamp(difference, -aabb_half_extents, aabb_half_extents);
+
+  // AABB_center加上clamped这样就得到了碰撞箱上距离圆最近的点closest
+  closest := aabb_center + clamped;
+
+  // 获得圆心center和最近点closest的矢量并判断是否 length <= radius
+  difference := closest - center;
+
+  Result := TGLM.Length(difference) < one.Radius;
 end;
 
 destructor TGame.Destroy;
@@ -106,6 +155,28 @@ begin
   end;
 
   inherited Destroy;
+end;
+
+procedure TGame.DoCollisions;
+var
+  i: Integer;
+  box: TGameObject;
+begin
+  for i := 0 to Levels[Self.Level].Bricks.Count - 1 do
+  begin
+    box := Levels[Self.Level].Bricks[i];
+
+    if not box.Destroyed then
+    begin
+      if CheckCollision(Ball, box) then
+      begin
+        if not box.IsSolid then
+        begin
+          box.Destroyed := true;
+        end;
+      end;
+    end;
+  end;
 end;
 
 procedure TGame.Init;
@@ -221,6 +292,9 @@ end;
 procedure TGame.Update(dt: GLfloat);
 begin
   Ball.Move(dt, Self.Width);
+
+  // 检测碰撞
+  Self.DoCollisions;
 end;
 
 end.
