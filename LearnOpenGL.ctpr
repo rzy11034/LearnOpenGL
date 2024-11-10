@@ -1937,6 +1937,10 @@
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_BallObject.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

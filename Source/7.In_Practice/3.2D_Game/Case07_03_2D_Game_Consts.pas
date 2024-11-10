@@ -2,10 +2,6 @@
 
 {$mode ObjFPC}{$H+}
 {$ModeSwitch unicodestrings}{$J-}
-{$ModeSwitch advancedrecords}
-{$ModeSwitch implicitfunctionspecialization}
-{$ModeSwitch anonymousfunctions}
-{$ModeSwitch functionreferences}
 
 interface
 
@@ -49,6 +45,9 @@ const
 
   IMG_PADDLE_NAME ='paddle';
   IMG_PADDLE =  IMG_PATH + 'paddle.png';
+
+  IMG_PARTICLE_NAME = 'particle';
+  IMG_PARTICLE = IMG_PATH + 'particle.png';
 
 const
   LEVELS_PATH = '..\Source\7.In_Practice\3.2D_Game\levels\';
