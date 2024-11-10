@@ -15,18 +15,13 @@ uses
   SysUtils,
   DeepStar.DSA.Linear.ArrayList,
   DeepStar.Utils,
-  DeepStar.OpenGL.GLFW,
   DeepStar.OpenGL.Utils,
   DeepStar.OpenGL.GLAD_GL,
   DeepStar.OpenGL.GLM,
-  Case07_03_2D_Game_Consts,
   Case07_03_2D_Game_Shader,
-  Case07_03_2D_Game_SpriteRenderer,
   Case07_03_2D_Game_ResourceManager,
   Case07_03_2D_Game_GameObject,
-  Case07_03_2D_Game_GameLevel,
-  Case07_03_2D_Game_Texture2D,
-  Case07_03_2D_Game_BallObject;
+  Case07_03_2D_Game_Texture2D;
 
 type
   // 表示单个粒子及其状态
@@ -145,33 +140,30 @@ var
   offset: TVec2;
   unusedParticle: Cardinal;
   i: Integer;
-  p: TParticle;
+  p: ^TParticle;
 begin
   offset := IfThen(PtrOffset = nil, TGLM.Vec2(0), PtrOffset^);
 
-  // Add new particles
-  for i := 0 to Pred(newParticles) do
+  // 添加新粒子
+  for i := 0 to newParticles - 1 do
   begin
     unusedParticle := Self.__FirstUnusedParticle;
-    p := _Particles[unusedParticle];
-    Self.__RespawnParticle(p, obj, @offset);
-    _Particles[unusedParticle] := p;
+    p := _Particles.ItemPtr[unusedParticle];
+    Self.__RespawnParticle(p^, obj, @offset);
   end;
 
-  // Update all particles
-  for i := 0 to Pred(Self._Amount) do
+  // 更新所有粒子
+  for i := 0 to  Self._Amount - 1 do
   begin
-    p := Self._Particles[i];
-    p.Life -= dt; // reduce life
+    p :=  Self._Particles.ItemPtr[i];
+    p^.Life -= dt; // 降低生命值
 
-    if p.Life > 0.0 then
+    if p^.Life > 0.0 then
     begin
-      // particle is alive, thus update
-      p.Position -= p.Velocity * dt;
-      p.Color.a -= dt * 2.5;
+      // 粒子生命值大于0，就更新
+      p^.Position -= p^.Velocity * dt;
+      p^.Color.a -= dt * 2.5;
     end;
-
-    Self._Particles[i] := p;
   end;
 end;
 
@@ -179,9 +171,11 @@ function TParticleGenerator.__FirstUnusedParticle: Cardinal;
 var
   i: integer;
 begin
-  // First search from last used particle, this will usually return almost instantly
-  for i := _LastUsedParticle to Pred(Self._Amount) do
+  // 对最后使用的粒子进行第一次搜索，这通常会立即返回
+  for i := _LastUsedParticle to Self._Amount do
   begin
+    if i = Self._Amount then Break;
+
     if Self._Particles[i].Life <= 0.0 then
     begin
       _LastUsedParticle := i;
@@ -189,9 +183,11 @@ begin
     end;
   end;
 
-  // Otherwise, do a linear search
-  for i := 0 to _LastUsedParticle - 1 do
+  // 否则，进行线性查找
+  for i := 0 to _LastUsedParticle do
   begin
+    if i = _LastUsedParticle then Break;
+
     if Self._Particles[i].Life <= 0.0 then
     begin
       _LastUsedParticle := i;
@@ -230,11 +226,11 @@ begin
   glBufferData(GL_ARRAY_BUFFER, particle_quad.MemSize, @particle_quad[0], GL_STATIC_DRAW);
 
   glEnableVertexAttribArray(0);
-  glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * SIZE_OF_F, nil);
+  glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * SIZE_OF_F, Pointer(0));
   glBindVertexArray(0);
 
   // 创造默认粒子实例的数量
-  for i := 0 to Pred(_Amount) do
+  for i := 0 to _Amount - 1 do
     _Particles.AddLast(TParticle.Create);
 end;
 

@@ -3,15 +3,15 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="12"/>
-    <BuildModes Active="Debug"/>
+    <BuildModes Active="Release"/>
     <Units>
       <Unit>
         <Filename Value="LearnOpenGL.ppr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="103"/>
-        <CursorPos X="39" Y="98"/>
+        <TopLine Value="119"/>
+        <CursorPos Y="126"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
@@ -31,8 +31,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="19"/>
-        <CursorPos X="60" Y="28"/>
+        <TopLine Value="29"/>
+        <CursorPos X="3" Y="63"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
@@ -3894,7 +3894,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="198"/>
+        <UsageCount Value="200"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3905,7 +3905,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="198"/>
+        <UsageCount Value="200"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3915,7 +3915,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="313"/>
         <CursorPos X="5" Y="337"/>
-        <UsageCount Value="198"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\2.Text_Rendering\text.fs"/>
@@ -3924,7 +3924,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="9"/>
-        <UsageCount Value="173"/>
+        <UsageCount Value="178"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3934,7 +3934,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="40" Y="11"/>
-        <UsageCount Value="173"/>
+        <UsageCount Value="178"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3942,9 +3942,9 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="356"/>
-        <CursorPos X="55" Y="366"/>
-        <UsageCount Value="156"/>
+        <TopLine Value="413"/>
+        <CursorPos X="74" Y="458"/>
+        <UsageCount Value="161"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -3954,7 +3954,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="16"/>
         <CursorPos X="44" Y="50"/>
-        <UsageCount Value="156"/>
+        <UsageCount Value="161"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ResourceManager.pas"/>
@@ -3963,14 +3963,14 @@
         <WindowIndex Value="0"/>
         <TopLine Value="139"/>
         <CursorPos Y="149"/>
-        <UsageCount Value="154"/>
+        <UsageCount Value="159"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Shader.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="152"/>
+        <UsageCount Value="157"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Texture2D.pas"/>
@@ -3979,7 +3979,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="82"/>
         <CursorPos X="39" Y="86"/>
-        <UsageCount Value="152"/>
+        <UsageCount Value="157"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Program.pas"/>
@@ -3988,7 +3988,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="47"/>
         <CursorPos X="3" Y="47"/>
-        <UsageCount Value="140"/>
+        <UsageCount Value="145"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -3999,7 +3999,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="139"/>
+        <UsageCount Value="144"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4010,7 +4010,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="139"/>
+        <UsageCount Value="144"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4021,7 +4021,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="139"/>
+        <UsageCount Value="144"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4032,7 +4032,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="139"/>
+        <UsageCount Value="144"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4042,7 +4042,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="25" Y="12"/>
-        <UsageCount Value="139"/>
+        <UsageCount Value="144"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4051,7 +4051,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="139"/>
+        <UsageCount Value="144"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4062,7 +4062,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="139"/>
+        <UsageCount Value="144"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4073,7 +4073,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="139"/>
+        <UsageCount Value="144"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4083,17 +4083,16 @@
         <WindowIndex Value="0"/>
         <TopLine Value="54"/>
         <CursorPos X="41" Y="54"/>
-        <UsageCount Value="139"/>
+        <UsageCount Value="144"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_GameObject.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="54"/>
-        <CursorPos X="54" Y="59"/>
-        <UsageCount Value="89"/>
-        <Loaded Value="True"/>
+        <TopLine Value="21"/>
+        <CursorPos Y="59"/>
+        <UsageCount Value="94"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_GameLevel.pas"/>
@@ -4102,7 +4101,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="73"/>
         <CursorPos X="3" Y="27"/>
-        <UsageCount Value="88"/>
+        <UsageCount Value="93"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_BallObject.pas"/>
@@ -4111,17 +4110,17 @@
         <WindowIndex Value="0"/>
         <TopLine Value="82"/>
         <CursorPos X="3" Y="111"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="80"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="74"/>
-        <CursorPos X="3" Y="85"/>
-        <UsageCount Value="35"/>
+        <TopLine Value="42"/>
+        <CursorPos X="43" Y="251"/>
+        <UsageCount Value="40"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -4482,9 +4481,9 @@
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="227"/>
-        <CursorPos X="36" Y="230"/>
-        <UsageCount Value="6"/>
+        <TopLine Value="382"/>
+        <CursorPos X="3" Y="386"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\classes\stringl.inc"/>
@@ -4764,124 +4763,124 @@
     </OtherDefines>
     <JumpHistory HistoryIndex="29">
       <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="39" Column="13" TopLine="29"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="38" TopLine="29"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="41" Column="26" TopLine="29"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
+        <Caret Line="258" TopLine="252"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
+        <Caret Line="259" TopLine="252"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
+        <Caret Line="260" TopLine="252"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
+        <Caret Line="261" TopLine="252"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
+        <Caret Line="148" Column="7" TopLine="137"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
+        <Caret Line="174" Column="7" TopLine="148"/>
+      </Position>
+      <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
         <Caret Line="164" TopLine="152"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="166" TopLine="152"/>
+        <Caret Line="165" TopLine="153"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="161" TopLine="152"/>
+        <Caret Line="167" TopLine="160"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="163" TopLine="152"/>
+        <Caret Line="170" TopLine="160"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="164" TopLine="152"/>
+        <Caret Line="171" TopLine="160"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="166" TopLine="152"/>
+        <Caret Line="164" Column="37" TopLine="134"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="161" TopLine="152"/>
+        <Caret Line="157" TopLine="151"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="163" TopLine="152"/>
+        <Caret Line="159" TopLine="148"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="164" TopLine="152"/>
+        <Caret Line="154" TopLine="148"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="166" TopLine="157"/>
+        <Caret Line="158" TopLine="148"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="173" TopLine="157"/>
+        <Caret Line="159" TopLine="148"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="166" TopLine="157"/>
+        <Caret Line="154" TopLine="148"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="173" TopLine="157"/>
+        <Caret Line="158" TopLine="148"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="166" TopLine="157"/>
+        <Caret Line="159" TopLine="148"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="157" Column="24" TopLine="129"/>
+        <Caret Line="97" TopLine="90"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="158" Column="37" TopLine="129"/>
+        <Caret Line="99" TopLine="90"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="193" Column="29" TopLine="177"/>
+        <Caret Line="205" TopLine="183"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="180" Column="13" TopLine="177"/>
+        <Caret Line="97" TopLine="89"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="183" TopLine="171"/>
+        <Caret Line="205" TopLine="199"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="185" TopLine="171"/>
+        <Caret Line="202" TopLine="195"/>
       </Position>
       <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="187" TopLine="171"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="188" TopLine="172"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="183" TopLine="172"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="185" TopLine="172"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="183" TopLine="172"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="185" TopLine="172"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="187" TopLine="172"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="188" TopLine="172"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="207" TopLine="198"/>
-      </Position>
-      <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
-        <Caret Line="153" Column="22" TopLine="206"/>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="75" Column="22" TopLine="68"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -4906,4 +4905,14 @@
       </List>
     </HistoryLists>
   </ProjectSession>
+  <Debugging>
+    <Watches>
+      <Item ClassAutoCast="True">
+        <Expression Value="p"/>
+      </Item>
+      <Item ClassAutoCast="True">
+        <Expression Value="p1"/>
+      </Item>
+    </Watches>
+  </Debugging>
 </CONFIG>

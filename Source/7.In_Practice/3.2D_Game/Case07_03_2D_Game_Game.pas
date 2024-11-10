@@ -45,9 +45,9 @@ type
     // 初始化挡板的大小
     PLAYER_SIZE: TVec2 = (x: 100; y: 20);
     // 初始化当班的速率
-    PLAYER_VELOCITY: float = (500.0);
+    PLAYER_VELOCITY: float = (5000.0);
     // 初始化球的速度
-    INITIAL_BALL_VELOCITY: TVec2 = (x: 200.0; y: -200.0);
+    INITIAL_BALL_VELOCITY: TVec2 = (x: 2000.0; y: -2000.0);
     // 球的半径
     BALL_RADIUS: float = 12.5;
 
@@ -275,6 +275,9 @@ begin
   TResourceManager.GetShader(SPRITE_NAME).Use.SetInteger('image', 0);
   TResourceManager.GetShader(SPRITE_NAME).SetMatrix4('projection', projection);
 
+  TResourceManager.GetShader(PARTICLE_NAME).Use.SetInteger('sprite', 0);
+  TResourceManager.GetShader(PARTICLE_NAME).SetMatrix4('projection', projection);
+
   // 设置专用于渲染的控制
   Renderer := TSpriteRenderer.Create(TResourceManager.GetShader(SPRITE_NAME));
 
@@ -312,7 +315,7 @@ begin
     TResourceManager.GetTexture(IMG_AWESOMEFACE_NAME));
 
   Particles := TParticleGenerator.Create(TResourceManager.GetShader(PARTICLE_NAME),
-    TResourceManager.GetTexture(IMG_PARTICLE_NAME),500);
+    TResourceManager.GetTexture(IMG_PARTICLE_NAME), 500);
 end;
 
 procedure TGame.ProcessInput(dt: GLfloat);
@@ -409,15 +412,15 @@ begin
   // 检测碰撞
   Self.DoCollisions;
 
+  offset := TGLM.Vec2(Ball.Radius / 2);
+  Particles.Update(dt, Ball, 2, @offset);
+
   // 球是否接触底部边界？
   if Ball.Position.y >= Self.Height then
   begin
     Self.ResetLevel;
     Self.ResetPlayer;
   end;
-
-  offset := TGLM.Vec2(Ball.Radius / 2);
-  Particles.Update(dt, Ball, 2, @offset);
 end;
 
 function TGame.VectorDirection(target: TVec2): TDirection;
