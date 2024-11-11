@@ -119,7 +119,9 @@ uses
   Case07_03_2D_Game_SpriteRenderer,
   Case07_03_2D_Game_GameObject,
   Case07_03_2D_Game_GameLevel,
-  Case07_03_2D_Game_BallObject, Case07_03_2D_Game_ParticleGenerator;
+  Case07_03_2D_Game_BallObject,
+  Case07_03_2D_Game_ParticleGenerator,
+  Case07_03_2D_Game_PostProcessor;
 
 begin
   try

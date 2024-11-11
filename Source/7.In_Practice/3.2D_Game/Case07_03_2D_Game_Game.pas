@@ -45,9 +45,9 @@ type
     // 初始化挡板的大小
     PLAYER_SIZE: TVec2 = (x: 100; y: 20);
     // 初始化当班的速率
-    PLAYER_VELOCITY: float = (5000.0);
+    PLAYER_VELOCITY: float = (500.0);
     // 初始化球的速度
-    INITIAL_BALL_VELOCITY: TVec2 = (x: 2000.0; y: -2000.0);
+    INITIAL_BALL_VELOCITY: TVec2 = (x: 200.0; y: -200.0);
     // 球的半径
     BALL_RADIUS: float = 12.5;
 
