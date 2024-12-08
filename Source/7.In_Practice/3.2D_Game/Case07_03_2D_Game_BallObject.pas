@@ -25,7 +25,7 @@ type
   public
     // Ball state
     Radius: GLfloat;
-    Stuck: Boolean;
+    Stuck, Sticky, PassThrough: Boolean;
 
     // Constructor(s)
     constructor Create;
@@ -62,6 +62,8 @@ begin
 
   Self.Radius := 12.5;
   Self.Stuck := true;
+  Self.Sticky := false;
+  Self.PassThrough := false;
 end;
 
 constructor TBallObject.Create;
@@ -70,6 +72,8 @@ begin
 
   Self.Radius := 12.5;
   Self.Stuck := true;
+  Self.Sticky := false;
+  Self.PassThrough := false;
 end;
 
 destructor TBallObject.Destroy;
@@ -111,6 +115,8 @@ begin
   Self.Position := position;
   Self.Velocity := velocity;
   Self.Stuck := true;
+  Self.Sticky := false;
+  Self.PassThrough := false;
 end;
 
 end.

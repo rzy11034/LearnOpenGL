@@ -52,7 +52,7 @@ type
     procedure BeginRender;
 
     // 应该在渲染游戏后调用，所以它将所有渲染数据存储到纹理对象中
-    procedure EndRender();
+    procedure EndRender;
 
     // 渲染 PostProcessor 纹理四边形（作为一个覆盖屏幕的大精灵）
     procedure Render(time: float);
@@ -95,6 +95,7 @@ begin
 
   // 同时初始化FBO/纹理，将多采样颜色缓冲区blit为；用于着色器操作（用于后期处理效果）
   glBindFramebuffer(GL_FRAMEBUFFER, Self._FBO);
+  Self.Texture := TTexture2D.Create;
   Self.Texture.Generate(width, height, nil);
 
   // 将纹理作为其颜色附件附加到framebuffer
@@ -147,6 +148,8 @@ end;
 
 destructor TPostProcessor.Destroy;
 begin
+  Self.Texture.Free;
+
   inherited Destroy;
 end;
 

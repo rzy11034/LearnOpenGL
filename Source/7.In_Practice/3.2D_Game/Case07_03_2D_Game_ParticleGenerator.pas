@@ -76,14 +76,20 @@ implementation
 { TParticle }
 
 class function TParticle.Create: TParticle;
+var
+  res: TParticle;
 begin
-  with Result do
+  res := Default(TParticle);
+
+  with res do
   begin
     Position := TGLM.Vec2(0);
     Velocity := TGLM.Vec2(0);
     Color    := TGLM.Vec4(1);
     Life     := 0.0;
   end;
+
+  Result := res;
 end;
 
 { TParticleGenerator }

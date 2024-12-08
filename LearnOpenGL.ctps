@@ -3,15 +3,15 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="12"/>
-    <BuildModes Active="Release"/>
+    <BuildModes Active="Debug"/>
     <Units>
       <Unit>
         <Filename Value="LearnOpenGL.ppr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="101"/>
-        <CursorPos X="28" Y="116"/>
+        <TopLine Value="93"/>
+        <CursorPos X="33" Y="102"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
@@ -20,8 +20,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="100"/>
-        <CursorPos X="17" Y="125"/>
+        <TopLine Value="82"/>
+        <CursorPos X="17" Y="92"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
@@ -31,8 +31,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="29"/>
-        <CursorPos X="3" Y="63"/>
+        <TopLine Value="10"/>
+        <CursorPos X="23" Y="17"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
@@ -41,7 +41,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="13"/>
+        <TopLine Value="16"/>
         <UsageCount Value="233"/>
       </Unit>
       <Unit>
@@ -141,7 +141,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="37"/>
+        <TopLine Value="16"/>
         <CursorPos X="78" Y="54"/>
         <UsageCount Value="233"/>
       </Unit>
@@ -743,8 +743,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="151"/>
-        <CursorPos X="66" Y="171"/>
+        <TopLine Value="6"/>
+        <CursorPos X="19" Y="20"/>
         <UsageCount Value="200"/>
       </Unit>
       <Unit>
@@ -2109,8 +2109,6 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="216"/>
-        <CursorPos X="43" Y="239"/>
         <UsageCount Value="212"/>
       </Unit>
       <Unit>
@@ -3924,7 +3922,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="9"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="212"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -3934,16 +3932,18 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="40" Y="11"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="212"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <CursorPos X="134" Y="428"/>
-        <UsageCount Value="179"/>
+        <TopLine Value="585"/>
+        <CursorPos X="33" Y="610"/>
+        <UsageCount Value="210"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -3951,43 +3951,42 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="16"/>
-        <CursorPos X="44" Y="50"/>
-        <UsageCount Value="179"/>
+        <TopLine Value="40"/>
+        <CursorPos X="46" Y="67"/>
+        <UsageCount Value="210"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ResourceManager.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="139"/>
-        <CursorPos Y="149"/>
-        <UsageCount Value="177"/>
+        <TopLine Value="33"/>
+        <CursorPos X="3" Y="96"/>
+        <UsageCount Value="208"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Shader.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="175"/>
+        <UsageCount Value="206"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Texture2D.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="82"/>
-        <CursorPos X="39" Y="86"/>
-        <UsageCount Value="175"/>
+        <TopLine Value="78"/>
+        <CursorPos X="3" Y="80"/>
+        <UsageCount Value="206"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Program.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="47"/>
-        <CursorPos X="3" Y="47"/>
-        <UsageCount Value="163"/>
+        <CursorPos Y="26"/>
+        <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -3998,7 +3997,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="162"/>
+        <UsageCount Value="232"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4009,7 +4008,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="162"/>
+        <UsageCount Value="232"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4017,10 +4016,11 @@
         <FRMtype Value="0"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="162"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="16"/>
+        <CursorPos X="13" Y="33"/>
+        <SyntaxHighlighter Value="Java"/>
+        <UsageCount Value="232"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4031,7 +4031,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="162"/>
+        <UsageCount Value="232"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4041,7 +4041,8 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="25" Y="12"/>
-        <UsageCount Value="162"/>
+        <SyntaxHighlighter Value="C_2B_2B"/>
+        <UsageCount Value="232"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4050,7 +4051,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="162"/>
+        <UsageCount Value="232"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4061,7 +4062,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="162"/>
+        <UsageCount Value="232"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4072,7 +4073,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="162"/>
+        <UsageCount Value="232"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4082,16 +4083,16 @@
         <WindowIndex Value="0"/>
         <TopLine Value="54"/>
         <CursorPos X="41" Y="54"/>
-        <UsageCount Value="162"/>
+        <UsageCount Value="232"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_GameObject.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="21"/>
-        <CursorPos Y="59"/>
-        <UsageCount Value="112"/>
+        <TopLine Value="38"/>
+        <CursorPos X="14" Y="54"/>
+        <UsageCount Value="231"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_GameLevel.pas"/>
@@ -4100,25 +4101,44 @@
         <WindowIndex Value="0"/>
         <TopLine Value="73"/>
         <CursorPos X="3" Y="27"/>
-        <UsageCount Value="111"/>
+        <UsageCount Value="230"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_BallObject.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="82"/>
-        <CursorPos X="3" Y="111"/>
-        <UsageCount Value="98"/>
+        <CursorPos X="51" Y="104"/>
+        <UsageCount Value="217"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ParticleGenerator.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="215"/>
-        <CursorPos Y="255"/>
-        <UsageCount Value="58"/>
+        <TopLine Value="236"/>
+        <CursorPos X="38" Y="243"/>
+        <UsageCount Value="227"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_PostProcessor.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="38"/>
+        <CursorPos X="67" Y="90"/>
+        <UsageCount Value="231"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Powerups.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="5"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="16"/>
+        <CursorPos X="8" Y="31"/>
+        <UsageCount Value="150"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Source\DeepStar.OpenGL.Model.pas"/>
@@ -4126,7 +4146,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="112"/>
         <CursorPos X="47" Y="124"/>
-        <UsageCount Value="84"/>
+        <UsageCount Value="60"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\1.Colors\Case02_01_01_Colors.pas"/>
@@ -4134,20 +4154,20 @@
         <WindowIndex Value="0"/>
         <TopLine Value="261"/>
         <CursorPos X="32" Y="191"/>
-        <UsageCount Value="107"/>
+        <UsageCount Value="83"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\1.Colors\2.1.colors.fs"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="107"/>
+        <UsageCount Value="83"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
         <Filename Value="Source\2.Lighting\1.Colors\2.1.colors.vs"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <UsageCount Value="107"/>
+        <UsageCount Value="83"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4155,7 +4175,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="58" Y="6"/>
-        <UsageCount Value="107"/>
+        <UsageCount Value="83"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4163,7 +4183,7 @@
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="53" Y="11"/>
-        <UsageCount Value="107"/>
+        <UsageCount Value="83"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
@@ -4172,35 +4192,35 @@
         <WindowIndex Value="0"/>
         <TopLine Value="3"/>
         <CursorPos X="3" Y="20"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="114"/>
       </Unit>
       <Unit>
         <Filename Value="Source\Utils\LearnOpenGL.Shader.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="58"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="114"/>
       </Unit>
       <Unit>
         <Filename Value="Source\Utils\LearnOpenGL.Camera.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="29"/>
-        <UsageCount Value="109"/>
+        <UsageCount Value="85"/>
       </Unit>
       <Unit>
         <Filename Value="Source\Utils\LearnOpenGL.Texture.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="43" Y="42"/>
-        <UsageCount Value="105"/>
+        <UsageCount Value="81"/>
       </Unit>
       <Unit>
         <Filename Value="Source\OpenGL_Lib\DeepStar.OpenGL.GLAD_GL.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="28" Y="25"/>
-        <UsageCount Value="109"/>
+        <UsageCount Value="85"/>
       </Unit>
       <Unit>
         <Filename Value="Source\OpenGL_Lib\DeepStar.OpenGL.GLFW.pas"/>
@@ -4208,14 +4228,14 @@
         <WindowIndex Value="0"/>
         <TopLine Value="27"/>
         <CursorPos X="23" Y="37"/>
-        <UsageCount Value="109"/>
+        <UsageCount Value="85"/>
       </Unit>
       <Unit>
         <Filename Value="Source\OpenGL_Lib\DeepStar.OpenGL.GLM.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="32" Y="17"/>
-        <UsageCount Value="109"/>
+        <UsageCount Value="85"/>
       </Unit>
       <Unit>
         <Filename Value="Source\OpenGL_Lib\DeepStar.OpenGL.Matrix.pas"/>
@@ -4223,433 +4243,22 @@
         <WindowIndex Value="0"/>
         <TopLine Value="12"/>
         <CursorPos X="53" Y="33"/>
-        <UsageCount Value="109"/>
+        <UsageCount Value="85"/>
       </Unit>
       <Unit>
         <Filename Value="Source\OpenGL_Lib\DeepStar.OpenGL.Vector.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <CursorPos X="57" Y="11"/>
-        <UsageCount Value="109"/>
+        <UsageCount Value="85"/>
       </Unit>
       <Unit>
-        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.GLAD_GL.pas"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="18714"/>
-        <CursorPos Y="18722"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\DeepStar.Utils.pas"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="38"/>
-        <CursorPos X="3" Y="71"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.GLM.pas"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="229"/>
-        <CursorPos X="20" Y="242"/>
-        <UsageCount Value="15"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\2.Lighting\3.3.Materials_Exercise2\3.1.light_cube.fs"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="2"/>
-        <DefaultSyntaxHighlighter Value="None"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\2.Lighting\3.3.Materials_Exercise2\3.1.light_cube.vs"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="2"/>
-        <DefaultSyntaxHighlighter Value="None"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\2.Lighting\3.3.Materials_Exercise2\3.1.materials.fs"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="2"/>
-        <DefaultSyntaxHighlighter Value="None"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\2.Lighting\3.3.Materials_Exercise2\3.1.materials.vs"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="2"/>
-        <DefaultSyntaxHighlighter Value="None"/>
-      </Unit>
-      <Unit>
-        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\Utils_inc\Utils.Lists.inc"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <CursorPos X="3" Y="7"/>
-        <UsageCount Value="3"/>
-      </Unit>
-      <Unit>
-        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Matrix.pas"/>
+        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_MathVectorsMatrices\source\vmMath.pas"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="11"/>
-        <CursorPos X="31" Y="27"/>
-        <UsageCount Value="7"/>
-      </Unit>
-      <Unit>
-        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Shader.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="22"/>
-        <CursorPos X="3" Y="19"/>
-        <UsageCount Value="9"/>
-      </Unit>
-      <Unit>
-        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Texture.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="123"/>
-        <CursorPos Y="133"/>
-        <UsageCount Value="5"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_VampyreImaging\source\Imaging.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-image\src\freetype.pp"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="19"/>
-        <UsageCount Value="1"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-image\src\libfreetype.inc"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="922"/>
-        <CursorPos X="21" Y="931"/>
-        <UsageCount Value="0"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_FreeImage\source\libfreeimagedyn.pas"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="libFreeImageDyn"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="492"/>
-        <CursorPos X="4" Y="1107"/>
-        <UsageCount Value="3"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_FreeImage\source\libfreeimagebitmap.pas"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="libFreeImageBitmap"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="172"/>
-        <CursorPos X="73" Y="76"/>
-        <UsageCount Value="3"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_FreeImage\source\libfreeimageloader.pas"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="libFreeImageLoader"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="51"/>
-        <CursorPos X="27" Y="52"/>
-        <UsageCount Value="3"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_FreeImage\source\libfreeimageutils.pas"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="libFreeImageUtils"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="13"/>
-        <CursorPos X="52" Y="25"/>
-        <UsageCount Value="3"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_FreeImage\source\libfreeimageimage.pas"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="libFreeImageImage"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="46"/>
-        <CursorPos X="28" Y="55"/>
-        <UsageCount Value="3"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\objpas.inc"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="382"/>
-        <CursorPos X="9" Y="396"/>
-        <UsageCount Value="0"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\win64\system.pp"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="System"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="383"/>
-        <CursorPos X="9" Y="384"/>
-        <UsageCount Value="0"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\classes\classesh.inc"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="13"/>
-        <CursorPos X="4" Y="32"/>
-        <UsageCount Value="5"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\win64\classes.pp"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="Classes"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="15"/>
-        <CursorPos X="4" Y="32"/>
-        <UsageCount Value="5"/>
-      </Unit>
-      <Unit>
-        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\DSA\Tree\DeepStar.DSA.Tree.TreeMap.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="316"/>
-        <CursorPos Y="326"/>
-        <UsageCount Value="16"/>
-      </Unit>
-      <Unit>
-        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\Utils_inc\Utils.SysHelper.inc"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="17"/>
-        <CursorPos X="14" Y="37"/>
-        <UsageCount Value="3"/>
-      </Unit>
-      <Unit>
-        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Vector.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <CursorPos X="3" Y="13"/>
-        <UsageCount Value="11"/>
-      </Unit>
-      <Unit>
-        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\DSA\DeepStar.DSA.Interfaces.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="21"/>
-        <CursorPos X="15" Y="41"/>
-        <UsageCount Value="3"/>
-      </Unit>
-      <Unit>
-        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\DSA\Linear\DeepStar.DSA.Linear.ArrayList.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="382"/>
-        <CursorPos X="3" Y="386"/>
-        <UsageCount Value="8"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\classes\stringl.inc"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1807"/>
-        <CursorPos X="3" Y="1810"/>
-        <UsageCount Value="3"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\character.pas"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="Character"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="200"/>
-        <CursorPos X="25" Y="109"/>
-        <UsageCount Value="5"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\types.pp"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="Types"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="92"/>
-        <CursorPos X="3" Y="109"/>
-        <UsageCount Value="5"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\typshrdh.inc"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="60"/>
-        <CursorPos X="17" Y="77"/>
-        <UsageCount Value="5"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\win64\windows.pp"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="76"/>
-        <CursorPos X="3" Y="76"/>
-        <UsageCount Value="5"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\typshrd.inc"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="129"/>
-        <CursorPos X="3" Y="135"/>
-        <UsageCount Value="5"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_DMath\source\uustrings.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <CursorPos X="13" Y="17"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_DMath\source\uwinplot.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="28"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_DMath\source\uwinstr.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_DMath\source\usvd.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <CursorPos X="58" Y="22"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_DMath\source\usimplex.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <CursorPos X="49" Y="2"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_DMath\source\uskew.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <CursorPos X="25" Y="2"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_DMath\source\usecant.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <CursorPos X="47" Y="7"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\math.pp"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="Math"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="3172"/>
-        <CursorPos X="108" Y="3192"/>
-        <UsageCount Value="7"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_LockBox\source\lbstring.pas"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="LbString"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="34"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_Box2D\source\UPhysics2D.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_Box2D\source\USpring2DController.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="61"/>
-        <CursorPos X="22" Y="93"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_Box2D\source\UPhysics2DTypes.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="16"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_Box2D\source\UPhysics2DPolygonTool.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="127"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_Box2D\source\Physics2D.inc"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="34"/>
+        <TopLine Value="55"/>
+        <CursorPos X="39" Y="86"/>
         <UsageCount Value="6"/>
       </Unit>
       <Unit>
@@ -4657,179 +4266,161 @@
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <CursorPos X="18" Y="21"/>
-        <UsageCount Value="6"/>
+        <TopLine Value="81"/>
+        <CursorPos X="3" Y="98"/>
+        <UsageCount Value="3"/>
       </Unit>
       <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\BaseEngines\FontEngine\fefontengine.pas"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="feFontEngine"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="14091"/>
-        <CursorPos Y="14111"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\BaseEnginesPlus\source\Graphics\graphbitmap.pas"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="GraphBitmap"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="99"/>
-        <CursorPos X="18" Y="119"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_AsphyreSphinx\source\AsphyreUtils.pas"/>
+        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\Utils\DeepStar.Utils.pas"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="130"/>
-        <CursorPos X="17" Y="118"/>
+        <TopLine Value="71"/>
+        <CursorPos X="3" Y="71"/>
+        <UsageCount Value="3"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\math.pp"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="Math"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <CursorPos X="10" Y="123"/>
         <UsageCount Value="6"/>
       </Unit>
       <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_AsphyreSphinx\source\AsphyreTypes.pas"/>
+        <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\objpas.pp"/>
         <FRMtype Value="0"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="230"/>
-        <CursorPos X="2" Y="250"/>
+        <TopLine Value="162"/>
+        <CursorPos X="24" Y="159"/>
         <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_AsphyreSphinx\source\Headers\AsphyreD3D7.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="797"/>
-        <CursorPos Y="817"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_BeRo\source\PasDblStrUtils.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="5973"/>
-        <CursorPos Y="6049"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_BGRAbitmap\BGRAbitmap4lcl_OpenGL\source\bgraopengl3d.pas"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="BGRAOpenGL3D"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="752"/>
-        <CursorPos Y="772"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_BGRAbitmap\source\blurfast.inc"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="140"/>
-        <CursorPos Y="202"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_Box2D\source\UPhysics2DControllers.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="231"/>
-        <CursorPos X="13" Y="271"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\codetyphon\typhon\components\ca_libGStreamer\source\libges1.pas"/>
-        <FRMtype Value="0"/>
-        <UnitName Value="libGES1"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="40"/>
-        <CursorPos X="104" Y="44"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_PostProcessor.pas"/>
-        <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
-        <WindowIndex Value="0"/>
-        <CursorPos X="12" Y="15"/>
-        <UsageCount Value="27"/>
-        <Loaded Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="..\DeepStar-Lib\CodeTyphon\Package\Source\OpenGL\DeepStar.OpenGL.Utils.pas"/>
-        <FRMtype Value="0"/>
-        <EditorIndex Value="6"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="28"/>
-        <CursorPos X="37" Y="42"/>
-        <UsageCount Value="13"/>
-        <Loaded Value="True"/>
       </Unit>
     </Units>
     <OtherDefines Count="1">
       <Define0 Value="Debug"/>
     </OtherDefines>
-    <JumpHistory HistoryIndex="12">
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="97" Column="20" TopLine="62"/>
+      </Position>
       <Position>
         <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="41" Column="26" TopLine="29"/>
+        <Caret Line="19" Column="29" TopLine="14"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Program.pas"/>
+        <Caret Line="26" Column="21"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
-        <Caret Line="75" Column="22" TopLine="68"/>
+        <Caret Line="489" Column="31" TopLine="81"/>
       </Position>
       <Position>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
-        <Caret Line="52" Column="31" TopLine="422"/>
+        <Caret Line="29" Column="28" TopLine="109"/>
       </Position>
       <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_PostProcessor.pas"/>
-        <Caret Line="58" Column="28" TopLine="38"/>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="318" Column="56" TopLine="298"/>
       </Position>
       <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_PostProcessor.pas"/>
-        <Caret Line="52" Column="19" TopLine="26"/>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="535" Column="4" TopLine="515"/>
       </Position>
       <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_PostProcessor.pas"/>
-        <Caret Line="71" Column="35" TopLine="40"/>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="464" Column="11" TopLine="444"/>
       </Position>
       <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_PostProcessor.pas"/>
-        <Caret Line="54" Column="26" TopLine="40"/>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="301" Column="41" TopLine="372"/>
       </Position>
       <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_PostProcessor.pas"/>
-        <Caret Line="109" Column="26"/>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="480" TopLine="475"/>
       </Position>
       <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_PostProcessor.pas"/>
-        <Caret Line="45" Column="25" TopLine="25"/>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="471" Column="32" TopLine="443"/>
       </Position>
       <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_PostProcessor.pas"/>
-        <Caret Line="144" Column="101" TopLine="98"/>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="59" Column="30" TopLine="38"/>
       </Position>
       <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_PostProcessor.pas"/>
-        <Caret Line="185" Column="27" TopLine="159"/>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="60" Column="30" TopLine="38"/>
       </Position>
       <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_PostProcessor.pas"/>
-        <Caret Line="150" Column="58" TopLine="131"/>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="61" Column="31" TopLine="38"/>
       </Position>
       <Position>
-        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_PostProcessor.pas"/>
-        <Caret Line="214" Column="27" TopLine="189"/>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="60" Column="34" TopLine="51"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="472" Column="15" TopLine="415"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="523" TopLine="490"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="522" Column="5" TopLine="480"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="472" TopLine="452"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="61" Column="85" TopLine="33"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="46" Column="19" TopLine="26"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="45" Column="21" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="61" Column="26" TopLine="31"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="531" Column="8" TopLine="504"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="62" Column="14" TopLine="42"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="437" Column="32" TopLine="419"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="499" Column="38" TopLine="11"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Powerups.pas"/>
+        <Caret Line="35" Column="26" TopLine="15"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Powerups.pas"/>
+        <Caret Line="49" Column="15" TopLine="16"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Powerups.pas"/>
+        <Caret Line="31" Column="8" TopLine="16"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -4854,14 +4445,4 @@
       </List>
     </HistoryLists>
   </ProjectSession>
-  <Debugging>
-    <Watches>
-      <Item ClassAutoCast="True">
-        <Expression Value="p"/>
-      </Item>
-      <Item ClassAutoCast="True">
-        <Expression Value="p1"/>
-      </Item>
-    </Watches>
-  </Debugging>
 </CONFIG>

@@ -49,6 +49,24 @@ const
   IMG_PARTICLE_NAME = 'particle';
   IMG_PARTICLE = IMG_PATH + 'particle.png';
 
+  IMG_POWERUP_CHAOS_NAME = 'powerup_chaos';
+  IMG_POWERUP_CHAOS = IMG_PATH + 'powerup_chaos.png';
+
+  IMG_POWERUP_CONFUSE_NAME = 'powerup_confuse';
+  IMG_POWERUP_CONFUSE = IMG_PATH + 'powerup_confuse.png';
+
+  IMG_POWERUP_INCREASE_NAME = 'powerup_increase';
+  IMG_POWERUP_INCREASE = IMG_PATH + 'powerup_increase.png';
+
+  IMG_POWERUP_PASSTHROUGH_NAME = 'powerup_passthrough';
+  IMG_POWERUP_PASSTHROUGH = IMG_PATH + 'powerup_passthrough.png';
+
+  IMG_POWERUP_SPEED_NAME = 'powerup_speed';
+  IMG_POWERUP_SPEED = IMG_PATH + 'powerup_speed.png';
+
+  IMG_POWERUP_STICKY_NAME = 'powerup_sticky';
+  IMG_POWERUP_STICKY = IMG_PATH + 'powerup_sticky.png';
+
 const
   LEVELS_PATH = '..\Source\7.In_Practice\3.2D_Game\levels\';
 

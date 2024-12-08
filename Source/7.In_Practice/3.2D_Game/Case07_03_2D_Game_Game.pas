@@ -24,7 +24,10 @@ uses
   Case07_03_2D_Game_GameObject,
   Case07_03_2D_Game_GameLevel,
   Case07_03_2D_Game_Texture2D,
-  Case07_03_2D_Game_BallObject, Case07_03_2D_Game_ParticleGenerator;
+  Case07_03_2D_Game_BallObject,
+  Case07_03_2D_Game_ParticleGenerator,
+  Case07_03_2D_Game_PostProcessor,
+  Case07_03_2D_Game_Powerups;
 
 type
   TGameState = (GAME_ACTIVE, GAME_MENU, GAME_WIN);
@@ -39,7 +42,8 @@ type
 
   TGame = class(TInterfacedObject)
   public type
-    TArrayList_TGameLevel = specialize TArrayList<TGameLevel>;
+    TList_TGameLevel = specialize TArrayList<TGameLevel>;
+    TList_TPowerup = specialize TArrayList<TPowerup>;
 
   private const
     // 初始化挡板的大小
@@ -51,9 +55,19 @@ type
     // 球的半径
     BALL_RADIUS: float = 12.5;
 
+  private
+    function __CheckCollision(one, two: TGameObject): Boolean;
+    function __CheckCollision(one: TBallObject; two: TGameObject): TCollision;
+    function __IsOtherPowerUpActive(powerUps: TList_TPowerup; typ: string): boolean;
+    function __ShouldSpawn(chance: GLuint): Boolean;
+    function __VectorDirection(target: TVec2): TDirection;
+
   public
+    Effects: TPostProcessor;
     Height: GLuint;
     Particles: TParticleGenerator;
+    PowerUps: TList_TPowerup;
+    ShakeTime: GLfloat;
     Width: GLuint;
     Keys: array[0..1023] of Boolean;
     State: TGameState;
@@ -61,7 +75,7 @@ type
     Player: TGameObject;
     Ball: TBallObject;
 
-    Levels: TArrayList_TGameLevel;
+    Levels: TList_TGameLevel;
     Level: GLuint;
 
     constructor Create(width, height: GLuint);
@@ -76,13 +90,13 @@ type
     procedure Render;
 
     procedure DoCollisions;
-    function CheckCollision(one, two: TGameObject): Boolean;
-    function CheckCollision(one: TBallObject; two: TGameObject): TCollision;
-    function VectorDirection(target: TVec2): TDirection;
 
     // Reset
     procedure ResetLevel;
     procedure ResetPlayer;
+
+    procedure SpawnPowerUps(block: TGameObject);
+    procedure UpdatePowerUps(dt: GLfloat);
   end;
 
 implementation
@@ -105,59 +119,7 @@ begin
 
   State := TGameState.GAME_ACTIVE;
 
-  Levels := TArrayList_TGameLevel.Create;
-end;
-
-function TGame.CheckCollision(one, two: TGameObject): Boolean;
-var
-  collisionX, collisionY: Boolean;
-begin
-  collisionX := false;
-  collisionY := false;
-
-  // x轴方向碰撞？
-  collisionX := (one.Position.x + one.Size.x >= two.Position.x)
-    and (two.Position.x + two.Size.x >= one.Position.x);
-
-  // y轴方向碰撞？
-  collisionY := (one.Position.y + one.Size.y >= two.Position.y)
-    and (two.Position.y + two.Size.y >= one.Position.y);
-
-  // 只有两个轴向都有碰撞时才碰撞
-  Result := collisionX and collisionY;
-end;
-
-function TGame.CheckCollision(one: TBallObject; two: TGameObject): TCollision;
-var
-  center, aabb_half_extents, aabb_center, difference, clamped, closest: TVec2;
-  res: TCollision;
-begin
-  // 获取圆的中心
-  center := one.Position + one.Radius;
-
-  // 计算AABB的信息（中心、半边长）
-  aabb_half_extents := TGLM.Vec2(two.Size.x / 2, two.Size.y / 2);
-  aabb_center := TGLM.Vec2(
-    two.Position.x + aabb_half_extents.x,
-    two.Position.y + aabb_half_extents.y
-    );
-
-  // 获取两个中心的差矢量
-  difference := center - aabb_center;
-  clamped := TGLM.Clamp(difference, -aabb_half_extents, aabb_half_extents);
-
-  // AABB_center加上clamped这样就得到了碰撞箱上距离圆最近的点closest
-  closest := aabb_center + clamped;
-
-  // 获得圆心center和最近点closest的矢量并判断是否 length <= radius
-  difference := closest - center;
-
-  if TGLM.Length(difference) < one.Radius then
-    res := TCollision.Create(true, VectorDirection(difference), difference)
-  else
-    res := TCollision.Create(false, TDirection.UP, TGLM.Vec2(0));
-
-  Result := res;
+  Levels := TList_TGameLevel.Create;
 end;
 
 destructor TGame.Destroy;
@@ -173,11 +135,27 @@ begin
   if Ball <> nil then
     FreeAndNil(Ball);
 
-  if not Levels.IsEmpty then
+  if PowerUps <> nil then
   begin
-    for i := 0 to Levels.Count - 1 do
+    if not PowerUps.IsEmpty then
     begin
-      Levels[i].Free;
+      for i := 0 to PowerUps.Count - 1 do
+      begin
+        PowerUps[i].Free;
+      end;
+    end;
+
+    FreeAndNil(PowerUps);
+  end;
+
+  if Levels <> nil then
+  begin
+    if not Levels.IsEmpty then
+    begin
+      for i := 0 to Levels.Count - 1 do
+      begin
+        Levels[i].Free;
+      end;
     end;
 
     FreeAndNil(Levels);
@@ -185,6 +163,9 @@ begin
 
   if Particles <> nil then
     FreeAndNil(Particles);
+
+  if Effects <> nil then
+    FreeAndNil(Effects);
 
   inherited Destroy;
 end;
@@ -205,13 +186,19 @@ begin
 
     if not box.Destroyed then
     begin
-      collision := CheckCollision(Ball, box);
+      collision := __CheckCollision(Ball, box);
 
       if collision.bool then // 如果 collision 是 true
       begin
         // 如果砖块不是实心就销毁砖块
         if not box.IsSolid then
-          box.Destroyed := true;
+          box.Destroyed := true
+        else
+        begin
+          // 如果块是固体，则启用震动效果
+          ShakeTime := 0.05;
+          Effects.Shake := true;
+        end;
 
         // 碰撞处理
         dir := collision.dir;
@@ -244,7 +231,7 @@ begin
     end;
   end;
 
-  collision := CheckCollision(Ball, Player);
+  collision := __CheckCollision(Ball, Player);
   if (not Ball.Stuck) and (collision.bool) then
   begin
     // 检查碰到了挡板的哪个位置，并根据碰到哪个位置来改变速度
@@ -258,6 +245,7 @@ begin
     Ball.Velocity.x := INITIAL_BALL_VELOCITY.x * percentage * strength;
     Ball.Velocity.y := -Ball.Velocity.y;
     Ball.Velocity := TGLM.Normalize(Ball.Velocity) * TGLM.Length(oldVelocity);
+    Ball.Stuck := Ball.Sticky;
   end;
 end;
 
@@ -270,6 +258,7 @@ var
 begin
   TResourceManager.LoadShader(SPRITE_NAME, SPRITE_VS, SPRITE_FS, '');
   TResourceManager.LoadShader(PARTICLE_NAME, PARTICLE_VS, PARTICLE_FS, '');
+  TResourceManager.LoadShader(POST_PROCESSING_NAME, POST_PROCESSING_VS, POST_PROCESSING_FS, '');
 
   projection := TGLM.Ortho(0.0, Width, Height, 0.0, -1.0, 1.0);
   TResourceManager.GetShader(SPRITE_NAME).Use.SetInteger('image', 0);
@@ -278,8 +267,7 @@ begin
   TResourceManager.GetShader(PARTICLE_NAME).Use.SetInteger('sprite', 0);
   TResourceManager.GetShader(PARTICLE_NAME).SetMatrix4('projection', projection);
 
-  // 设置专用于渲染的控制
-  Renderer := TSpriteRenderer.Create(TResourceManager.GetShader(SPRITE_NAME));
+  //═════════════════════════════════════════════════════════════════════════
 
   // 加载纹理
   TResourceManager.LoadTexture(IMG_BACKGROUND_NAME, IMG_BACKGROUND, true);
@@ -288,6 +276,24 @@ begin
   TResourceManager.LoadTexture(IMG_BLOCK_SOLID_NAME, IMG_BLOCK_SOLID, true);
   TResourceManager.LoadTexture(IMG_PADDLE_NAME, IMG_PADDLE, true);
   TResourceManager.LoadTexture(IMG_PARTICLE_NAME, IMG_PARTICLE, true);
+
+  TResourceManager.LoadTexture(IMG_POWERUP_SPEED, IMG_POWERUP_SPEED_NAME, true);
+  TResourceManager.LoadTexture(IMG_POWERUP_STICKY, IMG_POWERUP_STICKY_NAME, true);
+  TResourceManager.LoadTexture(IMG_POWERUP_INCREASE, IMG_POWERUP_INCREASE_NAME, true);
+  TResourceManager.LoadTexture(IMG_POWERUP_CONFUSE, IMG_POWERUP_CONFUSE_NAME, true);
+  TResourceManager.LoadTexture(IMG_POWERUP_CHAOS, IMG_POWERUP_CHAOS_NAME, true);
+  TResourceManager.LoadTexture(IMG_POWERUP_PASSTHROUGH, IMG_POWERUP_PASSTHROUGH_NAME, true);
+
+  //═════════════════════════════════════════════════════════════════════════
+
+  // 设置专用于渲染的控制
+  Renderer := TSpriteRenderer.Create(TResourceManager.GetShader(SPRITE_NAME));
+  Particles := TParticleGenerator.Create(TResourceManager.GetShader(PARTICLE_NAME),
+    TResourceManager.GetTexture(IMG_PARTICLE_NAME), 500);
+  Effects := TPostProcessor.Create(TResourceManager.GetShader(POST_PROCESSING_NAME),
+    Self.Width, Self.Height);
+
+  //═════════════════════════════════════════════════════════════════════════
 
   one   := TGameLevel.Create;
   tow   := TGameLevel.Create;
@@ -306,6 +312,8 @@ begin
 
   Self.Level := 0;
 
+  //═════════════════════════════════════════════════════════════════════════
+
   playerPos := TGLM.Vec2(Width / 2 - PLAYER_SIZE.x / 2, Height - PLAYER_SIZE.y);
   tx := TResourceManager.GetTexture(IMG_PADDLE_NAME);
   Player := TGameObject.Create(playerPos, PLAYER_SIZE, tx);
@@ -313,9 +321,6 @@ begin
   ballPos := playerPos + TGLM.Vec2(PLAYER_SIZE.x / 2 - BALL_RADIUS, -BALL_RADIUS * 2);
   Ball := TBallObject.Create(ballPos, BALL_RADIUS, INITIAL_BALL_VELOCITY,
     TResourceManager.GetTexture(IMG_AWESOMEFACE_NAME));
-
-  Particles := TParticleGenerator.Create(TResourceManager.GetShader(PARTICLE_NAME),
-    TResourceManager.GetTexture(IMG_PARTICLE_NAME), 500);
 end;
 
 procedure TGame.ProcessInput(dt: GLfloat);
@@ -366,17 +371,23 @@ var
 begin
   if Self.State = GAME_ACTIVE then
   begin
-    texture := TResourceManager.GetTexture(IMG_BACKGROUND_NAME);
-    position := TGLM.Vec2(0, 0);
-    size := TGLM.Vec2(Self.Width, Self.Height);
-    rotate := 0.0;
-    Renderer.DrawSprite(texture, @position, @size, @rotate);
+    // 开始渲染到后处理四边形
+    Effects .BeginRender;
+      texture := TResourceManager.GetTexture(IMG_BACKGROUND_NAME);
+      position := TGLM.Vec2(0, 0);
+      size := TGLM.Vec2(Self.Width, Self.Height);
+      rotate := 0.0;
+      Renderer.DrawSprite(texture, @position, @size, @rotate);
 
-    Self.Levels[Self.Level].Draw(Renderer);
+      Self.Levels[Self.Level].Draw(Renderer);
 
-    Player.Draw(Renderer);
-    Particles.Draw;
-    Ball.Draw(Renderer);
+      Player.Draw(Renderer);
+      Particles.Draw;
+      Ball.Draw(Renderer);
+    // 结束渲染到后处理四边形
+    Effects.EndRender;
+    // 渲染后处理四边形
+    Effects.Render(glfwGetTime);
   end;
 end;
 
@@ -401,6 +412,96 @@ begin
     Player.Position + TGLM.Vec2(PLAYER_SIZE.x / 2 - BALL_RADIUS, -(BALL_RADIUS * 2)),
     INITIAL_BALL_VELOCITY
     );
+
+  // 同时禁用所有激活的能量
+  Effects.Chaos := Effects.Confuse = false;
+  Ball.PassThrough := false;
+  Ball.Sticky := false;
+  Player.Color := TGLM.Vec3(1.0);
+  Ball.Color := TGLM.Vec3(1.0);
+end;
+
+procedure TGame.SpawnPowerUps(block: TGameObject);
+begin
+  if __ShouldSpawn(75) then // 1/75 的机会
+  begin
+    Self.PowerUps.AddLast
+    (
+      TPowerup.Create
+      (
+        IMG_POWERUP_SPEED_NAME,
+        TGlm.Vec3(0.5, 0.5, 1.0),
+        0.0,
+        block.Position,
+        TResourceManager.GetTexture(IMG_POWERUP_SPEED_NAME)
+      )
+    );
+  end;
+
+
+  if __ShouldSpawn(75) then
+    Self.PowerUps.AddLast
+    (
+      TPowerup.Create
+      (
+        IMG_POWERUP_STICKY_NAME,
+        TGlm.Vec3(1.0, 0.5, 1.0),
+        20.0,
+        block.Position,
+        TResourceManager.GetTexture(IMG_POWERUP_STICKY_NAME)
+      )
+    );
+
+  if __ShouldSpawn(75) then
+    Self.PowerUps.AddLast
+    (
+      TPowerup.Create
+      (
+        IMG_POWERUP_PASSTHROUGH_NAME,
+        TGlm.Vec3(0.5, 1.0, 0.5),
+        10.0,
+        block.Position,
+        TResourceManager.GetTexture(IMG_POWERUP_PASSTHROUGH_NAME)
+      )
+    );
+
+  if __ShouldSpawn(75) then
+    Self.PowerUps.AddLast
+    (
+      TPowerup.Create
+      (
+        IMG_POWERUP_INCREASE_NAME,
+        TGlm.Vec3(1.0, 0.6, 0.4),
+        0.0,
+        block.Position,
+        TResourceManager.GetTexture(IMG_POWERUP_INCREASE_NAME)
+      )
+    );
+
+  if __ShouldSpawn(15) then // 消极道具应该更频繁地出现
+    Self.PowerUps.AddLast
+    (
+      TPowerup.Create
+      (
+        IMG_POWERUP_CONFUSE_NAME,
+        TGlm.Vec3(1.0, 0.3, 0.3),
+        15.0, block.Position,
+        TResourceManager.GetTexture(IMG_POWERUP_CONFUSE_NAME)
+      )
+    );
+
+  if __ShouldSpawn(15) then
+    Self.PowerUps.AddLast
+    (
+      TPowerup.Create
+      (
+        IMG_POWERUP_CHAOS_NAME,
+        TGlm.Vec3(0.9, 0.25, 0.25),
+        15.0,
+        block.Position,
+        TResourceManager.GetTexture(IMG_POWERUP_CHAOS_NAME)
+      )
+    );
 end;
 
 procedure TGame.Update(dt: GLfloat);
@@ -415,15 +516,107 @@ begin
   offset := TGLM.Vec2(Ball.Radius / 2);
   Particles.Update(dt, Ball, 2, @offset);
 
+  if ShakeTime > 0.0 then
+  begin
+    ShakeTime -= dt;
+
+    if ShakeTime <= 0.0 then
+      Effects.Shake := false;
+  end;
+
   // 球是否接触底部边界？
   if Ball.Position.y >= Self.Height then
   begin
-    Self.ResetLevel;
-    Self.ResetPlayer;
+    //Self.ResetLevel;
+    //Self.ResetPlayer;
+
+    Ball.Position.y *= -1;
   end;
 end;
 
-function TGame.VectorDirection(target: TVec2): TDirection;
+procedure TGame.UpdatePowerUps(dt: GLfloat);
+begin
+
+end;
+
+function TGame.__CheckCollision(one, two: TGameObject): Boolean;
+var
+  collisionX, collisionY: Boolean;
+begin
+  collisionX := false;
+  collisionY := false;
+
+  // x轴方向碰撞？
+  collisionX := (one.Position.x + one.Size.x >= two.Position.x)
+    and (two.Position.x + two.Size.x >= one.Position.x);
+
+  // y轴方向碰撞？
+  collisionY := (one.Position.y + one.Size.y >= two.Position.y)
+    and (two.Position.y + two.Size.y >= one.Position.y);
+
+  // 只有两个轴向都有碰撞时才碰撞
+  Result := collisionX and collisionY;
+end;
+
+function TGame.__CheckCollision(one: TBallObject; two: TGameObject): TCollision;
+var
+  center, aabb_half_extents, aabb_center, difference, clamped, closest: TVec2;
+  res: TCollision;
+begin
+  // 获取圆的中心
+  center := one.Position + one.Radius;
+
+  // 计算AABB的信息（中心、半边长）
+  aabb_half_extents := TGLM.Vec2(two.Size.x / 2, two.Size.y / 2);
+  aabb_center := TGLM.Vec2(
+    two.Position.x + aabb_half_extents.x,
+    two.Position.y + aabb_half_extents.y
+    );
+
+  // 获取两个中心的差矢量
+  difference := center - aabb_center;
+  clamped := TGLM.Clamp(difference, -aabb_half_extents, aabb_half_extents);
+
+  // AABB_center加上clamped这样就得到了碰撞箱上距离圆最近的点closest
+  closest := aabb_center + clamped;
+
+  // 获得圆心center和最近点closest的矢量并判断是否 length <= radius
+  difference := closest - center;
+
+  if TGLM.Length(difference) < one.Radius then
+    res := TCollision.Create(true, __VectorDirection(difference), difference)
+  else
+    res := TCollision.Create(false, TDirection.UP, TGLM.Vec2(0));
+
+  Result := res;
+end;
+
+function TGame.__IsOtherPowerUpActive(powerUps: TList_TPowerup; typ: string): boolean;
+var
+  i: Integer;
+begin
+  // 检查另一个相同类型的PowerUp是否仍然处于活动状态
+  // 在这种情况下，我们不禁用它的效果
+  for i := 0 to powerUps.Count - 1 do
+  begin
+    if (powerUps[i].Activated) and (powerUps[i].Type_) then
+    begin
+      Exit(true);
+    end;
+  end;
+
+  Result := false;
+end;
+
+function TGame.__ShouldSpawn(chance: GLuint): Boolean;
+var
+  temp: integer;
+begin
+  temp := Random(ClassInfo);
+  Result := temp = 0;
+end;
+
+function TGame.__VectorDirection(target: TVec2): TDirection;
 var
   compass: array[0..3] of TVec2;
   max: float;

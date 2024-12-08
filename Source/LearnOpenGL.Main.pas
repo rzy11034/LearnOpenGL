@@ -6,6 +6,7 @@
 {$ModeSwitch implicitfunctionspecialization}
 {$ModeSwitch anonymousfunctions}
 {$ModeSwitch functionreferences}
+{$ModeSwitch duplicatelocals}
 
 interface
 
@@ -31,36 +32,23 @@ uses
   Case07_03_2D_Game_Program;
 
 procedure Test;
-var
-  count: Cardinal;
-  i: Integer;
 begin
-  count := 0;
-  //count -= 1;
 
-  for i := 0 to Count - 1 do
-  begin
-    if i = count then
-      Break;
-
-
-  end;
-
-  WriteLn(i);
+  i := 0;
 
   Exit;
 end;
 
 procedure Run();
 begin
-  (*═══════════════════════════════════════════════════════════════════════
+  //(*═══════════════════════════════════════════════════════════════════════
   Test;
   WriteLn(END_OF_PROGRAM_CH);
   ReadLn;
   //═══════════════════════════════════════════════════════════════════════*)
 
 
-  Main;
+  //Main;
 end;
 
 end.
