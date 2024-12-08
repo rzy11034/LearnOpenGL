@@ -49,9 +49,9 @@ type
     // 初始化挡板的大小
     PLAYER_SIZE: TVec2 = (x: 100; y: 20);
     // 初始化当班的速率
-    PLAYER_VELOCITY: float = (500.0);
+    PLAYER_VELOCITY: float = (1000.0);
     // 初始化球的速度
-    INITIAL_BALL_VELOCITY: TVec2 = (x: 200.0; y: -200.0);
+    INITIAL_BALL_VELOCITY: TVec2 = (x: 2000.0; y: -2000.0);
     // 球的半径
     BALL_RADIUS: float = 12.5;
 
@@ -120,6 +120,8 @@ begin
   State := TGameState.GAME_ACTIVE;
 
   Levels := TList_TGameLevel.Create;
+
+  PowerUps := TList_TPowerup.Create;
 end;
 
 destructor TGame.Destroy;
@@ -192,7 +194,10 @@ begin
       begin
         // 如果砖块不是实心就销毁砖块
         if not box.IsSolid then
-          box.Destroyed := true
+        begin
+          box.Destroyed := true;
+          SpawnPowerUps(box);
+        end
         else
         begin
           // 如果块是固体，则启用震动效果
@@ -277,12 +282,12 @@ begin
   TResourceManager.LoadTexture(IMG_PADDLE_NAME, IMG_PADDLE, true);
   TResourceManager.LoadTexture(IMG_PARTICLE_NAME, IMG_PARTICLE, true);
 
-  TResourceManager.LoadTexture(IMG_POWERUP_SPEED, IMG_POWERUP_SPEED_NAME, true);
-  TResourceManager.LoadTexture(IMG_POWERUP_STICKY, IMG_POWERUP_STICKY_NAME, true);
-  TResourceManager.LoadTexture(IMG_POWERUP_INCREASE, IMG_POWERUP_INCREASE_NAME, true);
-  TResourceManager.LoadTexture(IMG_POWERUP_CONFUSE, IMG_POWERUP_CONFUSE_NAME, true);
-  TResourceManager.LoadTexture(IMG_POWERUP_CHAOS, IMG_POWERUP_CHAOS_NAME, true);
-  TResourceManager.LoadTexture(IMG_POWERUP_PASSTHROUGH, IMG_POWERUP_PASSTHROUGH_NAME, true);
+  TResourceManager.LoadTexture(IMG_POWERUP_SPEED_NAME, IMG_POWERUP_SPEED, true);
+  TResourceManager.LoadTexture(IMG_POWERUP_STICKY_NAME, IMG_POWERUP_STICKY, true);
+  TResourceManager.LoadTexture(IMG_POWERUP_INCREASE_NAME, IMG_POWERUP_INCREASE, true);
+  TResourceManager.LoadTexture(IMG_POWERUP_CONFUSE_NAME, IMG_POWERUP_CONFUSE, true);
+  TResourceManager.LoadTexture(IMG_POWERUP_CHAOS_NAME, IMG_POWERUP_CHAOS, true);
+  TResourceManager.LoadTexture(IMG_POWERUP_PASSTHROUGH_NAME, IMG_POWERUP_PASSTHROUGH, true);
 
   //═════════════════════════════════════════════════════════════════════════
 
@@ -368,6 +373,7 @@ var
   position, size: TVec2;
   rotate: Single;
   texture: TTexture2D;
+  i: Integer;
 begin
   if Self.State = GAME_ACTIVE then
   begin
@@ -382,6 +388,13 @@ begin
       Self.Levels[Self.Level].Draw(Renderer);
 
       Player.Draw(Renderer);
+
+      for i := 0 to PowerUps.Count - 1 do
+      begin
+        if not PowerUps[i].Destroyed then
+          PowerUps[i].Draw(Renderer);
+      end;
+
       Particles.Draw;
       Ball.Draw(Renderer);
     // 结束渲染到后处理四边形
@@ -516,6 +529,8 @@ begin
   offset := TGLM.Vec2(Ball.Radius / 2);
   Particles.Update(dt, Ball, 2, @offset);
 
+  UpdatePowerUps(dt);
+
   if ShakeTime > 0.0 then
   begin
     ShakeTime -= dt;
@@ -535,8 +550,69 @@ begin
 end;
 
 procedure TGame.UpdatePowerUps(dt: GLfloat);
+var
+  i: Integer;
+  powerUp: TPowerup;
 begin
+  for i := 0 to Self.PowerUps.Count - 1 do
+  begin
+    powerUp := Self.PowerUps[i];
 
+    powerUp.Position += powerUp.Velocity * dt;
+    if powerUp.Activated then
+    begin
+      powerUp.Duration -= dt;
+
+      if powerUp.Duration <= 0.0 then
+      begin
+        // 从列表中移除能量（稍后会移除）
+        powerUp.Activated := false;
+        // 关闭的影响
+        if powerUp.Type_ = IMG_POWERUP_STICKY_NAME then
+        begin
+          if not __IsOtherPowerUpActive(PowerUps, IMG_POWERUP_STICKY_NAME) then
+          begin	// 只有当没有其他类型的粘性激活时才复位
+              Ball.Sticky := false;
+              Player.Color := TGlm.vec3(1.0);
+          end;
+        end
+        else if powerUp.Type_ = IMG_POWERUP_PASSTHROUGH_NAME then
+        begin
+          if not __IsOtherPowerUpActive(PowerUps, IMG_POWERUP_PASSTHROUGH_NAME) then
+          begin	// 只有当没有其他类型的直通激活时才复位
+            Ball.PassThrough := false;
+            Ball.Color := TGlm.vec3(1.0);
+          end;
+        end
+        else if powerUp.Type_ = IMG_POWERUP_CONFUSE_NAME then
+        begin
+          if not __IsOtherPowerUpActive(PowerUps, IMG_POWERUP_CONFUSE_NAME) then
+          begin	// 只有在没有其他混乱类型的能量激活时才会重置
+            Effects.Confuse := false;
+          end;
+        end
+        else if powerUp.Type_ = IMG_POWERUP_CHAOS_NAME then
+        begin
+          if not __IsOtherPowerUpActive(PowerUps, IMG_POWERUP_CHAOS_NAME) then
+          begin	// 只有当没有其他混乱类型的能量激活时才会重置
+            Effects.Chaos := false;
+          end;
+        end;
+      end;
+    end;
+  end;
+
+  //从矢量中移除所有被破坏和激活的强化道具（因此要么离开地图要么完成）
+  for i := 0 to PowerUps.Count - 1 do
+  begin
+    powerUp := PowerUps[i];
+
+    if powerUp.Destroyed and (not powerUp.Activated) then
+    begin
+      powerUps.Remove(i);
+      FreeAndNil(powerUp);
+    end;
+  end;
 end;
 
 function TGame.__CheckCollision(one, two: TGameObject): Boolean;
@@ -599,7 +675,7 @@ begin
   // 在这种情况下，我们不禁用它的效果
   for i := 0 to powerUps.Count - 1 do
   begin
-    if (powerUps[i].Activated) and (powerUps[i].Type_) then
+    if (powerUps[i].Activated) and (powerUps[i].Type_ = typ) then
     begin
       Exit(true);
     end;
@@ -612,7 +688,7 @@ function TGame.__ShouldSpawn(chance: GLuint): Boolean;
 var
   temp: integer;
 begin
-  temp := Random(ClassInfo);
+  temp := Random(chance);
   Result := temp = 0;
 end;
 
