@@ -29,24 +29,49 @@ procedure Run();
 implementation
 
 uses
-  Case07_03_2D_Game_Program;
+  Case06_01_02_Lighting_Textured;
+
+type
+  PTT = ^TTT;
+  TTT = Record
+  public
+    a: integer;
+    b: string;
+    constructor Create(a: integer; b: string);
+  end;
 
 procedure Test;
+var
+  p: PTT;
+  t: TTT;
 begin
+  p := PTT(nil);
+
+  //if p = nil then t := TTT.Create(100, 'aaa') else t := p^;
+
+  //t := ifthen(p = nil, TTT.Create(100, 'aaa'), p^);
 
   Exit;
 end;
 
 procedure Run();
 begin
-  (*═══════════════════════════════════════════════════════════════════════
+  //(*═══════════════════════════════════════════════════════════════════════
   Test;
   WriteLn(END_OF_PROGRAM_CH);
   ReadLn;
   //═══════════════════════════════════════════════════════════════════════*)
 
 
-  Main;
+  //Main;
+end;
+
+{ TTT }
+
+constructor TTT.Create(a: integer; b: string);
+begin
+  Self.a := a;
+  Self.b := b;
 end;
 
 end.

@@ -51,16 +51,17 @@ type
     // 初始化当班的速率
     PLAYER_VELOCITY: float = (1000.0);
     // 初始化球的速度
-    INITIAL_BALL_VELOCITY: TVec2 = (x: 2000.0; y: -2000.0);
+    INITIAL_BALL_VELOCITY: TVec2 = (x: 200.0; y: -200.0);
     // 球的半径
     BALL_RADIUS: float = 12.5;
 
   private
-    function __CheckCollision(one, two: TGameObject): Boolean;
+    function __CheckCollision(one, two: TGameObject): boolean;
     function __CheckCollision(one: TBallObject; two: TGameObject): TCollision;
     function __IsOtherPowerUpActive(powerUps: TList_TPowerup; typ: string): boolean;
-    function __ShouldSpawn(chance: GLuint): Boolean;
+    function __ShouldSpawn(chance: GLuint): boolean;
     function __VectorDirection(target: TVec2): TDirection;
+    procedure __ActivatePowerUp(powerUp: TPowerUp);
 
   public
     Effects: TPostProcessor;
@@ -181,6 +182,7 @@ var
   diff_vector, oldVelocity: TVec2;
   penetration: float;
   centerBoard, distance, percentage, strength: Single;
+  powerUp: TPowerup;
 begin
   for i := 0 to Levels[Self.Level].Bricks.Count - 1 do
   begin
@@ -232,6 +234,26 @@ begin
           else
             Ball.Position.y += penetration; // 将球下移
         end;
+      end;
+    end;
+  end;
+
+  // 还要检查powerup的碰撞，如果是，激活它们
+  for i := 0 to PowerUps.Count - 1 do
+  begin
+    powerUp := Self.PowerUps[i];
+
+    if not powerUp.Destroyed then
+    begin
+      // 首先检查升级是否通过底部边缘，如果是，保持为非活动状态并销毁
+      if powerUp.Position.y >= Self.Height then
+        powerUp.Destroyed := true;
+
+      if __CheckCollision(Player, powerUp) then // 与玩家相撞，现在激活能量
+      begin
+        __ActivatePowerUp(powerUp);
+        powerUp.Destroyed := true;
+        powerUp.Activated := true;
       end;
     end;
   end;
@@ -603,19 +625,58 @@ begin
   end;
 
   //从矢量中移除所有被破坏和激活的强化道具（因此要么离开地图要么完成）
-  for i := 0 to PowerUps.Count - 1 do
+  i := 0;
+  while i < PowerUps.Count do
   begin
     powerUp := PowerUps[i];
 
     if powerUp.Destroyed and (not powerUp.Activated) then
     begin
-      powerUps.Remove(i);
+      PowerUps.Remove(i);
       FreeAndNil(powerUp);
+      Continue;
+    end;
+
+    i += 1;
+  end;
+end;
+
+procedure TGame.__ActivatePowerUp(powerUp: TPowerUp);
+begin
+  case powerUp.Type_ of
+    IMG_POWERUP_SPEED_NAME:
+      Ball.Velocity *= 2;
+
+    IMG_POWERUP_STICKY_NAME:
+    begin
+      Ball.Sticky := true;
+      Player.Color := TGLM.Vec3(1.0, 0.5, 1.0);
+    end;
+
+    IMG_POWERUP_PASSTHROUGH_NAME:
+    begin
+      Ball.PassThrough := true;
+      Ball.Color := TGLM.Vec3(1.0, 0.5, 0.5);
+    end;
+
+    IMG_POWERUP_INCREASE_NAME:
+      Player.Size.x += 50;
+
+    IMG_POWERUP_CONFUSE_NAME:
+    begin
+      if not Effects.Chaos then
+        Effects.Confuse := true;
+    end;
+
+    IMG_POWERUP_CHAOS_NAME:
+    begin
+      if not Effects.Confuse then
+        Effects.Chaos := true;
     end;
   end;
 end;
 
-function TGame.__CheckCollision(one, two: TGameObject): Boolean;
+function TGame.__CheckCollision(one, two: TGameObject): boolean;
 var
   collisionX, collisionY: Boolean;
 begin
@@ -684,7 +745,7 @@ begin
   Result := false;
 end;
 
-function TGame.__ShouldSpawn(chance: GLuint): Boolean;
+function TGame.__ShouldSpawn(chance: GLuint): boolean;
 var
   temp: integer;
 begin
