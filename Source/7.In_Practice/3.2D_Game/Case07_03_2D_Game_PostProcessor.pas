@@ -47,7 +47,6 @@ type
     constructor Create(shader: TShader; Width, Height: GLuint);
     destructor Destroy; override;
 
-
     // 在渲染游戏之前准备后处理器的帧缓冲操作
     procedure BeginRender;
 
@@ -87,7 +86,7 @@ begin
   glBindFramebuffer(GL_FRAMEBUFFER, Self._MSFBO);
   glBindRenderbuffer(GL_RENDERBUFFER, Self._RBO);
   // 为渲染缓冲区对象分配存储空间
-  glRenderbufferStorageMultisample(GL_RENDERBUFFER, 8, GL_RGB, width, height);
+  glRenderbufferStorageMultisample(GL_RENDERBUFFER, 4, GL_DEPTH24_STENCIL8, width, height);
   // 将MS渲染缓冲区对象附加到framebuffer
   glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, Self._RBO);
   if glCheckFramebufferStatus(GL_FRAMEBUFFER) <> GL_FRAMEBUFFER_COMPLETE then

@@ -65,10 +65,20 @@ var
   rotate: GLfloat;
 begin
   texture := aTexture;
-  if aSize = nil then size := TGLM.Vec2(10) else size := aSize^;
-  if aColor = nil then color := TGLM.Vec3(1.0) else color := aColor^;
-  position := aPosition^;
-  if aRotate = nil then rotate := 0.0 else otate := aRotate^;
+
+  position := TGLM.Vec2(10);
+  if aPosition <> nil then position := aPosition^;
+
+  size := TGLM.Vec2(10);
+  if aSize <> nil then size := aSize^;
+
+  rotate := 0.0;
+  if aRotate <> nil then rotate := aRotate^;
+
+  color := TGLM.Vec3(1.0);
+  if aColor <> nil then color := aColor^;
+
+  //═════════════════════════════════════════════════════════════════════════
 
   // Prepare transformations
   _Shader.Use;

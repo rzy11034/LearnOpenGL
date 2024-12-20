@@ -49,21 +49,16 @@ constructor TGameObject.Create(pos: TVec2; size: TVec2; sprite: TTexture2D;
 begin
   Self.Position := pos;
   Self.Size := size;
-
-  if velocity = nil then
-    Self.Velocity := TGLM.Vec2(0.0)
-  else
-    Self.Velocity := velocity^;
-
-  if color = nil then
-    Self.Color := TGLM.Vec3(1.0)
-  else
-    Self.Color := color^;
-
   Self.Rotation := 0.0;
   Self.Sprite := sprite;
   Self.IsSolid := false;
   Self.Destroyed := false;
+
+  Self.Color := TGLM.Vec3(1.0);
+  if color <> nil then Self.Color := color^;
+
+  Self.Velocity := TGLM.Vec2(0.0);
+  if velocity <> nil then Self.Velocity := velocity^;
 end;
 
 constructor TGameObject.Create();

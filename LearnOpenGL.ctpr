@@ -21,7 +21,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="bin\LearnOpenGL"/>
+            <Filename Value="bin\$(TargetCPU)-$(TargetOS)\$(BuildModeCaption)\LearnOpenGL"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -1960,7 +1960,7 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="bin\LearnOpenGL"/>
+      <Filename Value="bin\$(TargetCPU)-$(TargetOS)\$(BuildModeCaption)\LearnOpenGL"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
