@@ -8,6 +8,7 @@
       <Unit>
         <Filename Value="LearnOpenGL.ppr"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="93"/>
@@ -31,8 +32,8 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="22"/>
-        <CursorPos X="50" Y="36"/>
+        <TopLine Value="34"/>
+        <CursorPos X="3" Y="56"/>
         <UsageCount Value="233"/>
         <Loaded Value="True"/>
       </Unit>
@@ -1936,12 +1937,11 @@
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\5.1.Framebuffers\Case04_05_01_Framebuffers.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="252"/>
-        <CursorPos X="63" Y="276"/>
+        <CursorPos X="74" Y="276"/>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Source\4.Advanced_Opengl\5.1.Framebuffers\5.1.framebuffers.fs"/>
@@ -3939,20 +3939,22 @@
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="268"/>
-        <CursorPos Y="286"/>
+        <TopLine Value="148"/>
+        <CursorPos Y="124"/>
         <UsageCount Value="210"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Consts.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="40"/>
-        <CursorPos X="54" Y="57"/>
+        <TopLine Value="58"/>
+        <CursorPos Y="66"/>
         <UsageCount Value="210"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_ResourceManager.pas"/>
@@ -4122,13 +4124,11 @@
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_PostProcessor.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="18"/>
-        <CursorPos X="128" Y="52"/>
+        <TopLine Value="161"/>
+        <CursorPos X="39" Y="164"/>
         <UsageCount Value="231"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Powerups.pas"/>
@@ -4303,14 +4303,178 @@
         <CursorPos X="16" Y="297"/>
         <UsageCount Value="5"/>
       </Unit>
+      <Unit>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="62"/>
+        <CursorPos X="29" Y="71"/>
+        <UsageCount Value="24"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\codetyphon\typhon\components\packages_pl\pl_SDL\source\libsdl2_mixer.pas"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="libSDL2_mixer"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="299"/>
+        <CursorPos X="10" Y="311"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\objpash.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="340"/>
+        <CursorPos X="25" Y="363"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\codetyphon\fpcsrc\rtl\win64\system.pp"/>
+        <FRMtype Value="0"/>
+        <UnitName Value="System"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="462"/>
+        <CursorPos X="6" Y="463"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\objpas.inc"/>
+        <FRMtype Value="0"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1177"/>
+        <CursorPos X="6" Y="1188"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
     <OtherDefines Count="1">
       <Define0 Value="Debug"/>
     </OtherDefines>
-    <JumpHistory>
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="19" Column="13"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="20" Column="12"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="21" Column="12"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="22" Column="11"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="139" Column="3" TopLine="49"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="76" Column="36" TopLine="55"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="78" Column="20" TopLine="55"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="79" Column="6" TopLine="55"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="82" Column="7" TopLine="61"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="84" Column="20" TopLine="61"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="85" Column="6" TopLine="67"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="88" Column="12" TopLine="67"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="74" Column="21" TopLine="43"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="76" Column="7" TopLine="49"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="88" Column="7" TopLine="61"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="90" Column="20" TopLine="63"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="286" TopLine="138"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="68" Column="19" TopLine="154"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="88" Column="15" TopLine="73"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="356" Column="22" TopLine="334"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="85" Column="16" TopLine="69"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="135" Column="27" TopLine="170"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Game.pas"/>
+        <Caret Line="359" Column="27" TopLine="342"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="106" TopLine="99"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="107" TopLine="99"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="111" Column="3" TopLine="38"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="25" Column="17" TopLine="8"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
+        <Caret Line="21" Column="35" TopLine="95"/>
+      </Position>
       <Position>
         <Filename Value="Source\LearnOpenGL.Main.pas"/>
-        <Caret Line="32" Column="28" TopLine="22"/>
+        <Caret Line="41" TopLine="34"/>
+      </Position>
+      <Position>
+        <Filename Value="Source\LearnOpenGL.Main.pas"/>
+        <Caret Line="42" TopLine="34"/>
       </Position>
     </JumpHistory>
     <RunParams>

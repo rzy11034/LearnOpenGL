@@ -27,7 +27,8 @@ uses
   Case07_03_2D_Game_BallObject,
   Case07_03_2D_Game_ParticleGenerator,
   Case07_03_2D_Game_PostProcessor,
-  Case07_03_2D_Game_Powerups;
+  Case07_03_2D_Game_Powerups,
+  Case07_03_2D_Game_Sound;
 
 type
   TGameState = (GAME_ACTIVE, GAME_MENU, GAME_WIN);
@@ -64,6 +65,7 @@ type
     procedure __ActivatePowerUp(powerUp: TPowerUp);
 
   public
+    Sound: TSound;
     Effects: TPostProcessor;
     Height: GLuint;
     Particles: TParticleGenerator;
@@ -129,6 +131,9 @@ destructor TGame.Destroy;
 var
   i: Integer;
 begin
+  if Sound <> nil then
+    FreeAndNil(Sound);
+
   if Renderer <> nil then
     FreeAndNil(Renderer);
 
@@ -348,6 +353,10 @@ begin
   ballPos := playerPos + TGLM.Vec2(PLAYER_SIZE.x / 2 - BALL_RADIUS, -BALL_RADIUS * 2);
   Ball := TBallObject.Create(ballPos, BALL_RADIUS, INITIAL_BALL_VELOCITY,
     TResourceManager.GetTexture(IMG_AWESOMEFACE_NAME));
+
+  Sound := TSound.Create;
+  Sound.Init;
+  Sound.BreakoutPlay;
 end;
 
 procedure TGame.ProcessInput(dt: GLfloat);

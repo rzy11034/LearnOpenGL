@@ -75,6 +75,15 @@ const
   LEVEL_3 = LEVELS_PATH + 'three.lvl';
   LEVEL_4 = LEVELS_PATH + 'four.lvl';
 
+const
+  WAV_PATH = '..\Resources\audio\';
+
+  WAV_BREAKOUT = WAV_PATH + 'breakout.mp3';
+  WAV_POWERUP = WAV_PATH + 'powerup.wav';
+  WAV_BLEEP1 = WAV_PATH + 'bleep.mp3';
+  WAV_BLEEP2 = WAV_PATH + 'bleep.wav';
+  WAV_SOLID = WAV_PATH + 'solid.wav';
+
 implementation
 
 end.
