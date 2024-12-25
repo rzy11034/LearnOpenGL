@@ -62,7 +62,7 @@ begin
   breakout_managed := IInterface(TGame.Create(SCREEN_WIDTH, SCREEN_HEIGHT));
   breakout := breakout_managed as TGame;
   breakout.Init;
-  breakout.State :=  TGameState.GAME_ACTIVE;
+  breakout.State :=  TGameState.GAME_WIN;
 
   //═════════════════════════════════════════════════════════════════════════
 
@@ -144,7 +144,10 @@ begin
     if action = GLFW_PRESS then
       Breakout.Keys[key] := true
     else if action = GLFW_RELEASE then
+    begin
       Breakout.Keys[key] := false;
+      breakout.KeysProcessed[key] := false;
+    end;
   end;
 end;
 

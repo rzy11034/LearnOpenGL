@@ -98,7 +98,7 @@ begin
   begin
     tile := Bricks[i];
 
-    if (not tile.IsSolid) and (not tile.Destroyed) then
+    if not(tile.IsSolid) and not(tile.Destroyed) then
       Exit(false);
   end;
 

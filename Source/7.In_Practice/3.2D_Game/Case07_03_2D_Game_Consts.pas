@@ -80,9 +80,12 @@ const
 
   WAV_BREAKOUT = WAV_PATH + 'breakout.mp3';
   WAV_POWERUP = WAV_PATH + 'powerup.wav';
-  WAV_BLEEP1 = WAV_PATH + 'bleep.mp3';
-  WAV_BLEEP2 = WAV_PATH + 'bleep.wav';
+  WAV_BLEEP_MP3 = WAV_PATH + 'bleep.mp3';
+  WAV_BLEEP_WAV = WAV_PATH + 'bleep.wav';
   WAV_SOLID = WAV_PATH + 'solid.wav';
+
+const
+  FONT_OCRAEXT = '..\Resources\fonts\ocraext.TTF';
 
 implementation
 

@@ -28,7 +28,8 @@ uses
   Case07_03_2D_Game_ParticleGenerator,
   Case07_03_2D_Game_PostProcessor,
   Case07_03_2D_Game_Powerups,
-  Case07_03_2D_Game_Sound;
+  Case07_03_2D_Game_Sound,
+  Case07_03_2D_Game_TextRenderer;
 
 type
   TGameState = (GAME_ACTIVE, GAME_MENU, GAME_WIN);
@@ -65,14 +66,17 @@ type
     procedure __ActivatePowerUp(powerUp: TPowerUp);
 
   public
+    Lives: integer;
     Sound: TSound;
     Effects: TPostProcessor;
     Height: GLuint;
     Particles: TParticleGenerator;
     PowerUps: TList_TPowerup;
     ShakeTime: GLfloat;
+    Text: TTextRenderer;
     Width: GLuint;
     Keys: array[0..1023] of Boolean;
+    KeysProcessed: array[0..1023] of Boolean;
     State: TGameState;
     Renderer: TSpriteRenderer;
     Player: TGameObject;
@@ -116,15 +120,25 @@ end;
 { TGame }
 
 constructor TGame.Create(width, height: GLuint);
+var
+  i: Integer;
 begin
   Self.Width := width;
   Self.Height := height;
+  Self.Lives := 3;
 
-  State := TGameState.GAME_ACTIVE;
+  for i := 0 to 1023 do
+  begin
+    Keys[i] := false;
+    KeysProcessed[i] := false;
+  end;
 
   Levels := TList_TGameLevel.Create;
 
   PowerUps := TList_TPowerup.Create;
+
+  Text := TTextRenderer.Create(Self.Width, Self.Height);
+  Text.Load(FONT_OCRAEXT, 24);
 end;
 
 destructor TGame.Destroy;
@@ -175,6 +189,9 @@ begin
   if Effects <> nil then
     FreeAndNil(Effects);
 
+  if Text <> nil then
+    FreeAndNil(Text);
+
   inherited Destroy;
 end;
 
@@ -204,12 +221,14 @@ begin
         begin
           box.Destroyed := true;
           SpawnPowerUps(box);
+          Self.Sound.BleepMp3Play;
         end
         else
         begin
           // 如果块是固体，则启用震动效果
           ShakeTime := 0.05;
           Effects.Shake := true;
+          Self.Sound.SolidPlay;
         end;
 
         // 碰撞处理
@@ -259,6 +278,7 @@ begin
         __ActivatePowerUp(powerUp);
         powerUp.Destroyed := true;
         powerUp.Activated := true;
+        Self.Sound.PowerupPlay;
       end;
     end;
   end;
@@ -277,7 +297,11 @@ begin
     Ball.Velocity.x := INITIAL_BALL_VELOCITY.x * percentage * strength;
     Ball.Velocity.y := -Ball.Velocity.y;
     Ball.Velocity := TGLM.Normalize(Ball.Velocity) * TGLM.Length(oldVelocity);
+
+    // 如果粘性道具被激活，重新计算矢量速度
     Ball.Stuck := Ball.Sticky;
+
+    Self.Sound.BleepWavPlay;
   end;
 end;
 
@@ -397,6 +421,41 @@ begin
     if Self.Keys[GLFW_KEY_SPACE] then
       Ball.Stuck := false;
   end;
+
+  if Self.State = GAME_MENU then
+  begin
+    if Self.Keys[GLFW_KEY_ENTER] and not(Self.KeysProcessed[GLFW_KEY_ENTER]) then
+    begin
+      Self.State := GAME_ACTIVE;
+      KeysProcessed[GLFW_KEY_ENTER] := true;
+    end;
+
+    if Self.Keys[GLFW_KEY_W] and not(Self.KeysProcessed[GLFW_KEY_W]) then
+    begin
+      Self.Level := (Self.Level + 1) mod 4;
+      Self.KeysProcessed[GLFW_KEY_W] := true;
+    end;
+
+    if Self.Keys[GLFW_KEY_S] and not(Self.KeysProcessed[GLFW_KEY_S]) then
+    begin
+      if Self.Level > 0 then
+        Self.Level -= 1
+      else
+        Self.Level := 3;
+
+      Self.KeysProcessed[GLFW_KEY_S] := true;
+    end;
+  end;
+
+  if Self.State = GAME_WIN then
+  begin
+    if Self.Keys[GLFW_KEY_ENTER] then
+    begin
+      Self.KeysProcessed[GLFW_KEY_ENTER] := true;
+      Effects.Chaos := false;
+      Self.State := GAME_MENU;
+    end;
+  end;
 end;
 
 procedure TGame.Render;
@@ -405,33 +464,50 @@ var
   rotate: Single;
   texture: TTexture2D;
   i: Integer;
+  color: TVec3;
 begin
-  if Self.State = GAME_ACTIVE then
+  // 开始渲染到后处理四边形
+  Effects .BeginRender;
+    texture := TResourceManager.GetTexture(IMG_BACKGROUND_NAME);
+    position := TGLM.Vec2(0, 0);
+    size := TGLM.Vec2(Self.Width, Self.Height);
+    rotate := 0.0;
+    Renderer.DrawSprite(texture, @position, @size, @rotate);
+
+    Self.Levels[Self.Level].Draw(Renderer);
+
+    Player.Draw(Renderer);
+
+    for i := 0 to PowerUps.Count - 1 do
+    begin
+      if not PowerUps[i].Destroyed then
+        PowerUps[i].Draw(Renderer);
+    end;
+
+    Particles.Draw;
+    Ball.Draw(Renderer);
+  // 结束渲染到后处理四边形
+  Effects.EndRender;
+  // 渲染后处理四边形
+  Effects.Render(glfwGetTime);
+
+  Text.RenderText('Lives:' + Lives.ToString, 5.0, 5.0, 1.0);
+  Text.RenderText('Level:' + (Level + 1).ToString, Width - 120, 5.0, 1.0);
+
+  if Self.State = GAME_MENU then
   begin
-    // 开始渲染到后处理四边形
-    Effects .BeginRender;
-      texture := TResourceManager.GetTexture(IMG_BACKGROUND_NAME);
-      position := TGLM.Vec2(0, 0);
-      size := TGLM.Vec2(Self.Width, Self.Height);
-      rotate := 0.0;
-      Renderer.DrawSprite(texture, @position, @size, @rotate);
+    Text.RenderText('Press ENTER to start', 250.0, Height / 2, 1.0);
+    Text.RenderText('Press W or S to select level', 245.0, Height / 2 + 20.0, 0.75);
+  end;
 
-      Self.Levels[Self.Level].Draw(Renderer);
+  if Self.State = GAME_WIN then
+  begin
+    color := TGLM.Vec3(0.0, 1.0, 0.0);
+    Text.RenderText('You WON!!!', 320.0, Height / 2 - 20.0, 1.0, @color);
 
-      Player.Draw(Renderer);
-
-      for i := 0 to PowerUps.Count - 1 do
-      begin
-        if not PowerUps[i].Destroyed then
-          PowerUps[i].Draw(Renderer);
-      end;
-
-      Particles.Draw;
-      Ball.Draw(Renderer);
-    // 结束渲染到后处理四边形
-    Effects.EndRender;
-    // 渲染后处理四边形
-    Effects.Render(glfwGetTime);
+    color := TGLM.Vec3(1.0, 1.0, 0.0);
+    Text.RenderText('Press ENTER to retry or ESC to quit', 130.0, Height / 2,
+      1.0, @color);
   end;
 end;
 
@@ -443,6 +519,8 @@ begin
     2: Self.Levels[0].Load(LEVEL_3, Self.Width, Self.Height div 2);
     3: Self.Levels[0].Load(LEVEL_4, Self.Width, Self.Height div 2);
   end;
+
+  Self.Lives := 3;
 end;
 
 procedure TGame.ResetPlayer;
@@ -458,7 +536,8 @@ begin
     );
 
   // 同时禁用所有激活的能量
-  Effects.Chaos := Effects.Confuse = false;
+  Effects.Confuse := false;
+  Effects.Chaos := false;
   Ball.PassThrough := false;
   Ball.Sticky := false;
   Player.Color := TGLM.Vec3(1.0);
@@ -570,13 +649,37 @@ begin
       Effects.Shake := false;
   end;
 
+  (*═══════════════════════════════════════════════════════════════════════
   // 球是否接触底部边界？
   if Ball.Position.y >= Self.Height then
   begin
-    //Self.ResetLevel;
-    //Self.ResetPlayer;
+    Self.Lives -= 1;
 
+    if Self.Lives = 0 then
+    begin
+      Self.ResetLevel;
+      Self.State := GAME_MENU;
+    end;
+
+    Self.ResetPlayer;
+  end;
+  //═══════════════════════════════════════════════════════════════════════*)
+
+  //(*═══════════════════════════════════════════════════════════════════════
+  // 测试用
+  if Ball.Position.y >= Self.Height then
+  begin
     Ball.Position.y *= -1;
+  end;
+  //═══════════════════════════════════════════════════════════════════════*)
+
+
+  if (Self.State = GAME_ACTIVE) and Self.Levels[Self.Level].IsCompleted then
+  begin
+    Self.ResetLevel;
+    Self.ResetPlayer;
+    Effects.Chaos := true;
+    Self.State := GAME_WIN;
   end;
 end;
 

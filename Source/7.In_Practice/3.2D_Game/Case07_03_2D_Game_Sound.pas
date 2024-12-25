@@ -1,6 +1,7 @@
 ﻿unit Case07_03_2D_Game_Sound;
 
 {$mode ObjFPC}{$H+}
+{$ModeSwitch unicodestrings}{$J-}
 
 interface
 
@@ -17,9 +18,10 @@ type
     _Success: Boolean;
     _Breakout: PMix_Music;
     _Powerup: PMix_Chunk;
-    _Bleep1: PMix_Chunk;
-    _Bleep2: PMix_Chunk;
+    _BleepMp3: PMix_Chunk;
+    _BleepWav: PMix_Chunk;
     _Solid: PMix_Chunk;
+    _IsAudioOpened: Boolean;
 
   public
     constructor Create;
@@ -27,8 +29,8 @@ type
 
     procedure Init;
 
-    procedure Bleep1Play;
-    procedure Bleep2Play;
+    procedure BleepMp3Play;
+    procedure BleepWavPlay;
     procedure BreakoutPlay;
     procedure PowerupPlay;
     procedure SolidPlay;
@@ -56,24 +58,26 @@ begin
   end;
 end;
 
-procedure TSound.Bleep1Play;
+procedure TSound.BleepMp3Play;
 begin
-  Mix_PlayChannel(-1, _Bleep1, 0);
+  Mix_PlayChannel(-1, _BleepMp3, 0);
 end;
 
-procedure TSound.Bleep2Play;
+procedure TSound.BleepWavPlay;
 begin
-  Mix_PlayChannel(-1, _Bleep2, 0);
+  Mix_PlayChannel(-1, _BleepWav, 0);
 end;
 
 procedure TSound.BreakoutPlay;
 begin
   Mix_PlayMusic(_Breakout, -1);
+  _IsAudioOpened := true;
 end;
 
 destructor TSound.Destroy;
 begin
-  Mix_CloseAudio;
+  if _IsAudioOpened then
+    Mix_CloseAudio;
 
   if _Powerup <> nil then
   begin
@@ -81,16 +85,16 @@ begin
     _Powerup := nil;
   end;
 
-  if _Bleep1 <> nil then
+  if _BleepMp3 <> nil then
   begin
-    Mix_FreeChunk(_Bleep1);
+    Mix_FreeChunk(_BleepMp3);
     _Powerup := nil;
   end;
 
-  if _Bleep2 <> nil then
+  if _BleepWav <> nil then
   begin
-    Mix_FreeChunk(_Bleep2);
-    _Bleep2 := nil;
+    Mix_FreeChunk(_BleepWav);
+    _BleepWav := nil;
   end;
 
   if _Solid <> nil then
@@ -123,12 +127,12 @@ begin
   if _Powerup = nil then
     raise Exception.Create('Failed to load ''powerup.wav''!');
 
-  _Bleep1 := Mix_LoadWAV(CrossFixFileName(WAV_BLEEP1).ToPAnsiChar);
-  if _Bleep1 = nil then
+  _BleepMp3 := Mix_LoadWAV(CrossFixFileName(WAV_BLEEP_MP3).ToPAnsiChar);
+  if _BleepMp3 = nil then
     raise Exception.Create('Failed to load ''bleep.mp3''!');
 
-  _Bleep2 := Mix_LoadWAV(CrossFixFileName(WAV_BLEEP2).ToPAnsiChar);
-  if _Bleep2 = nil then
+  _BleepWav := Mix_LoadWAV(CrossFixFileName(WAV_BLEEP_WAV).ToPAnsiChar);
+  if _BleepWav = nil then
     raise Exception.Create('Failed to load ''bleep.wav''!');
 
   _Solid := Mix_LoadWAV(CrossFixFileName(WAV_SOLID).ToPAnsiChar);

@@ -13,7 +13,8 @@ uses
   Classes,
   SysUtils,
 
-  freetype, freetypeh,
+  freetype,
+  freetypeh,
 
   DeepStar.Utils,
   DeepStar.DSA.Tree.TreeMap,

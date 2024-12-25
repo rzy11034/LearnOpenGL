@@ -33,14 +33,7 @@ uses
   Case07_03_2D_Game_Program;
 
 procedure Test;
-var
-  i: Integer;
 begin
-  i :=0;
-
-  i := true.ToInteger;
-  i := false.ToInteger;
-
   Exit;
 end;
 

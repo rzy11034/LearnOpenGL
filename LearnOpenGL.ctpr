@@ -1958,6 +1958,10 @@
         <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_Sound.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="Source\7.In_Practice\3.2D_Game\Case07_03_2D_Game_TextRenderer.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -1991,7 +1995,6 @@
     <Linking>
       <Debugging>
         <DebugInfoType Value="dsDwarf3"/>
-        <UseHeaptrc Value="True"/>
         <TrashVariables Value="True"/>
         <StripSymbols Value="True"/>
         <UseExternalDbgSyms Value="True"/>
