@@ -123,7 +123,8 @@ uses
   Case07_03_2D_Game_ParticleGenerator,
   Case07_03_2D_Game_PostProcessor,
   Case07_03_2D_Game_Powerups,
-  Case07_03_2D_Game_Sound, Case07_03_2D_Game_TextRenderer;
+  Case07_03_2D_Game_Sound,
+  Case07_03_2D_Game_TextRenderer;
 
 begin
   try

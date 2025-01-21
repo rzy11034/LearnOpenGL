@@ -62,7 +62,7 @@ begin
   breakout_managed := IInterface(TGame.Create(SCREEN_WIDTH, SCREEN_HEIGHT));
   breakout := breakout_managed as TGame;
   breakout.Init;
-  breakout.State :=  TGameState.GAME_WIN;
+  breakout.State :=  TGameState.GAME_MENU;
 
   //═════════════════════════════════════════════════════════════════════════
 

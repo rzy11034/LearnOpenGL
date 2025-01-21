@@ -58,6 +58,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="pl_sdl"/>
+      </Item>
+      <Item>
         <PackageName Value="pl_vampyreimaging"/>
       </Item>
       <Item>
